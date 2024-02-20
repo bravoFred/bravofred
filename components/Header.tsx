@@ -59,7 +59,8 @@ export default function Header({ title = titleDefault }) {
 				content="width=device-width, minimum-scale=1, initial-scale=1.0"
 			/>
 			<meta name="theme-color" content="#000" />
-			<link rel="shortcut icon" href="/icons/favicon.png" />
+			{/* <link rel="shortcut icon" href="/icons/favicon.png" /> */}
+			<link rel="shortcut icon" href="/favicon.ico" />
 			{/* <link rel="shortcut icon" href="/icons/favicon.png" /> */}
 
 			{/* 

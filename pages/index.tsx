@@ -11,7 +11,7 @@ export default function Home() {
 		<>
 			<Header />
 			<main className={`${styles.main} ${inter.className}`}>
-				<h1>FREDERIC CARTIER PORTFOLIO</h1>
+				<h1>FREDERIC CARTIER</h1>
 				<p>COMING SOON</p>
 			</main>
 		</>
