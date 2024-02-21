@@ -169,5 +169,6 @@
 	letter-spacing: 0.25rem;
 	font-size: 1rem;
 	animation: flickerText 4s infinite;
+	z-index: 1;
 	-webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
 }
