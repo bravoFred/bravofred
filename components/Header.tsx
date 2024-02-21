@@ -16,11 +16,8 @@ export default function Header({ title = titleDefault }) {
 			{/* <meta name="author" content={author} /> */}
 			{/* <meta name="designer" content={author} /> */}
 			{/* <meta name="publisher" content={author} /> */}
-			<meta
-				name="image"
-				content={previewImg}
-				// content="https://raw.githubusercontent.com/thomasmatlock/media-server/main/images/previewBanner.png"
-			/>
+			{/* RESTORE BELOW WITH NEW PREVIEW THUMBNAIL */}
+			{/* <meta name="image" content={previewImg} /> */}
 
 			{/* Search Engine Optimization Meta Tags */}
 			<title>{title}</title>
