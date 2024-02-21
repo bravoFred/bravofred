@@ -6,6 +6,7 @@ import React, { Suspense, useRef, useState, useContext, useEffect } from 'react'
 import { Canvas, extend } from '@react-three/fiber';
 import { OrbitControls, AccumulativeShadows, RandomizedLight } from '@react-three/drei';
 import GridGround from '@/components/GridGround';
+import Camera from '@/components/Camera';
 
 import * as THREE from 'three';
 
@@ -33,7 +34,7 @@ export default function Main() {
 						near: 0.1,
 						far: 1000,
 						zoom: 1,
-						position: new THREE.Vector3(-10, 1, 10),
+						position: new THREE.Vector3(-10, 0.4, 10),
 					}}
 				>
 					<OrbitControls
@@ -61,7 +62,7 @@ export default function Main() {
 						shadow-mapSize={[512, 512]}
 						castShadow
 					/>
-					{/* <Camera /> */}
+					<Camera />
 					{/* <Performance /> */}
 				</Canvas>
 			</Suspense>
