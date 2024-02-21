@@ -12,7 +12,7 @@ import * as THREE from 'three';
 
 export default function Main() {
 	const [lightPos, setLightPos] = useState<[number, number, number] | undefined>([-5, 5, 10]);
-	const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+	const [theme, setTheme] = useState<'light' | 'dark'>('light');
 	return (
 		<>
 			<main className={`${styles.main} ${inter.className}`}>
