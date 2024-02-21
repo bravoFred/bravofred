@@ -31,12 +31,8 @@ export default function Header({ title = titleDefault }) {
 			<meta property="og:title" content={title} />
 			<meta property="og:type" content="site" />
 			<meta property="og:url" content={url} />
-			<meta
-				property="og:image"
-				content={previewImg}
-				// content="https://raw.githubusercontent.com/thomasmatlock/media-server/main/images/preview.png"
-				// content="https://raw.githubusercontent.com/thomasmatlock/media-server/main/images/previewBanner.png"
-			/>
+			{/* RESTORE BELOW */}
+			{/* <meta property="og:image" content={previewImg} /> */}
 			<meta property="og:site_name" content={title} />
 			<meta property="og:description" content={description} />
 
