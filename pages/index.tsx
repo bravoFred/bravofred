@@ -5,15 +5,13 @@ import styles from '@/styles/App.module.css';
 import Header from '@/components/Header';
 import FlickerTitle from '@/components/FlickerTitle';
 const inter = Inter({ subsets: ['latin'] });
+import Main from '@/components/Main';
 
 export default function Home() {
 	return (
-		<>
+		<div className={styles.app}>
 			<Header />
-			<main className={`${styles.main} ${inter.className}`}>
-				<h1>FREDERIC CARTIER</h1>
-				<FlickerTitle title="coming soon" />
-			</main>
-		</>
+			<Main />
+		</div>
 	);
 }
