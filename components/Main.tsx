@@ -16,8 +16,19 @@ export default function Main() {
 	return (
 		<>
 			<main className={`${styles.main} ${inter.className}`}>
-				<h1>FREDERIC CARTIER</h1>
-				<FlickerTitle title="coming soon" />
+				<h1
+					style={{
+						// fontSize: 'clamp(1.5rem, 5vw, 3rem)',
+						// margin: '0',
+						// padding: '0',
+						// fontFamily: inter.fontFamily,
+						// fontWeight: 'bold',
+						color: theme === 'light' ? '#000' : '#fff',
+					}}
+				>
+					FREDERIC CARTIER
+				</h1>
+				<FlickerTitle title="coming soon" theme={theme} />
 			</main>
 			<Suspense fallback={null}>
 				<Canvas
@@ -30,7 +41,8 @@ export default function Main() {
 						logarithmicDepthBuffer: true,
 					}}
 					camera={{
-						fov: 45,
+						// fov: 45,
+						fov: 30,
 						near: 0.1,
 						far: 1000,
 						zoom: 1,
