@@ -41,7 +41,7 @@ export default function Main() {
 						enableDamping={true}
 						dampingFactor={0.15}
 						autoRotate={true}
-						autoRotateSpeed={-0.1}
+						autoRotateSpeed={-0.5}
 						enablePan={false}
 						enableZoom={true}
 						enableRotate={true}
