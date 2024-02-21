@@ -33,7 +33,7 @@ export default function Main() {
 						near: 0.1,
 						far: 1000,
 						zoom: 1,
-						position: new THREE.Vector3(-10, 5, 10),
+						position: new THREE.Vector3(-10, 1, 10),
 					}}
 				>
 					<OrbitControls
@@ -45,7 +45,7 @@ export default function Main() {
 						enablePan={false}
 						enableZoom={true}
 						enableRotate={true}
-						target={[0, 1, 0]}
+						target={[0, 2, 0]}
 					/>
 					<GridGround theme={theme} />
 					{theme === 'light' && <color args={['#fff']} attach="background" />}
