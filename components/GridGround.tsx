@@ -9,14 +9,16 @@ export default function Ground(props: Props) {
 		cellThickness: 0.5, // small squares line thickness
 		sectionSize: 2.5, // size of the large squares,
 		sectionThickness: 1, // line thickness of large squares
-		fadeDistance: 100,
+		// fadeDistance: 100,
+		fadeDistance: 50,
 		fadeStrength: 2,
-		followCamera: true,
+		followCamera: false,
 		infiniteGrid: true,
 		receiveShadow: true, // default
 	};
 	return (
 		<Grid
+			receiveShadow
 			position={[0, 0, 0]}
 			args={[10.5, 10.5]}
 			{...gridConfig}
