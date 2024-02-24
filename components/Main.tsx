@@ -7,12 +7,29 @@ import { Canvas, extend } from '@react-three/fiber';
 import { OrbitControls, AccumulativeShadows, RandomizedLight } from '@react-three/drei';
 import GridGround from '@/components/GridGround';
 import Camera from '@/components/Camera';
+import Portals from './Portals';
 
 import * as THREE from 'three';
 
 export default function Main() {
 	const [lightPos, setLightPos] = useState<[number, number, number] | undefined>([-5, 5, 10]);
 	const [theme, setTheme] = useState<'light' | 'dark'>('light');
+	// listen for scroll event
+	useEffect(() => {
+		// listen for scroll event
+		const scrollListener = () => {
+			if (window.scrollY > 100) {
+				setTheme('dark');
+			} else {
+				setTheme('light');
+			}
+		};
+		window.addEventListener('scroll', scrollListener);
+		// clean up
+		return () => {
+			window.removeEventListener('scroll', scrollListener);
+		};
+	}, []);
 	return (
 		<>
 			<main className={`${styles.main} ${inter.className}`}>
@@ -33,20 +50,21 @@ export default function Main() {
 			<Suspense fallback={null}>
 				<Canvas
 					flat
+					shadows
 					frameloop="always"
 					dpr={[1, 2]}
 					gl={{
 						powerPreference: 'high-performance',
-						antialias: true,
+						antialias: false,
 						logarithmicDepthBuffer: true,
 					}}
 					camera={{
 						// fov: 45,
 						fov: 30,
 						near: 0.1,
-						far: 1000,
+						far: 100,
 						zoom: 1,
-						position: new THREE.Vector3(-10, 0.4, 10),
+						position: new THREE.Vector3(-2, 0.4, 10),
 					}}
 				>
 					<OrbitControls
@@ -58,12 +76,12 @@ export default function Main() {
 						enablePan={false}
 						enableZoom={true}
 						enableRotate={true}
-						target={[0, 2, 0]}
+						target={[0, 1, 0]}
 					/>
 					<GridGround theme={theme} />
-					{theme === 'light' && <color args={['#fff']} attach="background" />}
-					{theme === 'dark' && <color args={['#000']} attach="background" />}
-					<directionalLight
+					{/* {theme === 'light' && <color args={['#fff']} attach="background" />} */}
+					{/* {theme === 'dark' && <color args={['#000']} attach="background" />} */}
+					{/* <directionalLight
 						intensity={0.1}
 						position={lightPos}
 						shadow-camera-far={100}
@@ -73,9 +91,9 @@ export default function Main() {
 						shadow-camera-bottom={-100}
 						shadow-mapSize={[512, 512]}
 						castShadow
-					/>
+					/> */}
 					<Camera />
-					{/* <Performance /> */}
+					{/* <Portals /> */}
 				</Canvas>
 			</Suspense>
 		</>
