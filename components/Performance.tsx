@@ -9,11 +9,11 @@ import * as THREE from 'three';
 import chalk from 'chalk';
 
 export default function Performance() {
-	const { isTabActive, frameloop, setFrameloop, dev, mobile } = useContext(UserContextProvider);
+	const { activeTab, frameloop, setFrameloop, dev, mobile } = useContext(UserContextProvider);
 	useEffect(() => {
-		if (!isTabActive) setFrameloop('never');
-		if (isTabActive) setFrameloop('always');
-	}, [isTabActive, frameloop, setFrameloop]);
+		if (!activeTab) setFrameloop('never');
+		if (activeTab) setFrameloop('always');
+	}, [activeTab, frameloop, setFrameloop]);
 	const [dpr, setDpr] = useState(1);
 	const [deviceDpr, setDeviceDpr] = useState(1);
 	useEffect(() => {

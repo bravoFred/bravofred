@@ -5,16 +5,16 @@ const UserContext = createContext({
 	mobile: false,
 	frameloop: 'always' as 'always' | 'demand' | 'never',
 	theme: 'dark',
-	isTabActive: true,
+	activeTab: true,
 	setTheme: (string) => {},
 	setFrameloop: (string) => {},
-	setIsTabActive: (boolean) => {},
+	setActiveTab: (boolean) => {},
 	toggleTheme: () => {},
 });
 export function UserContextProvider(props) {
 	const [mobile, setMobile] = useState(false); // device
 	const [dev, setDev] = useState(process.env.NODE_ENV === 'development' ? true : false); // device
-	const [isTabActive, setIsTabActive] = useState(true);
+	const [activeTab, setActiveTab] = useState(true);
 	const [theme, setTheme] = useState<'dark' | 'light'>('dark'); // user
 	useEffect(() => {
 		if (window.innerWidth < window.innerHeight) setMobile(true); // if mobile
@@ -31,7 +31,7 @@ export function UserContextProvider(props) {
 
 	useEffect(() => {
 		const handleVisibilityChange = () => {
-			document.hidden ? setIsTabActive(false) : setIsTabActive(true);
+			document.hidden ? setActiveTab(false) : setActiveTab(true);
 		};
 		document.addEventListener('visibilitychange', handleVisibilityChange, false);
 		return () => {
@@ -44,11 +44,11 @@ export function UserContextProvider(props) {
 				dev,
 				mobile,
 				frameloop,
-				isTabActive,
+				activeTab,
 				theme,
 				setFrameloop,
 				setTheme,
-				setIsTabActive,
+				setActiveTab,
 				toggleTheme,
 			}}
 		>

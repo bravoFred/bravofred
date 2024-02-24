@@ -99,16 +99,6 @@ function Rig({ position = new THREE.Vector3(0, 1, 5), focus = new THREE.Vector3(
 export default function PortalsCards() {
 	return (
 		<>
-			{/* <Frame
-				id="01"
-				name={`pick\nles`}
-				author="Omar Faruq Tawsif"
-				bg="#e4cdac"
-				position={[-1.15, 0, 0]}
-				rotation={[0, 0.5, 0]}
-			>
-				<Scene position={[0, -1, -2]} />
-			</Frame> */}
 			<group position={[-1.15, 0, 0.25]}>
 				<Frame
 					id="01"
