@@ -46,25 +46,26 @@ export default function Performance() {
 	const downResMsgDisplayed = useRef(false);
 	const upResMsgDisplayed = useRef(false);
 	useFrame(({ gl, scene, camera, clock }) => {
-		camPositions.current.push(camera.position.clone());
-		camPositions.current.shift();
-		camSpeed.current = getCameraSpeed(camPositions.current);
-		stoppedMoving.current = checkIfStoppedMoving(camSpeed.current);
+		// camPositions.current.push(camera.position.clone());
+		// camPositions.current.shift();
+		// camSpeed.current = getCameraSpeed(camPositions.current);
+		// stoppedMoving.current = checkIfStoppedMoving(camSpeed.current);
 		// if (!stoppedMoving.current) {
 		// 	setDpr(getDifference(camSpeed.current));
 		// }
 		// if (stoppedMoving.current) setDpr(mobile ? deviceDpr / 2 : deviceDpr);
-		gl.setPixelRatio(dpr);
-		if (dpr < 1.1 && !upResMsgDisplayed.current) {
-			console.log(`downscale`);
-			upResMsgDisplayed.current = true;
-			downResMsgDisplayed.current = false;
-		}
-		if (dpr === 2 && !downResMsgDisplayed.current) {
-			console.log(`upscale`);
-			downResMsgDisplayed.current = true;
-			upResMsgDisplayed.current = false;
-		}
+		// if (dpr < 1.1 && !upResMsgDisplayed.current) {
+		// 	console.log(`downscale`);
+		// 	upResMsgDisplayed.current = true;
+		// 	downResMsgDisplayed.current = false;
+		// }
+		// if (dpr === 2 && !downResMsgDisplayed.current) {
+		// 	console.log(`upscale`);
+		// 	downResMsgDisplayed.current = true;
+		// 	upResMsgDisplayed.current = false;
+		// }
+		// gl.setPixelRatio(dpr);
+		console.log(dpr);
 	});
 	useEffect(() => {
 		if (frameloop === 'never') console.log(`scene frozen`);
