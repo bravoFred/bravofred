@@ -1,0 +1,36 @@
+@font-face {
+    font-family: 'Nimbus Sans L';
+    src: url('NimbusSanL-Bol.woff2') format('woff2'),
+        url('NimbusSanL-Bol.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nimbus Sans L';
+    src: url('NimbusSanL-RegIta.woff2') format('woff2'),
+        url('NimbusSanL-RegIta.woff') format('woff');
+    font-weight: normal;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nimbus Sans L';
+    src: url('NimbusSanL-BolIta.woff2') format('woff2'),
+        url('NimbusSanL-BolIta.woff') format('woff');
+    font-weight: bold;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Nimbus Sans L';
+    src: url('NimbusSanL-Reg.woff2') format('woff2'),
+        url('NimbusSanL-Reg.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
