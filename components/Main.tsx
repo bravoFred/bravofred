@@ -17,14 +17,15 @@ import PortalsCube from './PortalsCube';
 import PortalsCards from './PortalsCards';
 import FlickerText from './FlickerText';
 import VideoText from './VideoText';
+import Performance from './Performance';
 import { useTexture } from '@react-three/drei';
+import UserContextProvider from '../store/userContext';
 
 import * as THREE from 'three';
 
 export default function Main() {
 	const [lightPos, setLightPos] = useState<[number, number, number] | undefined>([-5, 5, 10]);
-	// const [theme, setTheme] = useState<'light' | 'dark'>('light');
-	const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+	const { theme, setTheme, frameloop } = useContext(UserContextProvider);
 	function Ground() {
 		const [floor, normal] = useTexture([
 			'/SurfaceImperfections003_1K_var1.jpg',
@@ -70,7 +71,7 @@ export default function Main() {
 				<Canvas
 					flat
 					shadows
-					frameloop="always"
+					frameloop={frameloop}
 					dpr={[1, 2]}
 					gl={{
 						powerPreference: 'high-performance',
@@ -126,6 +127,7 @@ export default function Main() {
 					{/* <Ground /> */}
 					{/* <VideoText /> */}
 					<PortalsCards />
+					<Performance />
 					{/* <FlickerText /> */}
 				</Canvas>
 			</Suspense>

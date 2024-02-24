@@ -98,13 +98,48 @@ function Rig({ position = new THREE.Vector3(0, 1, 5), focus = new THREE.Vector3(
 }
 export default function PortalsCards() {
 	return (
-		<group position={[0, 0, 0]}>
-			<Frame id="02" name="Film 1" author="Frederic Cartier" bg={undefined}>
-				<Scene position={[0, -1, -1]} />
-				{/* <VideoText position={[0, -1, -5]} /> */}
-				<ambientLight intensity={1} />
-			</Frame>
+		<>
+			{/* <Frame
+				id="01"
+				name={`pick\nles`}
+				author="Omar Faruq Tawsif"
+				bg="#e4cdac"
+				position={[-1.15, 0, 0]}
+				rotation={[0, 0.5, 0]}
+			>
+				<Scene position={[0, -1, -2]} />
+			</Frame> */}
+			<group position={[-1.15, 0, 0.25]}>
+				<Frame
+					id="01"
+					name="Film 1"
+					author="Frederic Cartier"
+					bg="#1a1a1a"
+					rotation={[0, 0.5, 0]}
+				>
+					<Scene position={[0, -1, -1]} />
+					<ambientLight intensity={2} />
+				</Frame>
+			</group>
+			<group>
+				<Frame id="02" name="Film 2" author="Frederic Cartier" bg="#1a1a1a">
+					<Scene position={[0, -1, -2]} />
+					<ambientLight intensity={2} />
+				</Frame>
+			</group>
+			<group position={[1.15, 0, 0.25]}>
+				<Frame
+					id="03"
+					name="Film 3"
+					author="Frederic Cartier"
+					bg="#d1d1ca"
+					rotation={[0, -0.5, 0]}
+				>
+					<Scene position={[0, -1, -1]} />
+					<ambientLight intensity={2} />
+				</Frame>
+			</group>
 			<Rig />
-		</group>
+		</>
 	);
 }
