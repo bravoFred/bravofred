@@ -98,7 +98,7 @@ export default function PortalsCards() {
 		<group position={[0, 0, 0]}>
 			<Frame id="02" name="Film 1" author="Frederic Cartier" bg={undefined}>
 				<Scene position={[0, -1, -1]} />
-				<VideoText position={[0, -1, -5]} />
+				{/* <VideoText position={[0, -1, -5]} /> */}
 				<ambientLight intensity={1} />
 			</Frame>
 			<Rig />
