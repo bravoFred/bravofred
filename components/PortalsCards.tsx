@@ -25,7 +25,7 @@ function Frame({ id, name, author, bg, width = 1, height = 1.61803398875, childr
 	const [text, setText] = useState(`FREDERIC${'\n'}CARTIER`);
 
 	return (
-		<group {...props} position={[0, 0, 0]}>
+		<group {...props} position={[0, 1, -1]}>
 			<Text
 				font="/fonts/NimbusSanL-Bol.woff"
 				fontSize={0.2}
@@ -69,7 +69,7 @@ function Frame({ id, name, author, bg, width = 1, height = 1.61803398875, childr
 					ref={portal}
 					events={params?.id === id}
 					side={THREE.DoubleSide}
-					blend={0}
+					// blend={0}
 				>
 					<color attach="background" args={[bg]} />
 					{children}
@@ -80,8 +80,11 @@ function Frame({ id, name, author, bg, width = 1, height = 1.61803398875, childr
 }
 
 // function Rig({ position = new THREE.Vector3(0, 0, 2), focus = new THREE.Vector3(0, 0, 0) }) {
-function Rig({ position = new THREE.Vector3(0, 0, 5), focus = new THREE.Vector3(0, 0, 0) }) {
-	const { controls, scene } = useThree<{ controls: any; scene: THREE.Scene }>();
+function Rig({ position = new THREE.Vector3(0, 1, 5), focus = new THREE.Vector3(0, 1, 0) }) {
+	const { controls, scene } = useThree<{
+		controls: CameraControls;
+		scene: THREE.Scene;
+	}>();
 	const [, params] = useRoute<{ id: string }>('/item/:id');
 	useEffect(() => {
 		const active = scene.getObjectByName(params?.id);
