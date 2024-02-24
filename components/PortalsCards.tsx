@@ -25,7 +25,7 @@ function Frame({ id, name, author, bg, width = 1, height = 1.61803398875, childr
 	const [text, setText] = useState(`FREDERIC${'\n'}CARTIER`);
 
 	return (
-		<group {...props} position={[0, 1, -1]}>
+		<group {...props} position={[0, 1, 0]}>
 			<Text
 				font="/fonts/NimbusSanL-Bol.woff"
 				fontSize={0.2}
