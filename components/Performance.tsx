@@ -81,14 +81,14 @@ export default function Performance() {
 				/>
 			)}
 
-			{/* <AdaptiveDpr />
+			<AdaptiveDpr />
 			<AdaptiveEvents />
 			{mobile && (
 				<PerformanceMonitor onIncline={() => setDpr(dpr / 2)} onDecline={() => setDpr(1)} />
 			)}
 			{!mobile && (
 				<PerformanceMonitor onIncline={() => setDpr(dpr)} onDecline={() => setDpr(1)} />
-			)} */}
+			)}
 		</>
 	);
 }

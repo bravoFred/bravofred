@@ -127,7 +127,7 @@ export default function Main() {
 					{/* <PortalsCube /> */}
 					{/* <Ground /> */}
 					{/* <VideoText /> */}
-					<ScrollControls pages={2}>
+					<ScrollControls pages={1}>
 						<PortalsCards />
 					</ScrollControls>
 					<Performance />
