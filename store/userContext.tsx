@@ -26,15 +26,7 @@ export function UserContextProvider(props) {
 
 	const toggleTheme = () => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
 	// listen for window resize
-	useEffect(() => {
-		const handleResize = () => {
-			if (window.innerWidth < window.innerHeight) setMobile(true);
-			else setMobile(false);
-			console.log('resize');
-		};
-		window.addEventListener('resize', handleResize);
-		return () => window.removeEventListener('resize', handleResize);
-	}, []);
+
 	useEffect(() => {
 		const handleVisibilityChange = () => {
 			document.hidden ? setActiveTab(false) : setActiveTab(true);
