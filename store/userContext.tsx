@@ -23,9 +23,6 @@ export function UserContextProvider(props) {
 	const [frameloop, setFrameloop] = useState<'always' | 'demand' | 'never'>(() => {
 		return 'always';
 	});
-	useEffect(() => {
-		mobile ? setTheme('light') : setTheme('dark');
-	}, [mobile]);
 
 	const toggleTheme = () => setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
 

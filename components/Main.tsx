@@ -101,8 +101,7 @@ export default function Main() {
 					/> */}
 					<GridGround theme={theme} />
 					<color args={[theme === 'light' ? '#fff' : '#000']} attach="background" />
-					<spotLight
-						// intensity={0.6}
+					{/* <spotLight
 						intensity={0.3}
 						position={[0, 10, 0]}
 						angle={0.15}
@@ -110,12 +109,8 @@ export default function Main() {
 						shadow-mapSize-width={2048}
 						shadow-mapSize-height={2048}
 						castShadow
-					/>
-					<fog attach="fog" args={['black', 15, 20]} />
-
-					{/* <Camera /> */}
-					{/* <Ground /> */}
-					{/* <VideoText /> */}
+					/> */}
+					<fog attach="fog" args={[theme === 'light' ? '#fff' : '#000', 15, 20]} />
 					<ScrollControls pages={1}>
 						<PortalsCards />
 					</ScrollControls>
