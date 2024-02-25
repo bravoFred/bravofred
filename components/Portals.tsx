@@ -1,11 +1,12 @@
 import * as THREE from 'three';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { Canvas, extend, useFrame, useThree } from '@react-three/fiber';
 import { useCursor, MeshPortalMaterial, CameraControls, Gltf, Text } from '@react-three/drei';
 import { useRoute, useLocation } from 'wouter';
 import { easing, geometry } from 'maath';
 import { suspend } from 'suspend-react';
 import { useScroll } from '@react-three/drei';
+import UserContextProvider from '../store/userContext';
 
 extend(geometry);
 import dynamic from 'next/dynamic';
@@ -101,7 +102,10 @@ export default function PortalsCards() {
 	const [portalsInactiveVector, setPortalsInactiveVector] = useState(
 		new THREE.Vector3(0, 0, -25)
 	);
-	const [portalsFocusedVector, setPortalsFocusedVector] = useState(new THREE.Vector3(0, 0, 0));
+	const { mobile } = useContext(UserContextProvider);
+	const [portalsFocusedVector, setPortalsFocusedVector] = useState(
+		new THREE.Vector3(0, 0, mobile ? 0 : 0)
+	);
 	const scroll = useScroll();
 	const portalsRef = useRef<THREE.Group>();
 	const portal1Ref = useRef<THREE.Group>();
