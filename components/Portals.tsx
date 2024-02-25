@@ -117,11 +117,11 @@ export default function PortalsCards() {
 		// listen for positive or negative scroll direction
 
 		state.camera.position.set(0, 1, 5);
-		state.camera.position.set(
-			Math.sin(offset) * -20, // this makes the camera move in a circle
-			Math.atan(offset * Math.PI * 2) * 1, // this makes the camera move up and down
-			Math.cos((offset * Math.PI) / 3) * 5 // this makes the camera move closer and further away
-		);
+		// state.camera.position.set(
+		// 	Math.sin(offset) * -20, // this makes the camera move in a circle
+		// 	Math.atan(offset * Math.PI * 2) * 1, // this makes the camera move up and down
+		// 	Math.cos((offset * Math.PI) / 3) * 5 // this makes the camera move closer and further away
+		// );
 		// state.camera.position.set(
 
 		// );
