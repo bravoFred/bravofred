@@ -10,21 +10,22 @@ import {
 	RandomizedLight,
 	Reflector,
 	Text,
+	ScrollControls,
 } from '@react-three/drei';
 import GridGround from '@/components/GridGround';
 import Camera from '@/components/Camera';
-import PortalsCube from './PortalsCube';
-import PortalsCards from './PortalsCards';
+import PortalsCards from './Portals';
 import FlickerText from './FlickerText';
 import VideoText from './VideoText';
+import Performance from './Performance';
 import { useTexture } from '@react-three/drei';
+import UserContextProvider from '../store/userContext';
 
 import * as THREE from 'three';
 
 export default function Main() {
 	const [lightPos, setLightPos] = useState<[number, number, number] | undefined>([-5, 5, 10]);
-	// const [theme, setTheme] = useState<'light' | 'dark'>('light');
-	const [theme, setTheme] = useState<'light' | 'dark'>('dark');
+	const { theme, setTheme, frameloop, mobile } = useContext(UserContextProvider);
 	function Ground() {
 		const [floor, normal] = useTexture([
 			'/SurfaceImperfections003_1K_var1.jpg',
@@ -70,8 +71,8 @@ export default function Main() {
 				<Canvas
 					flat
 					shadows
-					frameloop="always"
-					dpr={[1, 2]}
+					frameloop={frameloop}
+					dpr={[1, 1.5]}
 					gl={{
 						powerPreference: 'high-performance',
 						antialias: false,
@@ -80,14 +81,15 @@ export default function Main() {
 					}}
 					camera={{
 						// fov: 45,
-						fov: 30,
+						fov: mobile ? 60 : 30,
+						// 30,
 						near: 0.1,
-						far: 100,
+						far: 50,
 						zoom: 1,
-						position: new THREE.Vector3(-2, 0.4, 5),
+						position: new THREE.Vector3(0, 0.4, 5),
 					}}
 				>
-					<OrbitControls
+					{/* <OrbitControls
 						makeDefault
 						enableDamping={true}
 						dampingFactor={0.15}
@@ -97,36 +99,23 @@ export default function Main() {
 						enableZoom={true}
 						enableRotate={true}
 						target={[0, 0.4, 0]}
-					/>
+					/> */}
 					<GridGround theme={theme} />
 					<color args={[theme === 'light' ? '#fff' : '#000']} attach="background" />
-					{/* <fog attach="fog" args={['red', 20, -5]} /> */}
-					{/* <planeGeometry args={[100, 100]} /> */}
-					{/* <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
-						<planeBufferGeometry attach="geometry" args={[10, 10]} />
-						<meshPhongMaterial attach="material" color="#1a1a1a" />
-					</mesh> */}
-					<spotLight
-						// intensity={0.6}
+					{/* <spotLight
 						intensity={0.3}
 						position={[0, 10, 0]}
-						// position={lightPos}
-						// angle={0.2}
 						angle={0.15}
-						// angle={2}
 						penumbra={1}
 						shadow-mapSize-width={2048}
 						shadow-mapSize-height={2048}
 						castShadow
-					/>
-					<fog attach="fog" args={['black', 15, 20]} />
-
-					{/* <Camera /> */}
-					{/* <PortalsCube /> */}
-					{/* <Ground /> */}
-					{/* <VideoText /> */}
-					<PortalsCards />
-					{/* <FlickerText /> */}
+					/> */}
+					<fog attach="fog" args={[theme === 'light' ? '#fff' : '#000', 15, 20]} />
+					<ScrollControls pages={1}>
+						<PortalsCards />
+					</ScrollControls>
+					<Performance />
 				</Canvas>
 			</Suspense>
 		</>

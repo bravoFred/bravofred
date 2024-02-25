@@ -4,6 +4,8 @@ type Props = {
 };
 export default function Ground(props: Props) {
 	const { theme } = props;
+	// console.log(theme);
+
 	const gridConfig = {
 		cellSize: 0.5, // small squares size
 		cellThickness: 0.5, // small squares line thickness

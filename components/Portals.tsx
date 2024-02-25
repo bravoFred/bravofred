@@ -1,10 +1,12 @@
 import * as THREE from 'three';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { Canvas, extend, useFrame, useThree } from '@react-three/fiber';
 import { useCursor, MeshPortalMaterial, CameraControls, Gltf, Text } from '@react-three/drei';
 import { useRoute, useLocation } from 'wouter';
 import { easing, geometry } from 'maath';
 import { suspend } from 'suspend-react';
+import { useScroll } from '@react-three/drei';
+import UserContextProvider from '../store/userContext';
 
 extend(geometry);
 import dynamic from 'next/dynamic';
@@ -97,14 +99,63 @@ function Rig({ position = new THREE.Vector3(0, 1, 5), focus = new THREE.Vector3(
 	return <CameraControls makeDefault minPolarAngle={0} maxPolarAngle={Math.PI / 2} />;
 }
 export default function PortalsCards() {
+	const [portalsInactiveVector, setPortalsInactiveVector] = useState(
+		new THREE.Vector3(0, 0, -25)
+	);
+	const { mobile } = useContext(UserContextProvider);
+	const [portalsFocusedVector, setPortalsFocusedVector] = useState(
+		new THREE.Vector3(0, 0, mobile ? 0 : 0)
+	);
+	const scroll = useScroll();
+	const portalsRef = useRef<THREE.Group>();
+	const portal1Ref = useRef<THREE.Group>();
+	const portal2Ref = useRef<THREE.Group>();
+	const portal3Ref = useRef<THREE.Group>();
+	useFrame((state) => {
+		const offset = 1 - scroll.offset;
+		// console.log(scroll.offset);
+		// listen for positive or negative scroll direction
+
+		state.camera.position.set(0, 1, 5);
+		state.camera.position.set(
+			Math.sin(offset) * -20, // this makes the camera move in a circle
+			Math.atan(offset * Math.PI * 2) * 1, // this makes the camera move up and down
+			Math.cos((offset * Math.PI) / 3) * 5 // this makes the camera move closer and further away
+		);
+		// state.camera.position.set(
+
+		// );
+		state.camera.lookAt(0, 1, 0);
+		// move the portals group between the inactive and focused positions
+		// portalsRef.current.position.lerpVectors(
+		portalsRef.current.position.lerpVectors(
+			portalsInactiveVector,
+			portalsFocusedVector,
+			scroll.offset
+		);
+	});
+
 	return (
-		<group position={[0, 0, 0]}>
-			<Frame id="02" name="Film 1" author="Frederic Cartier" bg={undefined}>
-				<Scene position={[0, -1, -1]} />
-				{/* <VideoText position={[0, -1, -5]} /> */}
-				<ambientLight intensity={1} />
-			</Frame>
-			<Rig />
+		<group ref={portalsRef} position={[0, 0, -50]}>
+			<group position={[-1.15, 0, 0.25]} rotation={[0, 0.5, 0]} ref={portal1Ref}>
+				<Frame id="01" name="Film 1" author="Frederic Cartier" bg="#1a1a1a">
+					<Scene position={[0, -1, -1]} />
+					<ambientLight intensity={2} />
+				</Frame>
+			</group>
+			<group ref={portal2Ref}>
+				<Frame id="02" name="Film 2" author="Frederic Cartier" bg="#1a1a1a">
+					<Scene position={[0, -1, -1]} />
+					<ambientLight intensity={2} />
+				</Frame>
+			</group>
+			<group position={[1.15, 0, 0.25]} rotation={[0, -0.5, 0]} ref={portal3Ref}>
+				<Frame id="03" name="Film 3" author="Frederic Cartier" bg="#d1d1ca">
+					<Scene position={[0, -1, -1]} />
+					<ambientLight intensity={2} />
+				</Frame>
+			</group>
+			{/* <Rig /> */}
 		</group>
 	);
 }
