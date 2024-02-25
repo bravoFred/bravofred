@@ -142,7 +142,7 @@ export default function Main() {
 					<fog attach="fog" args={[theme === 'light' ? '#fff' : '#000', 10, 25]} />
 					<ScrollControls pages={1}>
 						<Portals />
-						<AboutMe />
+						{/* <AboutMe /> */}
 					</ScrollControls>
 					{/* <Shake /> */}
 					<Performance />
