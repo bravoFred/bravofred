@@ -15,7 +15,7 @@ import {
 import GridGround from '@/components/GridGround';
 import Camera from '@/components/Camera';
 import PortalsCube from './PortalsCube';
-import PortalsCards from './PortalsCards';
+import PortalsCards from './Portals';
 import FlickerText from './FlickerText';
 import VideoText from './VideoText';
 import Performance from './Performance';
@@ -84,9 +84,9 @@ export default function Main() {
 						// fov: 45,
 						fov: 30,
 						near: 0.1,
-						far: 100,
+						far: 50,
 						zoom: 1,
-						position: new THREE.Vector3(-2, 0.4, 5),
+						position: new THREE.Vector3(0, 0.4, 5),
 					}}
 				>
 					{/* <OrbitControls
@@ -102,20 +102,11 @@ export default function Main() {
 					/> */}
 					<GridGround theme={theme} />
 					<color args={[theme === 'light' ? '#fff' : '#000']} attach="background" />
-					{/* <fog attach="fog" args={['red', 20, -5]} /> */}
-					{/* <planeGeometry args={[100, 100]} /> */}
-					{/* <mesh receiveShadow rotation={[-Math.PI / 2, 0, 0]}>
-						<planeBufferGeometry attach="geometry" args={[10, 10]} />
-						<meshPhongMaterial attach="material" color="#1a1a1a" />
-					</mesh> */}
 					<spotLight
 						// intensity={0.6}
 						intensity={0.3}
 						position={[0, 10, 0]}
-						// position={lightPos}
-						// angle={0.2}
 						angle={0.15}
-						// angle={2}
 						penumbra={1}
 						shadow-mapSize-width={2048}
 						shadow-mapSize-height={2048}
@@ -124,14 +115,12 @@ export default function Main() {
 					<fog attach="fog" args={['black', 15, 20]} />
 
 					{/* <Camera /> */}
-					{/* <PortalsCube /> */}
 					{/* <Ground /> */}
 					{/* <VideoText /> */}
 					<ScrollControls pages={1}>
 						<PortalsCards />
 					</ScrollControls>
 					<Performance />
-					{/* <FlickerText /> */}
 				</Canvas>
 			</Suspense>
 		</>

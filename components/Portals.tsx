@@ -98,38 +98,59 @@ function Rig({ position = new THREE.Vector3(0, 1, 5), focus = new THREE.Vector3(
 	return <CameraControls makeDefault minPolarAngle={0} maxPolarAngle={Math.PI / 2} />;
 }
 export default function PortalsCards() {
+	const [portalsInactiveVector, setPortalsInactiveVector] = useState(
+		new THREE.Vector3(0, 0, -25)
+	);
+	const [portalsFocusedVector, setPortalsFocusedVector] = useState(new THREE.Vector3(0, 0, 0));
 	const scroll = useScroll();
+	const portalsGroupRef = useRef<THREE.Group>();
+	const portal1Ref = useRef<THREE.Group>();
+	const portal2Ref = useRef<THREE.Group>();
+	const portal3Ref = useRef<THREE.Group>();
 	useFrame((state) => {
 		const offset = 1 - scroll.offset;
+		console.log(scroll.offset);
+		// listen for positive
+		// state.camera.position.set(0, 1, 5);
+		// state.camera.position.set(
+		// 	Math.sin(offset) * -20, // this makes the camera move in a circle
+		// 	Math.atan(offset * Math.PI * 2) * 3, // this makes the camera move up and down
+		// 	Math.cos((offset * Math.PI) / 3) * 5 // this makes the camera move closer and further away
+		// );
+		// state.camera.position.set(
 
-		state.camera.position.set(
-			Math.sin(offset) * -20, // this makes the camera move in a circle
-			Math.atan(offset * Math.PI * 2) * 3, // this makes the camera move up and down
-			Math.cos((offset * Math.PI) / 3) * 5 // this makes the camera move closer and further away
-		);
+		// );
 		state.camera.lookAt(0, 1, 0);
+		// move the portals group between the inactive and focused positions
+		// portalsGroupRef.current.position.lerpVectors(
+		portalsGroupRef.current.position.lerpVectors(
+			portalsInactiveVector,
+			portalsFocusedVector,
+			scroll.offset
+		);
 	});
+
 	return (
-		<>
-			<group position={[-1.15, 0, 0.25]} rotation={[0, 0.5, 0]}>
+		<group ref={portalsGroupRef} position={[0, 0, -50]}>
+			<group position={[-1.15, 0, 0.25]} rotation={[0, 0.5, 0]} ref={portal1Ref}>
 				<Frame id="01" name="Film 1" author="Frederic Cartier" bg="#1a1a1a">
 					<Scene position={[0, -1, -1]} />
 					<ambientLight intensity={2} />
 				</Frame>
 			</group>
-			<group>
+			<group ref={portal2Ref}>
 				<Frame id="02" name="Film 2" author="Frederic Cartier" bg="#1a1a1a">
 					<Scene position={[0, -1, -1]} />
 					<ambientLight intensity={2} />
 				</Frame>
 			</group>
-			<group position={[1.15, 0, 0.25]} rotation={[0, -0.5, 0]}>
+			<group position={[1.15, 0, 0.25]} rotation={[0, -0.5, 0]} ref={portal3Ref}>
 				<Frame id="03" name="Film 3" author="Frederic Cartier" bg="#d1d1ca">
 					<Scene position={[0, -1, -1]} />
 					<ambientLight intensity={2} />
 				</Frame>
 			</group>
 			{/* <Rig /> */}
-		</>
+		</group>
 	);
 }
