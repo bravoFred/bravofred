@@ -103,7 +103,7 @@ export default function PortalsCards() {
 		const offset = 1 - scroll.offset;
 
 		state.camera.position.set(
-			Math.sin(offset) * -25, // this makes the camera move in a circle
+			Math.sin(offset) * -20, // this makes the camera move in a circle
 			Math.atan(offset * Math.PI * 2) * 3, // this makes the camera move up and down
 			Math.cos((offset * Math.PI) / 3) * 5 // this makes the camera move closer and further away
 		);
