@@ -129,7 +129,7 @@ export default function PortalsCards() {
 					<ambientLight intensity={2} />
 				</Frame>
 			</group>
-			<Rig />
+			{/* <Rig /> */}
 		</>
 	);
 }
