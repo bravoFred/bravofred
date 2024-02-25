@@ -25,7 +25,7 @@ import * as THREE from 'three';
 
 export default function Main() {
 	const [lightPos, setLightPos] = useState<[number, number, number] | undefined>([-5, 5, 10]);
-	const { theme, setTheme, frameloop } = useContext(UserContextProvider);
+	const { theme, setTheme, frameloop, mobile } = useContext(UserContextProvider);
 	function Ground() {
 		const [floor, normal] = useTexture([
 			'/SurfaceImperfections003_1K_var1.jpg',
@@ -81,7 +81,8 @@ export default function Main() {
 					}}
 					camera={{
 						// fov: 45,
-						fov: 30,
+						fov: mobile ? 60 : 30,
+						// 30,
 						near: 0.1,
 						far: 50,
 						zoom: 1,
