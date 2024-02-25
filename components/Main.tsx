@@ -14,7 +14,6 @@ import {
 } from '@react-three/drei';
 import GridGround from '@/components/GridGround';
 import Camera from '@/components/Camera';
-import PortalsCube from './PortalsCube';
 import PortalsCards from './Portals';
 import FlickerText from './FlickerText';
 import VideoText from './VideoText';
