@@ -114,7 +114,8 @@ export default function PortalsCards() {
 	useFrame((state) => {
 		const offset = 1 - scroll.offset;
 		// console.log(scroll.offset);
-		// listen for positive
+		// listen for positive or negative scroll direction
+
 		state.camera.position.set(0, 1, 5);
 		state.camera.position.set(
 			Math.sin(offset) * -20, // this makes the camera move in a circle
