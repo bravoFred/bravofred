@@ -10,6 +10,7 @@ import {
 	RandomizedLight,
 	Reflector,
 	Text,
+	ScrollControls,
 } from '@react-three/drei';
 import GridGround from '@/components/GridGround';
 import Camera from '@/components/Camera';
@@ -72,7 +73,7 @@ export default function Main() {
 					flat
 					shadows
 					frameloop={frameloop}
-					dpr={[1, 2]}
+					dpr={[1, 1.5]}
 					gl={{
 						powerPreference: 'high-performance',
 						antialias: false,
@@ -88,7 +89,7 @@ export default function Main() {
 						position: new THREE.Vector3(-2, 0.4, 5),
 					}}
 				>
-					<OrbitControls
+					{/* <OrbitControls
 						makeDefault
 						enableDamping={true}
 						dampingFactor={0.15}
@@ -98,7 +99,7 @@ export default function Main() {
 						enableZoom={true}
 						enableRotate={true}
 						target={[0, 0.4, 0]}
-					/>
+					/> */}
 					<GridGround theme={theme} />
 					<color args={[theme === 'light' ? '#fff' : '#000']} attach="background" />
 					{/* <fog attach="fog" args={['red', 20, -5]} /> */}
@@ -126,7 +127,9 @@ export default function Main() {
 					{/* <PortalsCube /> */}
 					{/* <Ground /> */}
 					{/* <VideoText /> */}
-					<PortalsCards />
+					<ScrollControls pages={2}>
+						<PortalsCards />
+					</ScrollControls>
 					<Performance />
 					{/* <FlickerText /> */}
 				</Canvas>

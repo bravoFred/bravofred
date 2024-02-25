@@ -65,7 +65,7 @@ export default function Performance() {
 		// 	upResMsgDisplayed.current = false;
 		// }
 		// gl.setPixelRatio(dpr);
-		console.log(dpr);
+		// console.log(dpr);
 	});
 	useEffect(() => {
 		if (frameloop === 'never') console.log(`scene frozen`);
@@ -81,14 +81,14 @@ export default function Performance() {
 				/>
 			)}
 
-			<AdaptiveDpr />
+			{/* <AdaptiveDpr />
 			<AdaptiveEvents />
 			{mobile && (
 				<PerformanceMonitor onIncline={() => setDpr(dpr / 2)} onDecline={() => setDpr(1)} />
 			)}
 			{!mobile && (
 				<PerformanceMonitor onIncline={() => setDpr(dpr)} onDecline={() => setDpr(1)} />
-			)}
+			)} */}
 		</>
 	);
 }

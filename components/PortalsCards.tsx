@@ -5,6 +5,7 @@ import { useCursor, MeshPortalMaterial, CameraControls, Gltf, Text } from '@reac
 import { useRoute, useLocation } from 'wouter';
 import { easing, geometry } from 'maath';
 import { suspend } from 'suspend-react';
+import { useScroll } from '@react-three/drei';
 
 extend(geometry);
 import dynamic from 'next/dynamic';
@@ -97,6 +98,17 @@ function Rig({ position = new THREE.Vector3(0, 1, 5), focus = new THREE.Vector3(
 	return <CameraControls makeDefault minPolarAngle={0} maxPolarAngle={Math.PI / 2} />;
 }
 export default function PortalsCards() {
+	const scroll = useScroll();
+	useFrame((state) => {
+		const offset = 1 - scroll.offset;
+
+		state.camera.position.set(
+			Math.sin(offset) * -50, // this makes the camera move in a circle
+			Math.atan(offset * Math.PI * 2) * 3, // this makes the camera move up and down
+			Math.cos((offset * Math.PI) / 3) * 5 // this makes the camera move closer and further away
+		);
+		state.camera.lookAt(0, 1, 0);
+	});
 	return (
 		<>
 			<group position={[-1.15, 0, 0.25]}>
