@@ -103,7 +103,7 @@ export default function PortalsCards() {
 	);
 	const [portalsFocusedVector, setPortalsFocusedVector] = useState(new THREE.Vector3(0, 0, 0));
 	const scroll = useScroll();
-	const portalsGroupRef = useRef<THREE.Group>();
+	const portalsRef = useRef<THREE.Group>();
 	const portal1Ref = useRef<THREE.Group>();
 	const portal2Ref = useRef<THREE.Group>();
 	const portal3Ref = useRef<THREE.Group>();
@@ -122,8 +122,8 @@ export default function PortalsCards() {
 		// );
 		state.camera.lookAt(0, 1, 0);
 		// move the portals group between the inactive and focused positions
-		// portalsGroupRef.current.position.lerpVectors(
-		portalsGroupRef.current.position.lerpVectors(
+		// portalsRef.current.position.lerpVectors(
+		portalsRef.current.position.lerpVectors(
 			portalsInactiveVector,
 			portalsFocusedVector,
 			scroll.offset
@@ -131,7 +131,7 @@ export default function PortalsCards() {
 	});
 
 	return (
-		<group ref={portalsGroupRef} position={[0, 0, -50]}>
+		<group ref={portalsRef} position={[0, 0, -50]}>
 			<group position={[-1.15, 0, 0.25]} rotation={[0, 0.5, 0]} ref={portal1Ref}>
 				<Frame id="01" name="Film 1" author="Frederic Cartier" bg="#1a1a1a">
 					<Scene position={[0, -1, -1]} />
