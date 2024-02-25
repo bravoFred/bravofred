@@ -19,6 +19,9 @@
 	background-color: transparent;
 	user-select: none;
 	pointer-events: none;
+	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: hidden;
 }
 .main h1,
 .main p {

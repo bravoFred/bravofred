@@ -3,7 +3,7 @@ import FlickerTitle from '@/components/FlickerTitle';
 import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
 import React, { Suspense, useRef, useState, useContext, useEffect } from 'react';
-import { Canvas, extend } from '@react-three/fiber';
+import { Canvas, extend, useThree, useFrame } from '@react-three/fiber';
 import {
 	OrbitControls,
 	AccumulativeShadows,
@@ -11,10 +11,12 @@ import {
 	Reflector,
 	Text,
 	ScrollControls,
+	CameraShake,
 } from '@react-three/drei';
 import GridGround from '@/components/GridGround';
 import Camera from '@/components/Camera';
-import PortalsCards from './Portals';
+import Portals from './Portals';
+import AboutMe from './AboutMe';
 import FlickerText from './FlickerText';
 import VideoText from './VideoText';
 import Performance from './Performance';
@@ -54,7 +56,31 @@ export default function Main() {
 			</Reflector>
 		);
 	}
-
+	function Shake() {
+		const [vec] = useState(() => new THREE.Vector3());
+		const { camera, mouse } = useThree();
+		// useFrame(() => camera.position.lerp(vec.set(mouse.x * 2, 10, 60), 0.05));
+		return (
+			// <CameraShake
+			// 	maxYaw={0.01}
+			// 	maxPitch={0.01}
+			// 	maxRoll={0.01}
+			// 	yawFrequency={0.25}
+			// 	pitchFrequency={0.25}
+			// 	rollFrequency={0.4}
+			// />
+			<CameraShake
+				maxYaw={0.01} // Max amount camera can yaw in either direction
+				maxPitch={0.01} // Max amount camera can pitch in either direction
+				maxRoll={0.01} // Max amount camera can roll in either direction
+				yawFrequency={0.25} // Frequency of the the yaw rotation
+				pitchFrequency={0.25} // Frequency of the pitch rotation
+				rollFrequency={0.2} // Frequency of the roll rotation
+				intensity={0.5} // initial intensity of the shake
+				decayRate={0.65} // if decay = true this is the rate at which intensity will reduce at />
+			/>
+		);
+	}
 	return (
 		<>
 			<main className={`${styles.main} ${inter.className}`}>
@@ -72,6 +98,7 @@ export default function Main() {
 					flat
 					shadows
 					frameloop={frameloop}
+					// dpr={[1, 1.5]}
 					dpr={[1, 1.5]}
 					gl={{
 						powerPreference: 'high-performance',
@@ -81,12 +108,12 @@ export default function Main() {
 					}}
 					camera={{
 						// fov: 45,
-						fov: mobile ? 60 : 30,
+						fov: mobile ? 50 : 30,
 						// 30,
 						near: 0.1,
 						far: 50,
 						zoom: 1,
-						position: new THREE.Vector3(0, 0.4, 5),
+						position: new THREE.Vector3(0, 0, 5),
 					}}
 				>
 					{/* <OrbitControls
@@ -111,10 +138,13 @@ export default function Main() {
 						shadow-mapSize-height={2048}
 						castShadow
 					/> */}
-					<fog attach="fog" args={[theme === 'light' ? '#fff' : '#000', 15, 20]} />
+					{/* <directionalLight position={lightPos} intensity={0.5} castShadow /> */}
+					<fog attach="fog" args={[theme === 'light' ? '#fff' : '#000', 10, 25]} />
 					<ScrollControls pages={1}>
-						<PortalsCards />
+						<Portals />
+						{/* <AboutMe /> */}
 					</ScrollControls>
+					{/* <Shake /> */}
 					<Performance />
 				</Canvas>
 			</Suspense>

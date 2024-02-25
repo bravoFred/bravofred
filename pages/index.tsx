@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Script from 'next/script';
 import Image from 'next/image';
 import { Inter } from 'next/font/google';
 import styles from '@/styles/App.module.css';
@@ -13,6 +14,10 @@ export default function Home() {
 	return (
 		<UserContextProvider>
 			<div className={styles.app}>
+				<Script async src="https://www.googletagmanager.com/gtag/js?id=G-Y69LRR1D22" />
+				<Script id="google-analytics">
+					{`window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-Y69LRR1D22');`}
+				</Script>
 				<Header />
 				<Main />
 			</div>

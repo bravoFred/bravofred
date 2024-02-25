@@ -1,12 +1,20 @@
 import * as THREE from 'three';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { Canvas, extend, useFrame, useThree } from '@react-three/fiber';
-import { useCursor, MeshPortalMaterial, CameraControls, Gltf, Text } from '@react-three/drei';
+import {
+	useCursor,
+	MeshPortalMaterial,
+	CameraControls,
+	Gltf,
+	Text,
+	CameraShake,
+} from '@react-three/drei';
 import { useRoute, useLocation } from 'wouter';
 import { easing, geometry } from 'maath';
 import { suspend } from 'suspend-react';
 import { useScroll } from '@react-three/drei';
 import UserContextProvider from '../store/userContext';
+import { MathUtils } from 'three';
 
 extend(geometry);
 import dynamic from 'next/dynamic';
@@ -98,6 +106,7 @@ function Rig({ position = new THREE.Vector3(0, 1, 5), focus = new THREE.Vector3(
 	});
 	return <CameraControls makeDefault minPolarAngle={0} maxPolarAngle={Math.PI / 2} />;
 }
+
 export default function PortalsCards() {
 	const [portalsInactiveVector, setPortalsInactiveVector] = useState(
 		new THREE.Vector3(0, 0, -25)
@@ -106,38 +115,49 @@ export default function PortalsCards() {
 	const [portalsFocusedVector, setPortalsFocusedVector] = useState(
 		new THREE.Vector3(0, 0, mobile ? 0 : 0)
 	);
+	const [portal1vector, setPortal1Vector] = useState(new THREE.Vector3(-1, 0, -75));
+	const [portal2vector, setPortal2Vector] = useState(new THREE.Vector3(0, 0, -50));
+	const [portal3vector, setPortal3Vector] = useState(new THREE.Vector3(1, 0, -100));
+	const [portal1vectorActive, setPortal1VectorActive] = useState(
+		new THREE.Vector3(-1.15, 0, 0.25)
+	);
+	const [portal2vectorActive, setPortal2VectorActive] = useState(new THREE.Vector3(0, 0, 0));
+	const [portal3vectorActive, setPortal3VectorActive] = useState(
+		new THREE.Vector3(1.15, 0, 0.25)
+	);
 	const scroll = useScroll();
 	const portalsRef = useRef<THREE.Group>();
 	const portal1Ref = useRef<THREE.Group>();
 	const portal2Ref = useRef<THREE.Group>();
 	const portal3Ref = useRef<THREE.Group>();
+	const scrollSpeed = useRef(0);
+	const scrollDirection = useRef(0);
+	const { pointer, controls } = useThree();
+
 	useFrame((state) => {
 		const offset = 1 - scroll.offset;
-		// console.log(scroll.offset);
-		// listen for positive or negative scroll direction
-
-		state.camera.position.set(0, 1, 5);
-		// state.camera.position.set(
-		// 	Math.sin(offset) * -20, // this makes the camera move in a circle
-		// 	Math.atan(offset * Math.PI * 2) * 1, // this makes the camera move up and down
-		// 	Math.cos((offset * Math.PI) / 3) * 5 // this makes the camera move closer and further away
-		// );
-		// state.camera.position.set(
-
-		// );
 		state.camera.lookAt(0, 1, 0);
-		// move the portals group between the inactive and focused positions
-		// portalsRef.current.position.lerpVectors(
-		portalsRef.current.position.lerpVectors(
-			portalsInactiveVector,
-			portalsFocusedVector,
-			scroll.offset
+
+		if (scroll.offset > scrollSpeed.current) {
+			scrollDirection.current = 1;
+		} else if (scroll.offset < scrollSpeed.current) {
+			scrollDirection.current = -1;
+		}
+		scrollSpeed.current = scroll.offset;
+		state.camera.position.set(
+			Math.sin(offset) * -20, // this makes the camera move in a circle
+			Math.atan(offset * Math.PI * 2) * 1 + 2, // this makes the camera move up and down
+			// Math.atan(offset), // this makes the camera move up and down
+			Math.cos((offset * Math.PI) / 3) * 5 // this makes the camera move closer and further away
 		);
+		portal1Ref.current.position.lerpVectors(portal1vector, portal1vectorActive, scroll.offset);
+		portal2Ref.current.position.lerpVectors(portal2vector, portal2vectorActive, scroll.offset);
+		portal3Ref.current.position.lerpVectors(portal3vector, portal3vectorActive, scroll.offset);
 	});
 
 	return (
-		<group ref={portalsRef} position={[0, 0, -50]}>
-			<group position={[-1.15, 0, 0.25]} rotation={[0, 0.5, 0]} ref={portal1Ref}>
+		<group ref={portalsRef} position={[0, 0, 0]}>
+			<group position={[-1.15, 0, -50]} rotation={[0, 0.5, 0]} ref={portal1Ref}>
 				<Frame id="01" name="Film 1" author="Frederic Cartier" bg="#1a1a1a">
 					<Scene position={[0, -1, -1]} />
 					<ambientLight intensity={2} />
@@ -156,6 +176,7 @@ export default function PortalsCards() {
 				</Frame>
 			</group>
 			{/* <Rig /> */}
+			{/* <Shake /> */}
 		</group>
 	);
 }
