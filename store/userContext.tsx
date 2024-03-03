@@ -16,8 +16,8 @@ export function UserContextProvider(props) {
 	const [dev, setDev] = useState(process.env.NODE_ENV === 'development' ? true : false); // device
 	const [activeTab, setActiveTab] = useState(true);
 	// const [theme, setTheme] = useState<'dark' | 'light'>(Math.random() > 0.5 ? 'dark' : 'light'); // user
-	const [theme, setTheme] = useState<'dark' | 'light'>('light'); // user
-	// const [theme, setTheme] = useState<'dark' | 'light'>('dark'); // user
+	// const [theme, setTheme] = useState<'dark' | 'light'>('light'); // user
+	const [theme, setTheme] = useState<'dark' | 'light'>('dark'); // user
 	useEffect(() => {
 		if (window.innerWidth < window.innerHeight) setMobile(true); // if mobile
 	}, []);

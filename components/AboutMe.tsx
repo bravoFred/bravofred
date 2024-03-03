@@ -61,27 +61,39 @@ export default function AboutMe() {
 	const [icon1Hovered, setIcon1Hovered] = useState(false);
 	const [icon2Hovered, setIcon2Hovered] = useState(false);
 	const [icon3Hovered, setIcon3Hovered] = useState(false);
-	const pointer = { x: 0, y: 0 };
+	// extract controls target
+
+	const target = useRef<THREE.Vector3>();
 	useFrame((state) => {
 		state.camera.lookAt(0, 1, 0);
-		// move camera with pointer
-		// state.camera.position.set(pointer.x / 100, pointer.y / 100, 5);
+		// console.log(state.camera);
+		// lerp state camera up
+		state.camera.position.y = MathUtils.lerp(
+			state.camera.position.y,
+			Math.sin(scroll.offset) * 5,
+			0.1
+		);
+		// lerp camera look at
+
+		state.camera.lookAt(
+			MathUtils.lerp(state.camera.position.x, state.pointer.x * 0.5, 0.1),
+			MathUtils.lerp(state.camera.position.y, state.pointer.y * 0.25 + 1.5, 0.5),
+			0
+		);
+
 		state.camera.position.x = MathUtils.lerp(
 			state.camera.position.x,
 			state.pointer.x * 0.5,
-			0.2
+			0.1
 		);
 		state.camera.position.y = MathUtils.lerp(
 			state.camera.position.y,
 			state.pointer.y * 0.25 + 1.5,
-			0.1
+			0.05
 		);
 
 		const offset = 1 - scroll.offset;
-		console.log(offset);
-		easing.damp(icon1Ref.current.position, 'z', -offset * 10, -50, 0.5);
-		easing.damp(icon2Ref.current.position, 'z', -offset * 10, -50, 0.5);
-		easing.damp(icon3Ref.current.position, 'z', -offset * 10, -50, 0.5);
+		// console.log(offset);
 	});
 	function PointerPointLight() {
 		useFrame(() => {});
@@ -128,13 +140,11 @@ export default function AboutMe() {
 			<Float
 				speed={1} // Animation speed, defaults to 1
 				rotationIntensity={2.5} // XYZ rotation intensity, defaults to 1
-				floatIntensity={2} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
+				floatIntensity={1} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
 				floatingRange={[0, 0.25]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
 			>
-				<group ref={icon1Ref}>
+				<group ref={icon1Ref} position={[-0.3, 0.25, 0]}>
 					<Icons
-						position={[-0.3, 0, 0]}
-						// scale={icon1Hovered ? [1.5, 1.5, 1.5] : [1, 1, 1]}
 						onPointerEnter={(e) => setIcon1Hovered(true)}
 						onPointerLeave={(e) => setIcon1Hovered(false)}
 					/>
@@ -143,21 +153,29 @@ export default function AboutMe() {
 			<Float
 				speed={1} // Animation speed, defaults to 1
 				rotationIntensity={2.5} // XYZ rotation intensity, defaults to 1
-				floatIntensity={2} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
+				floatIntensity={1} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
 				floatingRange={[0, 0.2]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
 			>
-				<group ref={icon2Ref}>
+				<group
+					ref={icon2Ref}
+					onPointerEnter={(e) => setIcon2Hovered(true)}
+					onPointerLeave={(e) => setIcon2Hovered(false)}
+				>
 					<Icons position={[0.33, 0, 0]} />
 				</group>
 			</Float>
 			<Float
 				speed={1} // Animation speed, defaults to 1
 				rotationIntensity={2.5} // XYZ rotation intensity, defaults to 1
-				floatIntensity={2} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
+				floatIntensity={1} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
 				floatingRange={[-0.2, 0]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
 			>
-				<group ref={icon3Ref}>
-					<Icons position={[-0.3, 0, 0]} />
+				<group
+					ref={icon3Ref}
+					onPointerEnter={(e) => setIcon3Hovered(true)}
+					onPointerLeave={(e) => setIcon3Hovered(false)}
+				>
+					<Icons position={[-0.3, -0.25, 0]} />
 				</group>
 			</Float>
 			{/* <Float>
