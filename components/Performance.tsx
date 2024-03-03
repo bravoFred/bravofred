@@ -68,8 +68,8 @@ export default function Performance() {
 		// console.log(dpr);
 	});
 	useEffect(() => {
-		if (frameloop === 'never') console.log(`scene frozen`);
-		if (frameloop === 'always') console.log(`scene unfrozen`);
+		// if (frameloop === 'never') console.log(`scene frozen`);
+		// if (frameloop === 'always') console.log(`scene unfrozen`);
 	}, [frameloop]);
 	return (
 		<>

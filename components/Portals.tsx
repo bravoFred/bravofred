@@ -136,7 +136,8 @@ export default function PortalsCards() {
 
 	useFrame((state) => {
 		const offset = 1 - scroll.offset;
-		state.camera.lookAt(0, 1, 0);
+		// state.camera.lookAt(0, 1, 0);
+		// console.log(pointer);
 
 		if (scroll.offset > scrollSpeed.current) {
 			scrollDirection.current = 1;
@@ -144,12 +145,12 @@ export default function PortalsCards() {
 			scrollDirection.current = -1;
 		}
 		scrollSpeed.current = scroll.offset;
-		state.camera.position.set(
-			Math.sin(offset) * -20, // this makes the camera move in a circle
-			Math.atan(offset * Math.PI * 2) * 1 + 2, // this makes the camera move up and down
-			// Math.atan(offset), // this makes the camera move up and down
-			Math.cos((offset * Math.PI) / 3) * 5 // this makes the camera move closer and further away
-		);
+
+		// state.camera.position.set(
+		// 	Math.sin(offset) * -20, // this makes the camera move in a circle
+		// 	Math.atan(offset * Math.PI * 2) * 1 + 2, // this makes the camera move up and down
+		// 	Math.cos((offset * Math.PI) / 3) * 5 // this makes the camera move closer and further away
+		// );
 		portal1Ref.current.position.lerpVectors(portal1vector, portal1vectorActive, scroll.offset);
 		portal2Ref.current.position.lerpVectors(portal2vector, portal2vectorActive, scroll.offset);
 		portal3Ref.current.position.lerpVectors(portal3vector, portal3vectorActive, scroll.offset);

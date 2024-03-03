@@ -11,6 +11,12 @@
 	overscroll-behavior: contain;
 	/* border: 1px solid blue; */
 }
+.app * {
+	font-family:
+		/* Helvetica Neue, */
+		Josefin Sans,
+		sans-serif !important;
+}
 .main {
 	position: fixed;
 	display: flex;
