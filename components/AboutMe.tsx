@@ -3,6 +3,10 @@ import { useScroll } from '@react-three/drei';
 import { useRef } from 'react';
 import { useFrame, extend } from '@react-three/fiber';
 import * as THREE from 'three';
+import dynamic from 'next/dynamic';
+const Icons = dynamic(() => import('../models/4096/Icons').then((mod) => mod.Model), {
+	ssr: false,
+});
 // extend({ Text3D });
 function FloatingIcon() {
 	return (
@@ -53,21 +57,20 @@ export default function AboutMe() {
 	});
 
 	return (
-		<group position={[-2, 0, -5]} ref={ref}>
-			<ambientLight intensity={1} />
-			<directionalLight position={[10, 10, 10]} />
-			<Float>
-				<spotLight
-					intensity={3}
-					position={[0, 10, 0]}
-					angle={0.15}
-					penumbra={1}
-					shadow-mapSize-width={2048}
-					shadow-mapSize-height={2048}
-					castShadow
-				/>
-				<FloatingIcon />
-				<Text3D
+		<group position={[0, 0, -1]} ref={ref}>
+			{/* <ambientLight intensity={1} /> */}
+			<directionalLight position={[0, 5, 5]} intensity={1} />
+			{/* <spotLight
+				intensity={100}
+				position={[0, 15, 2]}
+				angle={0.15}
+				penumbra={1}
+				shadow-mapSize-width={2048}
+				shadow-mapSize-height={2048}
+				castShadow
+			/> */}
+			{/* <FloatingIcon /> */}
+			{/* <Text3D
 					curveSegments={32}
 					bevelEnabled
 					bevelSize={0.01}
@@ -77,11 +80,18 @@ export default function AboutMe() {
 					letterSpacing={0.1}
 					size={1}
 					font="/fonts/Inter_Bold.json"
-				>
+					>
 					{`FREDERIC\nCARTIER`}
-					{/* <meshNormalMaterial /> */}
 					<meshStandardMaterial color="white" />
-				</Text3D>
+				</Text3D> */}
+			<Float>
+				<Icons scale={[1, 1, 1]} position={[0, 0.5, 2]} />
+			</Float>
+			<Float>
+				<Icons scale={[1, 1, 1]} position={[1, 1, 2]} />
+			</Float>{' '}
+			<Float>
+				<Icons scale={[1, 1, 1]} position={[0, -0.5, 2]} />
 			</Float>
 		</group>
 	);
