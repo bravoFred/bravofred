@@ -108,9 +108,9 @@ export default function Main() {
 					<GridGround theme={theme} />
 					<color args={[theme === 'light' ? '#fff' : '#000']} attach="background" />
 					<fog attach="fog" args={[theme === 'light' ? '#fff' : '#000', 10, 25]} />
-					<ScrollControls pages={1}>
+					<ScrollControls pages={5}>
 						<AboutMe />
-						{/* <Portals /> */}
+						<Portals />
 					</ScrollControls>
 					<Performance />
 					{/* <Shake /> */}

@@ -5,10 +5,12 @@
 	margin: 0;
 	padding: 0;
 	overflow-x: hidden;
-	overflow-y: hidden;
-	overflow: hidden;
+	/* overflow-y: hidden; */
+	/* overflow: hidden; */
 	/* prevent overscrolling */
 	overscroll-behavior: contain;
+	overscroll-behavior: none;
+
 	/* border: 1px solid blue; */
 }
 .app * {
@@ -34,6 +36,7 @@
 	overflow: hidden;
 	overflow-x: hidden;
 	overflow-y: hidden;
+	overscroll-behavior: none;
 }
 .main h1,
 .main p {

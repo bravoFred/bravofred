@@ -1,7 +1,7 @@
 import { Text3D, Float } from '@react-three/drei';
 import { useScroll } from '@react-three/drei';
 import { useRef } from 'react';
-import { useFrame, extend } from '@react-three/fiber';
+import { useFrame, extend, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import dynamic from 'next/dynamic';
 import { useState } from 'react';
@@ -54,6 +54,10 @@ function FloatingIcon() {
 export default function AboutMe() {
 	const ref = useRef<THREE.Group>();
 	const scroll = useScroll();
+	const r1 = scroll.range(0 / 4, 1 / 4);
+	const r2 = scroll.range(1 / 4, 1 / 4);
+	const r3 = scroll.visible(4 / 5, 1 / 5);
+	const { width, height } = useThree((state) => state.viewport);
 	const icon1Ref = useRef<THREE.Group>();
 
 	const icon2Ref = useRef<THREE.Group>();
@@ -63,23 +67,28 @@ export default function AboutMe() {
 	const [icon3Hovered, setIcon3Hovered] = useState(false);
 	// extract controls target
 
-	const target = useRef<THREE.Vector3>();
+	const target = useRef<THREE.Vector3>(new THREE.Vector3(0, 1, 0));
+
 	useFrame((state) => {
-		state.camera.lookAt(0, 1, 0);
-		// console.log(state.camera);
-		// lerp state camera up
+		// if (target.current === null) return;
+		console.log(target.current);
+
+		state.camera.lookAt(target.current.x, target.current.y, target.current.z);
 		state.camera.position.y = MathUtils.lerp(
 			state.camera.position.y,
-			Math.sin(scroll.offset) * 5,
+			Math.sin(scroll.offset) * 2,
 			0.1
 		);
-		// lerp camera look at
 
-		state.camera.lookAt(
-			MathUtils.lerp(state.camera.position.x, state.pointer.x * 0.5, 0.1),
-			MathUtils.lerp(state.camera.position.y, state.pointer.y * 0.25 + 1.5, 0.5),
-			0
-		);
+		const r1 = scroll.range(0 / 4, 1 / 4); // this is the first quarter of the page
+		const r2 = scroll.range(1 / 4, 1 / 4); // this is the second quarter of the page
+		// const r3 = scroll.visible(4 / 5, 1 / 5); // this is the last fifth of the page
+		const r3 = scroll.range(1 / 4, 2 / 4); // this is the second quarter of the page
+		// console.log(r1);
+		// fly icons out on scroll
+		icon1Ref.current.position.z = MathUtils.lerp(icon1Ref.current.position.z, r1 * 5, 0.1);
+		icon2Ref.current.position.z = MathUtils.lerp(icon2Ref.current.position.z, r2 * 5, 0.1);
+		icon3Ref.current.position.z = MathUtils.lerp(icon3Ref.current.position.z, r3 * 5, 0.1);
 
 		state.camera.position.x = MathUtils.lerp(
 			state.camera.position.x,
@@ -88,9 +97,14 @@ export default function AboutMe() {
 		);
 		state.camera.position.y = MathUtils.lerp(
 			state.camera.position.y,
-			state.pointer.y * 0.25 + 1.5,
+			state.pointer.y * 0.25 + 2,
 			0.05
 		);
+		// state.camera.position.z = MathUtils.lerp(
+		// 	state.camera.position.z,
+		// 	Math.sin(scroll.offset) * 2 + 2,
+		// 	0.1
+		// );
 
 		const offset = 1 - scroll.offset;
 		// console.log(offset);
