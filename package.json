@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "convert": "ts-node ./scripts/convert.ts",
+    "autoconvert": "ts-node ./scripts/autoconvert.ts",
+    "dev": " concurrently \"next dev\" \"npm run autoconvert\"",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"

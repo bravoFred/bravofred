@@ -24,7 +24,10 @@ import { useTexture } from '@react-three/drei';
 import UserContextProvider from '../store/userContext';
 
 import * as THREE from 'three';
-
+import dynamic from 'next/dynamic';
+const Icons = dynamic(() => import('../models/4096/Icons').then((mod) => mod.Model), {
+	ssr: false,
+});
 export default function Main() {
 	const [lightPos, setLightPos] = useState<[number, number, number] | undefined>([-5, 5, 10]);
 	const { theme, setTheme, frameloop, mobile } = useContext(UserContextProvider);
@@ -142,7 +145,7 @@ export default function Main() {
 					<fog attach="fog" args={[theme === 'light' ? '#fff' : '#000', 10, 25]} />
 					<ScrollControls pages={1}>
 						<Portals />
-						{/* <AboutMe /> */}
+						<AboutMe />
 					</ScrollControls>
 					{/* <Shake /> */}
 					<Performance />
