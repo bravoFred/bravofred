@@ -13,7 +13,7 @@ export default function Mouse() {
 			);
 			state.camera.position.y = MathUtils.lerp(
 				state.camera.position.y,
-				state.pointer.y * 0.25 + 2,
+				state.pointer.y * 0.5 + 0.5,
 				0.05
 			);
 		}

@@ -4,9 +4,10 @@ import { useRef } from 'react';
 import { useFrame, extend, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import dynamic from 'next/dynamic';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { easing, geometry } from 'maath';
 import { MathUtils } from 'three';
+import UserContextProvider from '../store/userContext';
 
 const Icons = dynamic(() => import('../models/4096/Icons').then((mod) => mod.Model), {
 	ssr: false,
@@ -52,6 +53,7 @@ function FloatingIcon() {
 	);
 }
 export default function AboutMe() {
+	const { mobile } = useContext(UserContextProvider);
 	const ref = useRef<THREE.Group>();
 	const scroll = useScroll();
 	const r1 = scroll.range(0 / 4, 1 / 4);
@@ -70,11 +72,18 @@ export default function AboutMe() {
 	const target = useRef<THREE.Vector3>(new THREE.Vector3(0, 1, 0));
 	useFrame((state) => {
 		// console.log(target.current);
+		// target.current.x = MathUtils.lerp(target.current.x, state.pointer.x * 1, 0.1); // lerp lookAt x
+		// target.current.y = MathUtils.lerp(target.current.y, state.pointer.y * 1, 0.1); // lerp lookAt y
 
 		state.camera.lookAt(target.current.x, target.current.y, target.current.z);
 		state.camera.position.y = MathUtils.lerp(
 			state.camera.position.y,
-			Math.sin(scroll.offset) * 1 + 1,
+			Math.sin(scroll.offset) * 1 + 0.5,
+			0.1
+		);
+		state.camera.position.z = MathUtils.lerp(
+			state.camera.position.z,
+			Math.cos(scroll.offset) * 1 + 3,
 			0.1
 		);
 
@@ -85,18 +94,6 @@ export default function AboutMe() {
 		icon1Ref.current.position.z = MathUtils.lerp(icon1Ref.current.position.z, r1 * 5, 0.1);
 		icon2Ref.current.position.z = MathUtils.lerp(icon2Ref.current.position.z, r2 * 5, 0.1);
 		icon3Ref.current.position.z = MathUtils.lerp(icon3Ref.current.position.z, r3 * 5, 0.1);
-		// icon1Ref.current.position.x = MathUtils.lerp(icon1Ref.current.position.x, r1 * -10, 0.1);
-
-		// state.camera.position.x = MathUtils.lerp(
-		// 	state.camera.position.x,
-		// 	state.pointer.x * 0.5,
-		// 	0.1
-		// );
-		// state.camera.position.y = MathUtils.lerp(
-		// 	state.camera.position.y,
-		// 	state.pointer.y * 0.25 + 2,
-		// 	0.05
-		// );
 
 		const offset = 1 - scroll.offset;
 		// console.log(offset);
@@ -125,7 +122,7 @@ export default function AboutMe() {
 	}
 
 	return (
-		<group position={[0, 1, 0]} ref={ref}>
+		<group position={[0, 0.75, 0]} ref={ref}>
 			{/* <ambientLight intensity={1} /> */}
 			<directionalLight position={[0, 5, 5]} intensity={1} />
 			{/* <PointerPointLight /> */}
@@ -144,7 +141,7 @@ export default function AboutMe() {
 				floatIntensity={1} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
 				floatingRange={[0, 0.25]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
 			>
-				<group ref={icon1Ref} position={[-0.3, 0.25, 0]}>
+				<group ref={icon1Ref} position={[-0.3, 0.33, 0]}>
 					<Icons
 						onPointerEnter={(e) => setIcon1Hovered(true)}
 						onPointerLeave={(e) => setIcon1Hovered(false)}
@@ -176,7 +173,7 @@ export default function AboutMe() {
 					onPointerEnter={(e) => setIcon3Hovered(true)}
 					onPointerLeave={(e) => setIcon3Hovered(false)}
 				>
-					<Icons position={[-0.3, -0.25, 0]} />
+					<Icons position={[-0.3, -0.33, 0]} />
 				</group>
 			</Float>
 			{/* <Float>

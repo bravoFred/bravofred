@@ -146,36 +146,29 @@ export default function PortalsCards() {
 		}
 		scrollSpeed.current = scroll.offset;
 
-		// state.camera.position.set(
-		// 	Math.sin(offset) * -20, // this makes the camera move in a circle
-		// 	Math.atan(offset * Math.PI * 2) * 1 + 2, // this makes the camera move up and down
-		// 	Math.cos((offset * Math.PI) / 3) * 5 // this makes the camera move closer and further away
-		// );
-		portal1Ref.current.position.lerpVectors(portal1vector, portal1vectorActive, scroll.offset);
+		// portal1Ref.current.position.lerpVectors(portal1vector, portal1vectorActive, scroll.offset);
 		portal2Ref.current.position.lerpVectors(portal2vector, portal2vectorActive, scroll.offset);
-		portal3Ref.current.position.lerpVectors(portal3vector, portal3vectorActive, scroll.offset);
+		// portal3Ref.current.position.lerpVectors(portal3vector, portal3vectorActive, scroll.offset);
 	});
 
 	return (
 		<group ref={portalsRef} position={[0, 0, 0]}>
-			<group position={[-1.15, 0, -50]} rotation={[0, 0.5, 0]} ref={portal1Ref}>
+			{/* <group position={[-1.15, 0, -50]} rotation={[0, 0.5, 0]} ref={portal1Ref}>
 				<Frame id="01" name="Film 1" author="Frederic Cartier" bg="#1a1a1a">
-					{/* <Scene position={[0, -1, -1]} /> */}
 					<ambientLight intensity={2} />
 				</Frame>
-			</group>
+			</group> */}
 			<group ref={portal2Ref}>
 				<Frame id="02" name="Film 2" author="Frederic Cartier" bg="#1a1a1a">
 					<Scene position={[0, -1, -1]} />
 					<ambientLight intensity={2} />
 				</Frame>
 			</group>
-			<group position={[1.15, 0, 0.25]} rotation={[0, -0.5, 0]} ref={portal3Ref}>
+			{/* <group position={[1.15, 0, 0.25]} rotation={[0, -0.5, 0]} ref={portal3Ref}>
 				<Frame id="03" name="Film 3" author="Frederic Cartier" bg="#d1d1ca">
-					{/* <Scene position={[0, -1, -1]} /> */}
 					<ambientLight intensity={2} />
 				</Frame>
-			</group>
+			</group> */}
 			{/* <Rig /> */}
 			{/* <Shake /> */}
 		</group>
