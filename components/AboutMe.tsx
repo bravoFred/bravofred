@@ -68,15 +68,13 @@ export default function AboutMe() {
 	// extract controls target
 
 	const target = useRef<THREE.Vector3>(new THREE.Vector3(0, 1, 0));
-
 	useFrame((state) => {
-		// if (target.current === null) return;
-		console.log(target.current);
+		// console.log(target.current);
 
 		state.camera.lookAt(target.current.x, target.current.y, target.current.z);
 		state.camera.position.y = MathUtils.lerp(
 			state.camera.position.y,
-			Math.sin(scroll.offset) * 2,
+			Math.sin(scroll.offset) * 1 + 1,
 			0.1
 		);
 
@@ -84,40 +82,44 @@ export default function AboutMe() {
 		const r2 = scroll.range(1 / 4, 1 / 4); // this is the second quarter of the page
 		// const r3 = scroll.visible(4 / 5, 1 / 5); // this is the last fifth of the page
 		const r3 = scroll.range(1 / 4, 2 / 4); // this is the second quarter of the page
-		// console.log(r1);
-		// fly icons out on scroll
 		icon1Ref.current.position.z = MathUtils.lerp(icon1Ref.current.position.z, r1 * 5, 0.1);
 		icon2Ref.current.position.z = MathUtils.lerp(icon2Ref.current.position.z, r2 * 5, 0.1);
 		icon3Ref.current.position.z = MathUtils.lerp(icon3Ref.current.position.z, r3 * 5, 0.1);
+		// icon1Ref.current.position.x = MathUtils.lerp(icon1Ref.current.position.x, r1 * -10, 0.1);
 
-		state.camera.position.x = MathUtils.lerp(
-			state.camera.position.x,
-			state.pointer.x * 0.5,
-			0.1
-		);
-		state.camera.position.y = MathUtils.lerp(
-			state.camera.position.y,
-			state.pointer.y * 0.25 + 2,
-			0.05
-		);
-		// state.camera.position.z = MathUtils.lerp(
-		// 	state.camera.position.z,
-		// 	Math.sin(scroll.offset) * 2 + 2,
+		// state.camera.position.x = MathUtils.lerp(
+		// 	state.camera.position.x,
+		// 	state.pointer.x * 0.5,
 		// 	0.1
+		// );
+		// state.camera.position.y = MathUtils.lerp(
+		// 	state.camera.position.y,
+		// 	state.pointer.y * 0.25 + 2,
+		// 	0.05
 		// );
 
 		const offset = 1 - scroll.offset;
 		// console.log(offset);
 	});
 	function PointerPointLight() {
-		useFrame(() => {});
+		const ref = useRef<THREE.PointLight>();
+		// get pointer
+		const scroll = useScroll();
+		const { pointer } = useThree();
+		useFrame(() => {
+			ref.current.position.x = pointer.x * 1;
+			ref.current.position.y = pointer.y * 1;
+			ref.current.position.z = Math.sin(scroll.offset) * 10;
+		});
 		return (
 			<pointLight
+				ref={ref}
 				position={[0, 0, 0]}
 				intensity={1}
-				distance={10}
-				decay={2}
+				distance={1}
+				decay={1}
 				color={icon1Hovered ? 'white' : 'red'}
+				// color={'white'}
 			/>
 		);
 	}
@@ -136,24 +138,9 @@ export default function AboutMe() {
 				shadow-mapSize-height={2048}
 				castShadow
 			/> */}
-			{/* <FloatingIcon /> */}
-			{/* <Text3D
-					curveSegments={32}
-					bevelEnabled
-					bevelSize={0.01}
-					bevelThickness={0.1}
-					height={0.01}
-					lineHeight={0.6}
-					letterSpacing={0.1}
-					size={1}
-					font="/fonts/Inter_Bold.json"
-					>
-					{`FREDERIC\nCARTIER`}
-					<meshStandardMaterial color="white" />
-				</Text3D> */}
 			<Float
 				speed={1} // Animation speed, defaults to 1
-				rotationIntensity={2.5} // XYZ rotation intensity, defaults to 1
+				rotationIntensity={1.5} // XYZ rotation intensity, defaults to 1
 				floatIntensity={1} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
 				floatingRange={[0, 0.25]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
 			>
@@ -166,7 +153,7 @@ export default function AboutMe() {
 			</Float>
 			<Float
 				speed={1} // Animation speed, defaults to 1
-				rotationIntensity={2.5} // XYZ rotation intensity, defaults to 1
+				rotationIntensity={1.5} // XYZ rotation intensity, defaults to 1
 				floatIntensity={1} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
 				floatingRange={[0, 0.2]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
 			>
@@ -180,7 +167,7 @@ export default function AboutMe() {
 			</Float>
 			<Float
 				speed={1} // Animation speed, defaults to 1
-				rotationIntensity={2.5} // XYZ rotation intensity, defaults to 1
+				rotationIntensity={1.5} // XYZ rotation intensity, defaults to 1
 				floatIntensity={1} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
 				floatingRange={[-0.2, 0]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
 			>

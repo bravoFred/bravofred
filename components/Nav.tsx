@@ -22,9 +22,6 @@ export default function Nav() {
 
 		// console.log(loadTime.current.toFixed(1) + 's');
 	}, [active, progress, item, loaded, total, errors]);
-	useEffect(() => {
-		console.log(active);
-	}, [active]);
 	// set timer
 	const [done, setDone] = useState(false);
 	useEffect(() => {
@@ -32,6 +29,7 @@ export default function Nav() {
 			setDone(true);
 		}, 500);
 	}, []);
+
 	return (
 		<nav className={!done ? styles.navLoading : styles.navLoaded}>
 			{/* <nav className={styles.navLoading}> */}

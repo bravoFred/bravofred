@@ -22,8 +22,10 @@ import FlickerText from './FlickerText';
 import VideoText from './VideoText';
 import Nav from './Nav';
 import Performance from './Performance';
+import ScrollNav from './ScrollNav';
 import { useTexture } from '@react-three/drei';
 import UserContextProvider from '../store/userContext';
+import Mouse from './Mouse';
 
 import * as THREE from 'three';
 import dynamic from 'next/dynamic';
@@ -98,7 +100,7 @@ export default function Main() {
 						alpha: false,
 					}}
 					camera={{
-						fov: mobile ? 50 : 30,
+						fov: mobile ? 45 : 30,
 						near: 0.1,
 						far: 50,
 						zoom: 1,
@@ -107,12 +109,15 @@ export default function Main() {
 				>
 					<GridGround theme={theme} />
 					<color args={[theme === 'light' ? '#fff' : '#000']} attach="background" />
-					<fog attach="fog" args={[theme === 'light' ? '#fff' : '#000', 10, 25]} />
-					<ScrollControls pages={5}>
+					<fog attach="fog" args={[theme === 'light' ? '#fff' : '#000', 10, 20]} />
+					<ScrollControls pages={4}>
 						<AboutMe />
 						<Portals />
+						<ScrollNav />
+						<Mouse />
 					</ScrollControls>
 					<Performance />
+					{/* <VideoText /> */}
 					{/* <Shake /> */}
 				</Canvas>
 			</Suspense>
