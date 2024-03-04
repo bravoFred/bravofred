@@ -153,17 +153,17 @@ export default function PortalsCards() {
 
 	return (
 		<group ref={portalsRef} position={[0, 0, 0]}>
+			<group ref={portal2Ref}>
+				<Frame id="01" name="Film 1" author="Frederic Cartier" bg="#1a1a1a">
+					<Scene position={[0, -1, -1]} />
+					<ambientLight intensity={2} />
+				</Frame>
+			</group>
 			{/* <group position={[-1.15, 0, -50]} rotation={[0, 0.5, 0]} ref={portal1Ref}>
 				<Frame id="01" name="Film 1" author="Frederic Cartier" bg="#1a1a1a">
 					<ambientLight intensity={2} />
 				</Frame>
 			</group> */}
-			<group ref={portal2Ref}>
-				<Frame id="02" name="Film 2" author="Frederic Cartier" bg="#1a1a1a">
-					<Scene position={[0, -1, -1]} />
-					<ambientLight intensity={2} />
-				</Frame>
-			</group>
 			{/* <group position={[1.15, 0, 0.25]} rotation={[0, -0.5, 0]} ref={portal3Ref}>
 				<Frame id="03" name="Film 3" author="Frederic Cartier" bg="#d1d1ca">
 					<ambientLight intensity={2} />

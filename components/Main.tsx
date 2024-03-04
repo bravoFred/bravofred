@@ -115,6 +115,7 @@ export default function Main() {
 						<Portals />
 						<ScrollNav />
 						<Mouse />
+						<Camera />
 					</ScrollControls>
 					<Performance />
 					{/* <VideoText /> */}
