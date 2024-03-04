@@ -8,7 +8,7 @@ export default function Mouse() {
 	const scroll = useScroll();
 
 	useFrame((state) => {
-		console.log(scroll.offset);
+		// console.log(scroll.offset);
 
 		if (!mobile) {
 			state.camera.position.x = MathUtils.lerp(
@@ -18,7 +18,7 @@ export default function Mouse() {
 			);
 			state.camera.position.y = MathUtils.lerp(
 				state.camera.position.y,
-				state.pointer.y * (scroll.offset > 0.99 ? 2 : 0.5),
+				state.pointer.y * (scroll.offset > 0.99 ? 2 : 0.5 + 0.5),
 				0.1
 			);
 			// orbit camera around the center
