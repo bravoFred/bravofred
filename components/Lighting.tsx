@@ -41,7 +41,7 @@ export default function Lighting() {
 			/>
 		);
 	}
-	const sideLightIntensity = 0.25;
+	const sideLightIntensity = 1;
 	return (
 		<group>
 			{/* <ambientLight intensity={0.5} /> */}
@@ -76,9 +76,9 @@ export default function Lighting() {
 			{/* <pointLight position={[0, 1, 3]} intensity={sideLightIntensity} /> */}
 			{!mobile && (
 				<>
-					<pointLight position={[-3, 0.25, 1]} intensity={sideLightIntensity} />
+					{/* <pointLight position={[-3, 0.25, 1]} intensity={sideLightIntensity} /> */}
 					{/* <pointLight position={[-3, 3, 3]} intensity={sideLightIntensity} /> */}
-					<pointLight position={[3, 0.25, 1]} intensity={sideLightIntensity} />
+					{/* <pointLight position={[3, 0.25, 1]} intensity={sideLightIntensity} /> */}
 					{/* <pointLight position={[3, 3, 3]} intensity={sideLightIntensity} /> */}
 				</>
 			)}
