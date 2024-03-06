@@ -112,6 +112,7 @@ export default function Main() {
 					{/* <GridGround theme={theme} /> */}
 					<color args={[theme === 'light' ? '#fff' : '#000']} attach="background" />
 					<fog attach="fog" args={[theme === 'light' ? '#fff' : '#000', 0, 15]} />
+					{/* https://codesandbox.io/p/sandbox/m1-scrollcontrols-4m0d0 */}
 					<ScrollControls pages={4}>
 						<AboutMe />
 						<Portals />
@@ -127,7 +128,7 @@ export default function Main() {
 					{/* <Shake /> */}
 				</Canvas>
 			</Suspense>
-			<Loader />
+			{/* <Loader /> */}
 		</>
 	);
 }

@@ -15,7 +15,7 @@ export default function Floor() {
 		<mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
 			<planeGeometry args={[50, 50]} />
 			<MeshReflectorMaterial
-				blur={[1000, 1000]}
+				blur={[500, 500]}
 				resolution={res}
 				mixBlur={1}
 				mixStrength={80}
@@ -27,7 +27,7 @@ export default function Floor() {
 				metalness={0.5}
 				depthTest={true}
 				// metalness={1}
-				mirror={0.5}
+				mirror={0.9}
 			/>
 		</mesh>
 	);

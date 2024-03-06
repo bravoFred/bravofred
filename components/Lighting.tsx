@@ -1,5 +1,5 @@
 import { Text3D, Float } from '@react-three/drei';
-import { useScroll, SpotLight } from '@react-three/drei';
+import { useScroll, SpotLight, Environment } from '@react-three/drei';
 import { use, useRef } from 'react';
 import { useFrame, extend, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
@@ -41,6 +41,7 @@ export default function Lighting() {
 			/>
 		);
 	}
+	const sideLightIntensity = 0.5;
 	return (
 		<group>
 			{/* <ambientLight intensity={0.5} /> */}
@@ -69,8 +70,17 @@ export default function Lighting() {
 				shadow-camera-top={10}
 				shadow-camera-bottom={-10}
 			/>
-			{/* <pointLight position={[-10, -10, -10]} intensity={0.5} /> */}
-			<pointLight position={[0, 1, 0]} intensity={0.5} />
+			{/* left */}
+			<pointLight position={[-3, 0.25, 1]} intensity={sideLightIntensity} />
+			<pointLight position={[-3, 3, 1]} intensity={sideLightIntensity} />
+			{/* right */}
+			<pointLight position={[3, 0.25, 1]} intensity={sideLightIntensity} />
+			<pointLight position={[3, 3, 1]} intensity={sideLightIntensity} />
+			{/* center */}
+			{/* <pointLight position={[0, 1, 0]} intensity={0.25} /> */}
+			{/* <pointLight position={[0, 0.25, 3]} intensity={1} /> */}
+			{/* front */}
+			<pointLight position={[0, 1, 3]} intensity={sideLightIntensity} />
 		</group>
 	);
 }
