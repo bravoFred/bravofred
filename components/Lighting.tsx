@@ -71,16 +71,17 @@ export default function Lighting() {
 				shadow-camera-bottom={-10}
 			/>
 			{/* left */}
-			<pointLight position={[-3, 0.25, 1]} intensity={sideLightIntensity} />
-			<pointLight position={[-3, 3, 1]} intensity={sideLightIntensity} />
 			{/* right */}
-			<pointLight position={[3, 0.25, 1]} intensity={sideLightIntensity} />
-			<pointLight position={[3, 3, 1]} intensity={sideLightIntensity} />
-			{/* center */}
-			{/* <pointLight position={[0, 1, 0]} intensity={0.25} /> */}
-			{/* <pointLight position={[0, 0.25, 3]} intensity={1} /> */}
 			{/* front */}
 			<pointLight position={[0, 1, 3]} intensity={sideLightIntensity} />
+			{!mobile && (
+				<>
+					<pointLight position={[-3, 0.25, 1]} intensity={sideLightIntensity} />
+					<pointLight position={[-3, 3, 1]} intensity={sideLightIntensity} />
+					<pointLight position={[3, 0.25, 1]} intensity={sideLightIntensity} />
+					<pointLight position={[3, 3, 1]} intensity={sideLightIntensity} />
+				</>
+			)}
 		</group>
 	);
 }
