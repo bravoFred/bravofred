@@ -7,12 +7,13 @@ import dynamic from 'next/dynamic';
 import { useState, useContext } from 'react';
 import { easing, geometry } from 'maath';
 import { MathUtils } from 'three';
+import { useControls, folder, button } from 'leva';
+
 import UserContextProvider from '../store/userContext';
 export default function Lighting() {
-	const [lightPos, setLightPos] = useState<[number, number, number] | undefined>([-5, 5, 10]);
+	const [lightPos, setLightPos] = useState<[number, number, number] | undefined>([0, 2.5, 1.5]);
 	const { mobile } = useContext(UserContextProvider);
 	const shadowMapSize = mobile ? 1024 : 4096;
-	useFrame(() => {});
 	function MovingSpot({ vec = new THREE.Vector3(0, 10, 0), ...props }) {
 		const light = useRef(null!);
 		const viewport = useThree((state) => state.viewport);
@@ -27,6 +28,7 @@ export default function Lighting() {
 			);
 			light.current.target.updateMatrixWorld();
 		});
+
 		return (
 			<SpotLight
 				castShadow
@@ -42,24 +44,19 @@ export default function Lighting() {
 		);
 	}
 	const sideLightIntensity = 1;
+	// useControls('Lighting', {
+	// 	lightPos: folder({
+	// 		lightPos: lightPos,
+	// 		// setLightPos: button(() => {
+	// 		// 	setLightPos([0, 2.5, 1.5]);
+	// 		// }),
+	// 	}),
+	// });
 	return (
 		<group>
-			{/* <ambientLight intensity={0.5} /> */}
-			{/* <spotLight
-				position={[0, 10, 10]}
-				intensity={1}
-				castShadow
-				shadow-mapSize-width={shadowMapSize}
-				shadow-mapSize-height={shadowMapSize}
-				shadow-camera-far={50}
-				shadow-camera-left={-10}
-				shadow-camera-right={10}
-				shadow-camera-top={10}
-				shadow-camera-bottom={-10}
-			/> */}
-			<MovingSpot position={[0, 2.5, 1.5]} />
+			<MovingSpot position={lightPos} />
 			<directionalLight
-				position={[0, 2.5, 1.5]}
+				position={lightPos}
 				intensity={0.5}
 				castShadow
 				shadow-mapSize-width={shadowMapSize}
@@ -70,6 +67,7 @@ export default function Lighting() {
 				shadow-camera-top={10}
 				shadow-camera-bottom={-10}
 			/>
+
 			{/* left */}
 			{/* right */}
 			{/* front */}

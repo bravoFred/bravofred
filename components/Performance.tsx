@@ -7,6 +7,7 @@ import UserContextProvider from '../store/userContext';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import chalk from 'chalk';
+import { Leva } from 'leva';
 
 export default function Performance() {
 	const { activeTab, frameloop, setFrameloop, dev, mobile } = useContext(UserContextProvider);
@@ -83,6 +84,15 @@ export default function Performance() {
 
 			<AdaptiveDpr />
 			<AdaptiveEvents />
+			{/* <Leva
+				// theme={myTheme} // you can pass a custom theme (see the styling section)
+				// fill // default = false,  true makes the pane fill the parent dom node it's rendered in
+				// flat // default = false,  true removes border radius and shadow
+				oneLineLabels // default = false, alternative layout for labels, with labels and fields on separate rows
+				// titleBar // default = false, hides the GUI header
+				// collapsed // default = false, when true the GUI is collapsed
+				// hidden // default = false, when true the GUI is hidden
+			/> */}
 			{mobile && (
 				<PerformanceMonitor onIncline={() => setDpr(dpr / 2)} onDecline={() => setDpr(1)} />
 			)}
