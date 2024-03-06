@@ -11,7 +11,7 @@ import UserContextProvider from '../store/userContext';
 export default function Lighting() {
 	const [lightPos, setLightPos] = useState<[number, number, number] | undefined>([-5, 5, 10]);
 	const { mobile } = useContext(UserContextProvider);
-	const shadowMapSize = mobile ? 512 : 4096;
+	const shadowMapSize = mobile ? 1024 : 4096;
 	useFrame(() => {});
 	return (
 		<group>
