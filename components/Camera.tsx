@@ -56,7 +56,7 @@ export default function Camera() {
 			0.1
 		);
 		// camera.position.z = MathUtils.lerp(camera.position.z, Math.cos(scroll.offset) * 1 + 3, 0.1);
-		// preventCamPosOutsideBounds(state);
+		preventCamPosOutsideBounds(state);
 	});
 
 	return null;

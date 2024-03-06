@@ -41,12 +41,12 @@ export default function Mouse() {
 			);
 			state.camera.position.y = MathUtils.lerp(
 				state.camera.position.y,
-				state.pointer.y * (scroll.offset > 0.99 ? 2 : 0.5 + 0.5),
+				state.pointer.y * (scroll.offset > 0.99 ? 2 : 0.5 + 1),
 				0.1
 			);
 			// orbit camera around the center
 			// state.camera.lookAt(0, 0, 0);
 		}
 	});
-	return null;
+	return <>{/* <PointerPointLight /> */}</>;
 }
