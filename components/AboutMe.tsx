@@ -103,8 +103,14 @@ export default function AboutMe() {
 			>
 				<group ref={icon1Ref} position={[-0.3, 0.33, 0]}>
 					<Icons
-						onPointerEnter={(e) => setIcon1Hovered(true)}
-						onPointerLeave={(e) => setIcon1Hovered(false)}
+						onPointerEnter={(e) => {
+							setIcon1Hovered(true);
+							document.body.style.cursor = 'pointer';
+						}}
+						onPointerLeave={(e) => {
+							setIcon1Hovered(false);
+							document.body.style.cursor = 'auto';
+						}}
 						onClick={(e) => {
 							window.open('https://www.instagram.com/', '_blank');
 						}}
@@ -119,8 +125,16 @@ export default function AboutMe() {
 			>
 				<group
 					ref={icon2Ref}
-					onPointerEnter={(e) => setIcon2Hovered(true)}
-					onPointerLeave={(e) => setIcon2Hovered(false)}
+					onPointerEnter={(e) => {
+						setIcon2Hovered(true);
+						document.body.style.cursor = 'pointer';
+					}}
+					onPointerLeave={(e) => {
+						setIcon2Hovered(false);
+						document.body.style.cursor = 'auto';
+					}}
+					// change mouse cursor on hover
+					// onPointerOver={(e) => (document.body.style.cursor = 'pointer')}
 					onClick={(e) => {
 						window.open('https://www.vimeo.com/', '_blank');
 					}}
@@ -136,8 +150,14 @@ export default function AboutMe() {
 			>
 				<group
 					ref={icon3Ref}
-					onPointerEnter={(e) => setIcon3Hovered(true)}
-					onPointerLeave={(e) => setIcon3Hovered(false)}
+					onPointerEnter={(e) => {
+						setIcon3Hovered(true);
+						document.body.style.cursor = 'pointer';
+					}}
+					onPointerLeave={(e) => {
+						setIcon3Hovered(false);
+						document.body.style.cursor = 'auto';
+					}}
 					onClick={(e) => {
 						window.open('https://www.youtube.com/', '_blank');
 					}}
