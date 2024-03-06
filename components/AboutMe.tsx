@@ -69,23 +69,11 @@ export default function AboutMe() {
 	const [icon3Hovered, setIcon3Hovered] = useState(false);
 	// extract controls target
 
-	const target = useRef<THREE.Vector3>(new THREE.Vector3(0, 1, 0));
-	useFrame((state) => {
-		// console.log(target.current);
-		// target.current.x = MathUtils.lerp(target.current.x, state.pointer.x * 1, 0.1); // lerp lookAt x
-		// target.current.y = MathUtils.lerp(target.current.y, state.pointer.y * 1, 0.1); // lerp lookAt y
+	// const target = useRef<THREE.Vector3>(new THREE.Vector3(0, 1, 0));
 
-		state.camera.lookAt(target.current.x, target.current.y, target.current.z);
-		state.camera.position.y = MathUtils.lerp(
-			state.camera.position.y,
-			Math.sin(scroll.offset) * 1 + 0.5,
-			0.1
-		);
-		state.camera.position.z = MathUtils.lerp(
-			state.camera.position.z,
-			Math.cos(scroll.offset) * 1 + 3,
-			0.1
-		);
+	useFrame(({ gl, scene, camera, clock, pointer }) => {
+		// target.current.x = MathUtils.lerp(target.current.x, state.pointer.x * 1, 0.1); // lerp lookAt x
+		// target.current.y = MathUtils.lerp(target.current.y, pointer.y * 1, 0.1); // lerp lookAt y
 
 		// const r1 = scroll.range(0 / 10, 1 / 10); // this is the first quarter of the page
 		// const r2 = scroll.range(1 / 10, 2 / 10); // this is the second quarter of the page
@@ -101,49 +89,15 @@ export default function AboutMe() {
 		icon3Ref.current.position.z = MathUtils.lerp(icon3Ref.current.position.z, iconR3 * 5, 0.1);
 
 		const offset = 1 - scroll.offset;
-		// console.log(offset);
 	});
-	function PointerPointLight() {
-		const ref = useRef<THREE.PointLight>();
-		// get pointer
-		const scroll = useScroll();
-		const { pointer } = useThree();
-		useFrame(() => {
-			ref.current.position.x = pointer.x * 1;
-			ref.current.position.y = pointer.y * 1;
-			ref.current.position.z = Math.sin(scroll.offset) * 10;
-		});
-		return (
-			<pointLight
-				ref={ref}
-				position={[0, 0, 0]}
-				intensity={1}
-				distance={1}
-				decay={1}
-				color={icon1Hovered ? 'white' : 'red'}
-				// color={'white'}
-			/>
-		);
-	}
-
+	const floatIntensity = 1.5;
+	const rotationIntensity = 2.5;
 	return (
 		<group position={[0, 0.75, 0]} ref={ref}>
-			{/* <ambientLight intensity={1} /> */}
-			<directionalLight position={[0, 5, 5]} intensity={1} />
-			{/* <PointerPointLight /> */}
-			{/* <spotLight
-				intensity={100}
-				position={[0, 15, 2]}
-				angle={0.15}
-				penumbra={1}
-				shadow-mapSize-width={2048}
-				shadow-mapSize-height={2048}
-				castShadow
-			/> */}
 			<Float
 				speed={1} // Animation speed, defaults to 1
-				rotationIntensity={2} // XYZ rotation intensity, defaults to 1
-				floatIntensity={1} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
+				rotationIntensity={rotationIntensity} // XYZ rotation intensity, defaults to 1
+				floatIntensity={floatIntensity} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
 				floatingRange={[0, 0.25]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
 			>
 				<group ref={icon1Ref} position={[-0.3, 0.33, 0]}>
@@ -155,8 +109,8 @@ export default function AboutMe() {
 			</Float>
 			<Float
 				speed={1} // Animation speed, defaults to 1
-				rotationIntensity={2} // XYZ rotation intensity, defaults to 1
-				floatIntensity={1} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
+				rotationIntensity={rotationIntensity} // XYZ rotation intensity, defaults to 1
+				floatIntensity={floatIntensity} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
 				floatingRange={[0, 0.2]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
 			>
 				<group
@@ -169,8 +123,8 @@ export default function AboutMe() {
 			</Float>
 			<Float
 				speed={1} // Animation speed, defaults to 1
-				rotationIntensity={2} // XYZ rotation intensity, defaults to 1
-				floatIntensity={1} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
+				rotationIntensity={rotationIntensity} // XYZ rotation intensity, defaults to 1
+				floatIntensity={floatIntensity} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
 				floatingRange={[-0.2, 0]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
 			>
 				<group

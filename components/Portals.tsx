@@ -136,7 +136,7 @@ export default function PortalsCards() {
 
 	useFrame((state) => {
 		const offset = 1 - scroll.offset;
-		// state.camera.lookAt(0, 1, 0);
+		state.camera.lookAt(0, 1, 0);
 		// console.log(pointer);
 
 		if (scroll.offset > scrollSpeed.current) {

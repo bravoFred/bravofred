@@ -2,7 +2,7 @@ import styles from '@/styles/App.module.css';
 import FlickerTitle from '@/components/FlickerTitle';
 import { Inter } from 'next/font/google';
 const inter = Inter({ subsets: ['latin'] });
-import React, { Suspense, useRef, useState, useContext, useEffect } from 'react';
+import React, { Suspense, useRef, useState, useContext, useEffect, use } from 'react';
 import { Canvas, extend, useThree, useFrame } from '@react-three/fiber';
 import {
 	OrbitControls,
@@ -13,14 +13,17 @@ import {
 	ScrollControls,
 	CameraShake,
 	Loader,
+	MeshReflectorMaterial,
 } from '@react-three/drei';
 import GridGround from '@/components/GridGround';
 import Camera from '@/components/Camera';
 import Portals from './Portals';
 import AboutMe from './AboutMe';
+import Floor from './Floor';
 import FlickerText from './FlickerText';
 import VideoText from './VideoText';
 import Nav from './Nav';
+import Lighting from './Lighting';
 import Performance from './Performance';
 import ScrollNav from './ScrollNav';
 import { useTexture } from '@react-three/drei';
@@ -33,7 +36,6 @@ const Icons = dynamic(() => import('../models/4096/Icons').then((mod) => mod.Mod
 	ssr: false,
 });
 export default function Main() {
-	const [lightPos, setLightPos] = useState<[number, number, number] | undefined>([-5, 5, 10]);
 	const { theme, setTheme, frameloop, mobile } = useContext(UserContextProvider);
 	function Ground() {
 		const [floor, normal] = useTexture([
@@ -107,16 +109,19 @@ export default function Main() {
 						position: new THREE.Vector3(0, 1.5, 5),
 					}}
 				>
-					<GridGround theme={theme} />
+					{/* <GridGround theme={theme} /> */}
 					<color args={[theme === 'light' ? '#fff' : '#000']} attach="background" />
-					<fog attach="fog" args={[theme === 'light' ? '#fff' : '#000', 10, 20]} />
+					<fog attach="fog" args={[theme === 'light' ? '#fff' : '#000', 0, 15]} />
 					<ScrollControls pages={4}>
 						<AboutMe />
 						<Portals />
 						<ScrollNav />
 						<Mouse />
 						<Camera />
+						<Floor />
+						<Lighting />
 					</ScrollControls>
+
 					<Performance />
 					{/* <VideoText /> */}
 					{/* <Shake /> */}
