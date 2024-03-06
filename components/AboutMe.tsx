@@ -119,8 +119,6 @@ export default function AboutMe() {
 			>
 				<group
 					ref={icon2Ref}
-					// go to youtube on click
-
 					onPointerEnter={(e) => setIcon2Hovered(true)}
 					onPointerLeave={(e) => setIcon2Hovered(false)}
 					onClick={(e) => {
