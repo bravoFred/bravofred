@@ -32,11 +32,11 @@ export default function Lighting() {
 				castShadow
 				ref={light}
 				penumbra={1}
-				distance={6}
-				angle={0.35}
+				distance={10}
+				angle={0.45}
 				attenuation={2}
 				anglePower={4}
-				intensity={2}
+				intensity={3}
 				{...props}
 			/>
 		);
