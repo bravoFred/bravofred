@@ -21,7 +21,7 @@ export default function Lighting() {
 				vec.set(
 					(state.pointer.x * viewport.width) / 2,
 					(state.pointer.y * viewport.height) / 2,
-					0
+					-0.5
 				),
 				0.1
 			);
@@ -59,7 +59,7 @@ export default function Lighting() {
 			<MovingSpot position={[0, 2.5, 1.5]} />
 			<directionalLight
 				position={[0, 10, 10]}
-				intensity={0}
+				intensity={0.05}
 				castShadow
 				shadow-mapSize-width={shadowMapSize}
 				shadow-mapSize-height={shadowMapSize}
