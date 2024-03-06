@@ -31,12 +31,12 @@ export default function Lighting() {
 			<SpotLight
 				castShadow
 				ref={light}
-				penumbra={1}
-				distance={10}
-				angle={0.45}
-				attenuation={2}
-				anglePower={4}
-				intensity={3}
+				penumbra={1} // how soft the edge of the spotlight is, 0 is hard, 1 is soft
+				distance={10} // how far the light shines, starting from the light's position
+				angle={0.45} // how wide the spotlight is, narrower is more like a flashlight, wider is more like a floodlight
+				attenuation={2} // how quickly the light dims with distance, 0 is quicker dimming, 1 is slower dimming
+				anglePower={4} // how much to increase the angle by
+				intensity={3} // how bright the light is
 				{...props}
 			/>
 		);
