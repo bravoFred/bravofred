@@ -92,6 +92,7 @@ export default function AboutMe() {
 	});
 	const floatIntensity = 1.5;
 	const rotationIntensity = 2.5;
+	// instagram, vimeo, youtube
 	return (
 		<group position={[0, 0.75, 0]} ref={ref}>
 			<Float
@@ -104,6 +105,9 @@ export default function AboutMe() {
 					<Icons
 						onPointerEnter={(e) => setIcon1Hovered(true)}
 						onPointerLeave={(e) => setIcon1Hovered(false)}
+						onClick={(e) => {
+							window.open('https://www.instagram.com/', '_blank');
+						}}
 					/>
 				</group>
 			</Float>
@@ -115,8 +119,13 @@ export default function AboutMe() {
 			>
 				<group
 					ref={icon2Ref}
+					// go to youtube on click
+
 					onPointerEnter={(e) => setIcon2Hovered(true)}
 					onPointerLeave={(e) => setIcon2Hovered(false)}
+					onClick={(e) => {
+						window.open('https://www.vimeo.com/', '_blank');
+					}}
 				>
 					<Icons position={[0.33, 0, 0]} />
 				</group>
@@ -131,6 +140,9 @@ export default function AboutMe() {
 					ref={icon3Ref}
 					onPointerEnter={(e) => setIcon3Hovered(true)}
 					onPointerLeave={(e) => setIcon3Hovered(false)}
+					onClick={(e) => {
+						window.open('https://www.youtube.com/', '_blank');
+					}}
 				>
 					<Icons position={[-0.3, -0.33, 0]} />
 				</group>
