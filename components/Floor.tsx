@@ -27,7 +27,7 @@ export default function Floor() {
 				metalness={0.5}
 				depthTest={true}
 				// metalness={1}
-				mirror={0.9}
+				mirror={0.97}
 			/>
 		</mesh>
 	);

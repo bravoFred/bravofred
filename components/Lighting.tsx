@@ -41,7 +41,7 @@ export default function Lighting() {
 			/>
 		);
 	}
-	const sideLightIntensity = 0.5;
+	const sideLightIntensity = 0.25;
 	return (
 		<group>
 			{/* <ambientLight intensity={0.5} /> */}
@@ -59,8 +59,8 @@ export default function Lighting() {
 			/> */}
 			<MovingSpot position={[0, 2.5, 1.5]} />
 			<directionalLight
-				position={[0, 10, 10]}
-				intensity={0.05}
+				position={[0, 2.5, 1.5]}
+				intensity={0.5}
 				castShadow
 				shadow-mapSize-width={shadowMapSize}
 				shadow-mapSize-height={shadowMapSize}
@@ -73,13 +73,13 @@ export default function Lighting() {
 			{/* left */}
 			{/* right */}
 			{/* front */}
-			<pointLight position={[0, 1, 3]} intensity={sideLightIntensity} />
+			{/* <pointLight position={[0, 1, 3]} intensity={sideLightIntensity} /> */}
 			{!mobile && (
 				<>
 					<pointLight position={[-3, 0.25, 1]} intensity={sideLightIntensity} />
-					<pointLight position={[-3, 3, 1]} intensity={sideLightIntensity} />
+					{/* <pointLight position={[-3, 3, 3]} intensity={sideLightIntensity} /> */}
 					<pointLight position={[3, 0.25, 1]} intensity={sideLightIntensity} />
-					<pointLight position={[3, 3, 1]} intensity={sideLightIntensity} />
+					{/* <pointLight position={[3, 3, 3]} intensity={sideLightIntensity} /> */}
 				</>
 			)}
 		</group>
