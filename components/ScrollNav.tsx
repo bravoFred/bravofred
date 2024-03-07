@@ -4,8 +4,6 @@ import { useScroll } from '@react-three/drei';
 import { MathUtils } from 'three';
 import { easing, geometry } from 'maath';
 import { useLocation } from 'wouter';
-import { useControls, folder, button } from 'leva';
-
 export default function ScrollNav() {
 	const scroll = useScroll();
 	const [lastScroll, setLastScroll] = useState(0);
@@ -17,10 +15,10 @@ export default function ScrollNav() {
 		if (currentScroll < lastScroll) setScrollDirection(-1);
 		setLastScroll(currentScroll);
 		if (scrollDirection === 1) {
-			console.log('scrolling down');
+			// console.log('scrolling down');
 		}
 		if (scrollDirection === -1) {
-			console.log('scrolling up');
+			// console.log('scrolling up');
 			// scroll.offset = MathUtils.lerp(scroll.offset, 1, 0.1);
 		}
 		// scroll.offset = MathUtils.lerp(scroll.offset, 0.999, 0.1);
