@@ -90,16 +90,17 @@ export default function AboutMe() {
 
 		const offset = 1 - scroll.offset;
 	});
-	const floatIntensity = 1.5;
-	const rotationIntensity = 2.5;
+	const floatIntensity = 1;
+	const rotationIntensity = 2;
+	const speed = 1.5;
 	// instagram, vimeo, youtube
 	return (
 		<group position={[0, 0.75, 0]} ref={ref}>
 			<Float
-				speed={1} // Animation speed, defaults to 1
+				speed={speed} // Animation speed, defaults to 1
 				rotationIntensity={rotationIntensity} // XYZ rotation intensity, defaults to 1
 				floatIntensity={floatIntensity} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
-				floatingRange={[0, 0.25]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
+				floatingRange={[0, 0.1]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
 			>
 				<group ref={icon1Ref} position={[-0.3, 0.33, 0]}>
 					<Icons
@@ -118,10 +119,10 @@ export default function AboutMe() {
 				</group>
 			</Float>
 			<Float
-				speed={1} // Animation speed, defaults to 1
+				speed={speed} // Animation speed, defaults to 1
 				rotationIntensity={rotationIntensity} // XYZ rotation intensity, defaults to 1
 				floatIntensity={floatIntensity} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
-				floatingRange={[0, 0.2]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
+				floatingRange={[-0.05, 0.05]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
 			>
 				<group
 					ref={icon2Ref}
@@ -143,10 +144,10 @@ export default function AboutMe() {
 				</group>
 			</Float>
 			<Float
-				speed={1} // Animation speed, defaults to 1
+				speed={speed} // Animation speed, defaults to 1
 				rotationIntensity={rotationIntensity} // XYZ rotation intensity, defaults to 1
 				floatIntensity={floatIntensity} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
-				floatingRange={[-0.2, 0]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
+				floatingRange={[-0.1, 0]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
 			>
 				<group
 					ref={icon3Ref}
