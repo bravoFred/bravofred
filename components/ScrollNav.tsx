@@ -21,13 +21,7 @@ export default function ScrollNav() {
 		}
 		if (scrollDirection === -1) {
 			console.log('scrolling up');
-			// scroll.offset = MathUtils.lerp(scroll.offset, 1, 0.1);
 		}
-		// scroll.offset = MathUtils.lerp(scroll.offset, 0.999, 0.1);
-		// scroll.offset = MathUtils.lerp(scroll.offset, 0.001, 0.5);
-		// scroll.offset = easing.damp(scroll.offset, 1, 0.1, delta);
-		// scroll.offset = MathUtils.lerp(scroll.offset, 1, 0.1);
-		// if (scrollDirection === -1) console.log('scrolling up');
 	});
 
 	return null;
