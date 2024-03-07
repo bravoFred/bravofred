@@ -13,16 +13,14 @@ import { useRoute, useLocation } from 'wouter';
 import { easing, geometry } from 'maath';
 import { suspend } from 'suspend-react';
 import { useScroll } from '@react-three/drei';
-import UserContextProvider from '../store/userContext';
+import UserContextProvider from '../../store/userContext';
 import { MathUtils } from 'three';
-
-extend(geometry);
 import dynamic from 'next/dynamic';
-import VideoText from './VideoText';
 
-const Scene = dynamic(() => import('./Kitchen').then((mod) => mod.Model), {
+const Scene = dynamic(() => import('../Kitchen').then((mod) => mod.Model), {
 	ssr: false,
 });
+
 function Frame({ id, name, author, bg, width = 1, height = 1.61803398875, children, ...props }) {
 	const portal = useRef();
 	const [, setLocation] = useLocation();
@@ -89,25 +87,7 @@ function Frame({ id, name, author, bg, width = 1, height = 1.61803398875, childr
 	);
 }
 
-// function Rig({ position = new THREE.Vector3(0, 0, 2), focus = new THREE.Vector3(0, 0, 0) }) {
-function Rig({ position = new THREE.Vector3(0, 1, 5), focus = new THREE.Vector3(0, 1, 0) }) {
-	const { controls, scene } = useThree<{
-		controls: CameraControls;
-		scene: THREE.Scene;
-	}>();
-	const [, params] = useRoute<{ id: string }>('/item/:id');
-	useEffect(() => {
-		const active = scene.getObjectByName(params?.id);
-		if (active) {
-			active.parent.localToWorld(position.set(0, 0.5, 0.25));
-			active.parent.localToWorld(focus.set(0, 0, -2));
-		}
-		controls?.setLookAt(...position.toArray(), ...focus.toArray(), true);
-	});
-	return <CameraControls makeDefault minPolarAngle={0} maxPolarAngle={Math.PI / 2} />;
-}
-
-export default function PortalsCards() {
+export default function PortalsOne() {
 	const [portalsInactiveVector, setPortalsInactiveVector] = useState(
 		new THREE.Vector3(0, 0, -25)
 	);
@@ -133,7 +113,6 @@ export default function PortalsCards() {
 	const scrollSpeed = useRef(0);
 	const scrollDirection = useRef(0);
 	const { pointer, controls } = useThree();
-
 	useFrame((state) => {
 		const offset = 1 - scroll.offset;
 		state.camera.lookAt(0, 1, 0);
@@ -150,7 +129,6 @@ export default function PortalsCards() {
 		portal2Ref.current.position.lerpVectors(portal2vector, portal2vectorActive, scroll.offset);
 		// portal3Ref.current.position.lerpVectors(portal3vector, portal3vectorActive, scroll.offset);
 	});
-
 	return (
 		<group ref={portalsRef} position={[0, 0, 0]}>
 			<group ref={portal2Ref}>

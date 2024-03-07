@@ -17,8 +17,8 @@ import {
 } from '@react-three/drei';
 import GridGround from '@/components/GridGround';
 import Camera from '@/components/Camera';
-import Portals from './Portals';
-import AboutMe from './AboutMe';
+import PortalsMain from './portals/PortalsMain';
+import AboutMe from './aboutMe/AboutMe';
 import Floor from './Floor';
 import FlickerText from './FlickerText';
 import VideoText from './VideoText';
@@ -113,7 +113,7 @@ export default function Main() {
 					{/* https://codesandbox.io/p/sandbox/m1-scrollcontrols-4m0d0 */}
 					<ScrollControls pages={4}>
 						<AboutMe />
-						<Portals />
+						<PortalsMain />
 						<ScrollNav />
 						<Mouse />
 						<Camera />

@@ -7,9 +7,9 @@ import dynamic from 'next/dynamic';
 import { useState, useContext } from 'react';
 import { easing, geometry } from 'maath';
 import { MathUtils } from 'three';
-import UserContextProvider from '../store/userContext';
+import UserContextProvider from '../../store/userContext';
 
-const Icons = dynamic(() => import('../models/4096/Icons').then((mod) => mod.Model), {
+const Icons = dynamic(() => import('../../models/4096/Icons').then((mod) => mod.Model), {
 	ssr: false,
 });
 // extend({ Text3D });
