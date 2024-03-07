@@ -85,9 +85,7 @@ export default function Main() {
 	return (
 		<>
 			{/* <main className={`${styles.main} ${inter.className}`}> */}
-			<main className={`${styles.main}`}>
-				<Nav />
-			</main>
+			<main className={`${styles.main}`}>{/* <Nav /> */}</main>
 			<Suspense fallback={null}>
 				<Canvas
 					style={{ position: 'absolute' }}
@@ -104,7 +102,7 @@ export default function Main() {
 					camera={{
 						fov: mobile ? 45 : 30,
 						near: 0.1,
-						far: 50,
+						far: 45,
 						zoom: 1,
 						position: new THREE.Vector3(0, 1.5, 5),
 					}}
