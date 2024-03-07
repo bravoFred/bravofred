@@ -39,11 +39,11 @@ export default function Mouse() {
 			// 	state.pointer.x * (scroll.offset > 0.99 ? 2 : 0.5),
 			// 	0.2
 			// );
-			// state.camera.position.y = MathUtils.lerp(
-			// 	state.camera.position.y,
-			// 	state.pointer.y * (scroll.offset > 0.99 ? 2 : 0.5 + 1),
-			// 	0.1
-			// );
+			state.camera.position.y = MathUtils.lerp(
+				state.camera.position.y,
+				state.pointer.y * (scroll.offset > 0.99 ? 2 : 0.5 + 1),
+				0.1
+			);
 		}
 	});
 	return <>{/* <PointerPointLight /> */}</>;
