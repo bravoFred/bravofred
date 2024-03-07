@@ -12,22 +12,38 @@ export default function Floor() {
 	const { mobile } = useContext(UserContextProvider);
 	const res = mobile ? 1024 : 2048;
 	return (
-		<mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
+		// <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
+		// 	<planeGeometry args={[50, 50]} />
+		// 	<MeshReflectorMaterial
+		// 		blur={[500, 500]}
+		// 		resolution={res}
+		// 		mixBlur={1}
+		// 		mixStrength={80}
+		// 		roughness={1}
+		// 		depthScale={1.2}
+		// 		minDepthThreshold={0.4}
+		// 		maxDepthThreshold={1.4}
+		// 		color="#fff"
+		// 		metalness={0.5}
+		// 		depthTest={true}
+		// 		// metalness={1}
+		// 		mirror={0.97}
+		// 	/>
+		// </mesh>
+		<mesh rotation={[-Math.PI / 2, 0, 0]}>
 			<planeGeometry args={[50, 50]} />
 			<MeshReflectorMaterial
-				blur={[500, 500]}
-				resolution={res}
+				blur={[300, 100]}
+				resolution={2048}
 				mixBlur={1}
 				mixStrength={80}
 				roughness={1}
 				depthScale={1.2}
 				minDepthThreshold={0.4}
 				maxDepthThreshold={1.4}
-				color="#fff"
+				color="#050505"
 				metalness={0.5}
-				depthTest={true}
-				// metalness={1}
-				mirror={0.97}
+				mirror={0.5}
 			/>
 		</mesh>
 	);

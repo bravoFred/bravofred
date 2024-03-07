@@ -61,6 +61,7 @@ export default function Lighting() {
 			<directionalLight
 				position={[0, 2.5, 1.5]}
 				intensity={0.5}
+				// intensity={5}
 				castShadow
 				shadow-mapSize-width={shadowMapSize}
 				shadow-mapSize-height={shadowMapSize}

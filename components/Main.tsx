@@ -101,10 +101,12 @@ export default function Main() {
 					}}
 					camera={{
 						fov: mobile ? 45 : 30,
+						// fov: mobile ? 45 : 70,
+						// fov: 90,
 						near: 0.1,
 						far: 45,
 						zoom: 1,
-						position: new THREE.Vector3(0, 1.5, 5),
+						position: new THREE.Vector3(0, 1.5, -10),
 					}}
 				>
 					{/* <GridGround theme={theme} /> */}

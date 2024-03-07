@@ -50,6 +50,17 @@ export default function Camera() {
 	const scroll = useScroll();
 	useFrame((state) => {
 		camera.lookAt(target.current.x, target.current.y, target.current.z);
+		if (scroll.offset < 0.1) {
+			// lerp target
+			target.current.x = MathUtils.lerp(target.current.x, 0, 0.1);
+			target.current.y = MathUtils.lerp(target.current.y, 1, 0.1);
+			target.current.z = MathUtils.lerp(target.current.z, 0, 0.1);
+		} else if (scroll.offset > 0.1) {
+			// lerp target
+			target.current.x = MathUtils.lerp(target.current.x, 0, 0.1);
+			target.current.y = MathUtils.lerp(target.current.y, 1, 0.1);
+			target.current.z = MathUtils.lerp(target.current.z, 0, 0.1);
+		}
 		camera.position.y = MathUtils.lerp(
 			camera.position.y,
 			Math.sin(scroll.offset) * 1 + 0.5,

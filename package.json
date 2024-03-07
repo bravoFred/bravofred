@@ -25,6 +25,7 @@
     "react-dom": "^18",
     "sass": "^1.71.1",
     "three": "^0.161.0",
+    "uuid-by-string": "^4.0.0",
     "wouter": "^3.0.0"
   },
   "devDependencies": {
