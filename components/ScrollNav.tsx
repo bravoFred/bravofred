@@ -17,10 +17,10 @@ export default function ScrollNav() {
 		if (currentScroll < lastScroll) setScrollDirection(-1);
 		setLastScroll(currentScroll);
 		if (scrollDirection === 1) {
-			// console.log('scrolling down');
+			console.log('scrolling down');
 		}
 		if (scrollDirection === -1) {
-			// console.log('scrolling up');
+			console.log('scrolling up');
 		}
 	});
 
