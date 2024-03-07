@@ -87,6 +87,8 @@ export default function AboutMe() {
 		icon1Ref.current.position.z = MathUtils.lerp(icon1Ref.current.position.z, iconR1 * 5, 0.1);
 		icon2Ref.current.position.z = MathUtils.lerp(icon2Ref.current.position.z, iconR2 * 5, 0.1);
 		icon3Ref.current.position.z = MathUtils.lerp(icon3Ref.current.position.z, iconR3 * 5, 0.1);
+
+		const offset = 1 - scroll.offset;
 	});
 	const floatIntensity = 1;
 	const rotationIntensity = 2;
