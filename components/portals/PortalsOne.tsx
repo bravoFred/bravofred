@@ -155,12 +155,12 @@ export default function PortalsOne() {
 	return (
 		<group ref={portalsRef} position={[0, 0, 0]}>
 			<group ref={portal2Ref}>
-				<Frame id="01" name="Film 1" author="Frederic Cartier" bg="#1a1a1a">
+				<Frame id="01" name="Film 1" author="Frederic Cartier" bg="#fff">
 					<Warehouse
-						position={[0, -1, -5]}
+						position={[5, -1, -5]}
 						rotation={[
 							MathUtils.degToRad(0),
-							MathUtils.degToRad(-30),
+							MathUtils.degToRad(-45),
 							MathUtils.degToRad(0),
 						]}
 					/>
@@ -168,13 +168,13 @@ export default function PortalsOne() {
 				</Frame>
 			</group>
 			<group position={[-1.15, 0, -50]} rotation={[0, 0.5, 0]} ref={portal1Ref}>
-				<Frame id="02" name="Film 1" author="Frederic Cartier" bg="#1a1a1a">
+				<Frame id="02" name="Film 1" author="Frederic Cartier" bg="#fff">
 					<SmallRoom position={[0, -1, 0]} />
 					<ambientLight intensity={1} />
 				</Frame>
 			</group>
 			<group position={[1.15, 0, 0.25]} rotation={[0, -0.5, 0]} ref={portal3Ref}>
-				<Frame id="03" name="Film 3" author="Frederic Cartier" bg="#d1d1ca">
+				<Frame id="03" name="Film 3" author="Frederic Cartier" bg="#fff">
 					<SmallRoom position={[0, -1, 0]} />
 					<ambientLight intensity={1} />
 				</Frame>
