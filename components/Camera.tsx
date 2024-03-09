@@ -45,6 +45,9 @@ function preventCamPosOutsideBounds(state: {
 	if (camera.position.y < yLimit)
 		state.camera.position.y = MathUtils.lerp(state.camera.position.y, yLimit, 1);
 }
+function ToggleCamFov(camera: { fov: number }, mobile: boolean) {
+	mobile ? (camera.fov = 30) : (camera.fov = 45);
+}
 export default function Camera() {
 	// const { gl, camera } = useThree();
 	const { mobile } = useContext(UserContextProvider);
@@ -52,15 +55,13 @@ export default function Camera() {
 	const scroll = useScroll();
 	useFrame((state) => {
 		const camera = state.camera as THREE.PerspectiveCamera;
-		// camera.lookAt(target.current.x, target.current.y, target.current.z);
+		camera.lookAt(target.current.x, target.current.y, target.current.z);
 		camera.position.y = MathUtils.lerp(
 			camera.position.y,
 			Math.sin(scroll.offset) * 1 + 0.5,
 			0.1
 		);
-		mobile ? (camera.fov = 30) : (camera.fov = 45);
-
-		// camera.position.z = MathUtils.lerp(camera.position.z, Math.cos(scroll.offset) * 1 + 3, 0.1);
+		ToggleCamFov(camera, mobile);
 		preventCamPosOutsideBounds(state);
 	});
 
