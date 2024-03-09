@@ -130,26 +130,45 @@ export default function PortalsOne() {
 	const portal3Ref = useRef<THREE.Group>();
 	const scrollSpeed = useRef(0);
 	const scrollDirection = useRef(0);
+	const scrolling = useRef(false);
 	const { pointer, controls } = useThree();
+	const entrySpeed = 0.1;
 	useFrame((state) => {
-		const offset = 1 - scroll.offset;
-		// console.log(scrollDirection.current);
-
+		// scroll checks
 		if (scroll.offset > scrollSpeed.current) {
 			scrollDirection.current = 1;
+			scrolling.current = true;
 			console.log('scrolling down');
-			// portal1Ref.current.position.lerpVectors(portalVecs.p1, portalVecs.p1active, 0.1);
 		} else if (scroll.offset < scrollSpeed.current) {
 			scrollDirection.current = -1;
+			scrolling.current = true;
 			console.log('scrolling up');
 		}
-
+		if (scroll.offset === scrollSpeed.current) {
+			scrollDirection.current = 0;
+			scrolling.current = false;
+			// console.log('stopped scrolling');
+		}
 		scrollSpeed.current = scroll.offset;
-		portal1Ref.current.position.lerpVectors(portalVecs.p1, portalVecs.p1active, scroll.offset);
+
+		// portal movement
+		// portal1Ref.current.position.lerpVectors(portalVecs.p1, portalVecs.p1active, scroll.offset);
 		portal2Ref.current.position.lerpVectors(portalVecs.p2, portalVecs.p2active, scroll.offset);
 		portal3Ref.current.position.lerpVectors(portalVecs.p3, portalVecs.p3active, scroll.offset);
-		// portal2Ref.current.position.lerpVectors(portal2vector, portal2vectorActive, scroll.offset);
-		// portal3Ref.current.position.lerpVectors(portal3vector, portal3vectorActive, scroll.offset);
+		if (portalsActive.current) {
+			portal1Ref.current.position.z = MathUtils.lerp(
+				portal1Ref.current.position.z,
+				portalVecs.p1active.z,
+				entrySpeed * 2
+			);
+		} else {
+			portal1Ref.current.position.z = MathUtils.lerp(
+				portal1Ref.current.position.z,
+				-50,
+				entrySpeed
+			);
+		}
+		console.log(portal1Ref.current.position.z);
 	});
 	return (
 		<group ref={portalsRef} position={[0, 0, 0]}>

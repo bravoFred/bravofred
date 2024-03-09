@@ -28,19 +28,9 @@ export default function AboutMe() {
 	const [icon1Hovered, setIcon1Hovered] = useState(false);
 	const [icon2Hovered, setIcon2Hovered] = useState(false);
 	const [icon3Hovered, setIcon3Hovered] = useState(false);
-	// extract controls target
 
-	// const target = useRef<THREE.Vector3>(new THREE.Vector3(0, 1, 0));
 	const enterSpeed = 0.1;
 	useFrame(({ gl, scene, camera, clock, pointer }) => {
-		// target.current.x = MathUtils.lerp(target.current.x, state.pointer.x * 1, 0.1); // lerp lookAt x
-		// target.current.y = MathUtils.lerp(target.current.y, pointer.y * 1, 0.1); // lerp lookAt y
-		// console.log(THREE);
-		// const r1 = scroll.range(0 / 10, 1 / 10); // this is the first quarter of the page
-		// const r2 = scroll.range(1 / 10, 2 / 10); // this is the second quarter of the page
-		// const r3 = scroll.range(1 / 4, 2 / 4); // this is the second quarter of the page
-		// const r3 = scroll.visible(4 / 5, 1 / 5); // this is the last fifth of the page
-		// console.log(scroll.offset);
 		if (scroll.offset === 0) {
 			icon1Ref.current.position.z = MathUtils.lerp(
 				icon1Ref.current.position.z,
@@ -65,15 +55,11 @@ export default function AboutMe() {
 		icon1Ref.current.position.z = MathUtils.lerp(icon1Ref.current.position.z, iconR1 * 10, 0.1);
 		icon2Ref.current.position.z = MathUtils.lerp(icon2Ref.current.position.z, iconR2 * 10, 0.1);
 		icon3Ref.current.position.z = MathUtils.lerp(icon3Ref.current.position.z, iconR3 * 10, 0.1);
-
-		// const offset = 1 - scroll.offset;
 	});
 	const floatIntensity = 1;
 	const rotationIntensity = 2;
 	const speed = 1.5;
-	// console.log(DeviceOrientationControls);
 
-	// instagram, vimeo, youtube
 	const urls = {
 		instagram: 'https://www.instagram.com/',
 		vimeo: 'https://www.vimeo.com/',
