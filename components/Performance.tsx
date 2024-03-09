@@ -51,7 +51,7 @@ export default function Performance() {
 	const upResMsgDisplayed = useRef(false);
 	useFrame((state) => {
 		const clock = new THREE.Clock();
-		const camera = state.camera as THREE.PerspectiveCamera;
+		// const camera = state.camera as THREE.PerspectiveCamera;
 		// console.log(camera.fov);
 		const gl = state.gl;
 
@@ -78,25 +78,13 @@ export default function Performance() {
 		// console.log(dpr);
 		// change camera fov based on window
 		// console.log(camera);
-
-		const fov = camera.fov;
-		const aspect = gl.domElement.clientWidth / gl.domElement.clientHeight;
-		const near = camera.near;
-		const far = camera.far;
-		mobile ? (camera.fov = 30) : (camera.fov = 45);
 	});
 	useEffect(() => {
-		// if (frameloop === 'never') console.log(`scene frozen`);
-		// if (frameloop === 'always') console.log(`scene unfrozen`);
+		if (frameloop === 'never') console.log(`scene frozen`);
+		if (frameloop === 'always') console.log(`scene unfrozen`);
 	}, [frameloop]);
 	// listen for window resize event
-	useEffect(() => {
-		function handleResize() {
-			window.innerWidth < 768 ? setMobile(true) : setMobile(false);
-		}
-		window.addEventListener('resize', handleResize);
-		return () => window.removeEventListener('resize', handleResize);
-	}, []);
+
 	return (
 		<>
 			{!mobile && (

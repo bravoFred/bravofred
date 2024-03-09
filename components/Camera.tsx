@@ -2,8 +2,9 @@ import { useFrame, useThree } from '@react-three/fiber';
 import { useControls } from 'leva';
 import * as THREE from 'three';
 import { MathUtils } from 'three';
-import { useRef } from 'react';
+import { useRef, useContext } from 'react';
 import { useScroll } from '@react-three/drei';
+import UserContextProvider from '../store/userContext';
 
 function lerpCamTarget(
 	state: { controls: { target: { x: number; y: number; z: number } } },
@@ -45,16 +46,20 @@ function preventCamPosOutsideBounds(state: {
 		state.camera.position.y = MathUtils.lerp(state.camera.position.y, yLimit, 1);
 }
 export default function Camera() {
-	const { gl, camera } = useThree();
+	// const { gl, camera } = useThree();
+	const { mobile } = useContext(UserContextProvider);
 	const target = useRef<THREE.Vector3>(new THREE.Vector3(0, 1, 0));
 	const scroll = useScroll();
 	useFrame((state) => {
-		camera.lookAt(target.current.x, target.current.y, target.current.z);
+		const camera = state.camera as THREE.PerspectiveCamera;
+		// camera.lookAt(target.current.x, target.current.y, target.current.z);
 		camera.position.y = MathUtils.lerp(
 			camera.position.y,
 			Math.sin(scroll.offset) * 1 + 0.5,
 			0.1
 		);
+		mobile ? (camera.fov = 30) : (camera.fov = 45);
+
 		// camera.position.z = MathUtils.lerp(camera.position.z, Math.cos(scroll.offset) * 1 + 3, 0.1);
 		preventCamPosOutsideBounds(state);
 	});

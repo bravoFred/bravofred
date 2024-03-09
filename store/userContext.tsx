@@ -20,7 +20,14 @@ export function UserContextProvider(props) {
 	// const [theme, setTheme] = useState<'dark' | 'light'>('light'); // user
 	const [theme, setTheme] = useState<'dark' | 'light'>('dark'); // user
 	useEffect(() => {
-		if (window.innerWidth < window.innerHeight) setMobile(true); // if mobile
+		window.innerWidth < window.innerHeight ? setMobile(true) : setMobile(false);
+	}, []);
+	useEffect(() => {
+		function handleResize() {
+			window.innerWidth < window.innerHeight ? setMobile(true) : setMobile(false);
+		}
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
 	}, []);
 
 	const [frameloop, setFrameloop] = useState<'always' | 'demand' | 'never'>(() => {
