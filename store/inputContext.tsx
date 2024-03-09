@@ -3,10 +3,17 @@ import { createContext, useState, useEffect, useRef } from 'react';
 const InputContext = createContext({
 	portalsActive: false as any,
 	aboutMeActive: true as any,
+	scrollSpeed: 0 as any,
+	scrollDirection: 0 as any,
+	scrolling: false as any,
 	prevSection: () => {},
 	nextSection: () => {},
 });
 export function InputContextProvider(props) {
+	// const scroll = useScroll();
+	const scrollSpeed = useRef(0);
+	const scrollDirection = useRef(0);
+	const scrolling = useRef(false);
 	const aboutMeActive = useRef(true);
 	const portalsActive = useRef(false);
 	function gotoAboutMe() {
@@ -41,6 +48,9 @@ export function InputContextProvider(props) {
 	return (
 		<InputContext.Provider
 			value={{
+				scrollSpeed,
+				scrollDirection,
+				scrolling,
 				aboutMeActive,
 				portalsActive,
 				prevSection,

@@ -140,11 +140,11 @@ export default function PortalsOne() {
 		if (scroll.offset > scrollSpeed.current) {
 			scrollDirection.current = 1;
 			scrolling.current = true;
-			console.log('scrolling down');
+			// console.log('scrolling down');
 		} else if (scroll.offset < scrollSpeed.current) {
 			scrollDirection.current = -1;
 			scrolling.current = true;
-			console.log('scrolling up');
+			// console.log('scrolling up');
 		}
 		if (scroll.offset === scrollSpeed.current) {
 			scrollDirection.current = 0;
@@ -170,7 +170,7 @@ export default function PortalsOne() {
 				entrySpeed
 			);
 		}
-		console.log(portal1Ref.current.position.z);
+		// console.log(portal1Ref.current.position.z);
 	});
 	return (
 		<group ref={portalsRef} position={[0, 0, 0]}>
