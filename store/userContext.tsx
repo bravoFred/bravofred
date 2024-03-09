@@ -8,12 +8,10 @@ const UserContext = createContext({
 	activeTab: true,
 	// portalsActive: false,
 	// aboutMeActive: true,
-	setTheme: (string) => {},
-	setFrameloop: (string) => {},
 	setActiveTab: (boolean) => {},
+	setFrameloop: (string) => {},
 	setMobile: (boolean) => {},
-	setAboutMeActive: (boolean) => {},
-	setPortalsActive: (boolean) => {},
+	setTheme: (string) => {},
 	toggleTheme: () => {},
 	// gotoAboutMe: () => {},
 	// gotoPortals: () => {},
@@ -24,7 +22,7 @@ export function UserContextProvider(props) {
 	const [activeTab, setActiveTab] = useState(true);
 	// const [theme, setTheme] = useState<'dark' | 'light'>(Math.random() > 0.5 ? 'dark' : 'light'); // user
 	// const [theme, setTheme] = useState<'dark' | 'light'>('light'); // user
-	const [theme, setTheme] = useState<'dark' | 'light'>('dark'); // user
+	const [theme, setTheme] = useState<'dark' | 'light'>('dark');
 
 	useEffect(() => {
 		window.innerWidth < window.innerHeight ? setMobile(true) : setMobile(false);
@@ -75,10 +73,10 @@ export function UserContextProvider(props) {
 				frameloop,
 				activeTab,
 				theme,
-				setFrameloop,
-				setTheme,
 				setActiveTab,
+				setFrameloop,
 				setMobile,
+				setTheme,
 				toggleTheme,
 			}}
 		>
