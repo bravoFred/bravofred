@@ -66,9 +66,9 @@ export default function AboutMe(props: Props) {
 		const iconR1 = scroll.range(0 / 10, 0.25 / 10); // this is first one tenth of the page
 		const iconR2 = scroll.range(0.25 / 10, 0.5 / 10); // this is the second one tenth of the page
 		const iconR3 = scroll.range(0.5 / 10, 0.75 / 10);
-		icon1Ref.current.position.z = MathUtils.lerp(icon1Ref.current.position.z, iconR1 * 5, 0.1);
-		icon2Ref.current.position.z = MathUtils.lerp(icon2Ref.current.position.z, iconR2 * 5, 0.1);
-		icon3Ref.current.position.z = MathUtils.lerp(icon3Ref.current.position.z, iconR3 * 5, 0.1);
+		icon1Ref.current.position.z = MathUtils.lerp(icon1Ref.current.position.z, iconR1 * 10, 0.1);
+		icon2Ref.current.position.z = MathUtils.lerp(icon2Ref.current.position.z, iconR2 * 10, 0.1);
+		icon3Ref.current.position.z = MathUtils.lerp(icon3Ref.current.position.z, iconR3 * 10, 0.1);
 		// const offset = 1 - scroll.offset;
 	});
 	const floatIntensity = 1;
