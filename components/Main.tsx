@@ -12,7 +12,7 @@ import Floor from './Floor';
 import Nav from './Nav';
 import Lighting from './Lighting';
 import Performance from './Performance';
-import ScrollNav from './ScrollNav';
+import ScrollController from './ScrollController';
 import UserContextProvider from '../store/userContext';
 import Mouse from './Mouse';
 
@@ -74,7 +74,7 @@ export default function Main() {
 					<ScrollControls pages={4}>
 						<AboutMe />
 						<PortalsMain />
-						<ScrollNav />
+						<ScrollController />
 						{/* <Mouse /> */}
 						<Camera />
 						<Floor />

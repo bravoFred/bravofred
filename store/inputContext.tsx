@@ -23,6 +23,20 @@ export function InputContextProvider(props) {
 	function nextSection() {
 		gotoPortals();
 	}
+	// listen for left and right arrow keys
+	useEffect(() => {
+		function handleKeyDown(event) {
+			if (event.key === 'ArrowLeft') {
+				prevSection();
+			} else if (event.key === 'ArrowRight') {
+				nextSection();
+			}
+		}
+		window.addEventListener('keydown', handleKeyDown);
+		return () => {
+			window.removeEventListener('keydown', handleKeyDown);
+		};
+	}, []);
 
 	return (
 		<InputContext.Provider
