@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect, useRef, useContext } from 'react';
+import { createContext, useState, useEffect, useRef } from 'react';
 
 const InputContext = createContext({
 	portalsActive: false as any,
