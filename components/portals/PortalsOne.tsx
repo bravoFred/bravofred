@@ -127,10 +127,24 @@ export default function PortalsOne() {
 			scrollDirection.current = -1;
 		}
 		scrollSpeed.current = scroll.offset;
-
-		// portal1Ref.current.position.lerpVectors(portal1vector, portal1vectorActive, scroll.offset);
-		portal2Ref.current.position.lerpVectors(portal2vector, portal2vectorActive, scroll.offset);
-		// portal3Ref.current.position.lerpVectors(portal3vector, portal3vectorActive, scroll.offset);
+		if (portal1Ref.current)
+			portal1Ref.current.position.lerpVectors(
+				portal1vector,
+				portal1vectorActive,
+				scroll.offset
+			);
+		if (portal2Ref.current)
+			portal2Ref.current.position.lerpVectors(
+				portal2vector,
+				portal2vectorActive,
+				scroll.offset
+			);
+		if (portal3Ref.current)
+			portal3Ref.current.position.lerpVectors(
+				portal3vector,
+				portal3vectorActive,
+				scroll.offset
+			);
 	});
 	return (
 		<group ref={portalsRef} position={[0, 0, 0]}>
@@ -140,16 +154,18 @@ export default function PortalsOne() {
 					<ambientLight intensity={2} />
 				</Frame>
 			</group>
-			{/* <group position={[-1.15, 0, -50]} rotation={[0, 0.5, 0]} ref={portal1Ref}>
+			<group position={[-1.15, 0, -50]} rotation={[0, 0.5, 0]} ref={portal1Ref}>
 				<Frame id="01" name="Film 1" author="Frederic Cartier" bg="#1a1a1a">
+					<Scene position={[0, -1, -1]} />
 					<ambientLight intensity={2} />
 				</Frame>
-			</group> */}
-			{/* <group position={[1.15, 0, 0.25]} rotation={[0, -0.5, 0]} ref={portal3Ref}>
+			</group>
+			<group position={[1.15, 0, 0.25]} rotation={[0, -0.5, 0]} ref={portal3Ref}>
 				<Frame id="03" name="Film 3" author="Frederic Cartier" bg="#d1d1ca">
+					<Scene position={[0, -1, -1]} />
 					<ambientLight intensity={2} />
 				</Frame>
-			</group> */}
+			</group>
 			{/* <Rig /> */}
 			{/* <Shake /> */}
 		</group>
