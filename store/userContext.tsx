@@ -9,6 +9,7 @@ const UserContext = createContext({
 	setTheme: (string) => {},
 	setFrameloop: (string) => {},
 	setActiveTab: (boolean) => {},
+	setMobile: (boolean) => {},
 	toggleTheme: () => {},
 });
 export function UserContextProvider(props) {
@@ -49,6 +50,7 @@ export function UserContextProvider(props) {
 				setFrameloop,
 				setTheme,
 				setActiveTab,
+				setMobile,
 				toggleTheme,
 			}}
 		>

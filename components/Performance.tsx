@@ -1,5 +1,5 @@
 // 1k texture resolution models
-import { useState, useEffect, useRef, useContext } from 'react';
+import { useState, useEffect, useRef, useContext, use } from 'react';
 import { Perf } from 'r3f-perf';
 import { AdaptiveDpr, AdaptiveEvents, PerformanceMonitor } from '@react-three/drei';
 import { useControls, folder, button } from 'leva';
@@ -9,16 +9,14 @@ import * as THREE from 'three';
 import chalk from 'chalk';
 
 export default function Performance() {
-	const { activeTab, frameloop, setFrameloop, dev, mobile } = useContext(UserContextProvider);
+	const { activeTab, frameloop, setFrameloop, dev, mobile, setMobile } =
+		useContext(UserContextProvider);
 	useEffect(() => {
 		if (!activeTab) setFrameloop('never');
 		if (activeTab) setFrameloop('always');
 	}, [activeTab, frameloop, setFrameloop]);
 	const [dpr, setDpr] = useState(1);
 	const [deviceDpr, setDeviceDpr] = useState(1);
-	useEffect(() => {
-		if (window.devicePixelRatio > 1) setDeviceDpr(window.devicePixelRatio);
-	}, []);
 
 	const camPositions = useRef<Array<THREE.Vector3>>([
 		new THREE.Vector3(0, 0, 0),
@@ -45,7 +43,13 @@ export default function Performance() {
 	}
 	const downResMsgDisplayed = useRef(false);
 	const upResMsgDisplayed = useRef(false);
-	useFrame(({ gl, scene, camera, clock }) => {
+	useFrame((state) => {
+		const clock = new THREE.Clock();
+		const camera = state.camera as THREE.PerspectiveCamera;
+		// console.log(camera.fov);
+		const gl = state.gl;
+
+		// , clock }) => {
 		// camPositions.current.push(camera.position.clone());
 		// camPositions.current.shift();
 		// camSpeed.current = getCameraSpeed(camPositions.current);
@@ -66,11 +70,28 @@ export default function Performance() {
 		// }
 		// gl.setPixelRatio(dpr);
 		// console.log(dpr);
+		// change camera fov based on window
+		// console.log(camera);
+
+		const fov = camera.fov;
+		const aspect = gl.domElement.clientWidth / gl.domElement.clientHeight;
+		const near = camera.near;
+		const far = camera.far;
+		console.log(fov);
+		mobile ? (camera.fov = 30) : (camera.fov = 45);
 	});
 	useEffect(() => {
 		// if (frameloop === 'never') console.log(`scene frozen`);
 		// if (frameloop === 'always') console.log(`scene unfrozen`);
 	}, [frameloop]);
+	// listen for window resize event
+	useEffect(() => {
+		function handleResize() {
+			window.innerWidth < 768 ? setMobile(true) : setMobile(false);
+		}
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	}, []);
 	return (
 		<>
 			{!mobile && (
