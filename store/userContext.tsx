@@ -35,11 +35,11 @@ export function UserContextProvider(props) {
 	}
 	function prevSection() {
 		gotoAboutMe();
-		console.log(aboutMeActive.current, portalsActive.current);
+		// console.log(aboutMeActive.current, portalsActive.current);
 	}
 	function nextSection() {
 		gotoPortals();
-		console.log(aboutMeActive.current, portalsActive.current);
+		// console.log(aboutMeActive.current, portalsActive.current);
 	}
 	useEffect(() => {
 		window.innerWidth < window.innerHeight ? setMobile(true) : setMobile(false);
