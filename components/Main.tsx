@@ -1,6 +1,8 @@
 import styles from '@/styles/App.module.css';
 import FlickerTitle from '@/components/FlickerTitle';
 import { Inter } from 'next/font/google';
+import Image from 'next/image';
+import ScrollNavButtons from '@/components/ScrollNavButtons';
 const inter = Inter({ subsets: ['latin'] });
 import React, { Suspense, useRef, useState, useContext, useEffect, use } from 'react';
 import { Canvas, extend, useThree, useFrame } from '@react-three/fiber';
@@ -85,7 +87,10 @@ export default function Main() {
 	return (
 		<>
 			{/* <main className={`${styles.main} ${inter.className}`}> */}
-			<main className={`${styles.main}`}>{/* <Nav /> */}</main>
+			{/* <main className={`${styles.main}`}>
+				<Nav />
+			</main> */}
+			<ScrollNavButtons />
 			<Suspense fallback={null}>
 				<Canvas
 					style={{ position: 'absolute' }}

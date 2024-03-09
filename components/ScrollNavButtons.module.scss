@@ -1,0 +1,27 @@
+.scroll_nav {
+	position: fixed;
+	right: 0;
+	bottom: 0;
+	height: auto;
+	width: auto;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	padding: 1rem;
+	z-index: 1000;
+	// border: 1px solid #ff0000;
+}
+$iconSize: 30px;
+.scroll_nav_icon {
+	height: $iconSize;
+	width: $iconSize;
+	margin: 0.5rem 1rem;
+	cursor: pointer;
+	// click events
+	transition: all 0.1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	// user-select: none;
+
+	&:hover {
+		transform: scale(1.1);
+	}
+}

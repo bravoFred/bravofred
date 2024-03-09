@@ -31,13 +31,13 @@ body {
 	justify-content: center;
 	align-items: center;
 	padding: 6rem;
-	/* border: 1px solid red; */
+	border: 1px solid red;
 	z-index: 1;
 	min-height: 100vh;
 	min-width: 100vw;
 	background-color: transparent;
-	user-select: none;
-	pointer-events: none;
+	/* user-select: none; */
+	pointer-events: auto;
 	overflow: hidden;
 	overflow-x: hidden;
 	overflow-y: hidden;
