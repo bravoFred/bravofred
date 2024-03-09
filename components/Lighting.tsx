@@ -32,7 +32,7 @@ export default function Lighting() {
 			// check if raycaster obj is empty
 			// if (activeObject.current) {
 			const { object, point } = activeObject.current;
-			if (point) light.current.target.position.lerp(vec.set(point.x, point.y, point.z), 0.1);
+			if (point) light.current.target.position.lerp(vec.set(point.x, point.y, point.z), 0.25);
 			light.current.target.updateMatrixWorld();
 			// }
 		});
