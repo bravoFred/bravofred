@@ -19,22 +19,24 @@ import Mouse from './Mouse';
 import * as THREE from 'three';
 export default function Main() {
 	const { theme, setTheme, frameloop, mobile } = useContext(UserContextProvider);
-	const [aboutMeActive, setAboutMeActive] = useState(true);
-	const [portalsActive, setPortalsActive] = useState(false);
+	const aboutMeActive = useRef(true);
+	const portalsActive = useRef(false);
 
 	function gotoAboutMe() {
-		setAboutMeActive(true);
-		setPortalsActive(false);
+		aboutMeActive.current = true;
+		portalsActive.current = false;
 	}
 	function gotoPortals() {
-		setAboutMeActive(false);
-		setPortalsActive(true);
+		aboutMeActive.current = false;
+		portalsActive.current = true;
 	}
 	function prevSection() {
 		gotoAboutMe();
+		console.log(aboutMeActive.current, portalsActive.current);
 	}
 	function nextSection() {
 		gotoPortals();
+		console.log(aboutMeActive.current, portalsActive.current);
 	}
 	return (
 		<>
@@ -69,8 +71,8 @@ export default function Main() {
 					<fog attach="fog" args={[theme === 'light' ? '#fff' : '#000', 0, 15]} />
 					{/* https://codesandbox.io/p/sandbox/m1-scrollcontrols-4m0d0 */}
 					<ScrollControls pages={4}>
-						<AboutMe active={aboutMeActive} />
-						<PortalsMain active={portalsActive} />
+						<AboutMe active={aboutMeActive.current} />
+						<PortalsMain active={portalsActive.current} />
 						<ScrollNav />
 						{/* <Mouse /> */}
 						<Camera />

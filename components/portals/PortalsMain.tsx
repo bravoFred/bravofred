@@ -26,10 +26,6 @@ interface Props {
 }
 export default function PortalsCards(props: Props) {
 	const { active } = props;
-	const [portalsInactiveVector, setPortalsInactiveVector] = useState(
-		new THREE.Vector3(0, 0, -25)
-	);
-	const { mobile } = useContext(UserContextProvider);
 
 	return (
 		<>

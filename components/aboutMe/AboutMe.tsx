@@ -44,7 +44,7 @@ export default function AboutMe(props: Props) {
 		// const r2 = scroll.range(1 / 10, 2 / 10); // this is the second quarter of the page
 		// const r3 = scroll.range(1 / 4, 2 / 4); // this is the second quarter of the page
 		// const r3 = scroll.visible(4 / 5, 1 / 5); // this is the last fifth of the page
-		console.log(scroll.offset);
+		// console.log(scroll.offset);
 		if (scroll.offset === 0) {
 			icon1Ref.current.position.z = MathUtils.lerp(
 				icon1Ref.current.position.z,

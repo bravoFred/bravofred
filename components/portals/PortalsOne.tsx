@@ -102,23 +102,32 @@ interface Props {
 export default function PortalsOne(props: Props) {
 	const { active } = props;
 
-	const [portalsInactiveVector, setPortalsInactiveVector] = useState(
-		new THREE.Vector3(0, 0, -25)
-	);
 	const { mobile } = useContext(UserContextProvider);
-	const [portalsFocusedVector, setPortalsFocusedVector] = useState(
-		new THREE.Vector3(0, 0, mobile ? 0 : 0)
-	);
-	const [portal1vector, setPortal1Vector] = useState(new THREE.Vector3(-1, 0, -75));
+
 	const [portal2vector, setPortal2Vector] = useState(new THREE.Vector3(0, 0, -50));
 	const [portal3vector, setPortal3Vector] = useState(new THREE.Vector3(1, 0, -100));
-	const [portal1vectorActive, setPortal1VectorActive] = useState(
-		new THREE.Vector3(-1.15, 0, 0.25)
-	);
+	// const [portal1vectorActive, setPortal1VectorActive] = useState(
+	// 	new THREE.Vector3(-1.15, 0, 0.25)
+	// );
 	const [portal2vectorActive, setPortal2VectorActive] = useState(new THREE.Vector3(0, 0, 0));
 	const [portal3vectorActive, setPortal3VectorActive] = useState(
 		new THREE.Vector3(1.15, 0, 0.25)
 	);
+	const [portalVecs, setPortalVecs] = useState<{
+		p1: THREE.Vector3;
+		p2: THREE.Vector3;
+		p3: THREE.Vector3;
+		p1active: THREE.Vector3;
+		p2active: THREE.Vector3;
+		p3active: THREE.Vector3;
+	}>({
+		p1: new THREE.Vector3(-1, 0, -75),
+		p2: new THREE.Vector3(0, 0, -50),
+		p3: new THREE.Vector3(1, 0, -100),
+		p1active: new THREE.Vector3(-1.15, 0, 0.25),
+		p2active: new THREE.Vector3(0, 0, 0),
+		p3active: new THREE.Vector3(1.15, 0, 0.25),
+	});
 	const scroll = useScroll();
 	const portalsRef = useRef<THREE.Group>();
 	const portal1Ref = useRef<THREE.Group>();
@@ -129,34 +138,32 @@ export default function PortalsOne(props: Props) {
 	const { pointer, controls } = useThree();
 	useFrame((state) => {
 		const offset = 1 - scroll.offset;
+		// console.log(scrollDirection.current);
 
 		if (scroll.offset > scrollSpeed.current) {
 			scrollDirection.current = 1;
+			console.log('scrolling down');
+			// portal1Ref.current.position.lerpVectors(portalVecs.p1, portalVecs.p1active, 0.1);
 		} else if (scroll.offset < scrollSpeed.current) {
 			scrollDirection.current = -1;
+			console.log('scrolling up');
 		}
+
 		scrollSpeed.current = scroll.offset;
-		if (portal1Ref.current)
-			portal1Ref.current.position.lerpVectors(
-				portal1vector,
-				portal1vectorActive,
-				scroll.offset
-			);
-		if (portal2Ref.current)
-			portal2Ref.current.position.lerpVectors(
-				portal2vector,
-				portal2vectorActive,
-				scroll.offset
-			);
-		if (portal3Ref.current)
-			portal3Ref.current.position.lerpVectors(
-				portal3vector,
-				portal3vectorActive,
-				scroll.offset
-			);
+		portal1Ref.current.position.lerpVectors(portalVecs.p1, portalVecs.p1active, scroll.offset);
+		portal2Ref.current.position.lerpVectors(portalVecs.p2, portalVecs.p2active, scroll.offset);
+		portal3Ref.current.position.lerpVectors(portalVecs.p3, portalVecs.p3active, scroll.offset);
+		// portal2Ref.current.position.lerpVectors(portal2vector, portal2vectorActive, scroll.offset);
+		// portal3Ref.current.position.lerpVectors(portal3vector, portal3vectorActive, scroll.offset);
 	});
 	return (
 		<group ref={portalsRef} position={[0, 0, 0]}>
+			<group position={[-1.15, 0, -50]} rotation={[0, 0.5, 0]} ref={portal1Ref}>
+				<Frame id="02" name="Film 2" author="Frederic Cartier" bg="#fff">
+					<SmallRoom position={[0, -1, 0]} />
+					<ambientLight intensity={1} />
+				</Frame>
+			</group>
 			<group ref={portal2Ref}>
 				<Frame id="01" name="Film 1" author="Frederic Cartier" bg="#fff">
 					<Warehouse
@@ -167,12 +174,6 @@ export default function PortalsOne(props: Props) {
 							MathUtils.degToRad(0),
 						]}
 					/>
-					<ambientLight intensity={1} />
-				</Frame>
-			</group>
-			<group position={[-1.15, 0, -50]} rotation={[0, 0.5, 0]} ref={portal1Ref}>
-				<Frame id="02" name="Film 2" author="Frederic Cartier" bg="#fff">
-					<SmallRoom position={[0, -1, 0]} />
 					<ambientLight intensity={1} />
 				</Frame>
 			</group>
