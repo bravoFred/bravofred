@@ -44,19 +44,6 @@ export default function Lighting() {
 	const sideLightIntensity = 1;
 	return (
 		<group>
-			{/* <ambientLight intensity={0.5} /> */}
-			{/* <spotLight
-				position={[0, 10, 10]}
-				intensity={1}
-				castShadow
-				shadow-mapSize-width={shadowMapSize}
-				shadow-mapSize-height={shadowMapSize}
-				shadow-camera-far={50}
-				shadow-camera-left={-10}
-				shadow-camera-right={10}
-				shadow-camera-top={10}
-				shadow-camera-bottom={-10}
-			/> */}
 			<MovingSpot position={[0, 2.5, 1.5]} />
 			<directionalLight
 				position={[0, 2.5, 1.5]}
@@ -70,18 +57,6 @@ export default function Lighting() {
 				shadow-camera-top={10}
 				shadow-camera-bottom={-10}
 			/>
-			{/* left */}
-			{/* right */}
-			{/* front */}
-			{/* <pointLight position={[0, 1, 3]} intensity={sideLightIntensity} /> */}
-			{!mobile && (
-				<>
-					{/* <pointLight position={[-3, 0.25, 1]} intensity={sideLightIntensity} /> */}
-					{/* <pointLight position={[-3, 3, 3]} intensity={sideLightIntensity} /> */}
-					{/* <pointLight position={[3, 0.25, 1]} intensity={sideLightIntensity} /> */}
-					{/* <pointLight position={[3, 3, 3]} intensity={sideLightIntensity} /> */}
-				</>
-			)}
 		</group>
 	);
 }

@@ -54,12 +54,12 @@ export default function AboutMe(props: Props) {
 			icon2Ref.current.position.z = MathUtils.lerp(
 				icon2Ref.current.position.z,
 				0,
-				enterSpeed - 0.025
+				enterSpeed - 0.05
 			);
 			icon3Ref.current.position.z = MathUtils.lerp(
 				icon3Ref.current.position.z,
 				0,
-				enterSpeed - 0.05
+				enterSpeed - 0.1
 			);
 		}
 
@@ -69,6 +69,7 @@ export default function AboutMe(props: Props) {
 		icon1Ref.current.position.z = MathUtils.lerp(icon1Ref.current.position.z, iconR1 * 10, 0.1);
 		icon2Ref.current.position.z = MathUtils.lerp(icon2Ref.current.position.z, iconR2 * 10, 0.1);
 		icon3Ref.current.position.z = MathUtils.lerp(icon3Ref.current.position.z, iconR3 * 10, 0.1);
+
 		// const offset = 1 - scroll.offset;
 	});
 	const floatIntensity = 1;

@@ -72,7 +72,7 @@ export default function Main() {
 						<AboutMe active={aboutMeActive} />
 						<PortalsMain active={portalsActive} />
 						<ScrollNav />
-						<Mouse />
+						{/* <Mouse /> */}
 						<Camera />
 						<Floor />
 						<Lighting />
