@@ -88,8 +88,8 @@ export default function Main() {
 		<>
 			{/* <main className={`${styles.main} ${inter.className}`}> */}
 			{/* <main className={`${styles.main}`}>
-				<Nav />
 			</main> */}
+			<Nav />
 			<ScrollNavButtons />
 			<Suspense fallback={null}>
 				<Canvas

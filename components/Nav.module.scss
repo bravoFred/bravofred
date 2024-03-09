@@ -22,7 +22,7 @@ $speed: 1s;
 
 	&:hover {
 		cursor: pointer;
-		background-color: red;
+		// background-color: red;
 		box-shadow: 0 1rem 8px rgba(0, 0, 0, 0.5);
 	}
 }
@@ -50,7 +50,11 @@ $speed: 1s;
 	// filter: blur(2px);
 }
 .nav_text_loaded {
-	color: #000;
-	top: 0;
 	left: 1rem;
+}
+@media (max-width: 768px) {
+	.nav_text_loaded {
+		font-weight: 100;
+		font-size: 1rem;
+	}
 }

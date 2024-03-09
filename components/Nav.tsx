@@ -1,7 +1,9 @@
 import styles from './Nav.module.scss';
 import { useProgress } from '@react-three/drei';
-import { useRef, useEffect, useState, use } from 'react';
+import { useRef, useEffect, useState, use, useContext } from 'react';
+import UserContextProvider from '../store/userContext';
 export default function Nav() {
+	const { theme, setTheme } = useContext(UserContextProvider);
 	const { active, progress, errors, item, loaded, total } = useProgress();
 	const startTime = useRef(new Date().getTime());
 	const endTime = useRef(0);
@@ -31,9 +33,16 @@ export default function Nav() {
 	}, []);
 
 	return (
-		<nav className={!done ? styles.navLoading : styles.navLoaded}>
+		<nav className={styles.navLoaded}>
 			{/* <nav className={styles.navLoading}> */}
-			<p className={!done ? styles.nav_text_loading : styles.nav_text_loaded}>FREDERIC </p>
+			<p
+				className={styles.nav_text_loaded}
+				style={{
+					color: theme === 'dark' ? 'white' : 'black',
+				}}
+			>
+				FREDERIC CARTIER
+			</p>
 		</nav>
 	);
 }
