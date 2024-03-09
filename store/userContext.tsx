@@ -25,9 +25,21 @@ export function UserContextProvider(props) {
 	useEffect(() => {
 		function handleResize() {
 			window.innerWidth < window.innerHeight ? setMobile(true) : setMobile(false);
+			console.log('resize');
 		}
 		window.addEventListener('resize', handleResize);
 		return () => window.removeEventListener('resize', handleResize);
+	}, []);
+	// listen for device rotation
+	useEffect(() => {
+		const handleOrientationChange = () => {
+			window.innerWidth < window.innerHeight ? setMobile(true) : setMobile(false);
+			console.log('orientation changed');
+		};
+		window.addEventListener('orientationchange', handleOrientationChange);
+		return () => {
+			window.removeEventListener('orientationchange', handleOrientationChange);
+		};
 	}, []);
 
 	const [frameloop, setFrameloop] = useState<'always' | 'demand' | 'never'>(() => {
