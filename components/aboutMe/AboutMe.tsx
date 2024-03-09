@@ -12,47 +12,12 @@ import UserContextProvider from '../../store/userContext';
 const Icons = dynamic(() => import('../../models/4096/Icons').then((mod) => mod.Model), {
 	ssr: false,
 });
-// extend({ Text3D });
-function FloatingIcon() {
-	return (
-		<group>
-			<Float
-				speed={1} // Animation speed, defaults to 1
-				rotationIntensity={2.5} // XYZ rotation intensity, defaults to 1
-				floatIntensity={2} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
-				floatingRange={[0.8, 1]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
-			>
-				<mesh position={[0, 0, 0]}>
-					<boxGeometry args={[1, 1, 1]} />
-					<meshStandardMaterial color="red" />
-				</mesh>
-			</Float>
-			<Float
-				speed={1} // Animation speed, defaults to 1
-				rotationIntensity={2.5} // XYZ rotation intensity, defaults to 1
-				floatIntensity={2} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
-				floatingRange={[0.8, 1]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
-			>
-				<mesh position={[1, 0, 0]}>
-					<boxGeometry args={[1, 1, 1]} />
-					<meshStandardMaterial color="red" />
-				</mesh>
-			</Float>
-			<Float
-				speed={1} // Animation speed, defaults to 1
-				rotationIntensity={2.5} // XYZ rotation intensity, defaults to 1
-				floatIntensity={2} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
-				floatingRange={[0.8, 1]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
-			>
-				<mesh position={[0, 0, 0]}>
-					<boxGeometry args={[1, 1, 1]} />
-					<meshStandardMaterial color="red" />
-				</mesh>
-			</Float>
-		</group>
-	);
+
+interface Props {
+	active: boolean;
 }
-export default function AboutMe() {
+export default function AboutMe(props: Props) {
+	const { active } = props;
 	const { mobile } = useContext(UserContextProvider);
 	const ref = useRef<THREE.Group>();
 	const scroll = useScroll();

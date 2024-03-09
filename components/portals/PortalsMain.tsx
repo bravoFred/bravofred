@@ -21,7 +21,11 @@ import dynamic from 'next/dynamic';
 import PortalsOne from './PortalsOne';
 import PortalsTwo from './PortalsTwo';
 
-export default function PortalsCards() {
+interface Props {
+	active: boolean;
+}
+export default function PortalsCards(props: Props) {
+	const { active } = props;
 	const [portalsInactiveVector, setPortalsInactiveVector] = useState(
 		new THREE.Vector3(0, 0, -25)
 	);
@@ -29,7 +33,7 @@ export default function PortalsCards() {
 
 	return (
 		<>
-			<PortalsOne />
+			<PortalsOne active={active} />
 			{/* <PortalsTwo /> */}
 		</>
 	);

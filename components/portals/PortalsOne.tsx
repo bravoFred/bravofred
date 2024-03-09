@@ -96,7 +96,12 @@ function Frame({ id, name, author, bg, width = 1, height = 1.61803398875, childr
 	);
 }
 
-export default function PortalsOne() {
+interface Props {
+	active: boolean;
+}
+export default function PortalsOne(props: Props) {
+	const { active } = props;
+
 	const [portalsInactiveVector, setPortalsInactiveVector] = useState(
 		new THREE.Vector3(0, 0, -25)
 	);
@@ -124,8 +129,6 @@ export default function PortalsOne() {
 	const { pointer, controls } = useThree();
 	useFrame((state) => {
 		const offset = 1 - scroll.offset;
-		state.camera.lookAt(0, 1, 0);
-		// console.log(pointer);
 
 		if (scroll.offset > scrollSpeed.current) {
 			scrollDirection.current = 1;

@@ -33,56 +33,24 @@ import UserContextProvider from '../store/userContext';
 import Mouse from './Mouse';
 
 import * as THREE from 'three';
-import dynamic from 'next/dynamic';
-const Icons = dynamic(() => import('../models/4096/Icons').then((mod) => mod.Model), {
-	ssr: false,
-});
 export default function Main() {
 	const { theme, setTheme, frameloop, mobile } = useContext(UserContextProvider);
-	function Ground() {
-		const [floor, normal] = useTexture([
-			'/SurfaceImperfections003_1K_var1.jpg',
-			'/SurfaceImperfections003_1K_Normal.jpg',
-		]);
-		return (
-			<Reflector
-				blur={[400, 100]}
-				resolution={512}
-				args={[10, 10]}
-				mirror={0.5}
-				mixBlur={6}
-				mixStrength={1.5}
-				rotation={[-Math.PI / 2, 0, Math.PI / 2]}
-			>
-				{/* {(Material, props) => (
-				<Material
-					color="#a0a0a0"
-					metalness={0.4}
-					roughnessMap={floor}
-					normalMap={normal}
-					normalScale={[2, 2]} 
-					{...props}
-				/>
-			)} */}
-			</Reflector>
-		);
+	const [aboutMeActive, setAboutMeActive] = useState(true);
+	const [portalsActive, setPortalsActive] = useState(false);
+
+	function gotoAboutMe() {
+		setAboutMeActive(true);
+		setPortalsActive(false);
 	}
-	function Shake() {
-		const [vec] = useState(() => new THREE.Vector3());
-		const { camera, mouse } = useThree();
-		// useFrame(() => camera.position.lerp(vec.set(mouse.x * 2, 10, 60), 0.05));
-		return (
-			<CameraShake
-				maxYaw={0.01} // Max amount camera can yaw in either direction
-				maxPitch={0.01} // Max amount camera can pitch in either direction
-				maxRoll={0.01} // Max amount camera can roll in either direction
-				yawFrequency={0.25} // Frequency of the the yaw rotation
-				pitchFrequency={0.25} // Frequency of the pitch rotation
-				rollFrequency={0.2} // Frequency of the roll rotation
-				intensity={0.5} // initial intensity of the shake
-				decayRate={0.65} // if decay = true this is the rate at which intensity will reduce at />
-			/>
-		);
+	function gotoPortals() {
+		setAboutMeActive(false);
+		setPortalsActive(true);
+	}
+	function prevSection() {
+		gotoAboutMe();
+	}
+	function nextSection() {
+		gotoPortals();
 	}
 	return (
 		<>
@@ -90,7 +58,7 @@ export default function Main() {
 			{/* <main className={`${styles.main}`}>
 			</main> */}
 			<Nav />
-			<ScrollNavButtons />
+			<ScrollNavButtons prev={prevSection} next={nextSection} />
 			<Suspense fallback={null}>
 				<Canvas
 					style={{ position: 'absolute' }}
@@ -117,8 +85,8 @@ export default function Main() {
 					<fog attach="fog" args={[theme === 'light' ? '#fff' : '#000', 0, 15]} />
 					{/* https://codesandbox.io/p/sandbox/m1-scrollcontrols-4m0d0 */}
 					<ScrollControls pages={4}>
-						<AboutMe />
-						<PortalsMain />
+						<AboutMe active={aboutMeActive} />
+						<PortalsMain active={portalsActive} />
 						<ScrollNav />
 						<Mouse />
 						<Camera />
@@ -131,7 +99,6 @@ export default function Main() {
 					{/* <Shake /> */}
 				</Canvas>
 			</Suspense>
-			{/* <Loader /> */}
 		</>
 	);
 }
