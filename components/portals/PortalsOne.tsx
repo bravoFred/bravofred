@@ -168,7 +168,7 @@ export default function PortalsOne() {
 				</Frame>
 			</group>
 			<group position={[-1.15, 0, -50]} rotation={[0, 0.5, 0]} ref={portal1Ref}>
-				<Frame id="02" name="Film 1" author="Frederic Cartier" bg="#fff">
+				<Frame id="02" name="Film 2" author="Frederic Cartier" bg="#fff">
 					<SmallRoom position={[0, -1, 0]} />
 					<ambientLight intensity={1} />
 				</Frame>
