@@ -6,15 +6,11 @@ const UserContext = createContext({
 	frameloop: 'always' as 'always' | 'demand' | 'never',
 	theme: 'dark',
 	activeTab: true,
-	portalsActive: false as any,
-	aboutMeActive: true as any,
 	setActiveTab: (boolean) => {},
 	setFrameloop: (string) => {},
 	setMobile: (boolean) => {},
 	setTheme: (string) => {},
 	toggleTheme: () => {},
-	prevSection: () => {},
-	nextSection: () => {},
 });
 export function UserContextProvider(props) {
 	const [mobile, setMobile] = useState(false); // device
@@ -23,24 +19,7 @@ export function UserContextProvider(props) {
 	// const [theme, setTheme] = useState<'dark' | 'light'>(Math.random() > 0.5 ? 'dark' : 'light'); // user
 	// const [theme, setTheme] = useState<'dark' | 'light'>('light'); // user
 	const [theme, setTheme] = useState<'dark' | 'light'>('dark');
-	const aboutMeActive = useRef(true);
-	const portalsActive = useRef(false);
-	function gotoAboutMe() {
-		aboutMeActive.current = true;
-		portalsActive.current = false;
-	}
-	function gotoPortals() {
-		aboutMeActive.current = false;
-		portalsActive.current = true;
-	}
-	function prevSection() {
-		gotoAboutMe();
-		// console.log(aboutMeActive.current, portalsActive.current);
-	}
-	function nextSection() {
-		gotoPortals();
-		// console.log(aboutMeActive.current, portalsActive.current);
-	}
+
 	useEffect(() => {
 		window.innerWidth < window.innerHeight ? setMobile(true) : setMobile(false);
 	}, []);
@@ -90,10 +69,6 @@ export function UserContextProvider(props) {
 				frameloop,
 				activeTab,
 				theme,
-				aboutMeActive,
-				portalsActive,
-				prevSection,
-				nextSection,
 				setActiveTab,
 				setFrameloop,
 				setMobile,

@@ -14,6 +14,7 @@ import { easing, geometry } from 'maath';
 import { suspend } from 'suspend-react';
 import { useScroll } from '@react-three/drei';
 import UserContextProvider from '../../store/userContext';
+import InputContextProvider from '../../store/inputContext';
 import { MathUtils } from 'three';
 import dynamic from 'next/dynamic';
 
@@ -97,7 +98,8 @@ function Frame({ id, name, author, bg, width = 1, height = 1.61803398875, childr
 }
 
 export default function PortalsOne() {
-	const { mobile, portalsActive } = useContext(UserContextProvider);
+	const { mobile } = useContext(UserContextProvider);
+	const { portalsActive } = useContext(InputContextProvider);
 
 	const [portal2vector, setPortal2Vector] = useState(new THREE.Vector3(0, 0, -50));
 	const [portal3vector, setPortal3Vector] = useState(new THREE.Vector3(1, 0, -100));
