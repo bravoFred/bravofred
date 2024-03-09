@@ -1,4 +1,3 @@
-// ignore errors in this file
 // @ts-nocheck
 
 import { useFrame } from '@react-three/fiber';
@@ -8,16 +7,12 @@ import { useRef, useContext } from 'react';
 import * as THREE from 'three';
 import InputContext from '@/store/inputContext';
 export default function Raycaster() {
-	// const [{ objects, cycle }, set] = useState({ objects: [], cycle: 0 });
 	const [objects, setObjects] = useState([]);
-
+	const { activeObject } = useContext(InputContext);
 	useFrame((state) => {
-		// raycaster logic here
 		if (objects.length > 0) {
-			// console.log(objects[0].distance, objects[0].object.name, objects[0].position);
-			// console.log(objects[0]);
-			console.log(objects[0].object.name);
-			// console.log(objects[0].point);
+			activeObject.current = objects[0];
+			console.log(activeObject.current);
 		}
 	});
 	return (

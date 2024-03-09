@@ -1,11 +1,12 @@
 import { createContext, useState, useEffect, useRef } from 'react';
 
 const InputContext = createContext({
-	portalsActive: false as any,
 	aboutMeActive: true as any,
-	scrollSpeed: 0 as any,
+	activeObject: {} as any,
+	portalsActive: false as any,
 	scrollDirection: 0 as any,
 	scrolling: false as any,
+	scrollSpeed: 0 as any,
 	prevSection: () => {},
 	nextSection: () => {},
 });
@@ -16,6 +17,7 @@ export function InputContextProvider(props) {
 	const scrolling = useRef(false);
 	const aboutMeActive = useRef(true);
 	const portalsActive = useRef(false);
+	const activeObject = useRef({});
 	function gotoAboutMe() {
 		aboutMeActive.current = true;
 		portalsActive.current = false;
@@ -48,11 +50,12 @@ export function InputContextProvider(props) {
 	return (
 		<InputContext.Provider
 			value={{
-				scrollSpeed,
+				aboutMeActive,
+				activeObject,
+				portalsActive,
 				scrollDirection,
 				scrolling,
-				aboutMeActive,
-				portalsActive,
+				scrollSpeed,
 				prevSection,
 				nextSection,
 			}}
