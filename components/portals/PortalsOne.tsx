@@ -17,9 +17,12 @@ import UserContextProvider from '../../store/userContext';
 import { MathUtils } from 'three';
 import dynamic from 'next/dynamic';
 
-const Scene = dynamic(() => import('../Kitchen').then((mod) => mod.Model), {
-	ssr: false,
-});
+const Scene = dynamic(
+	() => import('../../models/4096/PortalInteriorJoined').then((mod) => mod.Model),
+	{
+		ssr: false,
+	}
+);
 
 function Frame({ id, name, author, bg, width = 1, height = 1.61803398875, children, ...props }) {
 	const portal = useRef();
