@@ -1,11 +1,17 @@
 // 1k texture resolution models
 import { useState, useEffect, useRef, useContext, use } from 'react';
 import { Perf } from 'r3f-perf';
-import { AdaptiveDpr, AdaptiveEvents, PerformanceMonitor } from '@react-three/drei';
+import {
+	AdaptiveDpr,
+	AdaptiveEvents,
+	PerformanceMonitor,
+	DeviceOrientationControls,
+} from '@react-three/drei';
 import { useControls, folder, button } from 'leva';
 import UserContextProvider from '../store/userContext';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+// import {DeviceOrientationControls} from 'three/examples/jsm/controls/DeviceOrientationControls';
 import chalk from 'chalk';
 
 export default function Performance() {
@@ -77,7 +83,6 @@ export default function Performance() {
 		const aspect = gl.domElement.clientWidth / gl.domElement.clientHeight;
 		const near = camera.near;
 		const far = camera.far;
-		console.log(fov);
 		mobile ? (camera.fov = 30) : (camera.fov = 45);
 	});
 	useEffect(() => {
