@@ -1,34 +1,18 @@
 import styles from '@/styles/App.module.css';
-import FlickerTitle from '@/components/FlickerTitle';
 import { Inter } from 'next/font/google';
-import Image from 'next/image';
 import ScrollNavButtons from '@/components/ScrollNavButtons';
 const inter = Inter({ subsets: ['latin'] });
 import React, { Suspense, useRef, useState, useContext, useEffect, use } from 'react';
 import { Canvas, extend, useThree, useFrame } from '@react-three/fiber';
-import {
-	OrbitControls,
-	AccumulativeShadows,
-	RandomizedLight,
-	Reflector,
-	Text,
-	ScrollControls,
-	CameraShake,
-	Loader,
-	MeshReflectorMaterial,
-} from '@react-three/drei';
-import GridGround from '@/components/GridGround';
+import { ScrollControls } from '@react-three/drei';
 import Camera from '@/components/Camera';
 import PortalsMain from './portals/PortalsMain';
 import AboutMe from './aboutMe/AboutMe';
 import Floor from './Floor';
-import FlickerText from './FlickerText';
-import VideoText from './VideoText';
 import Nav from './Nav';
 import Lighting from './Lighting';
 import Performance from './Performance';
 import ScrollNav from './ScrollNav';
-import { useTexture } from '@react-three/drei';
 import UserContextProvider from '../store/userContext';
 import Mouse from './Mouse';
 

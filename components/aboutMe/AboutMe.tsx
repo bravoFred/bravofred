@@ -35,7 +35,7 @@ export default function AboutMe(props: Props) {
 	// extract controls target
 
 	// const target = useRef<THREE.Vector3>(new THREE.Vector3(0, 1, 0));
-
+	const enterSpeed = 0.05;
 	useFrame(({ gl, scene, camera, clock, pointer }) => {
 		// target.current.x = MathUtils.lerp(target.current.x, state.pointer.x * 1, 0.1); // lerp lookAt x
 		// target.current.y = MathUtils.lerp(target.current.y, pointer.y * 1, 0.1); // lerp lookAt y
@@ -44,6 +44,25 @@ export default function AboutMe(props: Props) {
 		// const r2 = scroll.range(1 / 10, 2 / 10); // this is the second quarter of the page
 		// const r3 = scroll.range(1 / 4, 2 / 4); // this is the second quarter of the page
 		// const r3 = scroll.visible(4 / 5, 1 / 5); // this is the last fifth of the page
+		console.log(scroll.offset);
+		if (scroll.offset === 0) {
+			icon1Ref.current.position.z = MathUtils.lerp(
+				icon1Ref.current.position.z,
+				0,
+				enterSpeed
+			);
+			icon2Ref.current.position.z = MathUtils.lerp(
+				icon2Ref.current.position.z,
+				0,
+				enterSpeed
+			);
+			icon3Ref.current.position.z = MathUtils.lerp(
+				icon3Ref.current.position.z,
+				0,
+				enterSpeed
+			);
+		}
+
 		const iconR1 = scroll.range(0 / 10, 0.25 / 10); // this is first one tenth of the page
 		const iconR2 = scroll.range(0.25 / 10, 0.5 / 10); // this is the second one tenth of the page
 		const iconR3 = scroll.range(0.5 / 10, 0.75 / 10);
@@ -58,6 +77,12 @@ export default function AboutMe(props: Props) {
 	// console.log(DeviceOrientationControls);
 
 	// instagram, vimeo, youtube
+	const urls = {
+		instagram: 'https://www.instagram.com/',
+		vimeo: 'https://www.vimeo.com/',
+		youtube: 'https://www.youtube.com/',
+	};
+
 	return (
 		<group position={[0, 0.75, 0]} ref={ref}>
 			<Float
@@ -66,7 +91,7 @@ export default function AboutMe(props: Props) {
 				floatIntensity={floatIntensity} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
 				floatingRange={[0, 0.1]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
 			>
-				<group ref={icon1Ref} position={[-0.3, 0.33, 0]}>
+				<group ref={icon1Ref} position={[-0.3, 0.33, -100]}>
 					<Icons
 						onPointerEnter={(e) => {
 							setIcon1Hovered(true);
@@ -77,7 +102,7 @@ export default function AboutMe(props: Props) {
 							document.body.style.cursor = 'auto';
 						}}
 						onClick={(e) => {
-							window.open('https://www.instagram.com/', '_blank');
+							window.open(urls.instagram, '_blank');
 						}}
 					/>
 				</group>
@@ -90,6 +115,7 @@ export default function AboutMe(props: Props) {
 			>
 				<group
 					ref={icon2Ref}
+					position={[0.33, 0, 0]}
 					onPointerEnter={(e) => {
 						setIcon2Hovered(true);
 						document.body.style.cursor = 'pointer';
@@ -98,13 +124,11 @@ export default function AboutMe(props: Props) {
 						setIcon2Hovered(false);
 						document.body.style.cursor = 'auto';
 					}}
-					// change mouse cursor on hover
-					// onPointerOver={(e) => (document.body.style.cursor = 'pointer')}
 					onClick={(e) => {
-						window.open('https://www.vimeo.com/', '_blank');
+						window.open(urls.vimeo, '_blank');
 					}}
 				>
-					<Icons position={[0.33, 0, 0]} />
+					<Icons />
 				</group>
 			</Float>
 			<Float
@@ -115,6 +139,7 @@ export default function AboutMe(props: Props) {
 			>
 				<group
 					ref={icon3Ref}
+					position={[-0.3, -0.33, 0]}
 					onPointerEnter={(e) => {
 						setIcon3Hovered(true);
 						document.body.style.cursor = 'pointer';
@@ -124,10 +149,10 @@ export default function AboutMe(props: Props) {
 						document.body.style.cursor = 'auto';
 					}}
 					onClick={(e) => {
-						window.open('https://www.youtube.com/', '_blank');
+						window.open(urls.youtube, '_blank');
 					}}
 				>
-					<Icons position={[-0.3, -0.33, 0]} />
+					<Icons />
 				</group>
 			</Float>
 			{/* <Float>
