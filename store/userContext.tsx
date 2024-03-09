@@ -34,6 +34,7 @@ export function UserContextProvider(props) {
 	useEffect(() => {
 		const handleOrientationChange = () => {
 			window.innerWidth < window.innerHeight ? setMobile(true) : setMobile(false);
+
 			console.log('orientation changed');
 		};
 		window.addEventListener('orientationchange', handleOrientationChange);
