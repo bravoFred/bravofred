@@ -38,11 +38,12 @@ $speed: 1s;
 }
 .nav_text_loading,
 .nav_text_loaded {
-	position: absolute;
+	// position: absolute;
 	// top: 50%;
 	transition: all $speed cubic-bezier(0.075, 0.82, 0.165, 1);
-	font-size: 1.5rem;
-	font-weight: 700;
+	font-size: 1.25rem;
+	font-weight: 100;
+	margin-left: 1.5rem;
 }
 .nav_text_loading {
 	color: #fff;
