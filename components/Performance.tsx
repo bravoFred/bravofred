@@ -80,8 +80,8 @@ export default function Performance() {
 		// console.log(camera);
 	});
 	useEffect(() => {
-		if (frameloop === 'never') console.log(`scene frozen`);
-		if (frameloop === 'always') console.log(`scene unfrozen`);
+		// if (frameloop === 'never') console.log(`scene frozen`);
+		// if (frameloop === 'always') console.log(`scene unfrozen`);
 	}, [frameloop]);
 	// listen for window resize event
 
