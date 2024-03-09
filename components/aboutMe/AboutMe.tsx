@@ -54,12 +54,12 @@ export default function AboutMe(props: Props) {
 			icon2Ref.current.position.z = MathUtils.lerp(
 				icon2Ref.current.position.z,
 				0,
-				enterSpeed
+				enterSpeed - 0.025
 			);
 			icon3Ref.current.position.z = MathUtils.lerp(
 				icon3Ref.current.position.z,
 				0,
-				enterSpeed
+				enterSpeed - 0.05
 			);
 		}
 
@@ -115,7 +115,7 @@ export default function AboutMe(props: Props) {
 			>
 				<group
 					ref={icon2Ref}
-					position={[0.33, 0, 0]}
+					position={[0.33, 0, -100]}
 					onPointerEnter={(e) => {
 						setIcon2Hovered(true);
 						document.body.style.cursor = 'pointer';
@@ -139,7 +139,7 @@ export default function AboutMe(props: Props) {
 			>
 				<group
 					ref={icon3Ref}
-					position={[-0.3, -0.33, 0]}
+					position={[-0.3, -0.33, -100]}
 					onPointerEnter={(e) => {
 						setIcon3Hovered(true);
 						document.body.style.cursor = 'pointer';
