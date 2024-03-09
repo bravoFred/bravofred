@@ -31,7 +31,7 @@ export default function AboutMe() {
 	// extract controls target
 
 	// const target = useRef<THREE.Vector3>(new THREE.Vector3(0, 1, 0));
-	const enterSpeed = 0.05;
+	const enterSpeed = 0.1;
 	useFrame(({ gl, scene, camera, clock, pointer }) => {
 		// target.current.x = MathUtils.lerp(target.current.x, state.pointer.x * 1, 0.1); // lerp lookAt x
 		// target.current.y = MathUtils.lerp(target.current.y, pointer.y * 1, 0.1); // lerp lookAt y
