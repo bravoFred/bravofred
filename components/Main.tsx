@@ -22,29 +22,30 @@ export default function Main() {
 	const aboutMeActive = useRef(true);
 	const portalsActive = useRef(false);
 
-	function gotoAboutMe() {
-		aboutMeActive.current = true;
-		portalsActive.current = false;
-	}
-	function gotoPortals() {
-		aboutMeActive.current = false;
-		portalsActive.current = true;
-	}
-	function prevSection() {
-		gotoAboutMe();
-		console.log(aboutMeActive.current, portalsActive.current);
-	}
-	function nextSection() {
-		gotoPortals();
-		console.log(aboutMeActive.current, portalsActive.current);
-	}
+	// function gotoAboutMe() {
+	// 	aboutMeActive.current = true;
+	// 	portalsActive.current = false;
+	// }
+	// function gotoPortals() {
+	// 	aboutMeActive.current = false;
+	// 	portalsActive.current = true;
+	// }
+	// function prevSection() {
+	// 	gotoAboutMe();
+	// 	console.log(aboutMeActive.current, portalsActive.current);
+	// }
+	// function nextSection() {
+	// 	gotoPortals();
+	// 	console.log(aboutMeActive.current, portalsActive.current);
+	// }
 	return (
 		<>
 			{/* <main className={`${styles.main} ${inter.className}`}> */}
 			{/* <main className={`${styles.main}`}>
 			</main> */}
 			<Nav />
-			<ScrollNavButtons prev={prevSection} next={nextSection} />
+			{/* <ScrollNavButtons prev={prevSection} next={nextSection} /> */}
+			<ScrollNavButtons />
 			<Suspense fallback={null}>
 				<Canvas
 					style={{ position: 'absolute' }}
@@ -71,8 +72,8 @@ export default function Main() {
 					<fog attach="fog" args={[theme === 'light' ? '#fff' : '#000', 0, 15]} />
 					{/* https://codesandbox.io/p/sandbox/m1-scrollcontrols-4m0d0 */}
 					<ScrollControls pages={4}>
-						<AboutMe active={aboutMeActive.current} />
-						<PortalsMain active={portalsActive.current} />
+						<AboutMe />
+						<PortalsMain />
 						<ScrollNav />
 						{/* <Mouse /> */}
 						<Camera />

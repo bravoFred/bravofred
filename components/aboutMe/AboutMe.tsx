@@ -13,12 +13,8 @@ const Icons = dynamic(() => import('../../models/4096/Icons').then((mod) => mod.
 	ssr: false,
 });
 
-interface Props {
-	active: boolean;
-}
-export default function AboutMe(props: Props) {
-	const { active } = props;
-	const { mobile } = useContext(UserContextProvider);
+export default function AboutMe() {
+	const { mobile, aboutMeActive } = useContext(UserContextProvider);
 	const ref = useRef<THREE.Group>();
 	const scroll = useScroll();
 	const r1 = scroll.range(0 / 4, 1 / 4);

@@ -21,15 +21,12 @@ import dynamic from 'next/dynamic';
 import PortalsOne from './PortalsOne';
 import PortalsTwo from './PortalsTwo';
 
-interface Props {
-	active: boolean;
-}
-export default function PortalsCards(props: Props) {
-	const { active } = props;
+export default function PortalsCards() {
+	const { mobile, aboutMeActive } = useContext(UserContextProvider);
 
 	return (
 		<>
-			<PortalsOne active={active} />
+			<PortalsOne />
 			{/* <PortalsTwo /> */}
 		</>
 	);

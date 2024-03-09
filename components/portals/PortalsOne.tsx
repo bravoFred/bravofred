@@ -96,13 +96,8 @@ function Frame({ id, name, author, bg, width = 1, height = 1.61803398875, childr
 	);
 }
 
-interface Props {
-	active: boolean;
-}
-export default function PortalsOne(props: Props) {
-	const { active } = props;
-
-	const { mobile } = useContext(UserContextProvider);
+export default function PortalsOne() {
+	const { mobile, portalsActive } = useContext(UserContextProvider);
 
 	const [portal2vector, setPortal2Vector] = useState(new THREE.Vector3(0, 0, -50));
 	const [portal3vector, setPortal3Vector] = useState(new THREE.Vector3(1, 0, -100));
