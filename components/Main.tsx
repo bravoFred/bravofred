@@ -13,6 +13,7 @@ import Nav from './Nav';
 import Lighting from './Lighting';
 import Performance from './Performance';
 import ScrollController from './ScrollController';
+import Raycaster from './Raycaster';
 import UserContextProvider from '../store/userContext';
 import Mouse from './Mouse';
 
@@ -78,6 +79,7 @@ export default function Main() {
 						{/* <Mouse /> */}
 						<Camera />
 						<Floor />
+						<Raycaster />
 						<Lighting />
 					</ScrollControls>
 
