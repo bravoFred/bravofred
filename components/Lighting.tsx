@@ -57,7 +57,7 @@ export default function Lighting() {
 				shadow-camera-top={10}
 				shadow-camera-bottom={-10}
 			/> */}
-			{/* <MovingSpot position={[0, 2.5, 1.5]} /> */}
+			<MovingSpot position={[0, 2.5, 1.5]} />
 			<directionalLight
 				position={[0, 2.5, 1.5]}
 				intensity={0.5}
