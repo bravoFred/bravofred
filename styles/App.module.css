@@ -1,3 +1,7 @@
+/* html,
+body {
+	background-color: black;
+} */
 .app {
 	position: fixed;
 	height: 100vh;
@@ -10,6 +14,7 @@
 	/* prevent overscrolling */
 	overscroll-behavior: contain;
 	overscroll-behavior: none;
+	/* background-color: black; */
 
 	/* border: 1px solid blue; */
 }
