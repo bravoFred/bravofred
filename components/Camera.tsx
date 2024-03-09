@@ -5,6 +5,7 @@ import { MathUtils } from 'three';
 import { useRef, useContext } from 'react';
 import { useScroll } from '@react-three/drei';
 import UserContextProvider from '../store/userContext';
+import InputContextProvider from '../store/inputContext';
 
 function lerpCamTarget(
 	state: { controls: { target: { x: number; y: number; z: number } } },
@@ -51,11 +52,22 @@ function ToggleCamFov(camera: { fov: number }, mobile: boolean) {
 export default function Camera() {
 	// const { gl, camera } = useThree();
 	const { mobile } = useContext(UserContextProvider);
+	const { activeObject } = useContext(InputContextProvider);
 	const target = useRef<THREE.Vector3>(new THREE.Vector3(0, 1, 0));
 	const scroll = useScroll();
 	useFrame((state) => {
 		const camera = state.camera as THREE.PerspectiveCamera;
+
 		camera.lookAt(target.current.x, target.current.y, target.current.z);
+		// camera.lookAt(activeObject.current.object.position);
+		// if (activeObject.current.object && activeObject.current.point) {
+		// 	const { object, point } = activeObject.current;
+		// 	console.log(point);
+
+		// 	target.current.x = MathUtils.lerp(target.current.x, point.x, 0.1);
+		// 	target.current.y = MathUtils.lerp(target.current.y, point.y, 0.1);
+		// 	target.current.z = MathUtils.lerp(target.current.z, point.z, 0.1);
+		// }
 		camera.position.y = MathUtils.lerp(
 			camera.position.y,
 			Math.sin(scroll.offset) * 1 + 0.5,

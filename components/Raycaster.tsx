@@ -12,7 +12,7 @@ export default function Raycaster() {
 	useFrame((state) => {
 		if (objects.length > 0) {
 			activeObject.current = objects[0];
-			console.log(activeObject.current);
+			// console.log(activeObject.current);
 		}
 	});
 	return (
