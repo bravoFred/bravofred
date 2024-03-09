@@ -29,9 +29,12 @@ export default function Lighting() {
 			// 	0.1
 			// );
 			// const {point } = state.raycaster.intersectObject(activeObject.current);
+			// check if raycaster obj is empty
+			// if (activeObject.current) {
 			const { object, point } = activeObject.current;
-			light.current.target.position.lerp(vec.set(point.x, point.y, point.z), 0.1);
+			if (point) light.current.target.position.lerp(vec.set(point.x, point.y, point.z), 0.1);
 			light.current.target.updateMatrixWorld();
+			// }
 		});
 		return (
 			<SpotLight
