@@ -14,6 +14,8 @@ import { easing, geometry } from 'maath';
 import { suspend } from 'suspend-react';
 import { useScroll } from '@react-three/drei';
 import UserContextProvider from '../../store/userContext';
+import InputContextProvider from '../../store/inputContext';
+
 import { MathUtils } from 'three';
 
 extend(geometry);
@@ -22,7 +24,8 @@ import PortalsOne from './PortalsOne';
 import PortalsTwo from './PortalsTwo';
 
 export default function PortalsCards() {
-	const { mobile, aboutMeActive } = useContext(UserContextProvider);
+	const { mobile } = useContext(UserContextProvider);
+	const { aboutMeActive } = useContext(InputContextProvider);
 
 	return (
 		<>

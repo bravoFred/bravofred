@@ -8,13 +8,15 @@ import { useState, useContext } from 'react';
 import { easing, geometry } from 'maath';
 import { MathUtils } from 'three';
 import UserContextProvider from '../../store/userContext';
+import InputContextProvider from '../../store/inputContext';
 
 const Icons = dynamic(() => import('../../models/4096/Icons').then((mod) => mod.Model), {
 	ssr: false,
 });
 
 export default function AboutMe() {
-	const { mobile, aboutMeActive } = useContext(UserContextProvider);
+	const { mobile } = useContext(UserContextProvider);
+	const { aboutMeActive } = useContext(InputContextProvider);
 	const ref = useRef<THREE.Group>();
 	const scroll = useScroll();
 	const r1 = scroll.range(0 / 4, 1 / 4);
