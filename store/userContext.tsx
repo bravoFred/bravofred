@@ -6,11 +6,17 @@ const UserContext = createContext({
 	frameloop: 'always' as 'always' | 'demand' | 'never',
 	theme: 'dark',
 	activeTab: true,
+	portalsActive: false,
+	aboutMeActive: true,
 	setTheme: (string) => {},
 	setFrameloop: (string) => {},
 	setActiveTab: (boolean) => {},
 	setMobile: (boolean) => {},
+	setAboutMeActive: (boolean) => {},
+	setPortalsActive: (boolean) => {},
 	toggleTheme: () => {},
+	gotoAboutMe: () => {},
+	gotoPortals: () => {},
 });
 export function UserContextProvider(props) {
 	const [mobile, setMobile] = useState(false); // device
@@ -19,6 +25,8 @@ export function UserContextProvider(props) {
 	// const [theme, setTheme] = useState<'dark' | 'light'>(Math.random() > 0.5 ? 'dark' : 'light'); // user
 	// const [theme, setTheme] = useState<'dark' | 'light'>('light'); // user
 	const [theme, setTheme] = useState<'dark' | 'light'>('dark'); // user
+	const [aboutMeActive, setAboutMeActive] = useState(true);
+	const [portalsActive, setPortalsActive] = useState(false);
 	useEffect(() => {
 		window.innerWidth < window.innerHeight ? setMobile(true) : setMobile(false);
 	}, []);
@@ -59,6 +67,14 @@ export function UserContextProvider(props) {
 			document.removeEventListener('visibilitychange', handleVisibilityChange);
 		};
 	}, []);
+	function gotoAboutMe() {
+		setAboutMeActive(true);
+		setPortalsActive(false);
+	}
+	function gotoPortals() {
+		setAboutMeActive(false);
+		setPortalsActive(true);
+	}
 	return (
 		<UserContext.Provider
 			value={{
@@ -67,11 +83,17 @@ export function UserContextProvider(props) {
 				frameloop,
 				activeTab,
 				theme,
+				portalsActive,
+				aboutMeActive,
 				setFrameloop,
 				setTheme,
 				setActiveTab,
 				setMobile,
 				toggleTheme,
+				setAboutMeActive,
+				setPortalsActive,
+				gotoAboutMe,
+				gotoPortals,
 			}}
 		>
 			{props.children}
