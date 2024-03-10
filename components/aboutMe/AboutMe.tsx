@@ -53,8 +53,8 @@ export default function AboutMe() {
 		}
 		if (portalsActive.current) {
 			icon1Ref.current.position.z = MathUtils.lerp(icon1Ref.current.position.z, 20, 0.025);
-			icon2Ref.current.position.z = MathUtils.lerp(icon2Ref.current.position.z, 20, 0.025);
-			icon3Ref.current.position.z = MathUtils.lerp(icon3Ref.current.position.z, 20, 0.025);
+			icon2Ref.current.position.z = MathUtils.lerp(icon2Ref.current.position.z, 25, 0.025);
+			icon3Ref.current.position.z = MathUtils.lerp(icon3Ref.current.position.z, 30, 0.025);
 		}
 
 		const iconR1 = scroll.range(0 / 10, 0.25 / 10); // this is first one tenth of the page
