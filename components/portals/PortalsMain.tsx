@@ -29,8 +29,8 @@ export default function PortalsCards() {
 
 	return (
 		<>
-			<PortalsOne />
-			{/* <PortalsTwo /> */}
+			{/* <PortalsOne /> */}
+			<PortalsTwo />
 		</>
 	);
 }
