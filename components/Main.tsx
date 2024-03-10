@@ -4,7 +4,7 @@ import ScrollNavButtons from '@/components/ScrollNavButtons';
 const inter = Inter({ subsets: ['latin'] });
 import React, { Suspense, useRef, useState, useContext, useEffect, use } from 'react';
 import { Canvas, extend, useThree, useFrame } from '@react-three/fiber';
-import { ScrollControls } from '@react-three/drei';
+import { ScrollControls, Billboard, ScreenSpace } from '@react-three/drei';
 import Camera from '@/components/Camera';
 import PortalsMain from './portals/PortalsMain';
 import AboutMe from './aboutMe/AboutMe';
@@ -18,7 +18,13 @@ import BackgroundColor from './BackgroundColor';
 import Fog from './Fog';
 import UserContextProvider from '../store/userContext';
 import Mouse from './Mouse';
-
+import dynamic from 'next/dynamic';
+const SmallRoom = dynamic(
+	() => import('../models/4096/PortalInteriorJoined').then((mod) => mod.Model),
+	{
+		ssr: false,
+	}
+);
 import * as THREE from 'three';
 export default function Main() {
 	const { theme, setTheme, frameloop, mobile } = useContext(UserContextProvider);
@@ -41,6 +47,7 @@ export default function Main() {
 	// 	gotoPortals();
 	// 	console.log(aboutMeActive.current, portalsActive.current);
 	// }
+	const navScale = 0.025;
 	return (
 		<>
 			{/* <main className={`${styles.main} ${inter.className}`}> */}
@@ -86,7 +93,29 @@ export default function Main() {
 						{/* <BackgroundColor /> */}
 						{/* <Fog /> */}
 					</ScrollControls>
-
+					{/* <Billboard
+						follow={true}
+						lockX={false}
+						lockY={false}
+						lockZ={false} // Lock the rotation on the z axis (default=false)
+					>
+						<SmallRoom
+							scale={[0.25, 0.25, 0.25]}
+							position={[2, 0, 0]}
+							rotation={[0, Math.PI * 3, 0]}
+						/>
+					</Billboard> */}
+					{/* <ScreenSpace
+						depth={1} 
+					>
+						<group position={[0.5, -0.1, 0]} rotation={[0, Math.PI * 3.85, 0]}>
+							<pointLight position={[0, 0, 0]} intensity={0.1} />
+							<SmallRoom
+								scale={[navScale, navScale, navScale]}
+								position={[0, 0, 0]}
+							/>
+						</group>
+					</ScreenSpace> */}
 					<Performance />
 					{/* <VideoText /> */}
 					{/* <Shake /> */}
