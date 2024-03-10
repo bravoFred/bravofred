@@ -63,33 +63,27 @@ export default function Camera() {
 	const scroll = useScroll();
 	useFrame((state) => {
 		const camera = state.camera as THREE.PerspectiveCamera;
-
-		camera.lookAt(target.current.x, target.current.y, target.current.z);
-		// if (activeObject.current === null) return;
-		const speed = mobile ? 0.05 : 0.02;
-		const zoomSpeed = mobile ? 0.05 : 0.1;
-		if (activeObject.current !== null) {
-			const { object, point } = activeObject.current;
-			if (point)
-				if (aboutMeActive.current) {
-					target.current.x = MathUtils.lerp(target.current.x, point.x, speed);
-					target.current.y = MathUtils.lerp(target.current.y, point.y, speed * 2);
-					target.current.z = MathUtils.lerp(target.current.z, point.z, speed);
-					// camera.position.z = MathUtils.lerp(
-					// 	camera.position.z,
-					// 	point.z + mobile ? 3 : 2,
-					// 	speed * 2
-					// );
-					camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 1.5 : 3, zoomSpeed);
-				}
-		} else {
-			target.current.x = MathUtils.lerp(target.current.x, 0, speed);
-			target.current.y = MathUtils.lerp(target.current.y, 1, speed);
-			target.current.z = MathUtils.lerp(target.current.z, 0, speed);
-			camera.position.z = MathUtils.lerp(camera.position.z, 5, speed * 2);
-			camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomSpeed);
+		if (aboutMeActive.current) {
+			camera.lookAt(target.current.x, target.current.y, target.current.z);
+			const speed = mobile ? 0.05 : 0.02;
+			const zoomSpeed = mobile ? 0.05 : 0.1;
+			if (activeObject.current !== null) {
+				const { object, point } = activeObject.current;
+				if (point)
+					if (aboutMeActive.current) {
+						target.current.x = MathUtils.lerp(target.current.x, point.x, speed);
+						target.current.y = MathUtils.lerp(target.current.y, point.y, speed * 2);
+						target.current.z = MathUtils.lerp(target.current.z, point.z, speed);
+						camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 1.5 : 3, zoomSpeed);
+					}
+			} else {
+				target.current.x = MathUtils.lerp(target.current.x, 0, speed);
+				target.current.y = MathUtils.lerp(target.current.y, 1, speed);
+				target.current.z = MathUtils.lerp(target.current.z, 0, speed);
+				camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomSpeed);
+			}
+			camera.updateProjectionMatrix();
 		}
-		camera.updateProjectionMatrix();
 		// }
 
 		// camera.lookAt(activeObject.current.object.position);
@@ -101,7 +95,14 @@ export default function Camera() {
 		// 	target.current.y = MathUtils.lerp(target.current.y, point.y, 0.1);
 		// 	target.current.z = MathUtils.lerp(target.current.z, point.z, 0.1);
 		// }
-		console.log(camera.position);
+		// move camera up with scroll
+		if (portalsActive.current) {
+			camera.position.y = MathUtils.lerp(camera.position.y, scroll.offset * 1.5, 0.1);
+		}
+		if (aboutMeActive.current) {
+			camera.position.y = MathUtils.lerp(camera.position.y, scroll.offset, 0.1);
+		}
+		// camera.position.y = MathUtils.lerp(camera.position.y, 0.5 + scroll.offset * 3, 0.1);
 
 		ToggleCamFov(camera, mobile);
 		preventCamPosOutsideBounds(state);
