@@ -20,18 +20,6 @@ export default function Lighting() {
 		const light = useRef(null!);
 		const viewport = useThree((state) => state.viewport);
 		useFrame((state) => {
-			// light.current.target.position.lerp(
-			// 	vec.set(
-			// 		(state.pointer.x * viewport.width) / 2,
-			// 		(state.pointer.y * viewport.height) / 2,
-			// 		-0.5
-			// 	),
-			// 	0.1
-			// );
-			// const {point } = state.raycaster.intersectObject(activeObject.current);
-			// check if raycaster obj is empty
-			// if (activeObject.current) {
-			// light.current.target.position.lerp(vec.set(0, 0, 0), 0.25); // default
 			if (activeObject.current !== null) {
 				const { object, point } = activeObject.current;
 				light.current.target.position.lerp(vec.set(point.x, point.y, point.z), 0.25); // point at active object
