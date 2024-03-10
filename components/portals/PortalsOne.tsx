@@ -8,6 +8,10 @@ import {
 	Gltf,
 	Text,
 	CameraShake,
+	Billboard,
+	ScreenSpace,
+	ScreenSizer,
+	Box,
 } from '@react-three/drei';
 import { useRoute, useLocation } from 'wouter';
 import { easing, geometry } from 'maath';
@@ -25,6 +29,9 @@ const SmallRoom = dynamic(
 		ssr: false,
 	}
 );
+const NavCam = dynamic(() => import('../../models/4096/Cam').then((mod) => mod.Model), {
+	ssr: false,
+});
 const Warehouse = dynamic(
 	() => import('../../models/4096/WarehouseJoined').then((mod) => mod.Model),
 	{
@@ -178,10 +185,8 @@ export default function PortalsOne() {
 					<ambientLight intensity={1} />
 				</Frame>
 			</group>
-			{/* <group ref={miniRef}>
-				<pointLight position={[-0.5, 0.5, 0]} intensity={0.5} />
-				<SmallRoom scale={mobile ? 0.1 : 0.2} />
-			</group> */}
+
+			{/* </ScreenSizer> */}
 			{/* <Rig /> */}
 			{/* <Shake /> */}
 		</group>

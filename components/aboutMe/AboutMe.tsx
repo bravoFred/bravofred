@@ -13,6 +13,9 @@ import InputContextProvider from '../../store/inputContext';
 const Icons = dynamic(() => import('../../models/4096/Icons').then((mod) => mod.Model), {
 	ssr: false,
 });
+const NavCam = dynamic(() => import('../../models/4096/Cam').then((mod) => mod.Model), {
+	ssr: false,
+});
 
 export default function AboutMe() {
 	const { mobile } = useContext(UserContextProvider);
@@ -102,6 +105,11 @@ export default function AboutMe() {
 	};
 	return (
 		<group position={[0, 0.75, 0]} ref={ref}>
+			{/* <group scale={0.2} position={[0, 0.5, 0]}>
+				<NavCam />
+			</group> */}
+			{/* <pointLight position={[0, 0, 2]} intensity={5} /> */}
+
 			<Float
 				speed={speed} // Animation speed, defaults to 1
 				rotationIntensity={rotationIntensity} // XYZ rotation intensity, defaults to 1
