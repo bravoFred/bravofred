@@ -52,7 +52,7 @@ function ToggleCamFov(camera: { fov: number }, mobile: boolean) {
 export default function Camera() {
 	// const { gl, camera } = useThree();
 	const { mobile } = useContext(UserContextProvider);
-	const { activeObject } = useContext(InputContextProvider);
+	const { activeObject, portalsActive, aboutMeActive } = useContext(InputContextProvider);
 	const target = useRef<THREE.Vector3>(new THREE.Vector3(0, 1, 0));
 	const scroll = useScroll();
 	useFrame((state) => {
@@ -64,25 +64,20 @@ export default function Camera() {
 		const zoomSpeed = mobile ? 0.05 : 0.1;
 		if (activeObject.current !== null) {
 			const { object, point } = activeObject.current;
-			if (point) {
-				// light.current.target.position.lerp(vec.set(point.x, point.y, point.z), 0.25);
+			// light.current.target.position.lerp(vec.set(point.x, point.y, point.z), 0.25);
+			if (aboutMeActive.current) {
 				target.current.x = MathUtils.lerp(target.current.x, point.x, speed);
 				target.current.y = MathUtils.lerp(target.current.y, point.y, speed * 2);
 				target.current.z = MathUtils.lerp(target.current.z, point.z, speed);
-				// lerp camera zoom
 				camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 1.5 : 3, zoomSpeed);
-				// console.log(camera.zoom);
-				camera.updateProjectionMatrix();
 			}
 		} else {
-			// console.log(camera.zoom);
-			// reset zoom
 			target.current.x = MathUtils.lerp(target.current.x, 0, speed);
 			target.current.y = MathUtils.lerp(target.current.y, 1, speed);
 			target.current.z = MathUtils.lerp(target.current.z, 0, speed);
 			camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomSpeed / 5);
-			camera.updateProjectionMatrix();
 		}
+		camera.updateProjectionMatrix();
 		// }
 
 		// camera.lookAt(activeObject.current.object.position);
