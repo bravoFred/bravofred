@@ -73,16 +73,15 @@ export default function Camera() {
 		if (aboutMeActive.current) {
 			camera.lookAt(target.current.x, target.current.y, target.current.z);
 			camera.position.y = MathUtils.lerp(camera.position.y, scroll.offset, 0.1);
-
 			if (activeObject.current !== null) {
 				const { point } = activeObject.current;
 				if (point) {
 					lerpVecs(target.current, point, speed);
-					// camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 1.5 : 3, zoomSpeed);
+					camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 1.5 : 3, zoomSpeed);
 				}
 			} else {
 				lerpVecs(target.current, camVecs.current.target, speed);
-				// camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomSpeed);
+				camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomSpeed);
 			}
 		}
 
@@ -95,7 +94,7 @@ export default function Camera() {
 			target.current.z = MathUtils.lerp(target.current.z, 0, speed);
 		}
 
-		// camera.updateProjectionMatrix();
+		camera.updateProjectionMatrix();
 		ToggleCamFov(camera, mobile);
 		preventCamPosOutsideBounds(state);
 	});
