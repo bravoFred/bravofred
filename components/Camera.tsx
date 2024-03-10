@@ -6,6 +6,7 @@ import { useRef, useContext } from 'react';
 import { useScroll } from '@react-three/drei';
 import UserContextProvider from '../store/userContext';
 import InputContextProvider from '../store/inputContext';
+import { update } from 'three/examples/jsm/libs/tween.module.js';
 
 function lerpCamTarget(
 	state: { controls: { target: { x: number; y: number; z: number } } },
@@ -53,6 +54,11 @@ export default function Camera() {
 	// const { gl, camera } = useThree();
 	const { mobile } = useContext(UserContextProvider);
 	const { activeObject, portalsActive, aboutMeActive } = useContext(InputContextProvider);
+	const camVecs = useRef({
+		pos: new THREE.Vector3(0, 0, 0),
+		target: new THREE.Vector3(0, 1, 0),
+		camTarget: [0, 0, 0],
+	});
 	const target = useRef<THREE.Vector3>(new THREE.Vector3(0, 1, 0));
 	const scroll = useScroll();
 	useFrame((state) => {
@@ -70,13 +76,19 @@ export default function Camera() {
 					target.current.x = MathUtils.lerp(target.current.x, point.x, speed);
 					target.current.y = MathUtils.lerp(target.current.y, point.y, speed * 2);
 					target.current.z = MathUtils.lerp(target.current.z, point.z, speed);
+					// camera.position.z = MathUtils.lerp(
+					// 	camera.position.z,
+					// 	point.z + mobile ? 3 : 2,
+					// 	speed * 2
+					// );
 					camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 1.5 : 3, zoomSpeed);
 				}
 		} else {
 			target.current.x = MathUtils.lerp(target.current.x, 0, speed);
 			target.current.y = MathUtils.lerp(target.current.y, 1, speed);
 			target.current.z = MathUtils.lerp(target.current.z, 0, speed);
-			camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomSpeed / 5);
+			camera.position.z = MathUtils.lerp(camera.position.z, 5, speed * 2);
+			camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomSpeed);
 		}
 		camera.updateProjectionMatrix();
 		// }
@@ -90,12 +102,7 @@ export default function Camera() {
 		// 	target.current.y = MathUtils.lerp(target.current.y, point.y, 0.1);
 		// 	target.current.z = MathUtils.lerp(target.current.z, point.z, 0.1);
 		// }
-		// camera.position.y = MathUtils.lerp(
-		// 	camera.position.y,
-		// 	Math.sin(scroll.offset) * 1 + 0.5,
-		// 	0.1
-		// );
-		// console.log(camera.position.y);
+		console.log(camera.position);
 
 		ToggleCamFov(camera, mobile);
 		preventCamPosOutsideBounds(state);
