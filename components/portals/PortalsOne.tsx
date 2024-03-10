@@ -38,8 +38,9 @@ function Frame({ id, name, author, bg, width = 1, height = 1.61803398875, childr
 	const [, params] = useRoute<{ id: string }>('/item/:id');
 	const [hovered, hover] = useState(false);
 	useCursor(hovered);
-	useFrame((state, dt) =>
-		easing.damp(portal.current, 'blend', params?.id === id ? 1 : 0, 0.2, dt)
+	useFrame(
+		(state, dt) => easing.damp(portal.current, 'blend', params?.id === id ? 1 : 0, 0.2, dt)
+		//
 	);
 	const [text, setText] = useState(`FREDERIC${'\n'}CARTIER`);
 
@@ -126,6 +127,7 @@ export default function PortalsOne() {
 	const p3ref = useRef<THREE.Group>();
 	const enterSpeed = 0.1;
 	const exitSpeed = 0.1;
+	const miniRef = useRef<THREE.Group>();
 	useFrame((state) => {
 		if (portalsActive.current) {
 			MoveGroup(p1ref, portalVecs.p1active, enterSpeed * 1.5);
@@ -136,6 +138,18 @@ export default function PortalsOne() {
 			MoveGroup(p2ref, portalVecs.p2, exitSpeed * 2);
 			MoveGroup(p3ref, portalVecs.p3, exitSpeed);
 		}
+		// if (!mobile) {
+		// 	// desktop
+		// 	miniRef.current.position.y = -state.viewport.height / 2 + 1.45; // move to bottom of screen space, desktop
+		// 	miniRef.current.position.x = state.viewport.width / 2 - 1; // move to right of screen space desktop
+		// } else {
+		// 	// mobile
+		// 	miniRef.current.position.y = -state.viewport.height / 2 + 2; // move to bottom of screen space, mobile
+		// 	miniRef.current.position.x = state.viewport.width / 2 - 0.5; // move to right of screen space mobile
+		// 	// move to in front of camera
+		// 	miniRef.current.position.z = state.camera.position.z - 5;
+		// }
+		// miniRef.current.lookAt(state.camera.position); // look at camera
 	});
 	return (
 		<group ref={portalsRef} position={[0, 0, 0]}>
@@ -164,6 +178,10 @@ export default function PortalsOne() {
 					<ambientLight intensity={1} />
 				</Frame>
 			</group>
+			{/* <group ref={miniRef}>
+				<pointLight position={[-0.5, 0.5, 0]} intensity={0.5} />
+				<SmallRoom scale={mobile ? 0.1 : 0.2} />
+			</group> */}
 			{/* <Rig /> */}
 			{/* <Shake /> */}
 		</group>

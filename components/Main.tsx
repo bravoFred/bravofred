@@ -1,10 +1,10 @@
 import styles from '@/styles/App.module.css';
 import { Inter } from 'next/font/google';
 import ScrollNavButtons from '@/components/ScrollNavButtons';
-const inter = Inter({ subsets: ['latin'] });
+// const inter = Inter({ subsets: ['latin'] });
 import React, { Suspense, useRef, useState, useContext, useEffect, use } from 'react';
 import { Canvas, extend, useThree, useFrame } from '@react-three/fiber';
-import { ScrollControls, Billboard, ScreenSpace } from '@react-three/drei';
+import { ScrollControls, Billboard, ScreenSpace, ScreenSizer, Box } from '@react-three/drei';
 import Camera from '@/components/Camera';
 import PortalsMain from './portals/PortalsMain';
 import AboutMe from './aboutMe/AboutMe';
@@ -47,7 +47,7 @@ export default function Main() {
 	// 	gotoPortals();
 	// 	console.log(aboutMeActive.current, portalsActive.current);
 	// }
-	const navScale = 0.025;
+	const navScale = 150;
 	return (
 		<>
 			{/* <main className={`${styles.main} ${inter.className}`}> */}
@@ -116,6 +116,11 @@ export default function Main() {
 							/>
 						</group>
 					</ScreenSpace> */}
+					{/* <ScreenSizer
+						scale={10} // scale factor
+					>
+						<SmallRoom position={[10, 0, 0]} />
+					</ScreenSizer> */}
 					<Performance />
 					{/* <VideoText /> */}
 					{/* <Shake /> */}
