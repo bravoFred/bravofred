@@ -1,5 +1,5 @@
 import { MathUtils } from 'three';
-export function MovePortal(
+export function MoveGroup(
 	ref: React.MutableRefObject<THREE.Group>,
 	target: THREE.Vector3,
 	speed: number

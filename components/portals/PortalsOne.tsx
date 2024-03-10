@@ -17,7 +17,7 @@ import UserContextProvider from '../../store/userContext';
 import InputContextProvider from '../../store/inputContext';
 import { MathUtils } from 'three';
 import dynamic from 'next/dynamic';
-import { MovePortal } from '../../components/AnimationFunctions';
+import { MoveGroup } from '../../components/AnimationFunctions';
 
 const SmallRoom = dynamic(
 	() => import('../../models/4096/PortalInteriorJoined').then((mod) => mod.Model),
@@ -128,13 +128,13 @@ export default function PortalsOne() {
 	const exitSpeed = 0.1;
 	useFrame((state) => {
 		if (portalsActive.current) {
-			MovePortal(p1ref, portalVecs.p1active, enterSpeed * 1.5);
-			MovePortal(p2ref, portalVecs.p2active, enterSpeed * 2);
-			MovePortal(p3ref, portalVecs.p3active, enterSpeed);
+			MoveGroup(p1ref, portalVecs.p1active, enterSpeed * 1.5);
+			MoveGroup(p2ref, portalVecs.p2active, enterSpeed * 2);
+			MoveGroup(p3ref, portalVecs.p3active, enterSpeed);
 		} else {
-			MovePortal(p1ref, portalVecs.p1, exitSpeed * 1.5);
-			MovePortal(p2ref, portalVecs.p2, exitSpeed * 2);
-			MovePortal(p3ref, portalVecs.p3, exitSpeed);
+			MoveGroup(p1ref, portalVecs.p1, exitSpeed * 1.5);
+			MoveGroup(p2ref, portalVecs.p2, exitSpeed * 2);
+			MoveGroup(p3ref, portalVecs.p3, exitSpeed);
 		}
 	});
 	return (
