@@ -61,6 +61,11 @@ export default function Camera() {
 	});
 	const target = useRef<THREE.Vector3>(new THREE.Vector3(0, 1, 0));
 	const scroll = useScroll();
+	function lerpVecs(vec1: THREE.Vector3, vec2: THREE.Vector3, speed: number) {
+		vec1.x = MathUtils.lerp(vec1.x, vec2.x, speed);
+		vec1.y = MathUtils.lerp(vec1.y, vec2.y, speed);
+		vec1.z = MathUtils.lerp(vec1.z, vec2.z, speed);
+	}
 	useFrame((state) => {
 		const camera = state.camera as THREE.PerspectiveCamera;
 		const speed = mobile ? 0.05 : 0.02;
@@ -68,44 +73,27 @@ export default function Camera() {
 		if (aboutMeActive.current) {
 			camera.lookAt(target.current.x, target.current.y, target.current.z);
 			if (activeObject.current !== null) {
-				const { object, point } = activeObject.current;
-				if (point)
-					if (aboutMeActive.current) {
-						target.current.x = MathUtils.lerp(target.current.x, point.x, speed);
-						target.current.y = MathUtils.lerp(target.current.y, point.y, speed * 2);
-						target.current.z = MathUtils.lerp(target.current.z, point.z, speed);
-						camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 1.5 : 3, zoomSpeed);
-					}
+				const { point } = activeObject.current;
+				if (point) {
+					lerpVecs(target.current, point, speed);
+					camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 1.5 : 3, zoomSpeed);
+				}
 			} else {
-				target.current.x = MathUtils.lerp(target.current.x, 0, speed);
-				target.current.y = MathUtils.lerp(target.current.y, 1, speed);
-				target.current.z = MathUtils.lerp(target.current.z, 0, speed);
+				lerpVecs(target.current, camVecs.current.target, speed);
 				camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomSpeed);
 			}
-			camera.updateProjectionMatrix();
-		}
-		if (portalsActive.current) {
-			camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomSpeed);
 		}
 		// }
 
-		// camera.lookAt(activeObject.current.object.position);
-		// if (activeObject.current.object && activeObject.current.point) {
-		// 	const { object, point } = activeObject.current;
-		// 	console.log(point);
-
-		// 	target.current.x = MathUtils.lerp(target.current.x, point.x, 0.1);
-		// 	target.current.y = MathUtils.lerp(target.current.y, point.y, 0.1);
-		// 	target.current.z = MathUtils.lerp(target.current.z, point.z, 0.1);
-		// }
-		// move camera up with scroll
-		if (portalsActive.current) {
-			camera.position.y = MathUtils.lerp(camera.position.y, scroll.offset * 1.5, 0.1);
-		}
 		if (aboutMeActive.current) {
 			camera.position.y = MathUtils.lerp(camera.position.y, scroll.offset, 0.1);
 		}
-		// camera.position.y = MathUtils.lerp(camera.position.y, 0.5 + scroll.offset * 3, 0.1);
+		if (portalsActive.current) {
+			camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomSpeed);
+			camera.position.y = MathUtils.lerp(camera.position.y, scroll.offset * 1.5, 0.1); // moves cam up and down
+			// target.current.set(0, 1, 0);
+		}
+		camera.updateProjectionMatrix();
 
 		ToggleCamFov(camera, mobile);
 		preventCamPosOutsideBounds(state);
