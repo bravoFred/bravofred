@@ -69,7 +69,8 @@ export default function Camera() {
 	useFrame((state) => {
 		const camera = state.camera as THREE.PerspectiveCamera;
 		const speed = mobile ? 0.05 : 0.02;
-		const zoomSpeed = mobile ? 0.05 : 0.1;
+		const zoomInSpeed = mobile ? 0.05 : 0.1;
+		const zoomOutSpeed = mobile ? 0.1 : 0.05;
 		if (aboutMeActive.current) {
 			camera.lookAt(target.current.x, target.current.y, target.current.z);
 			camera.position.y = MathUtils.lerp(camera.position.y, scroll.offset, 0.1);
@@ -77,17 +78,17 @@ export default function Camera() {
 				const { point } = activeObject.current;
 				if (point) {
 					lerpVecs(target.current, point, speed);
-					camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 1.5 : 3, zoomSpeed);
+					camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 1.5 : 3, zoomInSpeed);
 				}
 			} else {
 				lerpVecs(target.current, camVecs.current.target, speed);
-				camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomSpeed);
+				camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomOutSpeed);
 			}
 		}
 
 		if (portalsActive.current) {
 			camera.lookAt(target.current.x, target.current.y, target.current.z);
-			camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomSpeed);
+			camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomInSpeed);
 			camera.position.y = MathUtils.lerp(camera.position.y, scroll.offset * 1.5, 0.1); // moves cam up and down
 			target.current.x = MathUtils.lerp(target.current.x, 0, speed);
 			target.current.y = MathUtils.lerp(target.current.y, 1, speed);
