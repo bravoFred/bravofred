@@ -20,17 +20,6 @@ export default function Nav() {
 		}
 	}, [active, progress, item, loaded, total, errors]);
 	// handle routing for nav
-	const [location, setLocation] = useLocation();
-	function clickHandler() {
-		// if in portals, exit portals
-		if (location !== '/') {
-			setLocation('/');
-		} else {
-			// if not in portals, go to about me
-			portalsActive.current = false;
-			aboutMeActive.current = true;
-		}
-	}
 
 	return (
 		<nav className={styles.navLoaded}>
@@ -40,7 +29,6 @@ export default function Nav() {
 				style={{
 					color: theme === 'dark' ? 'white' : 'black',
 				}}
-				onClick={clickHandler}
 			>
 				FREDERIC CARTIER
 			</p>
