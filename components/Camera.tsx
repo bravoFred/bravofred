@@ -72,6 +72,8 @@ export default function Camera() {
 		const zoomSpeed = mobile ? 0.05 : 0.1;
 		if (aboutMeActive.current) {
 			camera.lookAt(target.current.x, target.current.y, target.current.z);
+			camera.position.y = MathUtils.lerp(camera.position.y, scroll.offset, 0.1);
+
 			if (activeObject.current !== null) {
 				const { point } = activeObject.current;
 				if (point) {
@@ -83,18 +85,13 @@ export default function Camera() {
 				camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomSpeed);
 			}
 		}
-		// }
 
-		if (aboutMeActive.current) {
-			camera.position.y = MathUtils.lerp(camera.position.y, scroll.offset, 0.1);
-		}
 		if (portalsActive.current) {
 			camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomSpeed);
 			camera.position.y = MathUtils.lerp(camera.position.y, scroll.offset * 1.5, 0.1); // moves cam up and down
-			// target.current.set(0, 1, 0);
 		}
-		camera.updateProjectionMatrix();
 
+		camera.updateProjectionMatrix();
 		ToggleCamFov(camera, mobile);
 		preventCamPosOutsideBounds(state);
 	});
