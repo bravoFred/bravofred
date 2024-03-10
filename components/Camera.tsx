@@ -70,7 +70,6 @@ export default function Camera() {
 		const zoomSpeed = mobile ? 0.05 : 0.1;
 		if (activeObject.current !== null) {
 			const { object, point } = activeObject.current;
-			// light.current.target.position.lerp(vec.set(point.x, point.y, point.z), 0.25);
 			if (point)
 				if (aboutMeActive.current) {
 					target.current.x = MathUtils.lerp(target.current.x, point.x, speed);
