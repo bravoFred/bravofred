@@ -65,12 +65,13 @@ export default function Camera() {
 		if (activeObject.current !== null) {
 			const { object, point } = activeObject.current;
 			// light.current.target.position.lerp(vec.set(point.x, point.y, point.z), 0.25);
-			if (aboutMeActive.current) {
-				target.current.x = MathUtils.lerp(target.current.x, point.x, speed);
-				target.current.y = MathUtils.lerp(target.current.y, point.y, speed * 2);
-				target.current.z = MathUtils.lerp(target.current.z, point.z, speed);
-				camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 1.5 : 3, zoomSpeed);
-			}
+			if (point)
+				if (aboutMeActive.current) {
+					target.current.x = MathUtils.lerp(target.current.x, point.x, speed);
+					target.current.y = MathUtils.lerp(target.current.y, point.y, speed * 2);
+					target.current.z = MathUtils.lerp(target.current.z, point.z, speed);
+					camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 1.5 : 3, zoomSpeed);
+				}
 		} else {
 			target.current.x = MathUtils.lerp(target.current.x, 0, speed);
 			target.current.y = MathUtils.lerp(target.current.y, 1, speed);

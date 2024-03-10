@@ -17,6 +17,7 @@ import UserContextProvider from '../../store/userContext';
 import InputContextProvider from '../../store/inputContext';
 import { MathUtils } from 'three';
 import dynamic from 'next/dynamic';
+import { MovePortal } from '../../components/AnimationFunctions';
 
 const SmallRoom = dynamic(
 	() => import('../../models/4096/PortalInteriorJoined').then((mod) => mod.Model),
@@ -120,57 +121,25 @@ export default function PortalsOne() {
 	});
 	const scroll = useScroll();
 	const portalsRef = useRef<THREE.Group>();
-	const portal1Ref = useRef<THREE.Group>();
-	const portal2Ref = useRef<THREE.Group>();
-	const portal3Ref = useRef<THREE.Group>();
-	const scrollSpeed = useRef(0);
-	const scrollDirection = useRef(0);
-	const scrolling = useRef(false);
-	const { pointer, controls } = useThree();
-	const entrySpeed = 0.1;
+	const p1ref = useRef<THREE.Group>();
+	const p2ref = useRef<THREE.Group>();
+	const p3ref = useRef<THREE.Group>();
+	const enterSpeed = 0.1;
+	const exitSpeed = 0.1;
 	useFrame((state) => {
-		// version 1
-		// portal1Ref.current.position.lerpVectors(portalVecs.p1, portalVecs.p1active, scroll.offset);
-		// portal2Ref.current.position.lerpVectors(portalVecs.p2, portalVecs.p2active, scroll.offset);
-		// portal3Ref.current.position.lerpVectors(portalVecs.p3, portalVecs.p3active, scroll.offset);
 		if (portalsActive.current) {
-			portal1Ref.current.position.z = MathUtils.lerp(
-				portal1Ref.current.position.z,
-				portalVecs.p1active.z,
-				entrySpeed * 1.5
-			);
-			portal2Ref.current.position.z = MathUtils.lerp(
-				portal2Ref.current.position.z,
-				portalVecs.p2active.z,
-				entrySpeed * 2
-			);
-			portal3Ref.current.position.z = MathUtils.lerp(
-				portal3Ref.current.position.z,
-				portalVecs.p3active.z,
-				entrySpeed
-			);
+			MovePortal(p1ref, portalVecs.p1active, enterSpeed * 1.5);
+			MovePortal(p2ref, portalVecs.p2active, enterSpeed * 2);
+			MovePortal(p3ref, portalVecs.p3active, enterSpeed);
 		} else {
-			portal1Ref.current.position.z = MathUtils.lerp(
-				portal1Ref.current.position.z,
-				portalVecs.p1.z,
-				entrySpeed * 1.5
-			);
-			portal2Ref.current.position.z = MathUtils.lerp(
-				portal2Ref.current.position.z,
-				portalVecs.p2.z,
-				entrySpeed * 2
-			);
-			portal3Ref.current.position.z = MathUtils.lerp(
-				portal3Ref.current.position.z,
-				portalVecs.p3.z,
-				entrySpeed
-			);
+			MovePortal(p1ref, portalVecs.p1, exitSpeed * 1.5);
+			MovePortal(p2ref, portalVecs.p2, exitSpeed * 2);
+			MovePortal(p3ref, portalVecs.p3, exitSpeed);
 		}
-		// console.log(portal1Ref.current.position.z);
 	});
 	return (
 		<group ref={portalsRef} position={[0, 0, 0]}>
-			<group position={[-1.15, 0, -50]} rotation={[0, 0.5, 0]} ref={portal1Ref}>
+			<group position={[-1.15, 0, -50]} rotation={[0, 0.5, 0]} ref={p1ref}>
 				<Frame id="02" name="Film 2" author="Frederic Cartier" bg="#fff">
 					<Warehouse
 						position={[5, -1, -5]}
@@ -183,13 +152,13 @@ export default function PortalsOne() {
 					<ambientLight intensity={1} />
 				</Frame>
 			</group>
-			<group ref={portal2Ref}>
+			<group ref={p2ref}>
 				<Frame id="01" name="Film 1" author="Frederic Cartier" bg="#fff">
 					<SmallRoom position={[0, -1, 0]} />
 					<ambientLight intensity={1} />
 				</Frame>
 			</group>
-			<group position={[1.15, 0, 0.25]} rotation={[0, -0.5, 0]} ref={portal3Ref}>
+			<group position={[1.15, 0, 0.25]} rotation={[0, -0.5, 0]} ref={p3ref}>
 				<Frame id="03" name="Film 3" author="Frederic Cartier" bg="#fff">
 					<SmallRoom position={[0, -1, 0]} />
 					<ambientLight intensity={1} />
