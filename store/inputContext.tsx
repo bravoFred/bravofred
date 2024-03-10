@@ -9,6 +9,8 @@ const InputContext = createContext({
 	scrollSpeed: 0 as any,
 	prevSection: () => {},
 	nextSection: () => {},
+	gotoAboutMe: () => {},
+	gotoPortals: () => {},
 });
 export function InputContextProvider(props) {
 	// const scroll = useScroll();
@@ -58,6 +60,8 @@ export function InputContextProvider(props) {
 				scrollSpeed,
 				prevSection,
 				nextSection,
+				gotoAboutMe,
+				gotoPortals,
 			}}
 		>
 			{props.children}
