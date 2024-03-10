@@ -67,7 +67,7 @@ export default function Camera() {
 			if (point) {
 				// light.current.target.position.lerp(vec.set(point.x, point.y, point.z), 0.25);
 				target.current.x = MathUtils.lerp(target.current.x, point.x, speed);
-				target.current.y = MathUtils.lerp(target.current.y, point.y, speed);
+				target.current.y = MathUtils.lerp(target.current.y, point.y, speed * 2);
 				target.current.z = MathUtils.lerp(target.current.z, point.z, speed);
 				// lerp camera zoom
 				camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 1.5 : 3, zoomSpeed);
