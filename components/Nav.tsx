@@ -12,7 +12,7 @@ export default function Nav() {
 	const startTime = useRef(new Date().getTime());
 	const endTime = useRef(0);
 	const loadTime = useRef(0);
-	const { prevSection, nextSection, gotoAboutMe } = useContext(InputContextProvider);
+	const { prevSection, nextSection, goToHome } = useContext(InputContextProvider);
 
 	useEffect(() => {
 		if (!active) {
@@ -30,7 +30,7 @@ export default function Nav() {
 				style={{
 					color: theme === 'dark' ? 'white' : 'black',
 				}}
-				// onClick={gotoAboutMe}
+				onClick={goToHome}
 			>
 				FREDERIC CARTIER
 			</p>

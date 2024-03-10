@@ -11,6 +11,7 @@ const InputContext = createContext({
 	nextSection: () => {},
 	gotoAboutMe: () => {},
 	gotoPortals: () => {},
+	goToHome: () => {},
 });
 export function InputContextProvider(props) {
 	// const scroll = useScroll();
@@ -27,6 +28,11 @@ export function InputContextProvider(props) {
 	function gotoPortals() {
 		aboutMeActive.current = false;
 		portalsActive.current = true;
+	}
+	function goToHome() {
+		if (window.location.pathname === '/' && portalsActive.current) {
+			gotoAboutMe();
+		}
 	}
 	function prevSection() {
 		gotoAboutMe();
@@ -62,6 +68,7 @@ export function InputContextProvider(props) {
 				nextSection,
 				gotoAboutMe,
 				gotoPortals,
+				goToHome,
 			}}
 		>
 			{props.children}
