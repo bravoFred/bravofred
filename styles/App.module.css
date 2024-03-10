@@ -19,10 +19,11 @@ body {
 	/* border: 1px solid blue; */
 }
 .app * {
+	-webkit-tap-highlight-color: transparent;
+
 	font-family:
-		/* Helvetica Neue, */
-		Josefin Sans,
-		sans-serif !important;
+		Helvetica Neue,
+		/* Josefin Sans, */ sans-serif !important;
 }
 .main {
 	position: fixed;
@@ -42,6 +43,7 @@ body {
 	overflow-x: hidden;
 	overflow-y: hidden;
 	overscroll-behavior: none;
+	-webkit-tap-highlight-color: transparent;
 }
 .main h1,
 .main p {

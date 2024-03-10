@@ -21,7 +21,7 @@ export default function Nav() {
 	}, [active, progress, item, loaded, total, errors]);
 	// handle routing for nav
 	const [location, setLocation] = useLocation();
-	function goToHome() {
+	function clickHandler() {
 		// if in portals, exit portals
 		if (location !== '/') {
 			setLocation('/');
@@ -31,10 +31,6 @@ export default function Nav() {
 			aboutMeActive.current = true;
 		}
 	}
-	const clickHandler = () => {
-		goToHome();
-		// console.log('click');
-	};
 
 	return (
 		<nav className={styles.navLoaded}>

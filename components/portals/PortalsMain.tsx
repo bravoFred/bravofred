@@ -9,7 +9,6 @@ import {
 	Text,
 	CameraShake,
 } from '@react-three/drei';
-import { useRoute, useLocation } from 'wouter';
 import { easing, geometry } from 'maath';
 import { suspend } from 'suspend-react';
 import { useScroll } from '@react-three/drei';
