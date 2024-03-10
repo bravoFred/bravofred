@@ -94,11 +94,13 @@ export default function Camera() {
 		// 	target.current.y = MathUtils.lerp(target.current.y, point.y, 0.1);
 		// 	target.current.z = MathUtils.lerp(target.current.z, point.z, 0.1);
 		// }
-		camera.position.y = MathUtils.lerp(
-			camera.position.y,
-			Math.sin(scroll.offset) * 1 + 0.5,
-			0.1
-		);
+		// camera.position.y = MathUtils.lerp(
+		// 	camera.position.y,
+		// 	Math.sin(scroll.offset) * 1 + 0.5,
+		// 	0.1
+		// );
+		// console.log(camera.position.y);
+
 		ToggleCamFov(camera, mobile);
 		preventCamPosOutsideBounds(state);
 	});
