@@ -20,9 +20,7 @@ import { MathUtils } from 'three';
 import getUuid from 'uuid-by-string';
 const GOLDENRATIO = 1.61803398875;
 import dynamic from 'next/dynamic';
-const Scene = dynamic(() => import('../Kitchen').then((mod) => mod.Model), {
-	ssr: false,
-});
+
 export default function PortalsTwo({ images }) {
 	// https://codesandbox.io/p/sandbox/image-gallery-lx2h8?
 	const portalsRef = useRef<THREE.Group>();
@@ -137,7 +135,6 @@ function Frame({ url, c = new THREE.Color(), ...props }) {
 					<boxGeometry />
 					<meshBasicMaterial toneMapped={false} fog={false} />
 				</mesh>
-				<Scene position={[0, -1, -1]} />
 
 				<Image raycast={() => null} ref={image} position={[0, 0, 0.7]} url={url} />
 			</mesh>

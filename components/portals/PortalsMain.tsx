@@ -37,8 +37,8 @@ export default function PortalsCards() {
 			url: 'https://images.pexels.com/photos/20440355/pexels-photo-20440355/free-photo-of-a-photo-of-waves-crashing-into-the-ocean.jpeg',
 		},
 		// Back
-		// { position: [-0.8, 0, -0.6], rotation: [0, 0, 0], url: pexel(416430) },
-		// { position: [0.8, 0, -0.6], rotation: [0, 0, 0], url: pexel(310452) },
+		{ position: [-0.8, 0, -0.6], rotation: [0, 0, 0], url: pexel(416430) },
+		{ position: [0.8, 0, -0.6], rotation: [0, 0, 0], url: pexel(310452) },
 		// Left
 		// { position: [-1.75, 0, 0.25], rotation: [0, Math.PI / 2.5, 0], url: pexel(327482) },
 		// { position: [-2.15, 0, 1.5], rotation: [0, Math.PI / 2.5, 0], url: pexel(325185) },
