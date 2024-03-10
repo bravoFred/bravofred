@@ -129,37 +129,40 @@ export default function PortalsOne() {
 	const { pointer, controls } = useThree();
 	const entrySpeed = 0.1;
 	useFrame((state) => {
-		// scroll checks
-		if (scroll.offset > scrollSpeed.current) {
-			scrollDirection.current = 1;
-			scrolling.current = true;
-			// console.log('scrolling down');
-		} else if (scroll.offset < scrollSpeed.current) {
-			scrollDirection.current = -1;
-			scrolling.current = true;
-			// console.log('scrolling up');
-		}
-		if (scroll.offset === scrollSpeed.current) {
-			scrollDirection.current = 0;
-			scrolling.current = false;
-			// console.log('stopped scrolling');
-		}
-		scrollSpeed.current = scroll.offset;
-
-		// portal movement
+		// version 1
 		// portal1Ref.current.position.lerpVectors(portalVecs.p1, portalVecs.p1active, scroll.offset);
-		portal2Ref.current.position.lerpVectors(portalVecs.p2, portalVecs.p2active, scroll.offset);
-		portal3Ref.current.position.lerpVectors(portalVecs.p3, portalVecs.p3active, scroll.offset);
+		// portal2Ref.current.position.lerpVectors(portalVecs.p2, portalVecs.p2active, scroll.offset);
+		// portal3Ref.current.position.lerpVectors(portalVecs.p3, portalVecs.p3active, scroll.offset);
 		if (portalsActive.current) {
 			portal1Ref.current.position.z = MathUtils.lerp(
 				portal1Ref.current.position.z,
 				portalVecs.p1active.z,
+				entrySpeed * 1.5
+			);
+			portal2Ref.current.position.z = MathUtils.lerp(
+				portal2Ref.current.position.z,
+				portalVecs.p2active.z,
 				entrySpeed * 2
+			);
+			portal3Ref.current.position.z = MathUtils.lerp(
+				portal3Ref.current.position.z,
+				portalVecs.p3active.z,
+				entrySpeed
 			);
 		} else {
 			portal1Ref.current.position.z = MathUtils.lerp(
 				portal1Ref.current.position.z,
-				-50,
+				portalVecs.p1.z,
+				entrySpeed * 1.5
+			);
+			portal2Ref.current.position.z = MathUtils.lerp(
+				portal2Ref.current.position.z,
+				portalVecs.p2.z,
+				entrySpeed * 2
+			);
+			portal3Ref.current.position.z = MathUtils.lerp(
+				portal3Ref.current.position.z,
+				portalVecs.p3.z,
 				entrySpeed
 			);
 		}
