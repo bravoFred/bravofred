@@ -110,14 +110,7 @@ export default function PortalsOne() {
 	const [portal3vectorActive, setPortal3VectorActive] = useState(
 		new THREE.Vector3(1.15, 0, 0.25)
 	);
-	const [portalVecs, setPortalVecs] = useState<{
-		p1: THREE.Vector3;
-		p2: THREE.Vector3;
-		p3: THREE.Vector3;
-		p1active: THREE.Vector3;
-		p2active: THREE.Vector3;
-		p3active: THREE.Vector3;
-	}>({
+	const [portalVecs, setPortalVecs] = useState({
 		p1: new THREE.Vector3(-1, 0, -75),
 		p2: new THREE.Vector3(0, 0, -50),
 		p3: new THREE.Vector3(1, 0, -100),
