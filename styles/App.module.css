@@ -23,7 +23,8 @@ body {
 
 	font-family:
 		Helvetica Neue,
-		/* Josefin Sans, */ sans-serif !important;
+		sans-serif;
+	font-weight: 700;
 }
 .main {
 	position: fixed;
