@@ -63,10 +63,10 @@ export default function Camera() {
 	const scroll = useScroll();
 	useFrame((state) => {
 		const camera = state.camera as THREE.PerspectiveCamera;
+		const speed = mobile ? 0.05 : 0.02;
+		const zoomSpeed = mobile ? 0.05 : 0.1;
 		if (aboutMeActive.current) {
 			camera.lookAt(target.current.x, target.current.y, target.current.z);
-			const speed = mobile ? 0.05 : 0.02;
-			const zoomSpeed = mobile ? 0.05 : 0.1;
 			if (activeObject.current !== null) {
 				const { object, point } = activeObject.current;
 				if (point)
@@ -83,6 +83,9 @@ export default function Camera() {
 				camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomSpeed);
 			}
 			camera.updateProjectionMatrix();
+		}
+		if (portalsActive.current) {
+			camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomSpeed);
 		}
 		// }
 
