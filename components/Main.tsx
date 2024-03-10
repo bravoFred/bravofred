@@ -14,6 +14,8 @@ import Lighting from './Lighting';
 import Performance from './Performance';
 import ScrollController from './ScrollController';
 import Raycaster from './Raycaster';
+import BackgroundColor from './BackgroundColor';
+import Fog from './Fog';
 import UserContextProvider from '../store/userContext';
 import Mouse from './Mouse';
 
@@ -81,6 +83,8 @@ export default function Main() {
 						<Floor />
 						<Raycaster />
 						<Lighting />
+						{/* <BackgroundColor /> */}
+						{/* <Fog /> */}
 					</ScrollControls>
 
 					<Performance />
