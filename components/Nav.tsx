@@ -2,35 +2,39 @@ import styles from './Nav.module.scss';
 import { useProgress } from '@react-three/drei';
 import { useRef, useEffect, useState, use, useContext } from 'react';
 import UserContextProvider from '../store/userContext';
+import { useRoute, useLocation } from 'wouter';
+import InputContextProvider from '../store/inputContext';
+
 export default function Nav() {
 	const { theme, setTheme } = useContext(UserContextProvider);
+	const { activeObject, portalsActive, aboutMeActive } = useContext(InputContextProvider);
 	const { active, progress, errors, item, loaded, total } = useProgress();
 	const startTime = useRef(new Date().getTime());
 	const endTime = useRef(0);
 	const loadTime = useRef(0);
-	// console.log(active);
 
 	useEffect(() => {
-		// console.log(item);
-		// console.log(progress);
-		// console.log(total);
-
 		if (!active) {
 			endTime.current = new Date().getTime();
 			loadTime.current = (endTime.current - startTime.current) / 1000;
-			// setLoadTime(loadTime.current.toFixed(1));
 		}
-		// console.log(active);
-
-		// console.log(loadTime.current.toFixed(1) + 's');
 	}, [active, progress, item, loaded, total, errors]);
-	// set timer
-	const [done, setDone] = useState(false);
-	useEffect(() => {
-		setTimeout(() => {
-			setDone(true);
-		}, 500);
-	}, []);
+	// handle routing for nav
+	const [location, setLocation] = useLocation();
+	function goToHome() {
+		// if in portals, exit portals
+		if (location !== '/') {
+			setLocation('/');
+		} else {
+			// if not in portals, go to about me
+			portalsActive.current = false;
+			aboutMeActive.current = true;
+		}
+	}
+	const clickHandler = () => {
+		goToHome();
+		// console.log('click');
+	};
 
 	return (
 		<nav className={styles.navLoaded}>
@@ -40,6 +44,7 @@ export default function Nav() {
 				style={{
 					color: theme === 'dark' ? 'white' : 'black',
 				}}
+				onClick={clickHandler}
 			>
 				FREDERIC CARTIER
 			</p>
