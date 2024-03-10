@@ -80,7 +80,7 @@ export default function Camera() {
 			target.current.x = MathUtils.lerp(target.current.x, 0, speed);
 			target.current.y = MathUtils.lerp(target.current.y, 1, speed);
 			target.current.z = MathUtils.lerp(target.current.z, 0, speed);
-			camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomSpeed / 2);
+			camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomSpeed / 5);
 			camera.updateProjectionMatrix();
 		}
 		// }

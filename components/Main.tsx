@@ -67,7 +67,7 @@ export default function Main() {
 						near: 0.1,
 						far: 45,
 						zoom: 1,
-						position: new THREE.Vector3(0, 1.5, 5),
+						position: new THREE.Vector3(0, 1, 5),
 					}}
 				>
 					{/* <GridGround theme={theme} /> */}
