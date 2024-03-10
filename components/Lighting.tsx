@@ -31,6 +31,8 @@ export default function Lighting() {
 			// const {point } = state.raycaster.intersectObject(activeObject.current);
 			// check if raycaster obj is empty
 			// if (activeObject.current) {
+			if (activeObject.current === null) return;
+
 			const { object, point } = activeObject.current;
 			if (point) light.current.target.position.lerp(vec.set(point.x, point.y, point.z), 0.25);
 			light.current.target.updateMatrixWorld();

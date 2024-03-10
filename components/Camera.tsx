@@ -59,6 +59,31 @@ export default function Camera() {
 		const camera = state.camera as THREE.PerspectiveCamera;
 
 		camera.lookAt(target.current.x, target.current.y, target.current.z);
+		// if (activeObject.current === null) return;
+		const speed = 0.015;
+		if (activeObject.current !== null) {
+			const { object, point } = activeObject.current;
+			if (point) {
+				// light.current.target.position.lerp(vec.set(point.x, point.y, point.z), 0.25);
+				target.current.x = MathUtils.lerp(target.current.x, point.x, speed);
+				target.current.y = MathUtils.lerp(target.current.y, point.y, speed);
+				target.current.z = MathUtils.lerp(target.current.z, point.z, speed);
+				// lerp camera zoom
+				camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 1.5 : 3, 0.05);
+				// console.log(camera.zoom);
+				camera.updateProjectionMatrix();
+			}
+		} else {
+			// console.log(camera.zoom);
+			// reset zoom
+			target.current.x = MathUtils.lerp(target.current.x, 0, speed);
+			target.current.y = MathUtils.lerp(target.current.y, 1, speed);
+			target.current.z = MathUtils.lerp(target.current.z, 0, speed);
+			camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, 0.05);
+			camera.updateProjectionMatrix();
+		}
+		// }
+
 		// camera.lookAt(activeObject.current.object.position);
 		// if (activeObject.current.object && activeObject.current.point) {
 		// 	const { object, point } = activeObject.current;

@@ -67,7 +67,9 @@ export default function AboutMe() {
 		vimeo: 'https://www.vimeo.com/',
 		youtube: 'https://www.youtube.com/',
 	};
-
+	const pointerMissed = (e) => {
+		console.log('missed');
+	};
 	return (
 		<group position={[0, 0.75, 0]} ref={ref}>
 			<Float
@@ -87,8 +89,9 @@ export default function AboutMe() {
 							document.body.style.cursor = 'auto';
 						}}
 						onClick={(e) => {
-							window.open(urls.instagram, '_blank');
+							// window.open(urls.instagram, '_blank');
 						}}
+						onPointerMissed={(e) => pointerMissed(e)}
 					/>
 				</group>
 			</Float>
@@ -110,8 +113,9 @@ export default function AboutMe() {
 						document.body.style.cursor = 'auto';
 					}}
 					onClick={(e) => {
-						window.open(urls.vimeo, '_blank');
+						// window.open(urls.vimeo, '_blank');
 					}}
+					onPointerMissed={(e) => pointerMissed(e)}
 				>
 					<Icons />
 				</group>
@@ -134,8 +138,9 @@ export default function AboutMe() {
 						document.body.style.cursor = 'auto';
 					}}
 					onClick={(e) => {
-						window.open(urls.youtube, '_blank');
+						// window.open(urls.youtube, '_blank');
 					}}
+					onPointerMissed={(e) => pointerMissed(e)}
 				>
 					<Icons />
 				</group>
