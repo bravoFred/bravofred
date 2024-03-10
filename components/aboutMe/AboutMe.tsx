@@ -16,7 +16,7 @@ const Icons = dynamic(() => import('../../models/4096/Icons').then((mod) => mod.
 
 export default function AboutMe() {
 	const { mobile } = useContext(UserContextProvider);
-	const { aboutMeActive } = useContext(InputContextProvider);
+	const { aboutMeActive, portalsActive } = useContext(InputContextProvider);
 	const ref = useRef<THREE.Group>();
 	const scroll = useScroll();
 	const r1 = scroll.range(0 / 4, 1 / 4);
@@ -31,9 +31,10 @@ export default function AboutMe() {
 	const [icon2Hovered, setIcon2Hovered] = useState(false);
 	const [icon3Hovered, setIcon3Hovered] = useState(false);
 
-	const enterSpeed = 0.1;
+	const enterSpeed = 0.2;
+
 	useFrame(({ gl, scene, camera, clock, pointer }) => {
-		if (scroll.offset === 0) {
+		if (scroll.offset === 0 && aboutMeActive.current) {
 			icon1Ref.current.position.z = MathUtils.lerp(
 				icon1Ref.current.position.z,
 				0,
@@ -50,13 +51,32 @@ export default function AboutMe() {
 				enterSpeed - 0.1
 			);
 		}
+		if (portalsActive.current) {
+			icon1Ref.current.position.z = MathUtils.lerp(icon1Ref.current.position.z, 20, 0.025);
+			icon2Ref.current.position.z = MathUtils.lerp(icon2Ref.current.position.z, 20, 0.025);
+			icon3Ref.current.position.z = MathUtils.lerp(icon3Ref.current.position.z, 20, 0.025);
+		}
 
 		const iconR1 = scroll.range(0 / 10, 0.25 / 10); // this is first one tenth of the page
 		const iconR2 = scroll.range(0.25 / 10, 0.5 / 10); // this is the second one tenth of the page
 		const iconR3 = scroll.range(0.5 / 10, 0.75 / 10);
-		icon1Ref.current.position.z = MathUtils.lerp(icon1Ref.current.position.z, iconR1 * 10, 0.1);
-		icon2Ref.current.position.z = MathUtils.lerp(icon2Ref.current.position.z, iconR2 * 10, 0.1);
-		icon3Ref.current.position.z = MathUtils.lerp(icon3Ref.current.position.z, iconR3 * 10, 0.1);
+		// if (scroll.offset < 0.2) {
+		// 	icon1Ref.current.position.z = MathUtils.lerp(
+		// 		icon1Ref.current.position.z,
+		// 		iconR1 * 10,
+		// 		0.1
+		// 	);
+		// 	icon2Ref.current.position.z = MathUtils.lerp(
+		// 		icon2Ref.current.position.z,
+		// 		iconR2 * 10,
+		// 		0.1
+		// 	);
+		// 	icon3Ref.current.position.z = MathUtils.lerp(
+		// 		icon3Ref.current.position.z,
+		// 		iconR3 * 10,
+		// 		0.1
+		// 	);
+		// }
 	});
 	const floatIntensity = 1;
 	const rotationIntensity = 2;
