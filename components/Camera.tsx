@@ -78,20 +78,24 @@ export default function Camera() {
 				const { point } = activeObject.current;
 				if (point) {
 					lerpVecs(target.current, point, speed);
-					camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 1.5 : 3, zoomSpeed);
+					// camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 1.5 : 3, zoomSpeed);
 				}
 			} else {
 				lerpVecs(target.current, camVecs.current.target, speed);
-				camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomSpeed);
+				// camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomSpeed);
 			}
 		}
 
 		if (portalsActive.current) {
+			camera.lookAt(target.current.x, target.current.y, target.current.z);
 			camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomSpeed);
 			camera.position.y = MathUtils.lerp(camera.position.y, scroll.offset * 1.5, 0.1); // moves cam up and down
+			target.current.x = MathUtils.lerp(target.current.x, 0, speed);
+			target.current.y = MathUtils.lerp(target.current.y, 1, speed);
+			target.current.z = MathUtils.lerp(target.current.z, 0, speed);
 		}
 
-		camera.updateProjectionMatrix();
+		// camera.updateProjectionMatrix();
 		ToggleCamFov(camera, mobile);
 		preventCamPosOutsideBounds(state);
 	});

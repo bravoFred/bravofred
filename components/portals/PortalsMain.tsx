@@ -50,8 +50,8 @@ export default function PortalsCards() {
 	];
 	return (
 		<>
-			{/* <PortalsOne /> */}
-			<PortalsTwo images={images} />
+			<PortalsOne />
+			{/* <PortalsTwo images={images} /> */}
 		</>
 	);
 }

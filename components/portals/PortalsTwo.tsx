@@ -29,7 +29,7 @@ export default function PortalsTwo({ images }) {
 	useFrame((state, delta) => {
 		portalsRef.current.position.lerpVectors(
 			new THREE.Vector3(0, 0, -50),
-			new THREE.Vector3(0, 0, 0),
+			new THREE.Vector3(0, 0, -4),
 			scroll.offset
 		);
 	});

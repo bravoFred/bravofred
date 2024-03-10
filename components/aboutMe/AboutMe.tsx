@@ -37,7 +37,8 @@ export default function AboutMe() {
 	const enterSpeed = 0.2;
 
 	useFrame(({ gl, scene, camera, clock, pointer }) => {
-		if (scroll.offset === 0 && aboutMeActive.current) {
+		// if (scroll.offset === 0 && aboutMeActive.current) {
+		if (aboutMeActive.current) {
 			icon1Ref.current.position.z = MathUtils.lerp(
 				icon1Ref.current.position.z,
 				0,
