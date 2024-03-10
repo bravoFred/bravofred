@@ -39,4 +39,4 @@ export function Model(props: JSX.IntrinsicElements['group']) {
 	);
 }
 
-useGLTF.preload('/../../models/4096/models/4096/icons-transformed.glb');
+useGLTF.preload('/../../models/4096/icons-transformed.glb');
