@@ -67,8 +67,18 @@ export default function AboutMe() {
 		vimeo: 'https://www.vimeo.com/',
 		youtube: 'https://www.youtube.com/',
 	};
-	const pointerMissed = (e) => {
-		console.log('missed');
+	const pointerMissed = (e) => {};
+	const openLink = (url) => {
+		console.log(`opening link: ${url}`);
+		window.open(url, '_blank');
+	};
+	const clickHandler = (e, url) => {
+		if (mobile) return;
+		openLink(url);
+	};
+	const doubleClickHandler = (e, url) => {
+		if (!mobile) return;
+		openLink(url);
 	};
 	return (
 		<group position={[0, 0.75, 0]} ref={ref}>
@@ -88,9 +98,8 @@ export default function AboutMe() {
 							setIcon1Hovered(false);
 							document.body.style.cursor = 'auto';
 						}}
-						onClick={(e) => {
-							// window.open(urls.instagram, '_blank');
-						}}
+						onClick={(e) => clickHandler(e, urls.instagram)}
+						onDoubleClick={(e) => doubleClickHandler(e, urls.instagram)}
 						onPointerMissed={(e) => pointerMissed(e)}
 					/>
 				</group>
@@ -112,9 +121,8 @@ export default function AboutMe() {
 						setIcon2Hovered(false);
 						document.body.style.cursor = 'auto';
 					}}
-					onClick={(e) => {
-						// window.open(urls.vimeo, '_blank');
-					}}
+					onClick={(e) => clickHandler(e, urls.vimeo)}
+					onDoubleClick={(e) => doubleClickHandler(e, urls.vimeo)}
 					onPointerMissed={(e) => pointerMissed(e)}
 				>
 					<Icons />
@@ -137,9 +145,8 @@ export default function AboutMe() {
 						setIcon3Hovered(false);
 						document.body.style.cursor = 'auto';
 					}}
-					onClick={(e) => {
-						// window.open(urls.youtube, '_blank');
-					}}
+					onClick={(e) => clickHandler(e, urls.youtube)}
+					onDoubleClick={(e) => doubleClickHandler(e, urls.youtube)}
 					onPointerMissed={(e) => pointerMissed(e)}
 				>
 					<Icons />
