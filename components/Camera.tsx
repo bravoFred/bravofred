@@ -88,8 +88,8 @@ export default function Camera() {
 
 		if (portalsActive.current) {
 			camera.lookAt(target.current.x, target.current.y, target.current.z);
-			camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomInSpeed);
-			camera.position.y = MathUtils.lerp(camera.position.y, scroll.offset * 1.5, 0.1); // moves cam up and down
+			camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, 0.1);
+			// camera.position.y = MathUtils.lerp(camera.position.y, 1, 0.1); // moves cam up and down
 			target.current.x = MathUtils.lerp(target.current.x, 0, speed);
 			target.current.y = MathUtils.lerp(target.current.y, 1, speed);
 			target.current.z = MathUtils.lerp(target.current.z, 0, speed);
