@@ -31,11 +31,14 @@ export default function Lighting() {
 			// const {point } = state.raycaster.intersectObject(activeObject.current);
 			// check if raycaster obj is empty
 			// if (activeObject.current) {
-			light.current.target.position.lerp(vec.set(0, 0, 0), 0.25); // default
-			if (activeObject.current === null) return;
-			const { object, point } = activeObject.current;
-			light.current.target.position.lerp(vec.set(point.x, point.y, point.z), 0.25); // point at active object
-			light.current.target.updateMatrixWorld();
+			// light.current.target.position.lerp(vec.set(0, 0, 0), 0.25); // default
+			if (activeObject.current !== null) {
+				const { object, point } = activeObject.current;
+				light.current.target.position.lerp(vec.set(point.x, point.y, point.z), 0.25); // point at active object
+				light.current.target.updateMatrixWorld();
+			} else {
+				light.current.target.position.lerp(vec.set(0, 0, 0), 0.1); // default
+			}
 			// }
 		});
 		return (
