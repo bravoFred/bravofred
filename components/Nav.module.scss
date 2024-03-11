@@ -89,11 +89,11 @@ $speed: 1s;
 	cursor: pointer;
 	opacity: 1;
 	transition: all $speed cubic-bezier(0.075, 0.82, 0.165, 1);
-	&:hover {
-		letter-spacing: 0.2rem;
-		// color: #03e9f4;
-		-webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
-	}
+	// &:hover {
+	// 	letter-spacing: 0.2rem;
+	// 	// color: #03e9f4;
+	// 	-webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+	// }
 }
 .nav_link:nth-child(1) {
 	animation: fadeIn 1.5s ease-in-out;
@@ -107,6 +107,15 @@ $speed: 1s;
 	width: 100%;
 	// font-weight: 300;
 	// color: #fff;
+}
+@media (min-width: 768px) {
+	.nav_link {
+		&:hover {
+			letter-spacing: 0.2rem;
+			// color: #03e9f4;
+			-webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+		}
+	}
 }
 @media (max-width: 768px) {
 	.nav_link {
