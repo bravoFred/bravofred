@@ -180,6 +180,7 @@ export default function AboutMe() {
 				>
 					<Icons />
 				</group>
+				{/* <NavCam scale={0.5} position={[0, 0.5, 0]} /> */}
 			</Float>
 			{/* <Float>
 				<Icons scale={[1, 1, 1]} position={[1, 1, 2]} />

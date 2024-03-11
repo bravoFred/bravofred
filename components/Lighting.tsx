@@ -4,7 +4,7 @@ import { use, useRef } from 'react';
 import { useFrame, extend, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import dynamic from 'next/dynamic';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { easing, geometry } from 'maath';
 import { MathUtils } from 'three';
 import UserContextProvider from '../store/userContext';
@@ -15,7 +15,10 @@ export default function Lighting() {
 	const { mobile } = useContext(UserContextProvider);
 	const { activeObject } = useContext(InputContextProvider);
 
-	const shadowMapSize = mobile ? 1024 : 4096;
+	const [shadowMapSize, setShadowMapSize] = useState(mobile ? 1024 : 4096);
+	useEffect(() => {
+		setShadowMapSize(mobile ? 1024 : 4096);
+	}, [mobile]);
 	function MovingSpot({ vec = new THREE.Vector3(0, 10, 0), ...props }) {
 		const light = useRef(null!);
 		const viewport = useThree((state) => state.viewport);
@@ -43,13 +46,13 @@ export default function Lighting() {
 			/>
 		);
 	}
-	const sideLightIntensity = 1;
+	const sideLightIntensity = 2;
 	return (
 		<group>
 			<MovingSpot position={[0, 2.5, 1.5]} />
 			<directionalLight
 				position={[0, 2.5, 1.5]}
-				intensity={0.5}
+				intensity={1}
 				castShadow
 				shadow-mapSize-width={shadowMapSize}
 				shadow-mapSize-height={shadowMapSize}

@@ -108,7 +108,7 @@ function Frame({ id, name, author, bg, width = 1, height = 1.61803398875, childr
 
 export default function PortalsOne() {
 	const { mobile } = useContext(UserContextProvider);
-	const { portalsActive } = useContext(InputContextProvider);
+	const { portalsActive, aboutMeActive } = useContext(InputContextProvider);
 
 	const [portal2vector, setPortal2Vector] = useState(new THREE.Vector3(0, 0, -50));
 	const [portal3vector, setPortal3Vector] = useState(new THREE.Vector3(1, 0, -100));
@@ -136,14 +136,14 @@ export default function PortalsOne() {
 	const exitSpeed = 0.1;
 	const miniRef = useRef<THREE.Group>();
 	useFrame((state) => {
-		if (portalsActive.current) {
-			MoveGroup(p1ref, portalVecs.p1active, enterSpeed * 1.5);
-			MoveGroup(p2ref, portalVecs.p2active, enterSpeed * 2);
-			MoveGroup(p3ref, portalVecs.p3active, enterSpeed);
-		} else {
+		if (aboutMeActive.current) {
 			MoveGroup(p1ref, portalVecs.p1, exitSpeed * 1.5);
 			MoveGroup(p2ref, portalVecs.p2, exitSpeed * 2);
 			MoveGroup(p3ref, portalVecs.p3, exitSpeed);
+		} else {
+			MoveGroup(p1ref, portalVecs.p1active, enterSpeed * 1.5);
+			MoveGroup(p2ref, portalVecs.p2active, enterSpeed * 2);
+			MoveGroup(p3ref, portalVecs.p3active, enterSpeed);
 		}
 		// if (!mobile) {
 		// 	// desktop
@@ -161,7 +161,7 @@ export default function PortalsOne() {
 	return (
 		<group ref={portalsRef} position={[0, 0, 0]}>
 			<group position={[-1.15, 0, -50]} rotation={[0, 0.5, 0]} ref={p1ref}>
-				<Frame id="02" name="Film 2" author="Frederic Cartier" bg="#fff">
+				<Frame id="01" name="Film 1" author="Frederic Cartier" bg="#fff">
 					<Warehouse
 						position={[5, -1, -5]}
 						rotation={[
@@ -174,7 +174,7 @@ export default function PortalsOne() {
 				</Frame>
 			</group>
 			<group ref={p2ref}>
-				<Frame id="01" name="Film 1" author="Frederic Cartier" bg="#fff">
+				<Frame id="02" name="Film 2" author="Frederic Cartier" bg="#fff">
 					<SmallRoom position={[0, -1, 0]} />
 					<ambientLight intensity={1} />
 				</Frame>

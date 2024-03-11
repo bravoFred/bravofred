@@ -79,7 +79,7 @@ export default function Main() {
 				>
 					{/* <GridGround theme={theme} /> */}
 					<color args={[theme === 'light' ? '#fff' : '#000']} attach="background" />
-					<fog attach="fog" args={[theme === 'light' ? '#fff' : '#000', 0, 15]} />
+					{/* <fog attach="fog" args={[theme === 'light' ? '#fff' : '#000', 0, 0]} /> */}
 					{/* https://codesandbox.io/p/sandbox/m1-scrollcontrols-4m0d0 */}
 					<ScrollControls pages={4}>
 						<AboutMe />
@@ -91,7 +91,7 @@ export default function Main() {
 						<Raycaster />
 						<Lighting />
 						{/* <BackgroundColor /> */}
-						{/* <Fog /> */}
+						<Fog />
 					</ScrollControls>
 					{/* <Billboard
 						follow={true}

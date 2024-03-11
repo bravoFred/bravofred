@@ -17,17 +17,20 @@ export default function Fog(props: any) {
 	}
 
 	const fogRef = useRef(null!);
-	const changeSpeed = 0.1;
 	const darkFog = new THREE.Color('#000');
 	const lightFog = new THREE.Color('#ffffff');
 	const scroll = useScroll();
-
+	const fogFar = 15;
+	const changeSpeed = 0.025;
 	useFrame((state, delta) => {
-		if (scroll.offset < 0.5) {
-			LerpColor(fogRef.current.color, darkFog, changeSpeed);
-		} else {
-			LerpColor(fogRef.current.color, lightFog, changeSpeed);
-		}
+		LerpFogDistanceToTargetDistance(fogRef.current.far, fogFar, changeSpeed);
+		// update fog distance
+		// fogRef.current.far = 15;
+		// if (scroll.offset < 0.5) {
+		// 	LerpColor(fogRef.current.color, darkFog, changeSpeed);
+		// } else {
+		// 	LerpColor(fogRef.current.color, lightFog, changeSpeed);
+		// }
 	});
-	return <fog ref={fogRef} attach="fog" args={['#000', 0, 15]} />;
+	return <fog ref={fogRef} attach="fog" args={['#000', 0, 0]} />;
 }
