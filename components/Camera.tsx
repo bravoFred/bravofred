@@ -18,21 +18,6 @@ function lerpCamTarget(
 	state.controls.target.z = MathUtils.lerp(state.controls.target.z, target.z, speed / 3);
 }
 
-function focusCam(
-	state: { camera?: any; controls: any },
-	cam: { camPos: number[]; speed: number[]; camTarget: number[] },
-	clickTarget: any,
-	delta?: any
-) {
-	state.camera.position.x = MathUtils.lerp(state.camera.position.x, cam.camPos[0], cam.speed[0]);
-	// state.camera.position.x = easing.damp(state.camera.position.x, cam.camPos[0], 0.1, delta); // arg1: current, arg2: target, arg3: speed, arg4: delta
-	state.camera.position.y = MathUtils.lerp(state.camera.position.y, cam.camPos[1], cam.speed[1]);
-	state.camera.position.z = MathUtils.lerp(state.camera.position.z, cam.camPos[2], cam.speed[2]);
-	const vec = new THREE.Vector3();
-	if (state.controls)
-		lerpCamTarget(state, vec.set(cam.camTarget[0], cam.camTarget[1], cam.camTarget[2]), 0.05); // posters
-	// lerpCamTarget(state, clickTarget, 0.05); // this is auto to click
-}
 function preventCamPosOutsideBounds(state: {
 	camera: { position: { x: number; z: number; y: number } };
 }) {
@@ -66,14 +51,13 @@ export default function Camera() {
 		vec1.y = MathUtils.lerp(vec1.y, vec2.y, speed);
 		vec1.z = MathUtils.lerp(vec1.z, vec2.z, speed);
 	}
+	const speed = mobile ? 0.05 : 0.02;
+	const zoomInSpeed = mobile ? 0.05 : 0.1;
+	const zoomOutSpeed = mobile ? 0.1 : 0.05;
 	useFrame((state) => {
 		const camera = state.camera as THREE.PerspectiveCamera;
-		const speed = mobile ? 0.05 : 0.02;
-		const zoomInSpeed = mobile ? 0.05 : 0.1;
-		const zoomOutSpeed = mobile ? 0.1 : 0.05;
+		camera.lookAt(target.current.x, target.current.y, target.current.z);
 		if (aboutMeActive.current) {
-			camera.lookAt(target.current.x, target.current.y, target.current.z);
-			camera.position.y = MathUtils.lerp(camera.position.y, scroll.offset, 0.1);
 			if (activeObject.current !== null) {
 				const { point } = activeObject.current;
 				if (point) {
@@ -85,16 +69,10 @@ export default function Camera() {
 				camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomOutSpeed);
 			}
 		}
-
 		if (portalsActive.current) {
-			// camera.lookAt(target.current.x, target.current.y, target.current.z);
-			// camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, 0.1);
-			// target.current.x = MathUtils.lerp(target.current.x, 0, speed);
-			// target.current.y = MathUtils.lerp(target.current.y, 1, speed);
-			// target.current.z = MathUtils.lerp(target.current.z, 0, speed);
-			// camera.position.y = MathUtils.lerp(camera.position.y, 1, 0.1); // moves cam up and down
+			// lerpVecs(target.current, camVecs.current.camTarget, speed);
+			// camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomOutSpeed);
 		}
-		// console.log(scroll.offset);
 
 		camera.updateProjectionMatrix();
 		ToggleCamFov(camera, mobile);
