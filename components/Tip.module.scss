@@ -1,0 +1,17 @@
+.tip {
+	position: fixed;
+	bottom: 1.5rem;
+	color: white;
+	z-index: 1000;
+	user-select: none;
+	pointer-events: none;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	font-weight: 300;
+	font-size: 1rem;
+	font-size: 14px;
+	letter-spacing: 0.1rem;
+	display: none;
+}

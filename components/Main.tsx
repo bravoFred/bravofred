@@ -25,6 +25,7 @@ import Fog from './Fog';
 import UserContextProvider from '../store/userContext';
 import Mouse from './Mouse';
 import dynamic from 'next/dynamic';
+import Tip from './Tip';
 const SmallRoom = dynamic(
 	() => import('../models/4096/PortalInteriorJoined').then((mod) => mod.Model),
 	{
@@ -60,6 +61,7 @@ export default function Main() {
 			{/* <main className={`${styles.main}`}>
 			</main> */}
 			<Nav />
+			<Tip />
 			{/* <ScrollNavButtons prev={prevSection} next={nextSection} /> */}
 			<ScrollNavButtons />
 			<Suspense fallback={null}>
