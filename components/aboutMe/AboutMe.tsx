@@ -7,6 +7,7 @@ import dynamic from 'next/dynamic';
 import { useState, useContext } from 'react';
 import { easing, geometry } from 'maath';
 import { MathUtils } from 'three';
+import { MoveGroup } from '../AnimationFunctions';
 import UserContextProvider from '../../store/userContext';
 import InputContextProvider from '../../store/inputContext';
 
@@ -33,54 +34,43 @@ export default function AboutMe() {
 	const [icon1Hovered, setIcon1Hovered] = useState(false);
 	const [icon2Hovered, setIcon2Hovered] = useState(false);
 	const [icon3Hovered, setIcon3Hovered] = useState(false);
+	const [exitSpeed, setExitSpeed] = useState(0.025);
+	const [icon1, setIcon1] = useState({
+		active: new THREE.Vector3(0, 0, 0),
+		hidden: new THREE.Vector3(0, 0, 20),
+		enterSpeed: 0.2,
+		exitSpeed: 0.025,
+	});
+	const [icon2, setIcon2] = useState({
+		active: new THREE.Vector3(0, 0, 0),
+		hidden: new THREE.Vector3(0, 0, 25),
+		enterSpeed: 0.15,
+		exitSpeed: 0.025,
+	});
+	const [icon3, setIcon3] = useState({
+		active: new THREE.Vector3(0, 0, 0),
+		hidden: new THREE.Vector3(0, 0, 30),
+		enterSpeed: 0.1,
+		exitSpeed: 0.025,
+	});
 
 	const enterSpeed = 0.2;
 
 	useFrame(({ gl, scene, camera, clock, pointer }) => {
-		// if (scroll.offset === 0 && aboutMeActive.current) {
-		if (aboutMeActive.current) {
-			icon1Ref.current.position.z = MathUtils.lerp(
-				icon1Ref.current.position.z,
-				0,
-				enterSpeed
-			);
-			icon2Ref.current.position.z = MathUtils.lerp(
-				icon2Ref.current.position.z,
-				0,
-				enterSpeed - 0.05
-			);
-			icon3Ref.current.position.z = MathUtils.lerp(
-				icon3Ref.current.position.z,
-				0,
-				enterSpeed - 0.1
-			);
-		}
-		if (portalsActive.current) {
-			icon1Ref.current.position.z = MathUtils.lerp(icon1Ref.current.position.z, 20, 0.025);
-			icon2Ref.current.position.z = MathUtils.lerp(icon2Ref.current.position.z, 25, 0.025);
-			icon3Ref.current.position.z = MathUtils.lerp(icon3Ref.current.position.z, 30, 0.025);
-		}
-
 		const iconR1 = scroll.range(0 / 10, 0.25 / 10); // this is first one tenth of the page
 		const iconR2 = scroll.range(0.25 / 10, 0.5 / 10); // this is the second one tenth of the page
 		const iconR3 = scroll.range(0.5 / 10, 0.75 / 10);
-		// if (scroll.offset < 0.2) {
-		// 	icon1Ref.current.position.z = MathUtils.lerp(
-		// 		icon1Ref.current.position.z,
-		// 		iconR1 * 10,
-		// 		0.1
-		// 	);
-		// 	icon2Ref.current.position.z = MathUtils.lerp(
-		// 		icon2Ref.current.position.z,
-		// 		iconR2 * 10,
-		// 		0.1
-		// 	);
-		// 	icon3Ref.current.position.z = MathUtils.lerp(
-		// 		icon3Ref.current.position.z,
-		// 		iconR3 * 10,
-		// 		0.1
-		// 	);
-		// }
+
+		if (aboutMeActive.current) {
+			MoveGroup(icon1Ref, icon1.active, icon1.enterSpeed);
+			MoveGroup(icon2Ref, icon2.active, icon2.enterSpeed);
+			MoveGroup(icon3Ref, icon3.active, icon3.enterSpeed);
+		}
+		if (portalsActive.current) {
+			MoveGroup(icon1Ref, icon1.hidden, icon1.exitSpeed);
+			MoveGroup(icon2Ref, icon2.hidden, icon2.exitSpeed);
+			MoveGroup(icon3Ref, icon3.hidden, icon3.exitSpeed);
+		}
 	});
 	const floatIntensity = 1;
 	const rotationIntensity = 2;
