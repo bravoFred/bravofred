@@ -145,18 +145,6 @@ export default function PortalsOne() {
 			MoveGroup(p2ref, portalVecs.p2active, enterSpeed * 2);
 			MoveGroup(p3ref, portalVecs.p3active, enterSpeed);
 		}
-		// if (!mobile) {
-		// 	// desktop
-		// 	miniRef.current.position.y = -state.viewport.height / 2 + 1.45; // move to bottom of screen space, desktop
-		// 	miniRef.current.position.x = state.viewport.width / 2 - 1; // move to right of screen space desktop
-		// } else {
-		// 	// mobile
-		// 	miniRef.current.position.y = -state.viewport.height / 2 + 2; // move to bottom of screen space, mobile
-		// 	miniRef.current.position.x = state.viewport.width / 2 - 0.5; // move to right of screen space mobile
-		// 	// move to in front of camera
-		// 	miniRef.current.position.z = state.camera.position.z - 5;
-		// }
-		// miniRef.current.lookAt(state.camera.position); // look at camera
 	});
 	return (
 		<group ref={portalsRef} position={[0, 0, 0]}>
