@@ -17,7 +17,15 @@ const Icons = dynamic(() => import('../../models/4096/Icons').then((mod) => mod.
 const NavCam = dynamic(() => import('../../models/4096/Cam').then((mod) => mod.Model), {
 	ssr: false,
 });
-
+function spinGroupAround(ref, speed) {
+	const group = ref.current;
+	const groupCurrentRotation = group.rotation.y;
+	// console.log(groupCurrentRotation);
+	// spin the group around the y-axis one time
+	// if (groupCurrentRotation > Math.PI * 4) {
+	group.rotation.y = groupCurrentRotation - Math.PI * 4;
+	// }
+}
 export default function AboutMe() {
 	const { mobile } = useContext(UserContextProvider);
 	const { aboutMeActive, portalsActive, scrolling } = useContext(InputContextProvider);

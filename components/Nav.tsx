@@ -5,11 +5,22 @@ import UserContextProvider from '../store/userContext';
 import { useRoute, useLocation } from 'wouter';
 import InputContextProvider from '../store/inputContext';
 import { useFrame } from '@react-three/fiber';
+import { useRouter } from 'next/router';
 
 export default function Nav() {
 	const { theme, setTheme } = useContext(UserContextProvider);
-	const { activeObject, portalsActive, aboutMeActive, prevSection, nextSection, goToHome } =
-		useContext(InputContextProvider);
+	const {
+		activeObject,
+		portalsActive,
+		aboutMeActive,
+		prevSection,
+		nextSection,
+		goToHome,
+		isHome,
+		portal1active,
+		portal2active,
+		portal3active,
+	} = useContext(InputContextProvider);
 	const { active, progress, errors, item, loaded, total } = useProgress();
 	const startTime = useRef(new Date().getTime());
 	const endTime = useRef(0);
@@ -25,7 +36,8 @@ export default function Nav() {
 	// check for changes to aboutMeActive and portalsActive
 	const [aboutMeActiveState, setAboutMeActiveState] = useState(true);
 	const [portalsActiveState, setPortalsActiveState] = useState(false);
-	const [, setLocation] = useLocation();
+	// const [location, setLocation] = useLocation();
+	const router = useRouter();
 
 	const clickHandler = (e) => {
 		const { innerText } = e.target;
@@ -39,6 +51,7 @@ export default function Nav() {
 			nextSection();
 		}
 	};
+
 	useEffect(() => {
 		if (aboutMeActive) {
 			setAboutMeActiveState(true);
@@ -48,18 +61,18 @@ export default function Nav() {
 			setAboutMeActiveState(false);
 		}
 	}, [aboutMeActive, portalsActive]);
-	// const[isHome]
+
 	return (
 		<nav className={styles.navLoaded}>
 			{/* <nav className={styles.navLoading}> */}
 			<p
 				className={styles.nav_text_loaded}
 				style={{
-					color: window.location.pathname === '/' ? 'white' : 'black',
+					color: portal1active || portal2active || portal3active ? 'black' : 'white',
 				}}
 				onClick={(e) => {
 					goToHome();
-					setLocation('/');
+					router.push('/');
 				}}
 			>
 				FREDERIC CARTIER
@@ -68,13 +81,10 @@ export default function Nav() {
 				<p
 					className={`${styles.nav_link} ${aboutMeActiveState ? styles.active : ''}`}
 					style={{
-						// color: theme === 'dark' ? 'white' : 'black',
-						color: window.location.pathname === '/' ? 'white' : 'black',
+						color: portal1active || portal2active || portal3active ? 'black' : 'white',
 					}}
-					// onClick={prevSection}
-					// onClick={(e) => clickHandler(e)}
 					onClick={(e) => {
-						setLocation('/');
+						router.push('/');
 						clickHandler(e);
 					}}
 				>
@@ -83,14 +93,12 @@ export default function Nav() {
 				<p
 					className={`${styles.nav_link} ${portalsActiveState ? styles.active : ''}`}
 					style={{
-						color: window.location.pathname === '/' ? 'white' : 'black',
-
-						// color: theme === 'dark' ? 'white' : 'black',
+						color: portal1active || portal2active || portal3active ? 'black' : 'white',
 					}}
 					// onClick={nextSection}
 					onClick={(e) => {
-						setLocation('/');
 						clickHandler(e);
+						router.push('/');
 					}}
 				>
 					Coming Soon

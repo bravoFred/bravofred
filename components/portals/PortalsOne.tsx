@@ -112,7 +112,8 @@ function Frame({ id, name, author, bg, width = 1, height = GOLDENRATIO, children
 
 export default function PortalsOne() {
 	const { mobile } = useContext(UserContextProvider);
-	const { portalsActive, aboutMeActive } = useContext(InputContextProvider);
+	const { portalsActive, aboutMeActive, setPortal1active, setPortal2active, setPortal3active } =
+		useContext(InputContextProvider);
 	const [portalRigActive, setPortalRigActive] = useState(false);
 	const scroll = useScroll();
 	const portalsRef = useRef<THREE.Group>();
@@ -158,13 +159,18 @@ export default function PortalsOne() {
 	});
 	return (
 		<group ref={portalsRef} position={[0, 0, -100]}>
-			<group position={[-1.15, 0, -50]} rotation={[0, 0.5, 0]} ref={p1.ref}>
+			<group
+				position={[-1.15, 0, -50]}
+				rotation={[0, 0.5, 0]}
+				ref={p1.ref}
+				onClick={() => setPortal1active(true)}
+			>
 				<Frame id="01" name="Film 1" author="Frederic Cartier" bg="#fff">
 					<SmallRoom position={[0, -1, 0]} />
 					<ambientLight intensity={3} />
 				</Frame>
 			</group>
-			<group ref={p2.ref}>
+			<group ref={p2.ref} onClick={() => setPortal2active(true)}>
 				<Frame id="02" name="Film 2" author="Frederic Cartier" bg="#fff">
 					<Warehouse
 						position={[5, -1, -5]}
@@ -177,7 +183,12 @@ export default function PortalsOne() {
 					<ambientLight intensity={3.5} />
 				</Frame>
 			</group>
-			<group position={[1.15, 0, 0.25]} rotation={[0, -0.5, 0]} ref={p3.ref}>
+			<group
+				position={[1.15, 0, 0.25]}
+				rotation={[0, -0.5, 0]}
+				ref={p3.ref}
+				onClick={() => setPortal3active(true)}
+			>
 				<Frame id="03" name="Film 3" author="Frederic Cartier" bg="#fff">
 					<SmallRoom position={[0, -1, 0]} />
 					<ambientLight intensity={3} />

@@ -5,10 +5,18 @@ import rightIcon from '@/public/icons/right.png';
 import UserContextProvider from '@/store/userContext';
 import InputContextProvider from '@/store/inputContext';
 import { useContext, useEffect } from 'react';
+import { scale } from 'maath/dist/declarations/src/vector2';
 export default function ScrollNavButtons() {
 	const { theme } = useContext(UserContextProvider);
-	const { prevSection, nextSection, portalsActive, aboutMeActive } =
-		useContext(InputContextProvider);
+	const {
+		prevSection,
+		nextSection,
+		portalsActive,
+		aboutMeActive,
+		portal1active,
+		portal2active,
+		portal3active,
+	} = useContext(InputContextProvider);
 	useEffect(() => {}, [portalsActive, aboutMeActive]);
 	return (
 		<div className={styles.scroll_nav}>
@@ -17,11 +25,16 @@ export default function ScrollNavButtons() {
 				alt="alt"
 				className={styles.scroll_nav_icon}
 				onClick={prevSection}
+				style={{
+					width: portal1active || portal2active || portal3active ? '0' : '30px',
+					height: portal1active || portal2active || portal3active ? '0' : '30px',
+					filter:
+						portal1active || portal2active || portal3active ? 'invert(100%)' : 'none',
+				}}
 			/>
 			{/* <p
 				style={{
 					color: theme === 'light' ? 'black' : 'white',
-					// fontWeight: '100',
 				}}
 			>
 				{aboutMeActive.current ? 'About Me' : 'Coming Soon'}
@@ -30,6 +43,12 @@ export default function ScrollNavButtons() {
 				src={rightIcon}
 				alt="alt"
 				className={styles.scroll_nav_icon}
+				style={{
+					width: portal1active || portal2active || portal3active ? '0' : '30px',
+					height: portal1active || portal2active || portal3active ? '0' : '30px',
+					filter:
+						portal1active || portal2active || portal3active ? 'invert(100%)' : 'none',
+				}}
 				onClick={nextSection}
 			/>
 		</div>

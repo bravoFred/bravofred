@@ -30,8 +30,8 @@
 	align-items: center;
 	padding: 1rem;
 	z-index: 1000;
+	transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	animation: fadeIn 3s ease-in-out;
-	// border: 1px solid #ff0000;
 }
 $iconSize: 30px;
 .scroll_nav_icon {
@@ -39,7 +39,6 @@ $iconSize: 30px;
 	width: $iconSize;
 	margin: 0.5rem 1rem;
 	cursor: pointer;
-	// click events
 	transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 	user-select: none;
 	-webkit-tap-highlight-color: transparent;
