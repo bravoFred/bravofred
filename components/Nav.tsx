@@ -63,10 +63,10 @@ export default function Nav() {
 	}, [aboutMeActive, portalsActive]);
 
 	return (
-		<nav className={styles.navLoaded}>
+		<nav className={styles.nav}>
 			{/* <nav className={styles.navLoading}> */}
 			<p
-				className={styles.nav_text_loaded}
+				className={styles.nav_logo}
 				style={{
 					color: portal1active || portal2active || portal3active ? 'black' : 'white',
 				}}
