@@ -87,13 +87,13 @@ export default function Performance() {
 
 	return (
 		<>
-			{/* {!mobile && (
+			{!mobile && (
 				<Perf
 					position={'top-left'}
 					showGraph={false}
 					style={{ position: 'absolute', top: '15vh', left: '0px' }}
 				/>
-			)} */}
+			)}
 
 			<AdaptiveDpr />
 			<AdaptiveEvents />

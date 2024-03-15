@@ -134,7 +134,7 @@ export default function PortalsOne() {
 		}
 	});
 	return (
-		<group ref={portalsRef} position={[0, 0, 0]}>
+		<group ref={portalsRef} position={[0, -0.1, 0]}>
 			<group position={[-1.15, 0, -50]} rotation={[0, 0.5, 0]} ref={p1.ref}>
 				<Frame id="01" name="Film 1" author="Frederic Cartier" bg="#fff">
 					<SmallRoom position={[0, -1, 0]} />

@@ -4,7 +4,13 @@ import ScrollNavButtons from '@/components/ScrollNavButtons';
 // const inter = Inter({ subsets: ['latin'] });
 import React, { Suspense, useRef, useState, useContext, useEffect, use } from 'react';
 import { Canvas, extend, useThree, useFrame } from '@react-three/fiber';
-import { ScrollControls, Billboard, ScreenSpace, ScreenSizer, Box } from '@react-three/drei';
+import {
+	ScrollControls,
+	Billboard,
+	ScreenSpace,
+	ScreenSizer,
+	Environment,
+} from '@react-three/drei';
 import Camera from '@/components/Camera';
 import PortalsMain from './portals/PortalsMain';
 import AboutMe from './aboutMe/AboutMe';
@@ -70,7 +76,8 @@ export default function Main() {
 						alpha: false,
 					}}
 					camera={{
-						fov: mobile ? 45 : 30,
+						// fov: mobile ? 45 : 30, // my fov
+						fov: mobile ? 45 : 70, // fov from codesandbox
 						near: 0.1,
 						far: 45,
 						zoom: 1,
@@ -80,7 +87,6 @@ export default function Main() {
 					{/* <GridGround theme={theme} /> */}
 					<color args={[theme === 'light' ? '#fff' : '#000']} attach="background" />
 					{/* <fog attach="fog" args={[theme === 'light' ? '#fff' : '#000', 0, 0]} /> */}
-					{/* https://codesandbox.io/p/sandbox/m1-scrollcontrols-4m0d0 */}
 					<ScrollControls pages={4}>
 						<AboutMe />
 						<PortalsMain />
@@ -93,6 +99,8 @@ export default function Main() {
 						{/* <BackgroundColor /> */}
 						<Fog />
 					</ScrollControls>
+					{/* <Environment preset="city" /> */}
+
 					{/* <Billboard
 						follow={true}
 						lockX={false}
