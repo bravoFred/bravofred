@@ -22,19 +22,7 @@ export default function ScrollNavButtons() {
 		prevSection();
 	};
 	return (
-		<div
-			className={styles.scroll_nav}
-			style={
-				{
-					// width: portal1active || portal2active || portal3active ? '10vh' : 'auto',
-					// left: portal1active || portal2active || portal3active ? '0' : 'none',
-					// right: portal1active || portal2active || portal3active ? '100%' : '0',
-					// right: portal1active || portal2active || portal3active ? '100%' : '0',
-					// justifyContent:
-					// 	portal1active || portal2active || portal3active ? 'flex-start' : 'flex-end',
-				}
-			}
-		>
+		<div className={styles.scroll_nav}>
 			<Image
 				src={leftIcon}
 				alt="alt"
