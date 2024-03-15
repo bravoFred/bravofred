@@ -14,13 +14,14 @@ function compress() {
 			console.log(chalk.red('Error compressing'));
 			return;
 		}
-		log(chalk.bgGreen('New models compressed'));
+		log(chalk.bgGreen('New models compressed!'));
 		const newGlbFiles = getRootGlbFiles();
 		newGlbFiles.forEach((file: string) => removeFile(file));
-		// removeSrcGlbFiles();
+		removeSrcGlbFiles();
 	});
 }
-const watcher = chokidar.watch('public/models/src', {
+const srcFolder = 'public/models/src';
+const watcher = chokidar.watch(srcFolder, {
 	persistent: true,
 });
 let initialRunComplete = false;
@@ -33,4 +34,4 @@ watcher
 	})
 	.on('change', (path) => compress())
 	.on('unlink', (path) => {});
-console.log(chalk.green('Watching source folder for changes...'));
+console.log(chalk.green(`Watching ${srcFolder} for changes...`));
