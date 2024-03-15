@@ -20,7 +20,7 @@ import { MathUtils } from 'three';
 extend(geometry);
 import dynamic from 'next/dynamic';
 import PortalsOne from './PortalsOne';
-import PortalsTwo from './PortalsTwo';
+// import PortalsTwo from './PortalsTwo';
 
 export default function PortalsCards() {
 	const { mobile } = useContext(UserContextProvider);
