@@ -10,8 +10,8 @@ import { MathUtils } from 'three';
 import UserContextProvider from '../store/userContext';
 export default function Floor() {
 	const { mobile } = useContext(UserContextProvider);
-	// const res = mobile ? 1024 : 2048;
-	const res = mobile ? 1024 : 1024;
+	// const res = mobile ? 1024 : 2048; // high quality
+	const res = mobile ? 512 : 1024; // high performance
 	return (
 		<mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
 			<planeGeometry args={[50, 50]} />
