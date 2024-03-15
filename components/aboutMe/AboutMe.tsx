@@ -28,7 +28,8 @@ function spinGroupAround(ref, speed) {
 }
 export default function AboutMe() {
 	const { mobile } = useContext(UserContextProvider);
-	const { aboutMeActive, portalsActive, scrolling } = useContext(InputContextProvider);
+	const { aboutMeActive, portalsActive, scrolling, icon1Hovered, icon2Hovered, icon3Hovered } =
+		useContext(InputContextProvider);
 	const ref = useRef<THREE.Group>();
 	const scroll = useScroll();
 	const r1 = scroll.range(0 / 4, 1 / 4);
@@ -36,9 +37,6 @@ export default function AboutMe() {
 	const r3 = scroll.visible(4 / 5, 1 / 5);
 	const { width, height } = useThree((state) => state.viewport);
 	const icon3Ref = useRef<THREE.Group>();
-	const [icon1Hovered, setIcon1Hovered] = useState(false);
-	const [icon2Hovered, setIcon2Hovered] = useState(false);
-	const [icon3Hovered, setIcon3Hovered] = useState(false);
 	const icon1Ref = useRef<THREE.Group>();
 	const icon2Ref = useRef<THREE.Group>();
 
@@ -124,9 +122,27 @@ export default function AboutMe() {
 		if (!mobile) return;
 		openLink(url);
 	};
+	const disableHovers = () => {
+		icon1Hovered.current = false;
+		icon2Hovered.current = false;
+		icon3Hovered.current = false;
+	};
+	const hoverHandler = (e) => {
+		if (e) {
+			e.stopPropagation();
+			document.body.style.cursor = 'pointer';
+		}
+	};
+	const leaveHandler = (e) => {
+		disableHovers();
+		if (e) {
+			e.stopPropagation();
+			document.body.style.cursor = 'auto';
+		}
+	};
 	return (
 		<group position={[0, 0.75, 0]} ref={ref}>
-			<pointLight position={[0, 2, 1]} intensity={1} />
+			{/* <pointLight position={[0, 2, 1]} intensity={1} /> */}
 			<Float
 				speed={speed} // Animation speed, defaults to 1
 				rotationIntensity={rotationIntensity} // XYZ rotation intensity, defaults to 1
@@ -136,12 +152,12 @@ export default function AboutMe() {
 				<group ref={icon1Ref} position={[-0.3, 0.33, -100]}>
 					<Icons
 						onPointerEnter={(e) => {
-							setIcon1Hovered(true);
-							document.body.style.cursor = 'pointer';
+							icon1Hovered.current = true;
+							hoverHandler(e);
 						}}
 						onPointerLeave={(e) => {
-							setIcon1Hovered(false);
-							document.body.style.cursor = 'auto';
+							icon1Hovered.current = false;
+							leaveHandler(e);
 						}}
 						onClick={(e) => clickHandler(e, urls.instagram)}
 						onDoubleClick={(e) => doubleClickHandler(e, urls.instagram)}
@@ -159,12 +175,12 @@ export default function AboutMe() {
 					ref={icon2Ref}
 					position={[0.33, 0, -100]}
 					onPointerEnter={(e) => {
-						setIcon2Hovered(true);
-						document.body.style.cursor = 'pointer';
+						icon2Hovered.current = true;
+						hoverHandler(e);
 					}}
 					onPointerLeave={(e) => {
-						setIcon2Hovered(false);
-						document.body.style.cursor = 'auto';
+						icon2Hovered.current = false;
+						leaveHandler(e);
 					}}
 					onClick={(e) => clickHandler(e, urls.vimeo)}
 					onDoubleClick={(e) => doubleClickHandler(e, urls.vimeo)}
@@ -183,12 +199,12 @@ export default function AboutMe() {
 					ref={icon3Ref}
 					position={[-0.3, -0.33, -100]}
 					onPointerEnter={(e) => {
-						setIcon3Hovered(true);
-						document.body.style.cursor = 'pointer';
+						icon3Hovered.current = true;
+						hoverHandler(e);
 					}}
 					onPointerLeave={(e) => {
-						setIcon3Hovered(false);
-						document.body.style.cursor = 'auto';
+						icon3Hovered.current = false;
+						leaveHandler(e);
 					}}
 					onClick={(e) => clickHandler(e, urls.youtube)}
 					onDoubleClick={(e) => doubleClickHandler(e, urls.youtube)}

@@ -11,6 +11,9 @@ const InputContext = createContext({
 	scrollDirection: 0 as any,
 	scrolling: false as any,
 	scrollSpeed: 0 as any,
+	icon1Hovered: false as any,
+	icon2Hovered: false as any,
+	icon3Hovered: false as any,
 	prevSection: () => {},
 	nextSection: () => {},
 	gotoAboutMe: () => {},
@@ -29,6 +32,9 @@ export function InputContextProvider(props) {
 	const portalsActive = useRef(false);
 
 	const activeObject = useRef({});
+	const icon1Hovered = useRef(false);
+	const icon2Hovered = useRef(false);
+	const icon3Hovered = useRef(false);
 	const [portal1active, setPortal1active] = useState(false);
 	const [portal2active, setPortal2active] = useState(false);
 	const [portal3active, setPortal3active] = useState(false);
@@ -101,6 +107,9 @@ export function InputContextProvider(props) {
 				portal1active,
 				portal2active,
 				portal3active,
+				icon1Hovered,
+				icon2Hovered,
+				icon3Hovered,
 				prevSection,
 				nextSection,
 				gotoAboutMe,

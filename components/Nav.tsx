@@ -95,7 +95,6 @@ export default function Nav() {
 					style={{
 						color: portal1active || portal2active || portal3active ? 'black' : 'white',
 					}}
-					// onClick={nextSection}
 					onClick={(e) => {
 						clickHandler(e);
 						router.push('/');
