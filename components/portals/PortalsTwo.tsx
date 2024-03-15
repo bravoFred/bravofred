@@ -20,38 +20,33 @@ import { MathUtils } from 'three';
 import getUuid from 'uuid-by-string';
 const GOLDENRATIO = 1.61803398875;
 import dynamic from 'next/dynamic';
+import InputContextProvider from '../../store/inputContext';
+
+import { MoveGroup } from '../../components/AnimationFunctions';
 
 export default function PortalsTwo({ portals }) {
 	const portalsRef = useRef<THREE.Group>();
 	const scroll = useScroll();
+	const { portalsActive, aboutMeActive } = useContext(InputContextProvider);
+	const baseSpeed = 0.1;
 
 	useFrame((state, delta) => {
-		portalsRef.current.position.lerpVectors(
-			new THREE.Vector3(0, 0, -50),
-			new THREE.Vector3(0, 0, -4),
-			scroll.offset
-		);
+		if (aboutMeActive.current) {
+			MoveGroup(portalsRef, new THREE.Vector3(0, 0, -50), baseSpeed); // hides the group
+		}
+		if (portalsActive.current) {
+			MoveGroup(portalsRef, new THREE.Vector3(0, 0, 0), baseSpeed); // shows the group
+		}
+		// portalsRef.current.position.lerpVectors(
+		// 	new THREE.Vector3(0, 0, -50),
+		// 	new THREE.Vector3(0, 0, -4),
+		// 	scroll.offset
+		// );
 	});
 	return (
 		<>
-			<group position={[0, -0.5, 0]} ref={portalsRef}>
+			<group position={[0, 0, -100]} ref={portalsRef}>
 				<Frames images={portals} />
-				{/* <mesh rotation={[-Math.PI / 2, 0, 0]}>
-					<planeGeometry args={[50, 50]} />
-					<MeshReflectorMaterial
-						blur={[300, 100]}
-						resolution={2048}
-						mixBlur={1}
-						mixStrength={80}
-						roughness={1}
-						depthScale={1.2}
-						minDepthThreshold={0.4}
-						maxDepthThreshold={1.4}
-						color="#050505"
-						metalness={0.5}
-						mirror={0.5}
-					/>
-				</mesh> */}
 			</group>
 		</>
 	);
