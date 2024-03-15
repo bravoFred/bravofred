@@ -12,6 +12,7 @@ import InputContextProvider from '../../store/inputContext';
 import { MathUtils } from 'three';
 import dynamic from 'next/dynamic';
 import { MoveGroup } from '../../components/AnimationFunctions';
+const GOLDENRATIO = 1.61803398875;
 
 const SmallRoom = dynamic(
 	() => import('../../models/4096/PortalInteriorJoined').then((mod) => mod.Model),
@@ -41,7 +42,7 @@ function Rig({ position = new THREE.Vector3(0, 0.1, 5), focus = new THREE.Vector
 	});
 	return <CameraControls makeDefault minPolarAngle={0} maxPolarAngle={Math.PI / 2} />;
 }
-function Frame({ id, name, author, bg, width = 1, height = 1.61803398875, children, ...props }) {
+function Frame({ id, name, author, bg, width = 1, height = GOLDENRATIO, children, ...props }) {
 	const portal = useRef();
 	const [, setLocation] = useLocation();
 	const [, params] = useRoute<{ id: string }>('/item/:id');
@@ -184,7 +185,9 @@ export default function PortalsOne() {
 				</Frame>
 			</group>
 
-			{/* </ScreenSizer> */}
+			{/* <group position={[0, 1, -2]} scale={[0.5, 0.5, 0.5]}>
+				<NavCam />
+			</group> */}
 			{portalRigActive && <Rig />}
 			{/* <Shake /> */}
 		</group>
