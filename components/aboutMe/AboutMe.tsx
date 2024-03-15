@@ -27,31 +27,34 @@ export default function AboutMe() {
 	const r2 = scroll.range(1 / 4, 1 / 4);
 	const r3 = scroll.visible(4 / 5, 1 / 5);
 	const { width, height } = useThree((state) => state.viewport);
-	const icon1Ref = useRef<THREE.Group>();
-
-	const icon2Ref = useRef<THREE.Group>();
 	const icon3Ref = useRef<THREE.Group>();
 	const [icon1Hovered, setIcon1Hovered] = useState(false);
 	const [icon2Hovered, setIcon2Hovered] = useState(false);
 	const [icon3Hovered, setIcon3Hovered] = useState(false);
-	const [exitSpeed, setExitSpeed] = useState(0.025);
+	const icon1Ref = useRef<THREE.Group>();
+	const icon2Ref = useRef<THREE.Group>();
+
+	const baseSpeed = 0.1;
 	const [icon1, setIcon1] = useState({
+		ref: useRef<THREE.Group>(),
 		active: new THREE.Vector3(0, 0, 0),
 		hidden: new THREE.Vector3(0, 0, 20),
-		enterSpeed: 0.2,
-		exitSpeed: 0.025,
+		enterSpeed: baseSpeed * 2,
+		exitSpeed: baseSpeed / 4,
 	});
 	const [icon2, setIcon2] = useState({
+		ref: useRef<THREE.Group>(),
 		active: new THREE.Vector3(0, 0, 0),
 		hidden: new THREE.Vector3(0, 0, 25),
-		enterSpeed: 0.15,
-		exitSpeed: 0.025,
+		enterSpeed: baseSpeed * 1.5,
+		exitSpeed: baseSpeed / 4,
 	});
 	const [icon3, setIcon3] = useState({
+		ref: useRef<THREE.Group>(),
 		active: new THREE.Vector3(0, 0, 0),
 		hidden: new THREE.Vector3(0, 0, 30),
-		enterSpeed: 0.1,
-		exitSpeed: 0.025,
+		enterSpeed: baseSpeed,
+		exitSpeed: baseSpeed / 4,
 	});
 
 	const enterSpeed = 0.2;

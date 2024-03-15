@@ -120,18 +120,37 @@ export default function PortalsOne() {
 	const p1ref = useRef<THREE.Group>();
 	const p2ref = useRef<THREE.Group>();
 	const p3ref = useRef<THREE.Group>();
-	const enterSpeed = 0.1;
-	const exitSpeed = 0.1;
-	const miniRef = useRef<THREE.Group>();
+	const baseSpeed = 0.1;
+	const [p1, setP1] = useState({
+		ref: useRef<THREE.Group>(),
+		active: new THREE.Vector3(-1.15, 0, 0.25),
+		hidden: new THREE.Vector3(-1, 0, -75),
+		enterSpeed: baseSpeed * 1.5,
+		exitSpeed: baseSpeed * 1.5,
+	});
+	const [p2, setP2] = useState({
+		ref: useRef<THREE.Group>(),
+		active: new THREE.Vector3(0, 0, 0),
+		hidden: new THREE.Vector3(0, 0, -50),
+		enterSpeed: baseSpeed * 2,
+		exitSpeed: baseSpeed * 2,
+	});
+	const [p3, setP3] = useState({
+		ref: useRef<THREE.Group>(),
+		active: new THREE.Vector3(1.15, 0, 0.25),
+		hidden: new THREE.Vector3(1, 0, -100),
+		enterSpeed: baseSpeed,
+		exitSpeed: baseSpeed,
+	});
 	useFrame((state) => {
 		if (aboutMeActive.current) {
-			MoveGroup(p1ref, portalVecs.p1, exitSpeed * 1.5);
-			MoveGroup(p2ref, portalVecs.p2, exitSpeed * 2);
-			MoveGroup(p3ref, portalVecs.p3, exitSpeed);
+			MoveGroup(p1ref, p1.hidden, p1.exitSpeed);
+			MoveGroup(p2ref, p2.hidden, p2.exitSpeed);
+			MoveGroup(p3ref, p3.hidden, p3.exitSpeed);
 		} else {
-			MoveGroup(p1ref, portalVecs.p1active, enterSpeed * 1.5);
-			MoveGroup(p2ref, portalVecs.p2active, enterSpeed * 2);
-			MoveGroup(p3ref, portalVecs.p3active, enterSpeed);
+			MoveGroup(p1ref, p1.active, p1.enterSpeed);
+			MoveGroup(p2ref, p2.active, p2.enterSpeed);
+			MoveGroup(p3ref, p3.active, p3.enterSpeed);
 		}
 	});
 	return (
