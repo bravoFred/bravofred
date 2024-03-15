@@ -91,8 +91,6 @@ export function InputContextProvider(props) {
 			window.removeEventListener('keydown', handleKeyDown);
 		};
 	}, []);
-	// listen for window location changes
-	useEffect(() => {}, [portal1active, portal2active, portal3active]);
 
 	return (
 		<InputContext.Provider
