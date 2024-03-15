@@ -1,21 +1,9 @@
 import * as THREE from 'three';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { Canvas, extend, useFrame, useThree } from '@react-three/fiber';
-import {
-	useCursor,
-	MeshPortalMaterial,
-	CameraControls,
-	Gltf,
-	Text,
-	CameraShake,
-	Billboard,
-	ScreenSpace,
-	ScreenSizer,
-	Box,
-} from '@react-three/drei';
+import { useCursor, MeshPortalMaterial, CameraControls, Text } from '@react-three/drei';
 import { useRoute, useLocation } from 'wouter';
 import { easing, geometry } from 'maath';
-import { suspend } from 'suspend-react';
 import { useScroll } from '@react-three/drei';
 import UserContextProvider from '../../store/userContext';
 import InputContextProvider from '../../store/inputContext';
