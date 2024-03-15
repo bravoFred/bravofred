@@ -32,10 +32,10 @@ export default function PortalsTwo({ portals }) {
 
 	useFrame((state, delta) => {
 		if (aboutMeActive.current) {
-			MoveGroup(portalsRef, new THREE.Vector3(0, 0, -50), baseSpeed); // hides the group
+			MoveGroup(portalsRef, new THREE.Vector3(0, 0, -50), baseSpeed); // hides the portals
 		}
 		if (portalsActive.current) {
-			MoveGroup(portalsRef, new THREE.Vector3(0, 0, 0), baseSpeed); // shows the group
+			MoveGroup(portalsRef, new THREE.Vector3(0, 0, 0), baseSpeed); // shows the portals
 		}
 		// portalsRef.current.position.lerpVectors(
 		// 	new THREE.Vector3(0, 0, -50),
