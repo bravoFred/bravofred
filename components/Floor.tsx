@@ -10,13 +10,13 @@ import { MathUtils } from 'three';
 import UserContextProvider from '../store/userContext';
 export default function Floor() {
 	const { mobile } = useContext(UserContextProvider);
-	// const res = mobile ? 1024 : 2048;
-	const res = mobile ? 1024 : 1024;
+	const res = mobile ? 1024 : 2048;
+	// const res = mobile ? 1024 : 1024;
 	return (
 		<mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]}>
 			<planeGeometry args={[50, 50]} />
 			<MeshReflectorMaterial
-				blur={[500, 500]}
+				blur={[300, 100]}
 				resolution={res}
 				mixBlur={1}
 				mixStrength={80}
@@ -24,11 +24,9 @@ export default function Floor() {
 				depthScale={1.2}
 				minDepthThreshold={0.4}
 				maxDepthThreshold={1.4}
-				color="#fff"
+				color="#050505"
 				metalness={0.5}
-				depthTest={true}
-				// metalness={1}
-				mirror={0.97}
+				mirror={0.5}
 			/>
 		</mesh>
 	);
