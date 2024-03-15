@@ -98,28 +98,8 @@ export default function PortalsOne() {
 	const { mobile } = useContext(UserContextProvider);
 	const { portalsActive, aboutMeActive } = useContext(InputContextProvider);
 
-	const [portal2vector, setPortal2Vector] = useState(new THREE.Vector3(0, 0, -50));
-	const [portal3vector, setPortal3Vector] = useState(new THREE.Vector3(1, 0, -100));
-	// const [portal1vectorActive, setPortal1VectorActive] = useState(
-	// 	new THREE.Vector3(-1.15, 0, 0.25)
-	// );
-	const [portal2vectorActive, setPortal2VectorActive] = useState(new THREE.Vector3(0, 0, 0));
-	const [portal3vectorActive, setPortal3VectorActive] = useState(
-		new THREE.Vector3(1.15, 0, 0.25)
-	);
-	const [portalVecs, setPortalVecs] = useState({
-		p1: new THREE.Vector3(-1, 0, -75),
-		p2: new THREE.Vector3(0, 0, -50),
-		p3: new THREE.Vector3(1, 0, -100),
-		p1active: new THREE.Vector3(-1.15, 0, 0.25),
-		p2active: new THREE.Vector3(0, 0, 0),
-		p3active: new THREE.Vector3(1.15, 0, 0.25),
-	});
 	const scroll = useScroll();
 	const portalsRef = useRef<THREE.Group>();
-	const p1ref = useRef<THREE.Group>();
-	const p2ref = useRef<THREE.Group>();
-	const p3ref = useRef<THREE.Group>();
 	const baseSpeed = 0.1;
 	const [p1, setP1] = useState({
 		ref: useRef<THREE.Group>(),
@@ -144,24 +124,24 @@ export default function PortalsOne() {
 	});
 	useFrame((state) => {
 		if (aboutMeActive.current) {
-			MoveGroup(p1ref, p1.hidden, p1.exitSpeed);
-			MoveGroup(p2ref, p2.hidden, p2.exitSpeed);
-			MoveGroup(p3ref, p3.hidden, p3.exitSpeed);
+			MoveGroup(p1.ref, p1.hidden, p1.exitSpeed);
+			MoveGroup(p2.ref, p2.hidden, p2.exitSpeed);
+			MoveGroup(p3.ref, p3.hidden, p3.exitSpeed);
 		} else {
-			MoveGroup(p1ref, p1.active, p1.enterSpeed);
-			MoveGroup(p2ref, p2.active, p2.enterSpeed);
-			MoveGroup(p3ref, p3.active, p3.enterSpeed);
+			MoveGroup(p1.ref, p1.active, p1.enterSpeed);
+			MoveGroup(p2.ref, p2.active, p2.enterSpeed);
+			MoveGroup(p3.ref, p3.active, p3.enterSpeed);
 		}
 	});
 	return (
 		<group ref={portalsRef} position={[0, 0, 0]}>
-			<group position={[-1.15, 0, -50]} rotation={[0, 0.5, 0]} ref={p1ref}>
+			<group position={[-1.15, 0, -50]} rotation={[0, 0.5, 0]} ref={p1.ref}>
 				<Frame id="01" name="Film 1" author="Frederic Cartier" bg="#fff">
 					<SmallRoom position={[0, -1, 0]} />
 					<ambientLight intensity={3} />
 				</Frame>
 			</group>
-			<group ref={p2ref}>
+			<group ref={p2.ref}>
 				<Frame id="02" name="Film 2" author="Frederic Cartier" bg="#fff">
 					<Warehouse
 						position={[5, -1, -5]}
@@ -174,7 +154,7 @@ export default function PortalsOne() {
 					<ambientLight intensity={3.5} />
 				</Frame>
 			</group>
-			<group position={[1.15, 0, 0.25]} rotation={[0, -0.5, 0]} ref={p3ref}>
+			<group position={[1.15, 0, 0.25]} rotation={[0, -0.5, 0]} ref={p3.ref}>
 				<Frame id="03" name="Film 3" author="Frederic Cartier" bg="#fff">
 					<SmallRoom position={[0, -1, 0]} />
 					<ambientLight intensity={3} />
