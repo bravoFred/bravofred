@@ -46,7 +46,7 @@ export default function ScrollNav() {
 		} else if (aboutMeActive.current) {
 			// scroll.offset = 0;
 		}
-		console.log(scroll.offset);
+		// console.log(scroll.offset);
 	});
 
 	return null;

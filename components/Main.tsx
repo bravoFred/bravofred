@@ -93,7 +93,7 @@ export default function Main() {
 						<AboutMe />
 						<PortalsMain />
 						<ScrollController />
-						{/* <Mouse /> */}
+						<Mouse />
 						<Camera />
 						<Floor />
 						<Raycaster />

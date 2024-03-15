@@ -4,6 +4,7 @@ import UserContextProvider from '../store/userContext';
 import { useContext, useRef } from 'react';
 import { useScroll } from '@react-three/drei';
 import { extend, useThree } from '@react-three/fiber';
+import InputContextProvider from '../store/inputContext';
 
 function PointerPointLight() {
 	const ref = useRef<THREE.PointLight>();
@@ -29,24 +30,27 @@ function PointerPointLight() {
 export default function Mouse() {
 	const { mobile } = useContext(UserContextProvider);
 	const scroll = useScroll();
+	const { aboutMeActive, portalsActive } = useContext(InputContextProvider);
 
 	useFrame((state) => {
 		// console.log(scroll.offset);
 
 		if (!mobile) {
-			state.camera.position.x = MathUtils.lerp(
-				state.camera.position.x,
-				state.pointer.x * (scroll.offset > 0.99 ? 2 : 0.5),
-				0.2
-			);
-			state.camera.position.y = MathUtils.lerp(
-				state.camera.position.y,
-				state.pointer.y * (scroll.offset > 0.99 ? 2 : 0.5 + 1),
-				0.1
-			);
-			// orbit camera around the center
-			// state.camera.lookAt(0, 0, 0);
+			if (aboutMeActive.current) {
+				state.camera.position.x = MathUtils.lerp(
+					state.camera.position.x,
+					state.pointer.x * 0.5,
+					0.1
+				);
+			}
+			if (portalsActive.current) {
+				// state.camera.position.x = MathUtils.lerp(
+				// 	state.camera.position.x,
+				// 	state.pointer.x * 0.5,
+				// 	0.1
+				// );
+			}
 		}
 	});
-	return <>{/* <PointerPointLight /> */}</>;
+	return <></>;
 }

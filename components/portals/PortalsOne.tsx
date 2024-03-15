@@ -99,7 +99,7 @@ function Frame({ id, name, author, bg, width = 1, height = 1.61803398875, childr
 					ref={portal}
 					events={params?.id === id}
 					side={THREE.DoubleSide}
-					// blend={0}
+					// blend={0.5}
 				>
 					<color attach="background" args={[bg]} />
 					{children}
@@ -139,20 +139,25 @@ export default function PortalsOne() {
 	});
 	useFrame((state) => {
 		if (aboutMeActive.current) {
+			MoveGroup(portalsRef, new THREE.Vector3(0, 0, -50), baseSpeed); // hides the group
+
 			setPortalRigActive(false);
 			MoveGroup(p1.ref, p1.hidden, p1.exitSpeed);
 			MoveGroup(p2.ref, p2.hidden, p2.exitSpeed);
 			MoveGroup(p3.ref, p3.hidden, p3.exitSpeed);
 		}
 		if (portalsActive.current) {
+			MoveGroup(portalsRef, new THREE.Vector3(0, 0, 0), baseSpeed); // shows the group
+
 			setPortalRigActive(true);
 			MoveGroup(p1.ref, p1.active, p1.enterSpeed);
 			MoveGroup(p2.ref, p2.active, p2.enterSpeed);
 			MoveGroup(p3.ref, p3.active, p3.enterSpeed);
 		}
+		console.log(portalRigActive);
 	});
 	return (
-		<group ref={portalsRef} position={[0, 0, 0]}>
+		<group ref={portalsRef} position={[0, 0, -100]}>
 			<group position={[-1.15, 0, -50]} rotation={[0, 0.5, 0]} ref={p1.ref}>
 				<Frame id="01" name="Film 1" author="Frederic Cartier" bg="#fff">
 					<SmallRoom position={[0, -1, 0]} />

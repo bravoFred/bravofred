@@ -40,11 +40,16 @@ export default function Camera() {
 	const { mobile } = useContext(UserContextProvider);
 	const { activeObject, portalsActive, aboutMeActive } = useContext(InputContextProvider);
 	const camVecs = useRef({
-		pos: new THREE.Vector3(0, 0, 0),
-		target: new THREE.Vector3(0, 1, 0),
-		camTarget: [0, 0, 0],
+		aboutMe: {
+			pos: new THREE.Vector3(0, 0, 0),
+			focus: new THREE.Vector3(0, 1, 0),
+		},
+		portals: {
+			pos: new THREE.Vector3(0, 0, 0),
+			focus: new THREE.Vector3(0, 1, -5),
+		},
 	});
-	const target = useRef<THREE.Vector3>(new THREE.Vector3(0, 1, 0));
+	const focus = useRef<THREE.Vector3>(new THREE.Vector3(0, 1, 0));
 	const scroll = useScroll();
 	function lerpVecs(vec1: THREE.Vector3, vec2: THREE.Vector3, speed: number) {
 		vec1.x = MathUtils.lerp(vec1.x, vec2.x, speed);
@@ -56,21 +61,21 @@ export default function Camera() {
 	const zoomOutSpeed = mobile ? 0.1 : 0.05;
 	useFrame((state) => {
 		const camera = state.camera as THREE.PerspectiveCamera;
-		camera.lookAt(target.current.x, target.current.y, target.current.z);
 		if (aboutMeActive.current) {
+			camera.lookAt(focus.current.x, focus.current.y, focus.current.z);
 			if (activeObject.current !== null) {
 				const { point } = activeObject.current;
 				if (point) {
-					lerpVecs(target.current, point, speed);
+					lerpVecs(focus.current, point, speed);
 					camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 1.5 : 3, zoomInSpeed);
 				}
 			} else {
-				lerpVecs(target.current, camVecs.current.target, speed);
+				lerpVecs(focus.current, camVecs.current.aboutMe.focus, speed);
 				camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomOutSpeed);
 			}
 		}
 		if (portalsActive.current) {
-			// lerpVecs(target.current, camVecs.current.camTarget, speed);
+			lerpVecs(focus.current, camVecs.current.portals.focus, speed);
 			// camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomOutSpeed);
 		}
 
