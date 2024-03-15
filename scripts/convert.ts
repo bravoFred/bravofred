@@ -6,7 +6,6 @@ import copyFile from './util/copyFile';
 import { getFileSizeMB } from './util/getFileSize';
 import getStats from './util/getStats';
 import chalk from 'chalk';
-import { log } from 'console';
 const { exec } = require('child_process');
 import {
 	importUseFrame,
@@ -24,8 +23,6 @@ let totalCompressedGLBSize = 0;
 (async function convert() {
 	const srcGlbFolder = `./public/models/src`;
 	const srcGlbFiles = getSourceGLBFiles(srcGlbFolder);
-	console.log(srcGlbFiles);
-
 	const resolutions = [512, 1024, 2048, 4096];
 	srcGlbFiles.forEach((file) => {
 		const srcGlbName = `${file.split('.')[0]}`;
@@ -69,13 +66,9 @@ let totalCompressedGLBSize = 0;
 					animations = getAnimationNames(newTsxFileContents);
 					newTsxFileContents = addAnimations(newTsxFileContents, animations);
 				}
-
 				fs.writeFileSync(newTsxTargetPath, newTsxFileContents, 'utf8'); // replaces generated tsx file with updated tsx file contents
 				const newGlbPathTargetPath = `${newGlbTargetFolder}/${newGlbPath}`; // new glb file in root
 				const transformedFileSizeInMB = getFileSizeMB(newGlbPath); // new glb size in MB
-				log(chalk.bgGreen(newTsxTargetPath));
-				log(chalk.bgGreen(newGlbPathTargetPath));
-
 				totalCompressedGLBSize += transformedFileSizeInMB; // add new glb size to total glb files compressed size
 				getStats(totalOriginalGLBSIze, totalCompressedGLBSize); // get stats
 				copyFile(newGlbPath, newGlbPathTargetPath); // copy new glb file to target glb folder
