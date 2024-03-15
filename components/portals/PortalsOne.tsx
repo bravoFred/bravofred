@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import * as THREE from 'three';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { Canvas, extend, useFrame, useThree } from '@react-three/fiber';
@@ -26,7 +28,19 @@ const Warehouse = dynamic(
 		ssr: false,
 	}
 );
-
+function Rig({ position = new THREE.Vector3(0, 1, 5), focus = new THREE.Vector3(0, 1, 0) }) {
+	const { controls, scene } = useThree();
+	const [, params] = useRoute('/item/:id') as any;
+	useEffect(() => {
+		const active = scene.getObjectByName(params?.id);
+		if (active) {
+			active.parent.localToWorld(position.set(0, 0.5, 3)); // this is the position of the camera
+			active.parent.localToWorld(focus.set(0, 1, -2));
+		}
+		controls?.setLookAt(...position.toArray(), ...focus.toArray(), true);
+	});
+	return <CameraControls makeDefault minPolarAngle={0} maxPolarAngle={Math.PI / 2} />;
+}
 function Frame({ id, name, author, bg, width = 1, height = 1.61803398875, children, ...props }) {
 	const portal = useRef();
 	const [, setLocation] = useLocation();
@@ -162,7 +176,7 @@ export default function PortalsOne() {
 			</group>
 
 			{/* </ScreenSizer> */}
-			{/* <Rig /> */}
+			<Rig />
 			{/* <Shake /> */}
 		</group>
 	);
