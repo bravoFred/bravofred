@@ -157,20 +157,39 @@ export default function PortalsOne() {
 			MoveGroup(p3.ref, p3.active, p3.enterSpeed);
 		}
 	});
+	const clickHandler = (e) => {
+		// console.log(e);
+		if (e.object.name === '01') {
+			setPortal1active(true);
+			setPortal2active(false);
+			setPortal3active(false);
+		}
+		if (e.object.name === '02') {
+			setPortal1active(false);
+			setPortal2active(true);
+			setPortal3active(false);
+		}
+		if (e.object.name === '03') {
+			setPortal1active(false);
+			setPortal2active(false);
+			setPortal3active(true);
+		}
+	};
+	const doubleClickHandler = (e) => {};
 	return (
 		<group ref={portalsRef} position={[0, 0, -100]}>
 			<group
-				position={[-1.15, 0, -50]}
+				position={[-1.15, 0, 0.25]}
 				rotation={[0, 0.5, 0]}
 				ref={p1.ref}
-				onClick={() => setPortal1active(true)}
+				onClick={(e) => clickHandler(e)}
 			>
 				<Frame id="01" name="Film 1" author="Frederic Cartier" bg="#fff">
 					<SmallRoom position={[0, -1, 0]} />
 					<ambientLight intensity={3} />
 				</Frame>
 			</group>
-			<group ref={p2.ref} onClick={() => setPortal2active(true)}>
+			<group ref={p2.ref} rotation={[0, 0, 0]} onClick={(e) => clickHandler(e)}>
 				<Frame id="02" name="Film 2" author="Frederic Cartier" bg="#fff">
 					<Warehouse
 						position={[5, -1, -5]}
@@ -187,7 +206,7 @@ export default function PortalsOne() {
 				position={[1.15, 0, 0.25]}
 				rotation={[0, -0.5, 0]}
 				ref={p3.ref}
-				onClick={() => setPortal3active(true)}
+				onClick={(e) => clickHandler(e)}
 			>
 				<Frame id="03" name="Film 3" author="Frederic Cartier" bg="#fff">
 					<SmallRoom position={[0, -1, 0]} />

@@ -16,15 +16,30 @@ export default function ScrollNavButtons() {
 		portal1active,
 		portal2active,
 		portal3active,
+		gotoPortals,
 	} = useContext(InputContextProvider);
-	useEffect(() => {}, [portalsActive, aboutMeActive]);
+	const clickHandler = (e) => {
+		prevSection();
+	};
 	return (
-		<div className={styles.scroll_nav}>
+		<div
+			className={styles.scroll_nav}
+			style={
+				{
+					// width: portal1active || portal2active || portal3active ? '10vh' : 'auto',
+					// left: portal1active || portal2active || portal3active ? '0' : 'none',
+					// right: portal1active || portal2active || portal3active ? '100%' : '0',
+					// right: portal1active || portal2active || portal3active ? '100%' : '0',
+					// justifyContent:
+					// 	portal1active || portal2active || portal3active ? 'flex-start' : 'flex-end',
+				}
+			}
+		>
 			<Image
 				src={leftIcon}
 				alt="alt"
 				className={styles.scroll_nav_icon}
-				onClick={prevSection}
+				onClick={clickHandler}
 				style={{
 					width: portal1active || portal2active || portal3active ? '0' : '30px',
 					height: portal1active || portal2active || portal3active ? '0' : '30px',
