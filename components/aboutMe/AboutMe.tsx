@@ -20,7 +20,7 @@ const NavCam = dynamic(() => import('../../models/4096/Cam').then((mod) => mod.M
 
 export default function AboutMe() {
 	const { mobile } = useContext(UserContextProvider);
-	const { aboutMeActive, portalsActive } = useContext(InputContextProvider);
+	const { aboutMeActive, portalsActive, scrolling } = useContext(InputContextProvider);
 	const ref = useRef<THREE.Group>();
 	const scroll = useScroll();
 	const r1 = scroll.range(0 / 4, 1 / 4);
@@ -60,14 +60,33 @@ export default function AboutMe() {
 	const enterSpeed = 0.2;
 
 	useFrame(({ gl, scene, camera, clock, pointer }) => {
-		const iconR1 = scroll.range(0 / 10, 0.25 / 10); // this is first one tenth of the page
-		const iconR2 = scroll.range(0.25 / 10, 0.5 / 10); // this is the second one tenth of the page
-		const iconR3 = scroll.range(0.5 / 10, 0.75 / 10);
+		const r1 = scroll.range(0 / 10, 1 / 10); // this is first one tenth of the page
+		const r2 = scroll.range(0 / 10, 2 / 10); // this is the second one tenth of the page
+		const r3 = scroll.range(0 / 10, 3 / 10);
+		// console.log(r1, r2);
 
 		if (aboutMeActive.current) {
+			// not scrolling
+			// if (!scrolling.current) {
 			MoveGroup(icon1Ref, icon1.active, icon1.enterSpeed);
 			MoveGroup(icon2Ref, icon2.active, icon2.enterSpeed);
 			MoveGroup(icon3Ref, icon3.active, icon3.enterSpeed);
+			// }
+			// icon1Ref.current.position.z = MathUtils.lerp(
+			// 	icon1Ref.current.position.z,
+			// 	r1 * 20,
+			// 	icon1.exitSpeed
+			// );
+			// icon2Ref.current.position.z = MathUtils.lerp(
+			// 	icon2Ref.current.position.z,
+			// 	r2 * 20,
+			// 	icon2.exitSpeed
+			// );
+			// icon3Ref.current.position.z = MathUtils.lerp(
+			// 	icon3Ref.current.position.z,
+			// 	r3 * 20,
+			// 	icon3.exitSpeed
+			// );
 		}
 		if (portalsActive.current) {
 			MoveGroup(icon1Ref, icon1.hidden, icon1.exitSpeed);
@@ -99,6 +118,7 @@ export default function AboutMe() {
 	};
 	return (
 		<group position={[0, 0.75, 0]} ref={ref}>
+			<pointLight position={[0, 2, 1]} intensity={1} />
 			<Float
 				speed={speed} // Animation speed, defaults to 1
 				rotationIntensity={rotationIntensity} // XYZ rotation intensity, defaults to 1

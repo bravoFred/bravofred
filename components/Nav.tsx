@@ -25,6 +25,8 @@ export default function Nav() {
 	// check for changes to aboutMeActive and portalsActive
 	const [aboutMeActiveState, setAboutMeActiveState] = useState(true);
 	const [portalsActiveState, setPortalsActiveState] = useState(false);
+	const [, setLocation] = useLocation();
+
 	const clickHandler = (e) => {
 		const { innerText } = e.target;
 		if (innerText === 'About Me') {
@@ -46,15 +48,19 @@ export default function Nav() {
 			setAboutMeActiveState(false);
 		}
 	}, [aboutMeActive, portalsActive]);
+	// const[isHome]
 	return (
 		<nav className={styles.navLoaded}>
 			{/* <nav className={styles.navLoading}> */}
 			<p
 				className={styles.nav_text_loaded}
 				style={{
-					color: theme === 'dark' ? 'white' : 'black',
+					color: window.location.pathname === '/' ? 'white' : 'black',
 				}}
-				onClick={goToHome}
+				onClick={(e) => {
+					goToHome();
+					setLocation('/');
+				}}
 			>
 				FREDERIC CARTIER
 			</p>
@@ -62,20 +68,30 @@ export default function Nav() {
 				<p
 					className={`${styles.nav_link} ${aboutMeActiveState ? styles.active : ''}`}
 					style={{
-						color: theme === 'dark' ? 'white' : 'black',
+						// color: theme === 'dark' ? 'white' : 'black',
+						color: window.location.pathname === '/' ? 'white' : 'black',
 					}}
 					// onClick={prevSection}
-					onClick={(e) => clickHandler(e)}
+					// onClick={(e) => clickHandler(e)}
+					onClick={(e) => {
+						setLocation('/');
+						clickHandler(e);
+					}}
 				>
 					About Me
 				</p>
 				<p
 					className={`${styles.nav_link} ${portalsActiveState ? styles.active : ''}`}
 					style={{
-						color: theme === 'dark' ? 'white' : 'black',
+						color: window.location.pathname === '/' ? 'white' : 'black',
+
+						// color: theme === 'dark' ? 'white' : 'black',
 					}}
 					// onClick={nextSection}
-					onClick={(e) => clickHandler(e)}
+					onClick={(e) => {
+						setLocation('/');
+						clickHandler(e);
+					}}
 				>
 					Coming Soon
 				</p>

@@ -9,7 +9,7 @@ export default function ScrollNav() {
 	const scroll = useScroll();
 	const speed = useRef(0);
 	const [stoppedMsgShown, setStoppedMsgShown] = useState(false);
-	const speedThreshold = 0.1; // lower number = more sensitive, higher number = have to scroll faster to trigger
+	const speedThreshold = 0.25; // lower number = more sensitive, higher number = have to scroll faster to trigger
 	useFrame((state) => {
 		if (scroll.offset > scrollSpeed.current) {
 			scrollDirection.current = 1;
@@ -19,6 +19,9 @@ export default function ScrollNav() {
 			if (speed.current > speedThreshold) {
 				portalsActive.current = true;
 				aboutMeActive.current = false;
+				// lerp offset to 1
+				// scroll.offset = 1;
+
 				// console.log('portalsActive', portalsActive.current);
 			}
 
@@ -31,9 +34,7 @@ export default function ScrollNav() {
 			if (speed.current > speedThreshold) {
 				aboutMeActive.current = true;
 				portalsActive.current = false;
-				// if (scroll.offset < 0.1) scroll.offset = 0;
 			}
-			// console.log('aboutMeActive', aboutMeActive.current);
 		}
 		if (scroll.offset === scrollSpeed.current) {
 			scrollDirection.current = 0;
@@ -41,11 +42,6 @@ export default function ScrollNav() {
 		}
 		scrollSpeed.current = scroll.offset;
 		speed.current = scroll.delta * 100;
-		if (portalsActive.current) {
-			// scroll.offset = 1;
-		} else if (aboutMeActive.current) {
-			// scroll.offset = 0;
-		}
 		// console.log(scroll.offset);
 	});
 

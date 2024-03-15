@@ -66,8 +66,10 @@ export default function Camera() {
 			if (activeObject.current !== null) {
 				const { point } = activeObject.current;
 				if (point) {
-					lerpVecs(focus.current, point, speed);
-					camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 1.5 : 3, zoomInSpeed);
+					if (scroll.offset === 0) {
+						lerpVecs(focus.current, point, speed);
+						camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 1.5 : 3, zoomInSpeed);
+					}
 				}
 			} else {
 				lerpVecs(focus.current, camVecs.current.aboutMe.focus, speed);

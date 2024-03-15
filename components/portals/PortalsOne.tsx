@@ -155,7 +155,6 @@ export default function PortalsOne() {
 			MoveGroup(p2.ref, p2.active, p2.enterSpeed);
 			MoveGroup(p3.ref, p3.active, p3.enterSpeed);
 		}
-		console.log(portalRigActive);
 	});
 	return (
 		<group ref={portalsRef} position={[0, 0, -100]}>

@@ -37,11 +37,13 @@ export default function Mouse() {
 
 		if (!mobile) {
 			if (aboutMeActive.current) {
-				state.camera.position.x = MathUtils.lerp(
-					state.camera.position.x,
-					state.pointer.x * 0.5,
-					0.1
-				);
+				if (scroll.offset === 0) {
+					state.camera.position.x = MathUtils.lerp(
+						state.camera.position.x,
+						state.pointer.x * 0.5,
+						0.1
+					);
+				}
 			}
 			if (portalsActive.current) {
 				// state.camera.position.x = MathUtils.lerp(

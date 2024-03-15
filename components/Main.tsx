@@ -89,11 +89,11 @@ export default function Main() {
 					{/* <GridGround theme={theme} /> */}
 					<color args={[theme === 'light' ? '#fff' : '#000']} attach="background" />
 					{/* <fog attach="fog" args={[theme === 'light' ? '#fff' : '#000', 0, 0]} /> */}
-					<ScrollControls pages={4}>
+					<ScrollControls pages={2}>
 						<AboutMe />
 						<PortalsMain />
 						<ScrollController />
-						<Mouse />
+						{/* <Mouse /> */}
 						<Camera />
 						<Floor />
 						<Raycaster />
