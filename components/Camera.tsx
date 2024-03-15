@@ -94,6 +94,7 @@ export default function Camera() {
 			// target.current.z = MathUtils.lerp(target.current.z, 0, speed);
 			// camera.position.y = MathUtils.lerp(camera.position.y, 1, 0.1); // moves cam up and down
 		}
+		// console.log(scroll.offset);
 
 		camera.updateProjectionMatrix();
 		ToggleCamFov(camera, mobile);

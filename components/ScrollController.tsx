@@ -41,7 +41,12 @@ export default function ScrollNav() {
 		}
 		scrollSpeed.current = scroll.offset;
 		speed.current = scroll.delta * 100;
-		// console.log(scroll.offset);
+		if (portalsActive.current) {
+			// scroll.offset = 1;
+		} else if (aboutMeActive.current) {
+			// scroll.offset = 0;
+		}
+		console.log(scroll.offset);
 	});
 
 	return null;

@@ -28,7 +28,7 @@ const Warehouse = dynamic(
 		ssr: false,
 	}
 );
-function Rig({ position = new THREE.Vector3(0, 1, 5), focus = new THREE.Vector3(0, 1, 0) }) {
+function Rig({ position = new THREE.Vector3(0, 0.1, 5), focus = new THREE.Vector3(0, 1, 0) }) {
 	const { controls, scene } = useThree();
 	const [, params] = useRoute('/item/:id') as any;
 	useEffect(() => {
@@ -91,8 +91,9 @@ function Frame({ id, name, author, bg, width = 1, height = 1.61803398875, childr
 				onPointerOver={(e) => hover(true)}
 				onPointerOut={() => hover(false)}
 			>
-				{/* <roundedPlaneGeometry args={[width, height, 0.1]} /> */}
-				<boxGeometry args={[width, height, 0.01]} />
+				{/* args are width heigh, radius */}
+				<roundedPlaneGeometry args={[width, height, 0.22]} />
+				{/* <boxGeometry args={[width, height, 0.01]} /> */}
 				{/* <planeGeometry args={[width, height, 0.1]} /> */}
 				<MeshPortalMaterial
 					ref={portal}
@@ -111,7 +112,7 @@ function Frame({ id, name, author, bg, width = 1, height = 1.61803398875, childr
 export default function PortalsOne() {
 	const { mobile } = useContext(UserContextProvider);
 	const { portalsActive, aboutMeActive } = useContext(InputContextProvider);
-
+	const [portalRigActive, setPortalRigActive] = useState(false);
 	const scroll = useScroll();
 	const portalsRef = useRef<THREE.Group>();
 	const baseSpeed = 0.1;
@@ -138,10 +139,13 @@ export default function PortalsOne() {
 	});
 	useFrame((state) => {
 		if (aboutMeActive.current) {
+			setPortalRigActive(false);
 			MoveGroup(p1.ref, p1.hidden, p1.exitSpeed);
 			MoveGroup(p2.ref, p2.hidden, p2.exitSpeed);
 			MoveGroup(p3.ref, p3.hidden, p3.exitSpeed);
-		} else {
+		}
+		if (portalsActive.current) {
+			setPortalRigActive(true);
 			MoveGroup(p1.ref, p1.active, p1.enterSpeed);
 			MoveGroup(p2.ref, p2.active, p2.enterSpeed);
 			MoveGroup(p3.ref, p3.active, p3.enterSpeed);
@@ -176,7 +180,7 @@ export default function PortalsOne() {
 			</group>
 
 			{/* </ScreenSizer> */}
-			<Rig />
+			{portalRigActive && <Rig />}
 			{/* <Shake /> */}
 		</group>
 	);
