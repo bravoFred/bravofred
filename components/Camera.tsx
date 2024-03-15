@@ -78,7 +78,7 @@ export default function Camera() {
 		}
 		if (portalsActive) {
 			lerpVecs(focus.current, camVecs.current.portals.focus, speed);
-			// camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomOutSpeed);
+			camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomOutSpeed);
 		}
 
 		camera.updateProjectionMatrix();
