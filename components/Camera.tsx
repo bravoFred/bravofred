@@ -61,7 +61,7 @@ export default function Camera() {
 	const zoomOutSpeed = mobile ? 0.1 : 0.05;
 	useFrame((state) => {
 		const camera = state.camera as THREE.PerspectiveCamera;
-		if (aboutMeActive.current) {
+		if (aboutMeActive) {
 			camera.lookAt(focus.current.x, focus.current.y, focus.current.z);
 			if (activeObject.current !== null) {
 				const { point } = activeObject.current;
@@ -76,7 +76,7 @@ export default function Camera() {
 				camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomOutSpeed);
 			}
 		}
-		if (portalsActive.current) {
+		if (portalsActive) {
 			lerpVecs(focus.current, camVecs.current.portals.focus, speed);
 			// camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomOutSpeed);
 		}

@@ -35,13 +35,7 @@ export default function ScrollNavButtons() {
 						portal1active || portal2active || portal3active ? 'invert(100%)' : 'none',
 				}}
 			/>
-			{/* <p
-				style={{
-					color: theme === 'light' ? 'black' : 'white',
-				}}
-			>
-				{aboutMeActive.current ? 'About Me' : 'Coming Soon'}
-			</p> */}
+
 			<Image
 				src={rightIcon}
 				alt="alt"

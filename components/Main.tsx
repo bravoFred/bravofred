@@ -35,26 +35,7 @@ const SmallRoom = dynamic(
 import * as THREE from 'three';
 export default function Main() {
 	const { theme, setTheme, frameloop, mobile } = useContext(UserContextProvider);
-	const aboutMeActive = useRef(true);
-	const portalsActive = useRef(false);
 
-	// function gotoAboutMe() {
-	// 	aboutMeActive.current = true;
-	// 	portalsActive.current = false;
-	// }
-	// function gotoPortals() {
-	// 	aboutMeActive.current = false;
-	// 	portalsActive.current = true;
-	// }
-	// function prevSection() {
-	// 	gotoAboutMe();
-	// 	console.log(aboutMeActive.current, portalsActive.current);
-	// }
-	// function nextSection() {
-	// 	gotoPortals();
-	// 	console.log(aboutMeActive.current, portalsActive.current);
-	// }
-	const navScale = 150;
 	return (
 		<>
 			{/* <main className={`${styles.main} ${inter.className}`}> */}

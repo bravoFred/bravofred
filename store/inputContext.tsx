@@ -19,6 +19,8 @@ const InputContext = createContext({
 	gotoAboutMe: () => {},
 	gotoPortals: () => {},
 	goToHome: () => {},
+	setAboutMeActive: (bool) => {},
+	setPortalsActive: (bool) => {},
 	setPortal1active: (bool) => {},
 	setPortal2active: (bool) => {},
 	setPortal3active: (bool) => {},
@@ -28,8 +30,8 @@ export function InputContextProvider(props) {
 	const scrollSpeed = useRef(0);
 	const scrollDirection = useRef(0);
 	const scrolling = useRef(false);
-	const aboutMeActive = useRef(true);
-	const portalsActive = useRef(false);
+	const [aboutMeActive, setAboutMeActive] = useState(true);
+	const [portalsActive, setPortalsActive] = useState(false);
 
 	const activeObject = useRef({});
 	const icon1Hovered = useRef(false);
@@ -40,12 +42,12 @@ export function InputContextProvider(props) {
 	const [portal3active, setPortal3active] = useState(false);
 	const [isHome, setIsHome] = useState(true);
 	function gotoAboutMe() {
-		aboutMeActive.current = true;
-		portalsActive.current = false;
+		setAboutMeActive(true);
+		setPortalsActive(false);
 	}
 	function gotoPortals() {
-		aboutMeActive.current = false;
-		portalsActive.current = true;
+		setAboutMeActive(false);
+		setPortalsActive(true);
 	}
 	function disablePortals() {
 		setPortal1active(false);
@@ -65,7 +67,7 @@ export function InputContextProvider(props) {
 		setPortal3active(true);
 	}
 	function goToHome() {
-		if (window.location.pathname === '/' && portalsActive.current) {
+		if (window.location.pathname === '/' && portalsActive) {
 			gotoAboutMe();
 		}
 		disablePortals();
@@ -108,6 +110,8 @@ export function InputContextProvider(props) {
 				icon1Hovered,
 				icon2Hovered,
 				icon3Hovered,
+				setAboutMeActive,
+				setPortalsActive,
 				prevSection,
 				nextSection,
 				gotoAboutMe,

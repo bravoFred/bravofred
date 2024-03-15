@@ -36,7 +36,7 @@ export default function Mouse() {
 		// console.log(scroll.offset);
 
 		if (!mobile) {
-			if (aboutMeActive.current) {
+			if (aboutMeActive) {
 				if (scroll.offset === 0) {
 					state.camera.position.x = MathUtils.lerp(
 						state.camera.position.x,
@@ -45,7 +45,7 @@ export default function Mouse() {
 					);
 				}
 			}
-			if (portalsActive.current) {
+			if (portalsActive) {
 				// state.camera.position.x = MathUtils.lerp(
 				// 	state.camera.position.x,
 				// 	state.pointer.x * 0.5,

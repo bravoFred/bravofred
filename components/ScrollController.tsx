@@ -4,8 +4,15 @@ import { useScroll } from '@react-three/drei';
 import { useRef, useContext } from 'react';
 import InputContext from '@/store/inputContext';
 export default function ScrollNav() {
-	const { scrollSpeed, scrollDirection, scrolling, portalsActive, aboutMeActive } =
-		useContext(InputContext);
+	const {
+		scrollSpeed,
+		scrollDirection,
+		scrolling,
+		portalsActive,
+		aboutMeActive,
+		setAboutMeActive,
+		setPortalsActive,
+	} = useContext(InputContext);
 	const scroll = useScroll();
 	const speed = useRef(0);
 	const [stoppedMsgShown, setStoppedMsgShown] = useState(false);
@@ -15,25 +22,17 @@ export default function ScrollNav() {
 			scrollDirection.current = 1;
 			scrolling.current = true;
 			// console.log('scrolling down');
-			// switch to portals
 			if (speed.current > speedThreshold) {
-				portalsActive.current = true;
-				aboutMeActive.current = false;
-				// lerp offset to 1
-				// scroll.offset = 1;
-
-				// console.log('portalsActive', portalsActive.current);
+				setPortalsActive(true);
+				setAboutMeActive(false);
 			}
-
-			// }
 		} else if (scroll.offset < scrollSpeed.current) {
 			scrollDirection.current = -1;
 			scrolling.current = true;
 			// console.log('scrolling up');
-			// switch to about me
 			if (speed.current > speedThreshold) {
-				aboutMeActive.current = true;
-				portalsActive.current = false;
+				setAboutMeActive(true);
+				setPortalsActive(false);
 			}
 		}
 		if (scroll.offset === scrollSpeed.current) {

@@ -140,7 +140,7 @@ export default function PortalsOne() {
 		exitSpeed: baseSpeed,
 	});
 	useFrame((state) => {
-		if (aboutMeActive.current) {
+		if (aboutMeActive) {
 			MoveGroup(portalsRef, new THREE.Vector3(0, 0, -50), baseSpeed); // hides the group
 
 			setPortalRigActive(false);
@@ -148,7 +148,7 @@ export default function PortalsOne() {
 			MoveGroup(p2.ref, p2.hidden, p2.exitSpeed);
 			MoveGroup(p3.ref, p3.hidden, p3.exitSpeed);
 		}
-		if (portalsActive.current) {
+		if (portalsActive) {
 			MoveGroup(portalsRef, new THREE.Vector3(0, 0, 0), baseSpeed); // shows the group
 
 			setPortalRigActive(true);

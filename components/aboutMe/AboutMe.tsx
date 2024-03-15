@@ -71,7 +71,7 @@ export default function AboutMe() {
 		const r3 = scroll.range(0 / 10, 3 / 10);
 		// console.log(r1, r2);
 
-		if (aboutMeActive.current) {
+		if (aboutMeActive) {
 			// not scrolling
 			// if (!scrolling.current) {
 			MoveGroup(icon1Ref, icon1.active, icon1.enterSpeed);
@@ -94,7 +94,7 @@ export default function AboutMe() {
 			// 	icon3.exitSpeed
 			// );
 		}
-		if (portalsActive.current) {
+		if (portalsActive) {
 			MoveGroup(icon1Ref, icon1.hidden, icon1.exitSpeed);
 			MoveGroup(icon2Ref, icon2.hidden, icon2.exitSpeed);
 			MoveGroup(icon3Ref, icon3.hidden, icon3.exitSpeed);
