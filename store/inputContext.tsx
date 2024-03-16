@@ -48,10 +48,12 @@ export function InputContextProvider(props) {
 	}
 	function gotoAboutMe() {
 		router.push('/');
+		disablePortals();
 		setAboutMeActive(true);
 		setPortalsActive(false);
 	}
 	function gotoPortals() {
+		disablePortals();
 		router.push('/');
 		setAboutMeActive(false);
 		setPortalsActive(true);

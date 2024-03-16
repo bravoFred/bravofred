@@ -2,10 +2,8 @@ import styles from './Nav.module.scss';
 import { useProgress } from '@react-three/drei';
 import { useRef, useEffect, useState, use, useContext } from 'react';
 import UserContextProvider from '../store/userContext';
-import { useRoute, useLocation } from 'wouter';
 import InputContextProvider from '../store/inputContext';
 import { useFrame } from '@react-three/fiber';
-import { useRouter } from 'next/router';
 
 export default function Nav() {
 	const { theme, setTheme } = useContext(UserContextProvider);
@@ -31,12 +29,8 @@ export default function Nav() {
 			loadTime.current = (endTime.current - startTime.current) / 1000;
 		}
 	}, [active, progress, item, loaded, total, errors]);
-	// handle routing for nav
-	// check for changes to aboutMeActive and portalsActive
 	const [aboutMeActiveState, setAboutMeActiveState] = useState(true);
 	const [portalsActiveState, setPortalsActiveState] = useState(false);
-	// const [location, setLocation] = useLocation();
-	const router = useRouter();
 
 	const clickHandler = (e) => {
 		const { innerText } = e.target;
@@ -56,7 +50,6 @@ export default function Nav() {
 
 	return (
 		<nav className={styles.nav}>
-			{/* <nav className={styles.navLoading}> */}
 			<p
 				className={styles.nav_logo}
 				style={{
