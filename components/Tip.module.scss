@@ -9,7 +9,6 @@
 }
 .tip {
 	position: fixed;
-	bottom: 2rem;
 	color: white;
 	z-index: 1000;
 	user-select: none;
@@ -18,12 +17,29 @@
 	align-items: center;
 	justify-content: center;
 	width: 100%;
+	// border: 1px solid white;
+}
+.tip_text {
+	width: 66%;
 	font-weight: 300;
-	// margin: 0 2rem;
-	font-size: 1rem;
 	font-size: 12px;
 	letter-spacing: 0.1rem;
-	// border: 1px solid white;
-	opacity: 1;
-	// animation: lettersWideToNormal 3s ease-in-out;
+	text-align: center;
+	line-height: 1.25rem;
+}
+// desktop
+@media (min-width: 768px) {
+	.tip {
+		bottom: 2rem;
+	}
+	.tip_text {
+	}
+}
+// mobile
+@media (max-width: 768px) {
+	.tip {
+		bottom: 1.25rem;
+	}
+	.tip_text {
+	}
 }

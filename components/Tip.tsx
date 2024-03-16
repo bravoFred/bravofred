@@ -33,5 +33,9 @@ export default function Tip() {
 		if (portal1active || portal2active || portal3active) setMsg('');
 	}, [aboutMeActive, portalsActive, portal1active, portal2active, portal3active, mobile]);
 
-	return <p className={styles.tip}>{msg}</p>;
+	return (
+		<div className={styles.tip}>
+			<p className={styles.tip_text}>{msg}</p>
+		</div>
+	);
 }
