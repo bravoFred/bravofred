@@ -66,21 +66,20 @@ export default function Camera() {
 	useFrame((state) => {
 		const camera = state.camera as THREE.PerspectiveCamera;
 		camera.lookAt(focus.current.x, focus.current.y, focus.current.z);
-		lerpVecs(focus.current, camVecs.current.portals.focus, speed);
+		// lerpVecs(focus.current, camVecs.current.aboutMe.focus, speed);
 
 		if (aboutMeActive) {
+			lerpVecs(camera.position, camVecs.current.aboutMe.pos, speed);
 			lerpVecs(focus.current, camVecs.current.aboutMe.focus, speed);
 			if (activeObject.current !== null) {
 				const { point } = activeObject.current;
 				if (point) {
-					if (scroll.offset === 0) {
-						lerpVecs(focus.current, point, speed);
-						camera.zoom = MathUtils.lerp(
-							camera.zoom,
-							mobile ? zoomMobile : zoomDesktop,
-							zoomInSpeed
-						);
-					}
+					lerpVecs(focus.current, point, speed);
+					camera.zoom = MathUtils.lerp(
+						camera.zoom,
+						mobile ? zoomMobile : zoomDesktop,
+						zoomInSpeed
+					);
 				}
 			} else {
 				lerpVecs(focus.current, camVecs.current.aboutMe.focus, speed);
@@ -92,9 +91,8 @@ export default function Camera() {
 			}
 		}
 		if (portalsActive) {
+			lerpVecs(camera.position, camVecs.current.portals.pos, speed);
 			lerpVecs(focus.current, camVecs.current.portals.focus, speed);
-
-			// lerpVecs(focus.current, camVecs.current.portals.focus, speed);
 			camera.zoom = MathUtils.lerp(
 				camera.zoom,
 				mobile ? defaultZoomMobile : defaultZoomDesktop,

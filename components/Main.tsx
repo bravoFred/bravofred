@@ -52,7 +52,7 @@ export default function Main() {
 					flat
 					shadows
 					frameloop={frameloop}
-					dpr={[1, 1.5]}
+					dpr={[1, mobile ? 1.5 : 2]}
 					gl={{
 						powerPreference: 'high-performance',
 						antialias: false,
@@ -64,8 +64,8 @@ export default function Main() {
 						fov: mobile ? 45 : 70, // fov from codesandbox
 						near: 0.1,
 						far: 45,
-						zoom: 1,
-						position: new THREE.Vector3(0, 1, 5),
+						// zoom: 1,
+						position: new THREE.Vector3(-10, 0.1, 5),
 					}}
 				>
 					{/* <color args={[theme === 'light' ? '#fff' : '#000']} attach="background" /> */}
