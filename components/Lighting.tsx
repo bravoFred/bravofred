@@ -17,9 +17,9 @@ export default function Lighting() {
 
 	// const [shadowMapSize, setShadowMapSize] = useState(mobile ? 1024 : 4096);
 	const [shadowMapSize, setShadowMapSize] = useState(mobile ? 4096 : 4096);
-	useEffect(() => {
-		setShadowMapSize(mobile ? 1024 : 4096);
-	}, [mobile]);
+	// useEffect(() => {
+	// 	// setShadowMapSize(mobile ? 1024 : 4096);
+	// }, [mobile]);
 	function MovingSpot({ vec = new THREE.Vector3(0, 10, 0), ...props }) {
 		const light = useRef(null!);
 		const viewport = useThree((state) => state.viewport);

@@ -1,5 +1,5 @@
 import { Text3D, Float } from '@react-three/drei';
-import { useScroll, DeviceOrientationControls } from '@react-three/drei';
+import { useScroll, DeviceOrientationControls, Text } from '@react-three/drei';
 import { useRef } from 'react';
 import { useFrame, extend, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
@@ -29,7 +29,7 @@ function spinGroupAround(ref, speed) {
 	group.rotation.y = groupCurrentRotation - Math.PI * 4;
 	// }
 }
-export default function AboutMe() {
+export default function AboutMe(props) {
 	const { mobile } = useContext(UserContextProvider);
 	const { aboutMeActive, portalsActive, scrolling, icon1Hovered, icon2Hovered, icon3Hovered } =
 		useContext(InputContextProvider);
@@ -48,7 +48,7 @@ export default function AboutMe() {
 	const baseActiveScale = 1.1;
 	const [icon1, setIcon1] = useState({
 		ref: useRef<THREE.Group>(),
-		active: new THREE.Vector3(-0.3, 0.33, 0),
+		active: new THREE.Vector3(-0.5, 0.5, 0),
 		hidden: new THREE.Vector3(0, 0, 20),
 		activeScale: new THREE.Vector3(baseActiveScale, baseActiveScale, baseActiveScale),
 		hiddenScale: new THREE.Vector3(baseScale, baseScale, baseScale),
@@ -57,8 +57,8 @@ export default function AboutMe() {
 	});
 	const [icon2, setIcon2] = useState({
 		ref: useRef<THREE.Group>(),
-		active: new THREE.Vector3(0.3, 0, 0),
-		hidden: new THREE.Vector3(0, 0, 25),
+		active: new THREE.Vector3(0.75, 0.1, 0),
+		hidden: new THREE.Vector3(0.5, 0, 25),
 		activeScale: new THREE.Vector3(baseActiveScale, baseActiveScale, baseActiveScale),
 		hiddenScale: new THREE.Vector3(baseScale, baseScale, baseScale),
 		enterSpeed: baseSpeed * 1.5,
@@ -66,10 +66,19 @@ export default function AboutMe() {
 	});
 	const [icon3, setIcon3] = useState({
 		ref: useRef<THREE.Group>(),
-		active: new THREE.Vector3(-0.3, -0.33, 0),
+		active: new THREE.Vector3(-0.25, -0.5, 0),
 		hidden: new THREE.Vector3(0, 0, 30),
 		activeScale: new THREE.Vector3(baseActiveScale, baseActiveScale, baseActiveScale),
 		hiddenScale: new THREE.Vector3(baseScale, baseScale, baseScale),
+		enterSpeed: baseSpeed,
+		exitSpeed: baseSpeed / 4,
+	});
+	const [text, setText] = useState({
+		ref: useRef<THREE.Group>(),
+		active: new THREE.Vector3(0, 1, 0),
+		hidden: new THREE.Vector3(0, 0, 15),
+		activeScale: new THREE.Vector3(baseActiveScale, baseActiveScale, baseActiveScale),
+		hiddenScale: new THREE.Vector3(0, 0, 0),
 		enterSpeed: baseSpeed,
 		exitSpeed: baseSpeed / 4,
 	});
@@ -78,8 +87,6 @@ export default function AboutMe() {
 		const r1 = scroll.range(0 / 10, 1 / 10); // this is first one tenth of the page
 		const r2 = scroll.range(0 / 10, 2 / 10); // this is the second one tenth of the page
 		const r3 = scroll.range(0 / 10, 3 / 10);
-		// console.log(r1, r2);
-		// console.log(icon1Ref.current.position.z);
 		icon1Hovered.current
 			? ScaleAll(icon1Ref, icon1.activeScale, 0.1)
 			: ScaleAll(icon1Ref, icon1.hiddenScale, 0.1);
@@ -91,32 +98,16 @@ export default function AboutMe() {
 			: ScaleAll(icon3Ref, icon3.hiddenScale, 0.1);
 
 		if (aboutMeActive) {
-			// not scrolling
-			// if (!scrolling.current) {
 			LerpAll(icon1Ref, icon1.active, icon1.enterSpeed);
 			LerpAll(icon2Ref, icon2.active, icon2.enterSpeed);
 			LerpAll(icon3Ref, icon3.active, icon3.enterSpeed);
-			// }
-			// icon1Ref.current.position.z = MathUtils.lerp(
-			// 	icon1Ref.current.position.z,
-			// 	r1 * 20,
-			// 	icon1.exitSpeed
-			// );
-			// icon2Ref.current.position.z = MathUtils.lerp(
-			// 	icon2Ref.current.position.z,
-			// 	r2 * 20,
-			// 	icon2.exitSpeed
-			// );
-			// icon3Ref.current.position.z = MathUtils.lerp(
-			// 	icon3Ref.current.position.z,
-			// 	r3 * 20,
-			// 	icon3.exitSpeed
-			// );
+			LerpAll(text.ref, text.active, text.enterSpeed);
 		}
 		if (portalsActive) {
 			LerpAll(icon1Ref, icon1.hidden, icon1.exitSpeed);
 			LerpAll(icon2Ref, icon2.hidden, icon2.exitSpeed);
 			LerpAll(icon3Ref, icon3.hidden, icon3.exitSpeed);
+			LerpAll(text.ref, text.hidden, text.exitSpeed);
 		}
 	});
 	const floatIntensity = 1;
@@ -165,9 +156,30 @@ export default function AboutMe() {
 			document.body.style.cursor = 'auto';
 		}
 	};
+	const [textMsg, setTextMsg] = useState(`
+	Lorem ipsum is placeholder text
+	${'\n'}
+	commonly used in industries
+	${'\n'}
+	for previewing layouts and mockups.`);
+
 	return (
 		<group position={[0, 0, 0]} ref={ref}>
-			{/* <pointLight position={[0, 2, 1]} intensity={1} /> */}
+			<Text
+				ref={text.ref}
+				font="/fonts/NimbusSanL-Bol.woff"
+				fontSize={0.05}
+				color={'#000000'}
+				{...props}
+				textAlign="center"
+				// anchorY="center"
+				// anchorX="center"
+				lineHeight={0.5}
+				position={[0, 0, 0]}
+				material-toneMapped={false}
+			>
+				{textMsg}
+			</Text>
 			<Float
 				speed={speed} // Animation speed, defaults to 1
 				rotationIntensity={rotationIntensity} // XYZ rotation intensity, defaults to 1
@@ -192,6 +204,7 @@ export default function AboutMe() {
 					<IconIG iconHovered={icon1Hovered} />
 				</group>
 			</Float>
+
 			<Float
 				speed={speed} // Animation speed, defaults to 1
 				rotationIntensity={rotationIntensity} // XYZ rotation intensity, defaults to 1

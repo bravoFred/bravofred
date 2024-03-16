@@ -39,12 +39,8 @@ export default function Main() {
 
 	return (
 		<>
-			{/* <main className={`${styles.main} ${inter.className}`}> */}
-			{/* <main className={`${styles.main}`}>
-			</main> */}
 			<Nav />
 			<Tip />
-			{/* <ScrollNavButtons prev={prevSection} next={nextSection} /> */}
 			<ScrollNavButtons />
 			<Suspense fallback={null}>
 				<Canvas
@@ -65,57 +61,24 @@ export default function Main() {
 						near: 0.1,
 						far: 45,
 						// zoom: 1,
-						position: new THREE.Vector3(-10, 0.1, 5),
+						position: new THREE.Vector3(-10, 0, 0),
 					}}
 				>
-					{/* <color args={[theme === 'light' ? '#fff' : '#000']} attach="background" /> */}
-					{/* <fog attach="fog" args={[theme === 'light' ? '#fff' : '#000', 0, 0]} /> */}
+					<color args={[theme === 'light' ? '#fff' : '#000']} attach="background" />
+					<fog attach="fog" args={[theme === 'light' ? '#fff' : '#000', 0, 15]} />
 					<ScrollControls pages={2}>
 						<GridGround theme={theme} />
 						<AboutMe />
 						<PortalsMain />
 						<ScrollController />
-						{/* <Mouse /> */}
 						<Camera />
-						{/* <Floor /> */}
 						<Raycaster />
 						<Lighting />
-						<BackgroundColor />
-						<Fog />
+						{/* <Mouse /> */}
+						{/* <BackgroundColor /> */}
+						{/* <Fog /> */}
 					</ScrollControls>
-					{/* <Environment preset="city" /> */}
-
-					{/* <Billboard
-						follow={true}
-						lockX={false}
-						lockY={false}
-						lockZ={false} // Lock the rotation on the z axis (default=false)
-					>
-						<SmallRoom
-							scale={[0.25, 0.25, 0.25]}
-							position={[2, 0, 0]}
-							rotation={[0, Math.PI * 3, 0]}
-						/>
-					</Billboard> */}
-					{/* <ScreenSpace
-						depth={1} 
-					>
-						<group position={[0.5, -0.1, 0]} rotation={[0, Math.PI * 3.85, 0]}>
-							<pointLight position={[0, 0, 0]} intensity={0.1} />
-							<SmallRoom
-								scale={[navScale, navScale, navScale]}
-								position={[0, 0, 0]}
-							/>
-						</group>
-					</ScreenSpace> */}
-					{/* <ScreenSizer
-						scale={10} // scale factor
-					>
-						<SmallRoom position={[10, 0, 0]} />
-					</ScreenSizer> */}
 					<Performance />
-					{/* <VideoText /> */}
-					{/* <Shake /> */}
 				</Canvas>
 			</Suspense>
 		</>

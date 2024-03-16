@@ -33,24 +33,15 @@ export default function Mouse() {
 	const { aboutMeActive, portalsActive } = useContext(InputContextProvider);
 
 	useFrame((state) => {
-		// console.log(scroll.offset);
+		const camera = state.camera as THREE.PerspectiveCamera;
+		const pointer = state.pointer;
 
 		if (!mobile) {
 			if (aboutMeActive) {
-				if (scroll.offset === 0) {
-					state.camera.position.x = MathUtils.lerp(
-						state.camera.position.x,
-						state.pointer.x * 0.5,
-						0.1
-					);
-				}
+				camera.position.x = MathUtils.lerp(camera.position.x, pointer.x * 5, 0.1);
+				camera.position.y = MathUtils.lerp(camera.position.y, pointer.y * 0.5, 0.1);
 			}
 			if (portalsActive) {
-				// state.camera.position.x = MathUtils.lerp(
-				// 	state.camera.position.x,
-				// 	state.pointer.x * 0.5,
-				// 	0.1
-				// );
 			}
 		}
 	});

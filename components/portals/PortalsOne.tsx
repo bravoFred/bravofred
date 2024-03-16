@@ -1,9 +1,9 @@
-//  @ts-nocheck
+// @ts-nocheck
 
 import * as THREE from 'three';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { Canvas, extend, useFrame, useThree } from '@react-three/fiber';
-import { useCursor, MeshPortalMaterial, CameraControls, Text } from '@react-three/drei';
+import { useCursor, MeshPortalMaterial, CameraControls, Text, Image } from '@react-three/drei';
 import { useRoute, useLocation } from 'wouter';
 import { easing, geometry } from 'maath';
 import { useScroll } from '@react-three/drei';
@@ -13,7 +13,7 @@ import { MathUtils } from 'three';
 import dynamic from 'next/dynamic';
 import { LerpAll } from '../../components/AnimationFunctions';
 const GOLDENRATIO = 1.61803398875;
-
+import poster from '../../public/img/poster.jpeg';
 const SmallRoom = dynamic(
 	() => import('../../models/4096/PortalInteriorJoined').then((mod) => mod.Model),
 	{
@@ -53,9 +53,24 @@ function Frame({ id, name, author, bg, width = 1, height = GOLDENRATIO, children
 		//
 	);
 	const [text, setText] = useState(`FREDERIC${'\n'}CARTIER`);
-
+	const [url, setUrl] = useState(
+		'https://i.pinimg.com/originals/53/9a/79/539a79873138a294e02fd9a59288226a.jpg'
+	);
+	const imgRef = useRef();
 	return (
 		<group {...props} position={[0, 1, 0]}>
+			{/* <Image
+				ref={imgRef}
+				// url={`/public/img/poster.jpeg`}
+				url={poster}
+				transparent
+				side={THREE.DoubleSide}
+				// onPointerOver={pointerOver}
+				// onPointerOut={pointerOut}
+				{...props}
+			>
+				<bentPlaneGeometry args={[0.1, 1, 1, 20, 20]} />
+			</Image> */}
 			<Text
 				font="/fonts/NimbusSanL-Bol.woff"
 				fontSize={0.2}
