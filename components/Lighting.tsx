@@ -15,7 +15,8 @@ export default function Lighting() {
 	const { mobile } = useContext(UserContextProvider);
 	const { activeObject } = useContext(InputContextProvider);
 
-	const [shadowMapSize, setShadowMapSize] = useState(mobile ? 1024 : 4096);
+	// const [shadowMapSize, setShadowMapSize] = useState(mobile ? 1024 : 4096);
+	const [shadowMapSize, setShadowMapSize] = useState(mobile ? 4096 : 4096);
 	useEffect(() => {
 		setShadowMapSize(mobile ? 1024 : 4096);
 	}, [mobile]);

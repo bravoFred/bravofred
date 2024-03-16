@@ -70,9 +70,6 @@ export default function Camera() {
 
 		if (aboutMeActive) {
 			lerpVecs(focus.current, camVecs.current.aboutMe.focus, speed);
-
-			// lerpVecs(camera.position, camVecs.current.aboutMe.pos as THREE.Vector3, speed);
-			// lerpVecs(focus.current, camVecs.current.aboutMe.focus, speed);
 			if (activeObject.current !== null) {
 				const { point } = activeObject.current;
 				if (point) {

@@ -26,8 +26,8 @@ export default function Tip() {
 		} else if (portalsActive) {
 			setMsg(
 				mobile
-					? 'Double tap a portal to explore project'
-					: 'Double click a portal to explore project'
+					? 'Double tap portal to explore project'
+					: 'Double click portal to explore project'
 			);
 		}
 		if (portal1active || portal2active || portal3active) setMsg('');
