@@ -40,15 +40,8 @@ export default function Nav() {
 
 	const clickHandler = (e) => {
 		const { innerText } = e.target;
-		if (innerText === 'About Me') {
-			setAboutMeActiveState(true);
-			setPortalsActiveState(false);
-			gotoAboutMe();
-		} else if (innerText === 'Coming Soon') {
-			setPortalsActiveState(true);
-			setAboutMeActiveState(false);
-			gotoPortals();
-		}
+		if (innerText === 'About Me') gotoAboutMe();
+		if (innerText === 'Coming Soon') gotoPortals();
 	};
 
 	useEffect(() => {
