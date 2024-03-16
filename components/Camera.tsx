@@ -41,7 +41,7 @@ export default function Camera() {
 	const { activeObject, portalsActive, aboutMeActive } = useContext(InputContextProvider);
 	const camVecs = useRef({
 		aboutMe: {
-			pos: new THREE.Vector3(0, 0, 0),
+			pos: new THREE.Vector3(0, 0.1, 5),
 			focus: new THREE.Vector3(0, 1, 0),
 		},
 		portals: {
@@ -62,6 +62,7 @@ export default function Camera() {
 	useFrame((state) => {
 		const camera = state.camera as THREE.PerspectiveCamera;
 		if (aboutMeActive) {
+			lerpVecs(camera.position, camVecs.current.aboutMe.pos as THREE.Vector3, speed);
 			camera.lookAt(focus.current.x, focus.current.y, focus.current.z);
 			if (activeObject.current !== null) {
 				const { point } = activeObject.current;
