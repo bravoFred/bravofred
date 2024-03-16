@@ -48,7 +48,7 @@ export default function Main() {
 					flat
 					shadows
 					frameloop={frameloop}
-					dpr={[1, mobile ? 1.5 : 2]}
+					dpr={[1, mobile ? 1.25 : 2]}
 					gl={{
 						powerPreference: 'high-performance',
 						antialias: false,
