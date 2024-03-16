@@ -144,17 +144,17 @@ export default function PortalsOne() {
 			LerpAll(portalsRef, new THREE.Vector3(0, 0, -50), baseSpeed); // hides the group
 
 			setPortalRigActive(false);
-			LerpAll(p1.ref, p1.hidden, p1.exitSpeed);
+			// LerpAll(p1.ref, p1.hidden, p1.exitSpeed);
 			LerpAll(p2.ref, p2.hidden, p2.exitSpeed);
-			LerpAll(p3.ref, p3.hidden, p3.exitSpeed);
+			// LerpAll(p3.ref, p3.hidden, p3.exitSpeed);
 		}
 		if (portalsActive) {
 			LerpAll(portalsRef, new THREE.Vector3(0, 0, 0), baseSpeed); // shows the group
 
 			setPortalRigActive(true);
-			LerpAll(p1.ref, p1.active, p1.enterSpeed);
+			// LerpAll(p1.ref, p1.active, p1.enterSpeed);
 			LerpAll(p2.ref, p2.active, p2.enterSpeed);
-			LerpAll(p3.ref, p3.active, p3.enterSpeed);
+			// LerpAll(p3.ref, p3.active, p3.enterSpeed);
 		}
 	});
 	const clickHandler = (e) => {
@@ -178,7 +178,7 @@ export default function PortalsOne() {
 	const doubleClickHandler = (e) => {};
 	return (
 		<group ref={portalsRef} position={[0, 0, -100]}>
-			<group
+			{/* <group
 				position={[-1.15, 0, 0.25]}
 				rotation={[0, 0.5, 0]}
 				ref={p1.ref}
@@ -187,8 +187,8 @@ export default function PortalsOne() {
 				<Frame id="01" name="Film 1" author="Frederic Cartier" bg="#fff">
 					<SmallRoom position={[0, -1, 0]} />
 					<ambientLight intensity={3} />
-				</Frame>
-			</group>
+				</Frame
+			</group> */}
 			<group ref={p2.ref} rotation={[0, 0, 0]} onClick={(e) => clickHandler(e)}>
 				<Frame id="02" name="Film 2" author="Frederic Cartier" bg="#fff">
 					<Warehouse
@@ -202,7 +202,7 @@ export default function PortalsOne() {
 					<ambientLight intensity={3.5} />
 				</Frame>
 			</group>
-			<group
+			{/* <group
 				position={[1.15, 0, 0.25]}
 				rotation={[0, -0.5, 0]}
 				ref={p3.ref}
@@ -212,13 +212,9 @@ export default function PortalsOne() {
 					<SmallRoom position={[0, -1, 0]} />
 					<ambientLight intensity={3} />
 				</Frame>
-			</group>
-
-			{/* <group position={[0, 1, -2]} scale={[0.5, 0.5, 0.5]}>
-				<NavCam />
 			</group> */}
+
 			{portalRigActive && <Rig />}
-			{/* <Shake /> */}
 		</group>
 	);
 }

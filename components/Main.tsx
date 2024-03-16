@@ -68,10 +68,10 @@ export default function Main() {
 						position: new THREE.Vector3(0, 1, 5),
 					}}
 				>
-					<GridGround theme={theme} />
 					{/* <color args={[theme === 'light' ? '#fff' : '#000']} attach="background" /> */}
 					{/* <fog attach="fog" args={[theme === 'light' ? '#fff' : '#000', 0, 0]} /> */}
 					<ScrollControls pages={2}>
+						<GridGround theme={theme} />
 						<AboutMe />
 						<PortalsMain />
 						<ScrollController />
