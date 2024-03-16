@@ -42,18 +42,24 @@ export function InputContextProvider(props) {
 	const [portal3active, setPortal3active] = useState(false);
 	const [isHome, setIsHome] = useState(true);
 	function goToHome() {
+		activeObject.current = null;
+
 		disablePortals();
 		router.push('/');
 		if (portalsActive) gotoAboutMe();
 		if (portal1active || portal2active || portal3active) gotoPortals();
 	}
 	function gotoAboutMe() {
+		activeObject.current = null;
+
 		router.push('/');
 		disablePortals();
 		setAboutMeActive(true);
 		setPortalsActive(false);
 	}
 	function gotoPortals() {
+		activeObject.current = null;
+
 		disablePortals();
 		router.push('/');
 		setAboutMeActive(false);
