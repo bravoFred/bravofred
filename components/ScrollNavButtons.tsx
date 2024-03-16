@@ -25,10 +25,7 @@ export default function ScrollNavButtons() {
 	const clickHandler = (e) => {
 		if (aboutMeActive) gotoPortals();
 		if (portalsActive) gotoAboutMe();
-		if (portal1active || portal2active || portal3active) {
-			gotoPortals();
-			router.push('/');
-		}
+		if (portal1active || portal2active || portal3active) gotoPortals();
 	};
 	const [showPrev, setShowPrev] = useState(false);
 	const [showNext, setShowNext] = useState(true);

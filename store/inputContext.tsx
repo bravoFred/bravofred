@@ -45,6 +45,7 @@ export function InputContextProvider(props) {
 		disablePortals();
 		router.push('/');
 		if (portalsActive) gotoAboutMe();
+		if (portal1active || portal2active || portal3active) gotoPortals();
 	}
 	function gotoAboutMe() {
 		router.push('/');
