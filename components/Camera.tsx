@@ -67,6 +67,7 @@ export default function Camera() {
 		const camera = state.camera as THREE.PerspectiveCamera;
 		if (aboutMeActive) {
 			lerpVecs(camera.position, camVecs.current.aboutMe.pos as THREE.Vector3, speed);
+			lerpVecs(focus.current, camVecs.current.aboutMe.focus, speed);
 			camera.lookAt(focus.current.x, focus.current.y, focus.current.z);
 			if (activeObject.current !== null) {
 				const { point } = activeObject.current;
