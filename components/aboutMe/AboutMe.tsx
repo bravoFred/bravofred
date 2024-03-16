@@ -33,7 +33,7 @@ export default function AboutMe(props) {
 	const baseActiveScale = 1.1;
 	const [icon1, setIcon1] = useState({
 		ref: useRef<THREE.Group>(),
-		active: new THREE.Vector3(-0.33, 0.5, 0),
+		active: mobile ? new THREE.Vector3(-0.33, 0.5, 0) : new THREE.Vector3(-0.33, 0.5, 0),
 		hidden: new THREE.Vector3(0, 0, 20),
 		scaleHovered: new THREE.Vector3(baseActiveScale, baseActiveScale, baseActiveScale),
 		hiddenScale: new THREE.Vector3(baseScale, baseScale, baseScale),
@@ -42,7 +42,7 @@ export default function AboutMe(props) {
 	});
 	const [icon2, setIcon2] = useState({
 		ref: useRef<THREE.Group>(),
-		active: new THREE.Vector3(0.5, 0.05, 0),
+		active: mobile ? new THREE.Vector3(0.5, 0.05, 0) : new THREE.Vector3(0.5, 0.075, 0),
 		hidden: new THREE.Vector3(0, 0, 25),
 		scaleHovered: new THREE.Vector3(baseActiveScale, baseActiveScale, baseActiveScale),
 		hiddenScale: new THREE.Vector3(baseScale, baseScale, baseScale),
@@ -51,7 +51,7 @@ export default function AboutMe(props) {
 	});
 	const [icon3, setIcon3] = useState({
 		ref: useRef<THREE.Group>(),
-		active: new THREE.Vector3(-0.33, -0.45, 0),
+		active: mobile ? new THREE.Vector3(-0.33, -0.45, 0) : new THREE.Vector3(-0.33, -0.45, 0),
 		hidden: new THREE.Vector3(0, 0, 30),
 		scaleHovered: new THREE.Vector3(baseActiveScale, baseActiveScale, baseActiveScale),
 		hiddenScale: new THREE.Vector3(baseScale, baseScale, baseScale),
@@ -60,7 +60,7 @@ export default function AboutMe(props) {
 	});
 	const [text, setText] = useState({
 		ref: useRef<THREE.Group>(),
-		active: new THREE.Vector3(-0.33, 1, 0),
+		active: mobile ? new THREE.Vector3(-0.33, 1, 0) : new THREE.Vector3(-0.5, 1, 0),
 		hidden: new THREE.Vector3(0, 0, 15),
 		activeScale: new THREE.Vector3(baseActiveScale, baseActiveScale, baseActiveScale),
 		hiddenScale: new THREE.Vector3(0, 0, 0),
@@ -156,7 +156,7 @@ export default function AboutMe(props) {
 				fontSize={mobile ? 0.045 : 0.075}
 				color={'#000000'}
 				{...props}
-				textAlign="left"
+				textAlign="right"
 				// letterSpacing={-0.05}
 				// anchorY="center"
 				// anchorX="center"
