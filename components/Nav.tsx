@@ -62,10 +62,7 @@ export default function Nav() {
 				style={{
 					color: portal1active || portal2active || portal3active ? 'black' : 'white',
 				}}
-				onClick={(e) => {
-					goToHome();
-					router.push('/');
-				}}
+				onClick={goToHome}
 			>
 				FREDERIC CARTIER
 			</p>
@@ -75,10 +72,7 @@ export default function Nav() {
 					style={{
 						color: portal1active || portal2active || portal3active ? 'black' : 'white',
 					}}
-					onClick={(e) => {
-						router.push('/');
-						clickHandler(e);
-					}}
+					onClick={gotoAboutMe}
 				>
 					About Me
 				</p>
@@ -87,10 +81,7 @@ export default function Nav() {
 					style={{
 						color: portal1active || portal2active || portal3active ? 'black' : 'white',
 					}}
-					onClick={(e) => {
-						clickHandler(e);
-						router.push('/');
-					}}
+					onClick={gotoPortals}
 				>
 					Coming Soon
 				</p>
