@@ -46,8 +46,8 @@ export default function ScrollNavButtons() {
 					marginLeft: showPrev ? '0.5rem' : '0',
 					marginRight: showPrev ? '0.5rem' : '0',
 
-					filter:
-						portal1active || portal2active || portal3active ? 'invert(100%)' : 'none',
+					// filter:
+					// 	portal1active || portal2active || portal3active ? 'invert(100%)' : 'none',
 				}}
 			/>
 
@@ -61,8 +61,8 @@ export default function ScrollNavButtons() {
 					marginLeft: showNext ? '0.5rem' : '0',
 					// marginRight: showNext ? '0.5rem' : '0',
 
-					filter:
-						portal1active || portal2active || portal3active ? 'invert(100%)' : 'none',
+					// filter:
+					// 	portal1active || portal2active || portal3active ? 'invert(100%)' : 'none',
 				}}
 				// onClick={nextSection}
 				onClick={clickHandler}

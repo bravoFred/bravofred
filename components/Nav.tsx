@@ -53,7 +53,7 @@ export default function Nav() {
 			<p
 				className={styles.nav_logo}
 				style={{
-					color: portal1active || portal2active || portal3active ? 'black' : 'white',
+					color: portal1active || portal2active || portal3active ? 'black' : 'black',
 				}}
 				onClick={goToHome}
 			>
@@ -63,7 +63,7 @@ export default function Nav() {
 				<p
 					className={`${styles.nav_link} ${aboutMeActiveState ? styles.active : ''}`}
 					style={{
-						color: portal1active || portal2active || portal3active ? 'black' : 'white',
+						color: portal1active || portal2active || portal3active ? 'black' : 'black',
 					}}
 					onClick={gotoAboutMe}
 				>
@@ -72,7 +72,7 @@ export default function Nav() {
 				<p
 					className={`${styles.nav_link} ${portalsActiveState ? styles.active : ''}`}
 					style={{
-						color: portal1active || portal2active || portal3active ? 'black' : 'white',
+						color: portal1active || portal2active || portal3active ? 'black' : 'black',
 					}}
 					onClick={gotoPortals}
 				>
