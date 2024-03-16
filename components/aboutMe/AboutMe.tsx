@@ -128,12 +128,18 @@ export default function AboutMe() {
 		vimeo: 'https://www.vimeo.com/',
 		youtube: 'https://www.youtube.com/',
 	};
-	const pointerMissed = (e) => {};
+	const pointerMissed = (e) => {
+		disableHovers();
+	};
 	const openLink = (url) => {
 		console.log(`opening link: ${url}`);
 		window.open(url, '_blank');
 	};
-	const clickHandler = (e, url) => {
+	const clickHandler = (id, e, url) => {
+		if (id === 'icon1') icon1Hovered.current = true;
+		if (id === 'icon2') icon2Hovered.current = true;
+		if (id === 'icon3') icon3Hovered.current = true;
+
 		if (mobile) return;
 		openLink(url);
 	};
@@ -179,7 +185,7 @@ export default function AboutMe() {
 						icon1Hovered.current = false;
 						leaveHandler(e);
 					}}
-					onClick={(e) => clickHandler(e, urls.instagram)}
+					onClick={(e) => clickHandler('icon1', e, urls.instagram)}
 					onDoubleClick={(e) => doubleClickHandler(e, urls.instagram)}
 					onPointerMissed={(e) => pointerMissed(e)}
 				>
@@ -203,7 +209,7 @@ export default function AboutMe() {
 						icon2Hovered.current = false;
 						leaveHandler(e);
 					}}
-					onClick={(e) => clickHandler(e, urls.vimeo)}
+					onClick={(e) => clickHandler('icon2', e, urls.vimeo)}
 					onDoubleClick={(e) => doubleClickHandler(e, urls.vimeo)}
 					onPointerMissed={(e) => pointerMissed(e)}
 				>
@@ -227,7 +233,7 @@ export default function AboutMe() {
 						icon3Hovered.current = false;
 						leaveHandler(e);
 					}}
-					onClick={(e) => clickHandler(e, urls.youtube)}
+					onClick={(e) => clickHandler('icon3', e, urls.youtube)}
 					onDoubleClick={(e) => doubleClickHandler(e, urls.youtube)}
 					onPointerMissed={(e) => pointerMissed(e)}
 				>
