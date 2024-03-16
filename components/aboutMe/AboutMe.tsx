@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic';
 import { useState, useContext } from 'react';
 import { easing, geometry } from 'maath';
 import { MathUtils } from 'three';
-import { LerpAll } from '../AnimationFunctions';
+import { LerpAll, ScaleAll } from '../AnimationFunctions';
 import UserContextProvider from '../../store/userContext';
 import InputContextProvider from '../../store/inputContext';
 
@@ -46,27 +46,31 @@ export default function AboutMe() {
 	const baseSpeed = 0.1;
 	const [icon1, setIcon1] = useState({
 		ref: useRef<THREE.Group>(),
-		active: new THREE.Vector3(-0.33, 0.33, 0),
+		active: new THREE.Vector3(-0.3, 0.33, 0),
 		hidden: new THREE.Vector3(0, 0, 20),
+		activeScale: new THREE.Vector3(1.2, 1.2, 1.2),
+		hiddenScale: new THREE.Vector3(1, 1, 1),
 		enterSpeed: baseSpeed * 2,
 		exitSpeed: baseSpeed / 4,
 	});
 	const [icon2, setIcon2] = useState({
 		ref: useRef<THREE.Group>(),
-		active: new THREE.Vector3(0.33, 0, 0),
+		active: new THREE.Vector3(0.3, 0, 0),
 		hidden: new THREE.Vector3(0, 0, 25),
+		activeScale: new THREE.Vector3(1.2, 1.2, 1.2),
+		hiddenScale: new THREE.Vector3(1, 1, 1),
 		enterSpeed: baseSpeed * 1.5,
 		exitSpeed: baseSpeed / 4,
 	});
 	const [icon3, setIcon3] = useState({
 		ref: useRef<THREE.Group>(),
-		active: new THREE.Vector3(-0.33, -0.33, 0),
+		active: new THREE.Vector3(-0.3, -0.33, 0),
 		hidden: new THREE.Vector3(0, 0, 30),
+		activeScale: new THREE.Vector3(1.2, 1.2, 1.2),
+		hiddenScale: new THREE.Vector3(1, 1, 1),
 		enterSpeed: baseSpeed,
 		exitSpeed: baseSpeed / 4,
 	});
-
-	const enterSpeed = 0.2;
 
 	useFrame(({ gl, scene, camera, clock, pointer }) => {
 		const r1 = scroll.range(0 / 10, 1 / 10); // this is first one tenth of the page
@@ -74,6 +78,15 @@ export default function AboutMe() {
 		const r3 = scroll.range(0 / 10, 3 / 10);
 		// console.log(r1, r2);
 		// console.log(icon1Ref.current.position.z);
+		icon1Hovered.current
+			? ScaleAll(icon1Ref, icon1.activeScale, 0.1)
+			: ScaleAll(icon1Ref, icon1.hiddenScale, 0.1);
+		icon2Hovered.current
+			? ScaleAll(icon2Ref, icon2.activeScale, 0.1)
+			: ScaleAll(icon2Ref, icon2.hiddenScale, 0.1);
+		icon3Hovered.current
+			? ScaleAll(icon3Ref, icon3.activeScale, 0.1)
+			: ScaleAll(icon3Ref, icon3.hiddenScale, 0.1);
 
 		if (aboutMeActive) {
 			// not scrolling
@@ -105,7 +118,7 @@ export default function AboutMe() {
 		}
 	});
 	const floatIntensity = 1;
-	const rotationIntensity = 2;
+	const rotationIntensity = 1.5;
 	const speed = 1.5;
 
 	const urls = {
