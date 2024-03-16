@@ -1,3 +1,7 @@
+# trello
+
+https://trello.com/b/Ch1vVoWq/frederic-cartier-portfolio-website
+
 # sites
 
 https://shutdown.gallery/

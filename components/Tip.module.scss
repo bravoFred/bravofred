@@ -1,6 +1,15 @@
+@keyframes lettersWideToNormal {
+	66% {
+		letter-spacing: 1rem;
+		opacity: 0;
+	}
+	100% {
+		letter-spacing: 0.1rem;
+	}
+}
 .tip {
 	position: fixed;
-	bottom: 1.5rem;
+	bottom: 2rem;
 	color: white;
 	z-index: 1000;
 	user-select: none;
@@ -10,8 +19,11 @@
 	justify-content: center;
 	width: 100%;
 	font-weight: 300;
+	// margin: 0 2rem;
 	font-size: 1rem;
-	font-size: 14px;
+	font-size: 12px;
 	letter-spacing: 0.1rem;
-	display: none;
+	// border: 1px solid white;
+	opacity: 1;
+	// animation: lettersWideToNormal 3s ease-in-out;
 }
