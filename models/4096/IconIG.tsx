@@ -32,7 +32,7 @@ export function Model(
 	const { nodes, materials } = useGLTF('/../../models/4096/iconIG-transformed.glb') as GLTFResult;
 	const lightRef = useRef<THREE.PointLight>();
 	const { iconHovered } = props;
-	const [showLight, setShowLight] = React.useState(true);
+	const [showLight, setShowLight] = React.useState(false);
 	useFrame(() => {
 		// iconHovered.current ? setShowLight(true) : setShowLight(false);
 
@@ -46,7 +46,7 @@ export function Model(
 	});
 	return (
 		<group {...props} dispose={null}>
-			{showLight && (
+			{/* {showLight && (
 				<pointLight
 					ref={lightRef}
 					name="Point"
@@ -57,7 +57,7 @@ export function Model(
 					scale={0.199}
 					userData={{ name: 'Point' }}
 				/>
-			)}
+			)} */}
 			<mesh
 				name="icon"
 				castShadow
