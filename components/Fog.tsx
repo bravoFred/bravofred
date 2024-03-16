@@ -1,11 +1,13 @@
 import { useFrame } from '@react-three/fiber';
 import { useState, useContext, useRef } from 'react';
 import UserContextProvider from '@/store/userContext';
+import InputContextProvider from '@/store/inputContext';
 import * as THREE from 'three';
 import { useScroll } from '@react-three/drei';
 
 export default function Fog(props: any) {
 	const { theme } = useContext(UserContextProvider);
+	const { portalsActive } = useContext(InputContextProvider);
 
 	function LerpColor(color, targetColor, speed) {
 		color.r = THREE.MathUtils.lerp(color.r, targetColor.r, speed);
@@ -24,13 +26,12 @@ export default function Fog(props: any) {
 	const changeSpeed = 0.025;
 	useFrame((state, delta) => {
 		LerpFogDistanceToTargetDistance(fogRef.current.far, fogFar, changeSpeed);
-		// update fog distance
-		// fogRef.current.far = 15;
-		// if (scroll.offset < 0.5) {
+
+		// if (portalsActive) {
 		// 	LerpColor(fogRef.current.color, darkFog, changeSpeed);
 		// } else {
 		// 	LerpColor(fogRef.current.color, lightFog, changeSpeed);
 		// }
 	});
-	return <fog ref={fogRef} attach="fog" args={['#000', 0, 0]} />;
+	return <fog ref={fogRef} attach="fog" args={['#fff', 0, 0]} />;
 }

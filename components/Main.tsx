@@ -18,6 +18,7 @@ import Floor from './Floor';
 import Nav from './Nav';
 import Lighting from './Lighting';
 import Performance from './Performance';
+import GridGround from './GridGround';
 import ScrollController from './ScrollController';
 import Raycaster from './Raycaster';
 import BackgroundColor from './BackgroundColor';
@@ -67,8 +68,8 @@ export default function Main() {
 						position: new THREE.Vector3(0, 1, 5),
 					}}
 				>
-					{/* <GridGround theme={theme} /> */}
-					<color args={[theme === 'light' ? '#fff' : '#000']} attach="background" />
+					<GridGround theme={theme} />
+					{/* <color args={[theme === 'light' ? '#fff' : '#000']} attach="background" /> */}
 					{/* <fog attach="fog" args={[theme === 'light' ? '#fff' : '#000', 0, 0]} /> */}
 					<ScrollControls pages={2}>
 						<AboutMe />
@@ -79,7 +80,7 @@ export default function Main() {
 						<Floor />
 						<Raycaster />
 						<Lighting />
-						{/* <BackgroundColor /> */}
+						<BackgroundColor />
 						<Fog />
 					</ScrollControls>
 					{/* <Environment preset="city" /> */}
