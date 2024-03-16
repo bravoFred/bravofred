@@ -153,7 +153,7 @@ export default function AboutMe(props) {
 			<Text
 				ref={text.ref}
 				font="/fonts/NimbusSanL-Bol.woff"
-				fontSize={0.045}
+				fontSize={mobile ? 0.045 : 0.075}
 				color={'#000000'}
 				{...props}
 				textAlign="left"
@@ -187,7 +187,7 @@ export default function AboutMe(props) {
 					onDoubleClick={(e) => doubleClickHandler(e, urls.instagram)}
 					onPointerMissed={(e) => pointerMissed(e)}
 				>
-					<IconIG iconHovered={icon1Hovered} />
+					<IconIG />
 				</group>
 			</Float>
 
@@ -212,7 +212,7 @@ export default function AboutMe(props) {
 					onDoubleClick={(e) => doubleClickHandler(e, urls.vimeo)}
 					onPointerMissed={(e) => pointerMissed(e)}
 				>
-					<IconIG iconHovered={icon2Hovered} />
+					<IconIG />
 				</group>
 			</Float>
 			<Float
@@ -236,16 +236,9 @@ export default function AboutMe(props) {
 					onDoubleClick={(e) => doubleClickHandler(e, urls.youtube)}
 					onPointerMissed={(e) => pointerMissed(e)}
 				>
-					<IconIG iconHovered={icon3Hovered} />
+					<IconIG />
 				</group>
-				{/* <NavCam scale={0.5} position={[0, 0.5, 0]} /> */}
 			</Float>
-			{/* <Float>
-				<Icons scale={[1, 1, 1]} position={[1, 1, 2]} />
-			</Float> */}
-			{/* <Float>
-				<Icons scale={[1, 1, 1]} position={[0, -0.5, 2]} />
-			</Float> */}
 		</group>
 	);
 }
