@@ -20,14 +20,14 @@ export default function Tip() {
 		if (aboutMeActive) {
 			setMsg(
 				mobile
-					? 'Double tap an icon to explore my work!'
-					: 'Click an icon to explore my work!'
+					? 'Double tap an icon to explore my work'
+					: 'Click an icon to explore my work'
 			);
 		} else if (portalsActive) {
 			setMsg(
 				mobile
-					? 'Double tap a portal to explore more!'
-					: 'Double click a portal to explore more!'
+					? 'Double tap a portal to explore project'
+					: 'Double click a portal to explore project'
 			);
 		}
 		if (portal1active || portal2active || portal3active) setMsg('');
