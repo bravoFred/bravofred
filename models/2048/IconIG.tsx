@@ -4,49 +4,34 @@ Command: npx gltfjsx@6.2.16 ./public/models/src/iconIG.glb --output models/2048/
 Files: ./public/models/src/iconIG.glb [8.06MB] > C:\Users\Tommy\Documents\GitHub\frederic-cartier\models\2048\models/2048/iconIG-transformed.glb [116.59KB] (99%)
 */
 
-import * as THREE from 'three';
-import React, { useRef } from 'react';
-import { useGLTF } from '@react-three/drei';
-import { GLTF } from 'three-stdlib';
-import { useFrame } from '@react-three/fiber';
+import * as THREE from 'three'
+import React, { useRef } from 'react'
+import { useGLTF } from '@react-three/drei'
+import { GLTF } from 'three-stdlib'; import { useFrame } from '@react-three/fiber';
 
 type GLTFResult = GLTF & {
-	nodes: {
-		Cube016: THREE.Mesh;
-		Cube016_1: THREE.Mesh;
-	};
-	materials: {
-		white: THREE.MeshStandardMaterial;
-	};
-	// animations: GLTFAction[]
-};
-
-type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>;
-
-export function Model(props: JSX.IntrinsicElements['group']) {
-	const { nodes, materials } = useGLTF(
-		'/../../models/2048/models/2048/iconIG-transformed.glb'
-	) as GLTFResult;
-	return (
-		<group {...props} dispose={null}>
-			<group name="icon001" userData={{ name: 'icon.001' }}>
-				<mesh
-					name="Cube016"
-					castShadow
-					receiveShadow
-					geometry={nodes.Cube016.geometry}
-					material={materials.white}
-				/>
-				<mesh
-					name="Cube016_1"
-					castShadow
-					receiveShadow
-					geometry={nodes.Cube016_1.geometry}
-					material={materials.white}
-				/>
-			</group>
-		</group>
-	);
+  nodes: {
+    Cube016: THREE.Mesh
+    Cube016_1: THREE.Mesh
+  }
+  materials: {
+    white: THREE.MeshStandardMaterial
+  }
+  animations: GLTFAction[]
 }
 
-useGLTF.preload('/../../models/2048/models/2048/iconIG-transformed.glb');
+type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
+
+export function Model(props: JSX.IntrinsicElements['group']) {
+  const { nodes, materials } = useGLTF('/../../models/2048/models/2048/iconIG-transformed.glb') as GLTFResult
+  return (
+    <group {...props} dispose={null}>
+      <group name="icon001" userData={{ name: 'icon.001' }}>
+        <mesh name="Cube016" castShadow receiveShadow geometry={nodes.Cube016.geometry} material={materials.white} />
+        <mesh name="Cube016_1" castShadow receiveShadow geometry={nodes.Cube016_1.geometry} material={materials.white} />
+      </group>
+    </group>
+  )
+}
+
+useGLTF.preload('/../../models/2048/models/2048/iconIG-transformed.glb')

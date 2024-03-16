@@ -17,7 +17,7 @@ function compress() {
 		log(chalk.bgGreen('New models compressed'));
 		const newGlbFiles = getRootGlbFiles();
 		newGlbFiles.forEach((file: string) => removeFile(file));
-		// removeSrcGlbFiles();
+		removeSrcGlbFiles();
 	});
 }
 const srcFolder = 'public/models/src';

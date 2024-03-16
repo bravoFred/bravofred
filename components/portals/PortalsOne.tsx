@@ -20,9 +20,7 @@ const SmallRoom = dynamic(
 		ssr: false,
 	}
 );
-const NavCam = dynamic(() => import('../../models/4096/Cam').then((mod) => mod.Model), {
-	ssr: false,
-});
+
 const Warehouse = dynamic(
 	() => import('../../models/4096/WarehouseJoined').then((mod) => mod.Model),
 	{

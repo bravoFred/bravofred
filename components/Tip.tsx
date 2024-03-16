@@ -18,11 +18,7 @@ export default function Tip() {
 	const [msg, setMsg] = useState('Scroll down to explore more!');
 	useEffect(() => {
 		if (aboutMeActive) {
-			setMsg(
-				mobile
-					? 'Double tap an icon to explore my work'
-					: 'Click an icon to explore my work'
-			);
+			setMsg(mobile ? 'Double tap an icon to explore my work' : '');
 		} else if (portalsActive) {
 			setMsg(
 				mobile

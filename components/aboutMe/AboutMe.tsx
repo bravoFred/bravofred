@@ -14,6 +14,12 @@ import InputContextProvider from '../../store/inputContext';
 const IconIG = dynamic(() => import('@/models/4096/IconIG').then((mod) => mod.Model), {
 	ssr: false,
 });
+const IconVimeo = dynamic(() => import('@/models/4096/IconVimeo').then((mod) => mod.Model), {
+	ssr: false,
+});
+const IconYT = dynamic(() => import('@/models/4096/IconYT').then((mod) => mod.Model), {
+	ssr: false,
+});
 export default function AboutMe(props) {
 	const { mobile } = useContext(UserContextProvider);
 	const { aboutMeActive, portalsActive, scrolling, icon1Hovered, icon2Hovered, icon3Hovered } =
@@ -212,7 +218,7 @@ export default function AboutMe(props) {
 					onDoubleClick={(e) => doubleClickHandler(e, urls.vimeo)}
 					onPointerMissed={(e) => pointerMissed(e)}
 				>
-					<IconIG />
+					<IconVimeo />
 				</group>
 			</Float>
 			<Float
@@ -236,7 +242,7 @@ export default function AboutMe(props) {
 					onDoubleClick={(e) => doubleClickHandler(e, urls.youtube)}
 					onPointerMissed={(e) => pointerMissed(e)}
 				>
-					<IconIG />
+					<IconYT />
 				</group>
 			</Float>
 		</group>
