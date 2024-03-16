@@ -45,8 +45,8 @@ export default function Camera() {
 			focus: new THREE.Vector3(0, 1, 0),
 		},
 		portals: {
-			pos: new THREE.Vector3(0, 0, 0),
-			focus: new THREE.Vector3(0, 1, -5),
+			pos: new THREE.Vector3(0, 0.5, 5),
+			focus: new THREE.Vector3(0, 1, 0),
 		},
 	});
 	const focus = useRef<THREE.Vector3>(new THREE.Vector3(0, 1, 0));
@@ -67,7 +67,7 @@ export default function Camera() {
 		const camera = state.camera as THREE.PerspectiveCamera;
 		if (aboutMeActive) {
 			lerpVecs(camera.position, camVecs.current.aboutMe.pos as THREE.Vector3, speed);
-			lerpVecs(focus.current, camVecs.current.aboutMe.focus, speed);
+			// lerpVecs(focus.current, camVecs.current.aboutMe.focus, speed);
 			camera.lookAt(focus.current.x, focus.current.y, focus.current.z);
 			if (activeObject.current !== null) {
 				const { point } = activeObject.current;

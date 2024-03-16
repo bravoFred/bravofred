@@ -50,20 +50,18 @@ export function InputContextProvider(props) {
 		if (portal1active || portal2active || portal3active) gotoPortals();
 	}
 	function gotoAboutMe() {
-		activeObject.current = null;
-
 		router.push('/');
 		disablePortals();
 		setAboutMeActive(true);
 		setPortalsActive(false);
+		activeObject.current = null;
 	}
 	function gotoPortals() {
-		activeObject.current = null;
-
 		disablePortals();
 		router.push('/');
 		setAboutMeActive(false);
 		setPortalsActive(true);
+		activeObject.current = null;
 	}
 	function disablePortals() {
 		setPortal1active(false);
