@@ -41,6 +41,11 @@ export function InputContextProvider(props) {
 	const [portal2active, setPortal2active] = useState(false);
 	const [portal3active, setPortal3active] = useState(false);
 	const [isHome, setIsHome] = useState(true);
+	function goToHome() {
+		disablePortals();
+		router.push('/');
+		if (portalsActive) gotoAboutMe();
+	}
 	function gotoAboutMe() {
 		router.push('/');
 		setAboutMeActive(true);
@@ -67,12 +72,6 @@ export function InputContextProvider(props) {
 	function goToPortal3() {
 		disablePortals();
 		setPortal3active(true);
-	}
-	function goToHome() {
-		if (window.location.pathname === '/' && portalsActive) {
-			gotoAboutMe();
-		}
-		disablePortals();
 	}
 
 	// listen for left and right arrow keys
