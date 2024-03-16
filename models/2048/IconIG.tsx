@@ -4,35 +4,67 @@ Command: npx gltfjsx@6.2.16 ./public/models/src/iconIG.glb --output models/2048/
 Files: ./public/models/src/iconIG.glb [15.58MB] > C:\Users\Tommy\Documents\GitHub\frederic-cartier\models\2048\models/2048/iconIG-transformed.glb [233.11KB] (99%)
 */
 
-import * as THREE from 'three'
-import React, { useRef } from 'react'
-import { useGLTF } from '@react-three/drei'
-import { GLTF } from 'three-stdlib'; import { useFrame } from '@react-three/fiber';
+import * as THREE from 'three';
+import React, { useRef } from 'react';
+import { useGLTF } from '@react-three/drei';
+import { GLTF } from 'three-stdlib';
+import { useFrame } from '@react-three/fiber';
 
 type GLTFResult = GLTF & {
-  nodes: {
-    icon: THREE.Mesh
-    ringInner: THREE.Mesh
-    outerRing: THREE.Mesh
-  }
-  materials: {
-    metal: THREE.MeshStandardMaterial
-  }
-  animations: GLTFAction[]
-}
+	nodes: {
+		icon: THREE.Mesh;
+		ringInner: THREE.Mesh;
+		outerRing: THREE.Mesh;
+	};
+	materials: {
+		metal: THREE.MeshStandardMaterial;
+	};
+	// animations: GLTFAction[]
+};
 
-type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>
+type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>;
 
 export function Model(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('/../../models/2048/models/2048/iconIG-transformed.glb') as GLTFResult
-  return (
-    <group {...props} dispose={null}>
-      <pointLight name="Point" intensity={5435.141} decay={2} position={[0.099, 0.999, 0.332]} rotation={[-Math.PI / 2, 0, 0]} scale={0.199} userData={{ name: 'Point' }} />
-      <mesh name="icon" castShadow receiveShadow geometry={nodes.icon.geometry} material={materials.metal} userData={{ name: 'icon' }} />
-      <mesh name="ringInner" castShadow receiveShadow geometry={nodes.ringInner.geometry} material={materials.metal} userData={{ name: 'ringInner' }} />
-      <mesh name="outerRing" castShadow receiveShadow geometry={nodes.outerRing.geometry} material={materials.metal} userData={{ name: 'outerRing' }} />
-    </group>
-  )
+	const { nodes, materials } = useGLTF(
+		'/../../models/2048/models/2048/iconIG-transformed.glb'
+	) as GLTFResult;
+	return (
+		<group {...props} dispose={null}>
+			<pointLight
+				name="Point"
+				intensity={5435.141}
+				decay={2}
+				position={[0.099, 0.999, 0.332]}
+				rotation={[-Math.PI / 2, 0, 0]}
+				scale={0.199}
+				userData={{ name: 'Point' }}
+			/>
+			<mesh
+				name="icon"
+				castShadow
+				receiveShadow
+				geometry={nodes.icon.geometry}
+				material={materials.metal}
+				userData={{ name: 'icon' }}
+			/>
+			<mesh
+				name="ringInner"
+				castShadow
+				receiveShadow
+				geometry={nodes.ringInner.geometry}
+				material={materials.metal}
+				userData={{ name: 'ringInner' }}
+			/>
+			<mesh
+				name="outerRing"
+				castShadow
+				receiveShadow
+				geometry={nodes.outerRing.geometry}
+				material={materials.metal}
+				userData={{ name: 'outerRing' }}
+			/>
+		</group>
+	);
 }
 
-useGLTF.preload('/../../models/2048/models/2048/iconIG-transformed.glb')
+useGLTF.preload('/../../models/2048/models/2048/iconIG-transformed.glb');
