@@ -28,7 +28,7 @@ export function Model(props: JSX.IntrinsicElements['group']) {
 	const { nodes, materials } = useGLTF('/../../models/4096/iconIG-transformed.glb') as GLTFResult;
 	return (
 		<group {...props} dispose={null}>
-			<pointLight
+			{/* <pointLight
 				name="Point"
 				intensity={1}
 				decay={1}
@@ -36,7 +36,7 @@ export function Model(props: JSX.IntrinsicElements['group']) {
 				rotation={[-Math.PI / 2, 0, 0]}
 				scale={0.199}
 				userData={{ name: 'Point' }}
-			/>
+			/> */}
 			<mesh
 				name="icon"
 				castShadow
