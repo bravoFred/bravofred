@@ -44,12 +44,14 @@ export default function AboutMe() {
 	const icon2Ref = useRef<THREE.Group>();
 
 	const baseSpeed = 0.1;
+	const baseScale = 1;
+	const baseActiveScale = 1.1;
 	const [icon1, setIcon1] = useState({
 		ref: useRef<THREE.Group>(),
 		active: new THREE.Vector3(-0.3, 0.33, 0),
 		hidden: new THREE.Vector3(0, 0, 20),
-		activeScale: new THREE.Vector3(1.2, 1.2, 1.2),
-		hiddenScale: new THREE.Vector3(1, 1, 1),
+		activeScale: new THREE.Vector3(baseActiveScale, baseActiveScale, baseActiveScale),
+		hiddenScale: new THREE.Vector3(baseScale, baseScale, baseScale),
 		enterSpeed: baseSpeed * 2,
 		exitSpeed: baseSpeed / 4,
 	});
@@ -57,8 +59,8 @@ export default function AboutMe() {
 		ref: useRef<THREE.Group>(),
 		active: new THREE.Vector3(0.3, 0, 0),
 		hidden: new THREE.Vector3(0, 0, 25),
-		activeScale: new THREE.Vector3(1.2, 1.2, 1.2),
-		hiddenScale: new THREE.Vector3(1, 1, 1),
+		activeScale: new THREE.Vector3(baseActiveScale, baseActiveScale, baseActiveScale),
+		hiddenScale: new THREE.Vector3(baseScale, baseScale, baseScale),
 		enterSpeed: baseSpeed * 1.5,
 		exitSpeed: baseSpeed / 4,
 	});
@@ -66,8 +68,8 @@ export default function AboutMe() {
 		ref: useRef<THREE.Group>(),
 		active: new THREE.Vector3(-0.3, -0.33, 0),
 		hidden: new THREE.Vector3(0, 0, 30),
-		activeScale: new THREE.Vector3(1.2, 1.2, 1.2),
-		hiddenScale: new THREE.Vector3(1, 1, 1),
+		activeScale: new THREE.Vector3(baseActiveScale, baseActiveScale, baseActiveScale),
+		hiddenScale: new THREE.Vector3(baseScale, baseScale, baseScale),
 		enterSpeed: baseSpeed,
 		exitSpeed: baseSpeed / 4,
 	});
@@ -181,7 +183,7 @@ export default function AboutMe() {
 					onDoubleClick={(e) => doubleClickHandler(e, urls.instagram)}
 					onPointerMissed={(e) => pointerMissed(e)}
 				>
-					<IconIG />
+					<IconIG iconHovered={icon1Hovered} />
 				</group>
 			</Float>
 			<Float
@@ -205,7 +207,7 @@ export default function AboutMe() {
 					onDoubleClick={(e) => doubleClickHandler(e, urls.vimeo)}
 					onPointerMissed={(e) => pointerMissed(e)}
 				>
-					<IconIG />
+					<IconIG iconHovered={icon2Hovered} />
 				</group>
 			</Float>
 			<Float
@@ -229,7 +231,7 @@ export default function AboutMe() {
 					onDoubleClick={(e) => doubleClickHandler(e, urls.youtube)}
 					onPointerMissed={(e) => pointerMissed(e)}
 				>
-					<IconIG />
+					<IconIG iconHovered={icon3Hovered} />
 				</group>
 				{/* <NavCam scale={0.5} position={[0, 0.5, 0]} /> */}
 			</Float>

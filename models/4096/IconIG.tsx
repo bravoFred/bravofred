@@ -9,6 +9,7 @@ import React, { useRef } from 'react';
 import { useGLTF } from '@react-three/drei';
 import { GLTF } from 'three-stdlib';
 import { useFrame } from '@react-three/fiber';
+import { MathUtils } from 'three';
 
 type GLTFResult = GLTF & {
 	nodes: {
@@ -23,20 +24,36 @@ type GLTFResult = GLTF & {
 };
 
 type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>;
-
-export function Model(props: JSX.IntrinsicElements['group']) {
+export function Model(
+	props: JSX.IntrinsicElements['group'] & {
+		iconHovered: React.MutableRefObject<boolean>;
+	}
+) {
 	const { nodes, materials } = useGLTF('/../../models/4096/iconIG-transformed.glb') as GLTFResult;
+	const lightRef = useRef<THREE.PointLight>();
+	const { iconHovered } = props;
+
+	useFrame(() => {
+		if (lightRef.current) {
+			lightRef.current.intensity = MathUtils.lerp(
+				lightRef.current.intensity,
+				iconHovered.current ? 0.25 : 0,
+				0.1
+			);
+		}
+	});
 	return (
 		<group {...props} dispose={null}>
-			{/* <pointLight
+			<pointLight
+				ref={lightRef}
 				name="Point"
-				intensity={1}
-				decay={1}
+				intensity={0}
+				decay={3}
 				position={[0.099, 0.999, 0.332]}
 				rotation={[-Math.PI / 2, 0, 0]}
 				scale={0.199}
 				userData={{ name: 'Point' }}
-			/> */}
+			/>
 			<mesh
 				name="icon"
 				castShadow
