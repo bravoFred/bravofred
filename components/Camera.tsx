@@ -59,6 +59,10 @@ export default function Camera() {
 	const speed = mobile ? 0.05 : 0.02;
 	const zoomInSpeed = mobile ? 0.05 : 0.1;
 	const zoomOutSpeed = mobile ? 0.1 : 0.05;
+	const defaultZoomMobile = 0.9;
+	const defaultZoomDesktop = 1.5;
+	const zoomDesktop = 3;
+	const zoomMobile = 1.5;
 	useFrame((state) => {
 		const camera = state.camera as THREE.PerspectiveCamera;
 		if (aboutMeActive) {
@@ -69,17 +73,29 @@ export default function Camera() {
 				if (point) {
 					if (scroll.offset === 0) {
 						lerpVecs(focus.current, point, speed);
-						camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 1.5 : 3, zoomInSpeed);
+						camera.zoom = MathUtils.lerp(
+							camera.zoom,
+							mobile ? zoomMobile : zoomDesktop,
+							zoomInSpeed
+						);
 					}
 				}
 			} else {
 				lerpVecs(focus.current, camVecs.current.aboutMe.focus, speed);
-				camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomOutSpeed);
+				camera.zoom = MathUtils.lerp(
+					camera.zoom,
+					mobile ? defaultZoomMobile : defaultZoomDesktop,
+					zoomOutSpeed
+				);
 			}
 		}
 		if (portalsActive) {
 			lerpVecs(focus.current, camVecs.current.portals.focus, speed);
-			camera.zoom = MathUtils.lerp(camera.zoom, mobile ? 0.9 : 1.5, zoomOutSpeed);
+			camera.zoom = MathUtils.lerp(
+				camera.zoom,
+				mobile ? defaultZoomMobile : defaultZoomDesktop,
+				zoomOutSpeed
+			);
 		}
 
 		camera.updateProjectionMatrix();
