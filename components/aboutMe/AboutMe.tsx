@@ -124,9 +124,9 @@ export default function AboutMe() {
 	const speed = 1.5;
 
 	const urls = {
-		instagram: 'https://www.instagram.com/',
-		vimeo: 'https://www.vimeo.com/',
-		youtube: 'https://www.youtube.com/',
+		instagram: 'https://www.instagram.com/bravoFred_/',
+		vimeo: 'https://vimeo.com/bravofred',
+		youtube: 'https://www.youtube.com/@bravoFred',
 	};
 	const pointerMissed = (e) => {
 		disableHovers();
