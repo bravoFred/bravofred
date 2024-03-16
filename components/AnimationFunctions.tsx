@@ -1,4 +1,6 @@
 import { MathUtils } from 'three';
+import { easing, geometry } from 'maath';
+import * as THREE from 'three';
 export function LerpAll(
 	ref: React.MutableRefObject<THREE.Group>,
 	target: THREE.Vector3,
@@ -16,4 +18,12 @@ export function ScaleAll(
 	ref.current.scale.x = MathUtils.lerp(ref.current.scale.x, target.x, speed);
 	ref.current.scale.y = MathUtils.lerp(ref.current.scale.y, target.y, speed);
 	ref.current.scale.z = MathUtils.lerp(ref.current.scale.z, target.z, speed);
+}
+
+export function EaseAll(
+	ref: React.MutableRefObject<THREE.Group>,
+	target: THREE.Vector3,
+	speed: number
+) {
+	// easing.damp3(state.camera.position, p, 0.4, dt);
 }
