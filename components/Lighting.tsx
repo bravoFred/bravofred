@@ -13,13 +13,14 @@ import InputContextProvider from '../store/inputContext';
 export default function Lighting() {
 	const [lightPos, setLightPos] = useState<[number, number, number] | undefined>([-5, 5, 10]);
 	const { mobile } = useContext(UserContextProvider);
-	const { activeObject } = useContext(InputContextProvider);
+	const { activeObject, aboutMeActive } = useContext(InputContextProvider);
 
 	// const [shadowMapSize, setShadowMapSize] = useState(mobile ? 1024 : 4096);
 	const [shadowMapSize, setShadowMapSize] = useState(mobile ? 4096 : 4096);
 	// useEffect(() => {
 	// 	// setShadowMapSize(mobile ? 1024 : 4096);
 	// }, [mobile]);
+	const [showMovingSpot, setShowMovingSpot] = useState(true);
 	function MovingSpot({ vec = new THREE.Vector3(0, 10, 0), ...props }) {
 		const light = useRef(null!);
 		const viewport = useThree((state) => state.viewport);
@@ -47,10 +48,12 @@ export default function Lighting() {
 			/>
 		);
 	}
-	const sideLightIntensity = 2;
+	useFrame((state) => {
+		aboutMeActive ? setShowMovingSpot(true) : setShowMovingSpot(false);
+	});
 	return (
 		<group>
-			<MovingSpot position={[0, 2.5, 1.5]} />
+			{showMovingSpot && <MovingSpot position={[0, 2.5, 1.5]} />}
 			<directionalLight
 				position={[0, 2.5, 1.5]}
 				intensity={1}

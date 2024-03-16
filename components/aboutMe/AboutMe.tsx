@@ -153,10 +153,11 @@ export default function AboutMe(props) {
 			<Text
 				ref={text.ref}
 				font="/fonts/NimbusSanL-Bol.woff"
-				fontSize={0.05}
+				fontSize={0.045}
 				color={'#000000'}
 				{...props}
 				textAlign="left"
+				// letterSpacing={-0.05}
 				// anchorY="center"
 				// anchorX="center"
 				lineHeight={0.5}
