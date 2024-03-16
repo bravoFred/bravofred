@@ -6,30 +6,35 @@ import UserContextProvider from '@/store/userContext';
 import InputContextProvider from '@/store/inputContext';
 import { useContext, useEffect, useState } from 'react';
 import { scale } from 'maath/dist/declarations/src/vector2';
+import { useRouter } from 'next/router';
+
 export default function ScrollNavButtons() {
 	const { theme } = useContext(UserContextProvider);
 	const {
-		prevSection,
-		nextSection,
 		portalsActive,
 		aboutMeActive,
 		portal1active,
 		portal2active,
 		portal3active,
 		gotoPortals,
+		gotoAboutMe,
+		goToHome,
 	} = useContext(InputContextProvider);
+	const router = useRouter();
+
 	const clickHandler = (e) => {
-		prevSection();
+		if (aboutMeActive) gotoPortals();
+		if (portalsActive) gotoAboutMe();
+		if (portal1active || portal2active || portal3active) {
+			gotoPortals();
+			router.push('/');
+		}
 	};
 	const [showPrev, setShowPrev] = useState(false);
 	const [showNext, setShowNext] = useState(true);
 	useEffect(() => {
 		aboutMeActive ? setShowNext(true) : setShowNext(false);
 		portalsActive ? setShowPrev(true) : setShowPrev(false);
-		// if (portal1active || portal2active || portal3active) {
-		// 	setShowPrev(true);
-		// 	setShowNext(false);
-		// }
 	}, [portalsActive, aboutMeActive, portal1active, portal2active, portal3active]);
 	return (
 		<div className={styles.scroll_nav}>
@@ -62,7 +67,8 @@ export default function ScrollNavButtons() {
 					filter:
 						portal1active || portal2active || portal3active ? 'invert(100%)' : 'none',
 				}}
-				onClick={nextSection}
+				// onClick={nextSection}
+				onClick={clickHandler}
 			/>
 		</div>
 	);

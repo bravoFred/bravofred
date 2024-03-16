@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect, useRef } from 'react';
+import { useRouter } from 'next/router';
 
 const InputContext = createContext({
 	aboutMeActive: true as any,
@@ -14,8 +15,6 @@ const InputContext = createContext({
 	icon1Hovered: false as any,
 	icon2Hovered: false as any,
 	icon3Hovered: false as any,
-	prevSection: () => {},
-	nextSection: () => {},
 	gotoAboutMe: () => {},
 	gotoPortals: () => {},
 	goToHome: () => {},
@@ -27,6 +26,7 @@ const InputContext = createContext({
 });
 export function InputContextProvider(props) {
 	// const scroll = useScroll();
+	const router = useRouter();
 	const scrollSpeed = useRef(0);
 	const scrollDirection = useRef(0);
 	const scrolling = useRef(false);
@@ -42,10 +42,12 @@ export function InputContextProvider(props) {
 	const [portal3active, setPortal3active] = useState(false);
 	const [isHome, setIsHome] = useState(true);
 	function gotoAboutMe() {
+		router.push('/');
 		setAboutMeActive(true);
 		setPortalsActive(false);
 	}
 	function gotoPortals() {
+		router.push('/');
 		setAboutMeActive(false);
 		setPortalsActive(true);
 	}
@@ -72,21 +74,12 @@ export function InputContextProvider(props) {
 		}
 		disablePortals();
 	}
-	function prevSection() {
-		gotoAboutMe();
-	}
-	function nextSection() {
-		gotoPortals();
-	}
 
 	// listen for left and right arrow keys
 	useEffect(() => {
 		function handleKeyDown(event) {
-			if (event.key === 'ArrowLeft') {
-				prevSection();
-			} else if (event.key === 'ArrowRight') {
-				nextSection();
-			}
+			if (event.key === 'ArrowLeft') gotoAboutMe();
+			if (event.key === 'ArrowRight') gotoPortals();
 		}
 		window.addEventListener('keydown', handleKeyDown);
 		return () => {
@@ -112,8 +105,6 @@ export function InputContextProvider(props) {
 				icon3Hovered,
 				setAboutMeActive,
 				setPortalsActive,
-				prevSection,
-				nextSection,
 				gotoAboutMe,
 				gotoPortals,
 				goToHome,

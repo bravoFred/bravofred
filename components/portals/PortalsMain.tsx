@@ -1,17 +1,8 @@
 import * as THREE from 'three';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { Canvas, extend, useFrame, useThree } from '@react-three/fiber';
-import {
-	useCursor,
-	MeshPortalMaterial,
-	CameraControls,
-	Gltf,
-	Text,
-	CameraShake,
-} from '@react-three/drei';
+import { useCursor, CameraShake } from '@react-three/drei';
 import { easing, geometry } from 'maath';
-import { suspend } from 'suspend-react';
-import { useScroll } from '@react-three/drei';
 import UserContextProvider from '../../store/userContext';
 import InputContextProvider from '../../store/inputContext';
 

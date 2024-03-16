@@ -23,7 +23,7 @@ export default function BackgroundColor(props: any) {
 
 	useFrame((state, delta) => {
 		// change from black to white on scroll
-		console.log(scroll.offset);
+		// console.log(scroll.offset);
 
 		if (scroll.offset < 0.5) {
 			LerpColorToTargetColor(color.current, black, changeSpeed);

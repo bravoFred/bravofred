@@ -20,6 +20,8 @@ export default function Nav() {
 		portal1active,
 		portal2active,
 		portal3active,
+		gotoAboutMe,
+		gotoPortals,
 	} = useContext(InputContextProvider);
 	const { active, progress, errors, item, loaded, total } = useProgress();
 	const startTime = useRef(new Date().getTime());
@@ -44,11 +46,11 @@ export default function Nav() {
 		if (innerText === 'About Me') {
 			setAboutMeActiveState(true);
 			setPortalsActiveState(false);
-			prevSection();
+			gotoAboutMe();
 		} else if (innerText === 'Coming Soon') {
 			setPortalsActiveState(true);
 			setAboutMeActiveState(false);
-			nextSection();
+			gotoPortals();
 		}
 	};
 
