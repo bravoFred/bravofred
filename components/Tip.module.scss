@@ -1,10 +1,12 @@
-@keyframes lettersWideToNormal {
-	66% {
-		letter-spacing: 1rem;
+@keyframes fadeIn {
+	from {
 		opacity: 0;
 	}
-	100% {
-		letter-spacing: 0.1rem;
+	66% {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
 	}
 }
 .tip {
@@ -17,6 +19,8 @@
 	align-items: center;
 	justify-content: center;
 	width: 100%;
+	animation: fadeIn 3s ease-in-out;
+
 	// border: 1px solid white;
 }
 .tip_text {
