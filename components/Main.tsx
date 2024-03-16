@@ -77,7 +77,7 @@ export default function Main() {
 						<ScrollController />
 						{/* <Mouse /> */}
 						<Camera />
-						<Floor />
+						{/* <Floor /> */}
 						<Raycaster />
 						<Lighting />
 						<BackgroundColor />
