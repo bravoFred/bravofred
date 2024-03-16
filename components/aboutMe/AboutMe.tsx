@@ -78,17 +78,17 @@ export default function AboutMe(props) {
 		const r1 = scroll.range(0 / 10, 1 / 10); // this is first one tenth of the page
 		const r2 = scroll.range(0 / 10, 2 / 10); // this is the second one tenth of the page
 		const r3 = scroll.range(0 / 10, 3 / 10);
-		icon1Hovered.current
-			? ScaleAll(icon1Ref, icon1.scaleHovered, 0.1)
-			: ScaleAll(icon1Ref, icon1.hiddenScale, 0.1);
-		icon2Hovered.current
-			? ScaleAll(icon2Ref, icon2.scaleHovered, 0.1)
-			: ScaleAll(icon2Ref, icon2.hiddenScale, 0.1);
-		icon3Hovered.current
-			? ScaleAll(icon3Ref, icon3.scaleHovered, 0.1)
-			: ScaleAll(icon3Ref, icon3.hiddenScale, 0.1);
 
 		if (aboutMeActive) {
+			icon1Hovered.current
+				? ScaleAll(icon1Ref, icon1.scaleHovered, 0.1)
+				: ScaleAll(icon1Ref, icon1.hiddenScale, 0.1);
+			icon2Hovered.current
+				? ScaleAll(icon2Ref, icon2.scaleHovered, 0.1)
+				: ScaleAll(icon2Ref, icon2.hiddenScale, 0.1);
+			icon3Hovered.current
+				? ScaleAll(icon3Ref, icon3.scaleHovered, 0.1)
+				: ScaleAll(icon3Ref, icon3.hiddenScale, 0.1);
 			LerpAll(icon1Ref, icon1.active, icon1.enterSpeed);
 			LerpAll(icon2Ref, icon2.active, icon2.enterSpeed);
 			LerpAll(icon3Ref, icon3.active, icon3.enterSpeed);
