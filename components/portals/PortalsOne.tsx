@@ -190,7 +190,7 @@ export default function PortalsOne() {
 				</Frame
 			</group> */}
 			<group ref={p2.ref} rotation={[0, 0, 0]} onClick={(e) => clickHandler(e)}>
-				<Frame id="02" name="Film 2" author="Frederic Cartier" bg="#fff">
+				<Frame id="01" name="Film 1" author="Frederic Cartier" bg="#fff">
 					<Warehouse
 						position={[5, -1, -5]}
 						rotation={[
