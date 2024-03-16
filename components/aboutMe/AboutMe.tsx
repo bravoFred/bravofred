@@ -7,11 +7,14 @@ import dynamic from 'next/dynamic';
 import { useState, useContext } from 'react';
 import { easing, geometry } from 'maath';
 import { MathUtils } from 'three';
-import { MoveGroup } from '../AnimationFunctions';
+import { LerpAll } from '../AnimationFunctions';
 import UserContextProvider from '../../store/userContext';
 import InputContextProvider from '../../store/inputContext';
 
-const Icons = dynamic(() => import('../../models/4096/Icons').then((mod) => mod.Model), {
+const IconIG = dynamic(() => import('@/models/4096/IconIG').then((mod) => mod.Model), {
+	ssr: false,
+});
+const Icons = dynamic(() => import('@/models/4096/Icons').then((mod) => mod.Model), {
 	ssr: false,
 });
 const NavCam = dynamic(() => import('../../models/4096/Cam').then((mod) => mod.Model), {
@@ -43,21 +46,21 @@ export default function AboutMe() {
 	const baseSpeed = 0.1;
 	const [icon1, setIcon1] = useState({
 		ref: useRef<THREE.Group>(),
-		active: new THREE.Vector3(0, 0, 0),
+		active: new THREE.Vector3(-0.33, 0.33, 0),
 		hidden: new THREE.Vector3(0, 0, 20),
 		enterSpeed: baseSpeed * 2,
 		exitSpeed: baseSpeed / 4,
 	});
 	const [icon2, setIcon2] = useState({
 		ref: useRef<THREE.Group>(),
-		active: new THREE.Vector3(0, 0, 0),
+		active: new THREE.Vector3(0.33, 0, 0),
 		hidden: new THREE.Vector3(0, 0, 25),
 		enterSpeed: baseSpeed * 1.5,
 		exitSpeed: baseSpeed / 4,
 	});
 	const [icon3, setIcon3] = useState({
 		ref: useRef<THREE.Group>(),
-		active: new THREE.Vector3(0, 0, 0),
+		active: new THREE.Vector3(-0.33, -0.33, 0),
 		hidden: new THREE.Vector3(0, 0, 30),
 		enterSpeed: baseSpeed,
 		exitSpeed: baseSpeed / 4,
@@ -70,13 +73,14 @@ export default function AboutMe() {
 		const r2 = scroll.range(0 / 10, 2 / 10); // this is the second one tenth of the page
 		const r3 = scroll.range(0 / 10, 3 / 10);
 		// console.log(r1, r2);
+		// console.log(icon1Ref.current.position.z);
 
 		if (aboutMeActive) {
 			// not scrolling
 			// if (!scrolling.current) {
-			MoveGroup(icon1Ref, icon1.active, icon1.enterSpeed);
-			MoveGroup(icon2Ref, icon2.active, icon2.enterSpeed);
-			MoveGroup(icon3Ref, icon3.active, icon3.enterSpeed);
+			LerpAll(icon1Ref, icon1.active, icon1.enterSpeed);
+			LerpAll(icon2Ref, icon2.active, icon2.enterSpeed);
+			LerpAll(icon3Ref, icon3.active, icon3.enterSpeed);
 			// }
 			// icon1Ref.current.position.z = MathUtils.lerp(
 			// 	icon1Ref.current.position.z,
@@ -95,9 +99,9 @@ export default function AboutMe() {
 			// );
 		}
 		if (portalsActive) {
-			MoveGroup(icon1Ref, icon1.hidden, icon1.exitSpeed);
-			MoveGroup(icon2Ref, icon2.hidden, icon2.exitSpeed);
-			MoveGroup(icon3Ref, icon3.hidden, icon3.exitSpeed);
+			LerpAll(icon1Ref, icon1.hidden, icon1.exitSpeed);
+			LerpAll(icon2Ref, icon2.hidden, icon2.exitSpeed);
+			LerpAll(icon3Ref, icon3.hidden, icon3.exitSpeed);
 		}
 	});
 	const floatIntensity = 1;
@@ -141,7 +145,7 @@ export default function AboutMe() {
 		}
 	};
 	return (
-		<group position={[0, 0.75, 0]} ref={ref}>
+		<group position={[0, 0, 0]} ref={ref}>
 			{/* <pointLight position={[0, 2, 1]} intensity={1} /> */}
 			<Float
 				speed={speed} // Animation speed, defaults to 1
@@ -149,20 +153,22 @@ export default function AboutMe() {
 				floatIntensity={floatIntensity} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
 				floatingRange={[0, 0.1]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
 			>
-				<group ref={icon1Ref} position={[-0.3, 0.33, -100]}>
-					<Icons
-						onPointerEnter={(e) => {
-							icon1Hovered.current = true;
-							hoverHandler(e);
-						}}
-						onPointerLeave={(e) => {
-							icon1Hovered.current = false;
-							leaveHandler(e);
-						}}
-						onClick={(e) => clickHandler(e, urls.instagram)}
-						onDoubleClick={(e) => doubleClickHandler(e, urls.instagram)}
-						onPointerMissed={(e) => pointerMissed(e)}
-					/>
+				<group
+					ref={icon1Ref}
+					position={[0, 0, -100]}
+					onPointerEnter={(e) => {
+						icon1Hovered.current = true;
+						hoverHandler(e);
+					}}
+					onPointerLeave={(e) => {
+						icon1Hovered.current = false;
+						leaveHandler(e);
+					}}
+					onClick={(e) => clickHandler(e, urls.instagram)}
+					onDoubleClick={(e) => doubleClickHandler(e, urls.instagram)}
+					onPointerMissed={(e) => pointerMissed(e)}
+				>
+					<IconIG />
 				</group>
 			</Float>
 			<Float
@@ -173,7 +179,7 @@ export default function AboutMe() {
 			>
 				<group
 					ref={icon2Ref}
-					position={[0.33, 0, -100]}
+					position={[0, 0, -100]}
 					onPointerEnter={(e) => {
 						icon2Hovered.current = true;
 						hoverHandler(e);
@@ -186,7 +192,7 @@ export default function AboutMe() {
 					onDoubleClick={(e) => doubleClickHandler(e, urls.vimeo)}
 					onPointerMissed={(e) => pointerMissed(e)}
 				>
-					<Icons />
+					<IconIG />
 				</group>
 			</Float>
 			<Float
@@ -197,7 +203,7 @@ export default function AboutMe() {
 			>
 				<group
 					ref={icon3Ref}
-					position={[-0.3, -0.33, -100]}
+					position={[0, 0, -100]}
 					onPointerEnter={(e) => {
 						icon3Hovered.current = true;
 						hoverHandler(e);
@@ -210,7 +216,7 @@ export default function AboutMe() {
 					onDoubleClick={(e) => doubleClickHandler(e, urls.youtube)}
 					onPointerMissed={(e) => pointerMissed(e)}
 				>
-					<Icons />
+					<IconIG />
 				</group>
 				{/* <NavCam scale={0.5} position={[0, 0.5, 0]} /> */}
 			</Float>

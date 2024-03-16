@@ -1,4 +1,4 @@
-// @ts-nocheck
+//  @ts-nocheck
 
 import * as THREE from 'three';
 import { useContext, useEffect, useRef, useState } from 'react';
@@ -11,7 +11,7 @@ import UserContextProvider from '../../store/userContext';
 import InputContextProvider from '../../store/inputContext';
 import { MathUtils } from 'three';
 import dynamic from 'next/dynamic';
-import { MoveGroup } from '../../components/AnimationFunctions';
+import { LerpAll } from '../../components/AnimationFunctions';
 const GOLDENRATIO = 1.61803398875;
 
 const SmallRoom = dynamic(
@@ -141,20 +141,20 @@ export default function PortalsOne() {
 	});
 	useFrame((state) => {
 		if (aboutMeActive) {
-			MoveGroup(portalsRef, new THREE.Vector3(0, 0, -50), baseSpeed); // hides the group
+			LerpAll(portalsRef, new THREE.Vector3(0, 0, -50), baseSpeed); // hides the group
 
 			setPortalRigActive(false);
-			MoveGroup(p1.ref, p1.hidden, p1.exitSpeed);
-			MoveGroup(p2.ref, p2.hidden, p2.exitSpeed);
-			MoveGroup(p3.ref, p3.hidden, p3.exitSpeed);
+			LerpAll(p1.ref, p1.hidden, p1.exitSpeed);
+			LerpAll(p2.ref, p2.hidden, p2.exitSpeed);
+			LerpAll(p3.ref, p3.hidden, p3.exitSpeed);
 		}
 		if (portalsActive) {
-			MoveGroup(portalsRef, new THREE.Vector3(0, 0, 0), baseSpeed); // shows the group
+			LerpAll(portalsRef, new THREE.Vector3(0, 0, 0), baseSpeed); // shows the group
 
 			setPortalRigActive(true);
-			MoveGroup(p1.ref, p1.active, p1.enterSpeed);
-			MoveGroup(p2.ref, p2.active, p2.enterSpeed);
-			MoveGroup(p3.ref, p3.active, p3.enterSpeed);
+			LerpAll(p1.ref, p1.active, p1.enterSpeed);
+			LerpAll(p2.ref, p2.active, p2.enterSpeed);
+			LerpAll(p3.ref, p3.active, p3.enterSpeed);
 		}
 	});
 	const clickHandler = (e) => {
