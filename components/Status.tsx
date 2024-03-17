@@ -1,6 +1,6 @@
 'use client';
 import styles from './Status.module.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 export default function Status() {
 	// get current time
 	const date = new Date();
@@ -15,21 +15,36 @@ export default function Status() {
 	// get am or pm
 	const amPm = hours >= 12 ? 'pm' : 'am';
 	// update time every second
-	setTimeout(() => {
-		const date = new Date();
-		const hours = date.getHours();
-		const minutes = date.getMinutes();
-		const seconds = date.getSeconds();
-		setTime({
-			hours: hours,
-			minutes: minutes,
-			seconds: seconds,
-		});
-	}, 1000);
+	// setTimeout(() => {
+	// 	const date = new Date();
+	// 	const hours = date.getHours();
+	// 	const minutes = date.getMinutes();
+	// 	const seconds = date.getSeconds();
+	// 	setTime({
+	// 		hours: hours,
+	// 		minutes: minutes,
+	// 		seconds: seconds,
+	// 	});
+	// }, 1000);
 	// day of the week
 	const day = date.getDay();
 	const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
 	const dayOfWeek = days[day];
+	useEffect(() => {
+		// interval to update time every second
+		const interval = setInterval(() => {
+			const date = new Date();
+			const hours = date.getHours();
+			const minutes = date.getMinutes();
+			const seconds = date.getSeconds();
+			setTime({
+				hours: hours,
+				minutes: minutes,
+				seconds: seconds,
+			});
+		}, 1000);
+		return () => clearInterval(interval);
+	}, []);
 
 	return (
 		<div className={styles.status}>
