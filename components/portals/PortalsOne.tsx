@@ -46,21 +46,22 @@ function Frame({ id, name, author, bg, width = 1, height = GOLDENRATIO, children
 	useFrame(
 		(state, dt) => {
 			if (hovered) {
-				// imgRef.current.material.opacity = MathUtils.lerp(
-				// 	imgRef.current.material.opacity,
-				// 	0,
-				// 	0.25
-				// );
-				// text1Ref.current.scale.setScalar(MathUtils.lerp(text1Ref.current.scale.x, 0, 0.55));
-				// text2Ref.current.scale.setScalar(MathUtils.lerp(text2Ref.current.scale.x, 0, 0.25));
+				imgRef.current.material.opacity = MathUtils.lerp(
+					imgRef.current.material.opacity,
+					0,
+					0.25
+				);
+				text1Ref.current.scale.setScalar(MathUtils.lerp(text1Ref.current.scale.x, 1, 0.25));
+				text2Ref.current.scale.setScalar(MathUtils.lerp(text2Ref.current.scale.x, 1, 0.25));
+				// text1Ref.current.opacity = MathUtils.lerp(text1Ref.current.opacity, 0, 0.25);
 			} else {
-				// imgRef.current.material.opacity = MathUtils.lerp(
-				// 	imgRef.current.material.opacity,
-				// 	1,
-				// 	0.25
-				// );
-				// text1Ref.current.scale.setScalar(MathUtils.lerp(text1Ref.current.scale.x, 1, 0.25));
-				// text2Ref.current.scale.setScalar(MathUtils.lerp(text2Ref.current.scale.x, 1, 0.25));
+				imgRef.current.material.opacity = MathUtils.lerp(
+					imgRef.current.material.opacity,
+					1,
+					0.25
+				);
+				text1Ref.current.scale.setScalar(MathUtils.lerp(text1Ref.current.scale.x, 0, 0.25));
+				text2Ref.current.scale.setScalar(MathUtils.lerp(text2Ref.current.scale.x, 0, 0.25));
 			}
 			easing.damp(portal.current, 'blend', params?.id === id ? 1 : 0, 0.2, dt);
 		}
@@ -94,7 +95,7 @@ function Frame({ id, name, author, bg, width = 1, height = GOLDENRATIO, children
 
 				{/* <bentPlaneGeometry args={[0.1, 1, 1, 20, 20]} /> */}
 			</Image>
-			{/* <Text
+			<Text
 				ref={text1Ref}
 				font="/fonts/NimbusSanL-Bol.woff"
 				fontSize={0.2}
@@ -103,10 +104,10 @@ function Frame({ id, name, author, bg, width = 1, height = GOLDENRATIO, children
 				lineHeight={0.6}
 				position={[0, 0, -0.001]}
 				material-toneMapped={false}
-				color={'#fff'}
+				color={'#000'}
 			>
 				{name}
-			</Text> */}
+			</Text>
 			<Text
 				font="/fonts/NimbusSanL-Bol.woff"
 				fontSize={0.1}
@@ -118,17 +119,17 @@ function Frame({ id, name, author, bg, width = 1, height = GOLDENRATIO, children
 				{/* {id} */}
 				{/* {releaseText} */}
 			</Text>
-			{/* <Text
+			<Text
 				ref={text2Ref}
 				font="/fonts/NimbusSanL-Bol.woff"
 				fontSize={0.05}
 				textAlign="center"
 				position={[0, -0.46, 0]}
 				material-toneMapped={false}
-				color={'#fff'}
+				color={'#000'}
 			>
 				{releaseText}
-			</Text> */}
+			</Text>
 			<mesh
 				name={id}
 				// onDoubleClick={(e) => (e.stopPropagation(), setLocation('/item/' + e.object.name))}
