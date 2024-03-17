@@ -76,7 +76,8 @@ export default function AboutMe(props) {
 	const scaleUpFactor = 0.25;
 	const scaleDownFactor = 1;
 	const scaleUpSpeed = 0.1;
-	const scaleDownSpeed = 0.025;
+	// const scaleDownSpeed = 0.025;
+	const scaleDownSpeed = 0.1;
 	// const scaleDownSpeed = 0.01;
 	useFrame(({ gl, scene, camera, clock, pointer }) => {
 		const r1 = scroll.range(0 / 10, 1 / 10); // this is first one tenth of the page
