@@ -74,6 +74,8 @@ $speed: 1s;
 	font-size: 14px;
 	// font-weight: 300 !important;
 	letter-spacing: 0.1rem;
+	// uppercase
+	text-transform: uppercase;
 	cursor: pointer;
 	opacity: 1;
 	transition: all $speed cubic-bezier(0.075, 0.82, 0.165, 1);
