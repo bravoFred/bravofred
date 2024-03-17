@@ -66,7 +66,7 @@ export default function AboutMe(props) {
 	});
 	const [text, setText] = useState({
 		ref: useRef<THREE.Group>(),
-		active: mobile ? new THREE.Vector3(-0.33, 1, 0) : new THREE.Vector3(-0.5, 1, 0.1),
+		active: mobile ? new THREE.Vector3(-0.33, 1, 0) : new THREE.Vector3(-0.66, 1, 0.1),
 		hidden: new THREE.Vector3(0, 0, 15),
 		activeScale: new THREE.Vector3(baseActiveScale, baseActiveScale, baseActiveScale),
 		hiddenScale: new THREE.Vector3(0, 0, 0),
@@ -147,19 +147,30 @@ export default function AboutMe(props) {
 			document.body.style.cursor = 'auto';
 		}
 	};
+	// const [textMsg, setTextMsg] = useState(`
+	// Lorem ipsum is placeholder text
+	// ${'\n'}
+	// commonly used in industries
+	// ${'\n'}
+	// for previewing layouts and mockups.`);
 	const [textMsg, setTextMsg] = useState(`
-	Lorem ipsum is placeholder text
+	Hi! I'm Frederic.
 	${'\n'}
-	commonly used in industries
+	I'm a filmmaker and visual storyteller.
 	${'\n'}
-	for previewing layouts and mockups.`);
+	Welcome to my creative universe.
+	`);
+	// I invite you to explore my cinematic portfolio ahead.
+	// From gripping narratives to visually stunning documentaries, each project is a testament to my dedication to the craft of filmmaking.
+	// As a filmmaker driven by passion and vision, [Filmmaker's Name] invites you on a cinematic journey through their diverse portfolio. From gripping narratives to visually stunning documentaries, each project is a testament to their dedication to the craft of filmmaking. Explore, indulge, and immerse yourself in the artistry that defines [Filmmaker's Name]'s unique perspective on the world through the lens..
 
+	// where storytelling transcends boundaries and captivates hearts. Step into a realm where imagination takes flight and emotions are woven into every frame.
 	return (
 		<group position={[0, 0, 0]} ref={ref}>
 			<Text
 				ref={text.ref}
 				font="/fonts/NimbusSanL-Bol.woff"
-				fontSize={mobile ? 0.045 : 0.075}
+				fontSize={mobile ? 0.045 : 0.06}
 				color={'#000000'}
 				{...props}
 				textAlign="right"
