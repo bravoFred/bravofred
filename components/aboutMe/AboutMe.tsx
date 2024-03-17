@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic';
 import { useState, useContext } from 'react';
 import { easing, geometry } from 'maath';
 import { MathUtils } from 'three';
-import { LerpAll, ScaleAll } from '../AnimationFunctions';
+import { LerpGroupPos, LerpGroupScale } from '../AnimationFunctions';
 import UserContextProvider from '../../store/userContext';
 import InputContextProvider from '../../store/inputContext';
 
@@ -81,24 +81,24 @@ export default function AboutMe(props) {
 
 		if (aboutMeActive) {
 			icon1Hovered.current
-				? ScaleAll(icon1Ref, icon1.scaleHovered, 0.1)
-				: ScaleAll(icon1Ref, icon1.hiddenScale, 0.1);
+				? LerpGroupScale(icon1Ref, icon1.scaleHovered, 0.1)
+				: LerpGroupScale(icon1Ref, icon1.hiddenScale, 0.1);
 			icon2Hovered.current
-				? ScaleAll(icon2Ref, icon2.scaleHovered, 0.1)
-				: ScaleAll(icon2Ref, icon2.hiddenScale, 0.1);
+				? LerpGroupScale(icon2Ref, icon2.scaleHovered, 0.1)
+				: LerpGroupScale(icon2Ref, icon2.hiddenScale, 0.1);
 			icon3Hovered.current
-				? ScaleAll(icon3Ref, icon3.scaleHovered, 0.1)
-				: ScaleAll(icon3Ref, icon3.hiddenScale, 0.1);
-			LerpAll(icon1Ref, icon1.active, icon1.enterSpeed);
-			LerpAll(icon2Ref, icon2.active, icon2.enterSpeed);
-			LerpAll(icon3Ref, icon3.active, icon3.enterSpeed);
-			LerpAll(text.ref, text.active, text.enterSpeed);
+				? LerpGroupScale(icon3Ref, icon3.scaleHovered, 0.1)
+				: LerpGroupScale(icon3Ref, icon3.hiddenScale, 0.1);
+			LerpGroupPos(icon1Ref, icon1.active, icon1.enterSpeed);
+			LerpGroupPos(icon2Ref, icon2.active, icon2.enterSpeed);
+			LerpGroupPos(icon3Ref, icon3.active, icon3.enterSpeed);
+			LerpGroupPos(text.ref, text.active, text.enterSpeed);
 		}
 		if (portalsActive) {
-			LerpAll(icon1Ref, icon1.hidden, icon1.exitSpeed);
-			LerpAll(icon2Ref, icon2.hidden, icon2.exitSpeed);
-			LerpAll(icon3Ref, icon3.hidden, icon3.exitSpeed);
-			LerpAll(text.ref, text.hidden, text.exitSpeed);
+			LerpGroupPos(icon1Ref, icon1.hidden, icon1.exitSpeed);
+			LerpGroupPos(icon2Ref, icon2.hidden, icon2.exitSpeed);
+			LerpGroupPos(icon3Ref, icon3.hidden, icon3.exitSpeed);
+			LerpGroupPos(text.ref, text.hidden, text.exitSpeed);
 		}
 	});
 	const floatIntensity = 1.5;

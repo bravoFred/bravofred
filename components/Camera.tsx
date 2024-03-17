@@ -6,17 +6,7 @@ import { useRef, useContext } from 'react';
 import { useScroll } from '@react-three/drei';
 import UserContextProvider from '../store/userContext';
 import InputContextProvider from '../store/inputContext';
-import { update } from 'three/examples/jsm/libs/tween.module.js';
-
-function lerpCamTarget(
-	state: { controls: { target: { x: number; y: number; z: number } } },
-	target: THREE.Vector3,
-	speed: number
-) {
-	state.controls.target.x = MathUtils.lerp(state.controls.target.x, target.x, speed / 3);
-	state.controls.target.y = MathUtils.lerp(state.controls.target.y, target.y, speed / 1);
-	state.controls.target.z = MathUtils.lerp(state.controls.target.z, target.z, speed / 3);
-}
+import * as animate from '@/components/AnimationFunctions';
 
 function preventCamPosOutsideBounds(state: {
 	camera: { position: { x: number; z: number; y: number } };
@@ -63,6 +53,7 @@ export default function Camera() {
 	const defaultZoomDesktop = 1.5;
 	const zoomDesktop = 3;
 	const zoomMobile = 1.5;
+	const camRef = useRef<THREE.PerspectiveCamera>();
 	useFrame((state) => {
 		const camera = state.camera as THREE.PerspectiveCamera;
 		camera.lookAt(focus.current.x, focus.current.y, focus.current.z);
@@ -71,6 +62,7 @@ export default function Camera() {
 		if (aboutMeActive) {
 			lerpVecs(camera.position, camVecs.current.aboutMe.pos, speed);
 			lerpVecs(focus.current, camVecs.current.aboutMe.focus, speed);
+			// animate.EaseAll(camera.position, camVecs.current.aboutMe.pos, 0.4, 1);
 			if (activeObject.current !== null) {
 				const { point } = activeObject.current;
 				if (point) {
