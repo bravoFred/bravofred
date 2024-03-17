@@ -94,7 +94,7 @@ function Frame({ id, name, author, bg, width = 1, height = GOLDENRATIO, children
 
 				{/* <bentPlaneGeometry args={[0.1, 1, 1, 20, 20]} /> */}
 			</Image>
-			<Text
+			{/* <Text
 				ref={text1Ref}
 				font="/fonts/NimbusSanL-Bol.woff"
 				fontSize={0.2}
@@ -106,7 +106,7 @@ function Frame({ id, name, author, bg, width = 1, height = GOLDENRATIO, children
 				color={'#fff'}
 			>
 				{name}
-			</Text>
+			</Text> */}
 			<Text
 				font="/fonts/NimbusSanL-Bol.woff"
 				fontSize={0.1}
@@ -118,21 +118,17 @@ function Frame({ id, name, author, bg, width = 1, height = GOLDENRATIO, children
 				{/* {id} */}
 				{/* {releaseText} */}
 			</Text>
-			<Text
+			{/* <Text
 				ref={text2Ref}
 				font="/fonts/NimbusSanL-Bol.woff"
 				fontSize={0.05}
-				// anchorY="bottom-baseline"
-				// anchorX="right"
 				textAlign="center"
-				// position={[0.0, -0.677, 0.01]}
 				position={[0, -0.46, 0]}
 				material-toneMapped={false}
 				color={'#fff'}
 			>
-				{/* {author} */}
 				{releaseText}
-			</Text>
+			</Text> */}
 			<mesh
 				name={id}
 				// onDoubleClick={(e) => (e.stopPropagation(), setLocation('/item/' + e.object.name))}
