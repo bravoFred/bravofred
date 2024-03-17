@@ -39,7 +39,7 @@ export default function AboutMe(props) {
 	const scaleUpFactor = 0.25;
 	const scaleDownFactor = 0.25;
 	const scaleUpSpeed = 0.1;
-	const scaleDownSpeed = 0.1;
+	const scaleDownSpeed = 0.025;
 	const iconX = mobile ? -0.33 : 0.7;
 	const iconY = mobile ? 0.8 : 0.8;
 	const [text, setText] = useState({
