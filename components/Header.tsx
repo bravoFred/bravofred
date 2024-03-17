@@ -1,6 +1,6 @@
 import Head from 'next/head';
 const previewImg =
-	'https://raw.githubusercontent.com/thomasmatlock/media-server/main/images/preview/previewRoom.jpeg';
+	'https://raw.githubusercontent.com/thomasmatlock/public/main/images/previewThumbnail.png';
 const titleDefault = 'Frederic Cartier | Filmmaker';
 const url = 'https://www.frederic-cartier.com';
 const description = 'Film-maker living in Atlanta.';
@@ -17,7 +17,7 @@ export default function Header({ title = titleDefault }) {
 			{/* <meta name="designer" content={author} /> */}
 			{/* <meta name="publisher" content={author} /> */}
 			{/* RESTORE BELOW WITH NEW PREVIEW THUMBNAIL */}
-			{/* <meta name="image" content={previewImg} /> */}
+			<meta name="image" content={previewImg} />
 
 			{/* Search Engine Optimization Meta Tags */}
 			<title>{title}</title>
@@ -62,16 +62,16 @@ export default function Header({ title = titleDefault }) {
         Be sure validate your Twitter card markup on the documentation site. */}
 			{/* <meta name="twitter:card" content={previewImg} /> */}
 			{/* RESTORE BELOW */}
-			{/* <meta name="twitter:site" content={previewImg} />  */}
-			{/* <meta name="twitter:image" content={previewImg} /> */}
+			<meta name="twitter:site" content={previewImg} />
+			<meta name="twitter:image" content={previewImg} />
 			<meta name="twitter:card" content="summary_large_image" />
 			<meta name="twitter:title" content={titleDefault} />
 			<meta name="twitter:description" content={description} />
 			{/* RESTORE BELOW */}
-			{/* <meta
+			<meta
 				name="twitter:image"
-				content="https://raw.githubusercontent.com/thomasmatlock/media-server/main/images/preview/previewRoom.jpeg"
-			/> */}
+				content="https://raw.githubusercontent.com/thomasmatlock/public/main/images/previewThumbnail.png"
+			/>
 		</Head>
 	);
 }
