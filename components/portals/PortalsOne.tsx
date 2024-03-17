@@ -53,7 +53,6 @@ function Frame({ id, name, author, bg, width = 1, height = GOLDENRATIO, children
 				);
 				text1Ref.current.scale.setScalar(MathUtils.lerp(text1Ref.current.scale.x, 1, 0.25));
 				text2Ref.current.scale.setScalar(MathUtils.lerp(text2Ref.current.scale.x, 1, 0.25));
-				// text1Ref.current.opacity = MathUtils.lerp(text1Ref.current.opacity, 0, 0.25);
 			} else {
 				imgRef.current.material.opacity = MathUtils.lerp(
 					imgRef.current.material.opacity,
