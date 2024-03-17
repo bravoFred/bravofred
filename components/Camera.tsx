@@ -28,7 +28,8 @@ function ToggleCamFov(camera: { fov: number }, mobile: boolean) {
 }
 export default function Camera() {
 	const { mobile } = useContext(UserContextProvider);
-	const { activeObject, portalsActive, aboutMeActive } = useContext(InputContextProvider);
+	const { activeObject, portalsActive, aboutMeActive, icon1Hovered, icon2Hovered, icon3Hovered } =
+		useContext(InputContextProvider);
 	const camVecs = useRef({
 		aboutMe: {
 			pos: new THREE.Vector3(0, 0.1, 5),
@@ -52,14 +53,11 @@ export default function Camera() {
 		const camera = state.camera as THREE.PerspectiveCamera;
 		camera.lookAt(focus.current.x, focus.current.y, focus.current.z);
 		if (aboutMeActive) {
-			animate.LerpVec(camera.position, camVecs.current.aboutMe.pos, speed);
-			// animate.LerpVec(focus.current, camVecs.current.aboutMe.focus, speed);
-			// console.log(easing);
-			if (activeObject.current !== null) {
+			animate.EaseVec(camera.position, camVecs.current.aboutMe.pos, 0.5, speed);
+			if (activeObject.current) {
 				const { point } = activeObject.current;
 				if (point) {
-					// animate.LerpVec(focus.current, point, speed);
-					animate.EaseVec(focus.current, point, 0.5, speed);
+					animate.EaseVec(focus.current, point, 1, speed);
 					camera.zoom = MathUtils.lerp(
 						camera.zoom,
 						mobile ? zoomMobile : zoomDesktop,
@@ -67,18 +65,17 @@ export default function Camera() {
 					);
 				}
 			} else {
-				animate.LerpVec(focus.current, camVecs.current.aboutMe.focus, speed);
+				animate.EaseVec(focus.current, camVecs.current.aboutMe.focus, 0.5, speed);
 				camera.zoom = MathUtils.lerp(
 					camera.zoom,
 					mobile ? defaultZoomMobile : defaultZoomDesktop,
-					zoomOutSpeed
+					zoomOutSpeed / 3
 				);
-				// animate
 			}
 		}
 		if (portalsActive) {
-			animate.LerpVec(camera.position, camVecs.current.portals.pos, speed);
-			animate.LerpVec(focus.current, camVecs.current.portals.focus, speed);
+			animate.EaseVec(camera.position, camVecs.current.portals.pos, 0.5, speed);
+			animate.EaseVec(focus.current, camVecs.current.portals.focus, 0.5, speed);
 			camera.zoom = MathUtils.lerp(
 				camera.zoom,
 				mobile ? defaultZoomMobile : defaultZoomDesktop,

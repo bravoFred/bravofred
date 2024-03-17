@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic';
 import { useState, useContext } from 'react';
 import { easing, geometry } from 'maath';
 import { MathUtils } from 'three';
-import { LerpGroupPos, LerpGroupScale } from '../Animate';
+import { LerpGroupPos, LerpGroupScale, EaseGroupScale } from '../Animate';
 import UserContextProvider from '../../store/userContext';
 import InputContextProvider from '../../store/inputContext';
 
@@ -36,7 +36,7 @@ export default function AboutMe(props) {
 
 	const baseSpeed = 0.1;
 	const baseScale = 1;
-	const baseActiveScale = 1.1;
+	const baseActiveScale = 1.15;
 	const [icon1, setIcon1] = useState({
 		ref: useRef<THREE.Group>(),
 		active: mobile ? new THREE.Vector3(-0.33, 0.5, 0) : new THREE.Vector3(-0.33, 0.5, 0),
@@ -73,7 +73,11 @@ export default function AboutMe(props) {
 		enterSpeed: baseSpeed * 2.5,
 		exitSpeed: baseSpeed / 4,
 	});
-
+	const scaleUpFactor = 0.25;
+	const scaleDownFactor = 1;
+	const scaleUpSpeed = 0.1;
+	const scaleDownSpeed = 0.025;
+	// const scaleDownSpeed = 0.01;
 	useFrame(({ gl, scene, camera, clock, pointer }) => {
 		const r1 = scroll.range(0 / 10, 1 / 10); // this is first one tenth of the page
 		const r2 = scroll.range(0 / 10, 2 / 10); // this is the second one tenth of the page
@@ -81,14 +85,14 @@ export default function AboutMe(props) {
 
 		if (aboutMeActive) {
 			icon1Hovered.current
-				? LerpGroupScale(icon1Ref, icon1.scaleHovered, 0.1)
-				: LerpGroupScale(icon1Ref, icon1.hiddenScale, 0.1);
+				? EaseGroupScale(icon1Ref, icon1.scaleHovered, scaleUpFactor, scaleUpSpeed)
+				: EaseGroupScale(icon1Ref, icon1.hiddenScale, scaleDownFactor, scaleDownSpeed);
 			icon2Hovered.current
-				? LerpGroupScale(icon2Ref, icon2.scaleHovered, 0.1)
-				: LerpGroupScale(icon2Ref, icon2.hiddenScale, 0.1);
+				? EaseGroupScale(icon2Ref, icon2.scaleHovered, scaleUpFactor, scaleUpSpeed)
+				: EaseGroupScale(icon2Ref, icon2.hiddenScale, scaleDownFactor, scaleDownSpeed);
 			icon3Hovered.current
-				? LerpGroupScale(icon3Ref, icon3.scaleHovered, 0.1)
-				: LerpGroupScale(icon3Ref, icon3.hiddenScale, 0.1);
+				? EaseGroupScale(icon3Ref, icon3.scaleHovered, scaleUpFactor, scaleUpSpeed)
+				: EaseGroupScale(icon3Ref, icon3.hiddenScale, scaleDownFactor, scaleDownSpeed);
 			LerpGroupPos(icon1Ref, icon1.active, icon1.enterSpeed);
 			LerpGroupPos(icon2Ref, icon2.active, icon2.enterSpeed);
 			LerpGroupPos(icon3Ref, icon3.active, icon3.enterSpeed);

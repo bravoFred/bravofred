@@ -74,7 +74,7 @@ export default function Main() {
 						<Camera />
 						<Raycaster />
 						<Lighting />
-						<Mouse />
+						{/* <Mouse /> */}
 						{/* <BackgroundColor /> */}
 						{/* <Fog /> */}
 					</ScrollControls>
