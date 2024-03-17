@@ -54,7 +54,7 @@ export default function Lighting() {
 	return (
 		<group>
 			{/* {showMovingSpot && <MovingSpot position={[0, 2.5, 1.5]} />} */}
-			<ambientLight intensity={1.5} />
+			<ambientLight intensity={1.75} />
 			<directionalLight
 				position={[0, 2.5, 1.5]}
 				intensity={1}
