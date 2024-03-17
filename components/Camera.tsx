@@ -61,7 +61,7 @@ export default function Camera() {
 					camera.zoom = MathUtils.lerp(
 						camera.zoom,
 						mobile ? zoomMobile : zoomDesktop,
-						zoomInSpeed
+						zoomInSpeed / 2
 					);
 				}
 			} else {
