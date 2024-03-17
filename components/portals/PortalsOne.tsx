@@ -14,12 +14,6 @@ import dynamic from 'next/dynamic';
 import { LerpGroupPos } from '../Animate';
 const GOLDENRATIO = 1.61803398875;
 import poster from '../../public/img/poster.jpeg';
-const SmallRoom = dynamic(
-	() => import('../../models/4096/PortalInteriorJoined').then((mod) => mod.Model),
-	{
-		ssr: false,
-	}
-);
 
 const Warehouse = dynamic(
 	() => import('../../models/4096/WarehouseJoined').then((mod) => mod.Model),
@@ -27,6 +21,10 @@ const Warehouse = dynamic(
 		ssr: false,
 	}
 );
+
+// ref.current.material.radius = 1;
+// ref.current.material.zoom = 1;
+// ref.current.material.grayscale = 0.5;
 function Rig({ position = new THREE.Vector3(0, 0.1, 5), focus = new THREE.Vector3(0, 1, 0) }) {
 	const { controls, scene } = useThree();
 	const [, params] = useRoute('/item/:id') as any;
@@ -58,30 +56,31 @@ function Frame({ id, name, author, bg, width = 1, height = GOLDENRATIO, children
 	const [releaseText, setReleaseText] = useState('Summer 2024');
 	return (
 		<group {...props} position={[0, 1, 0]}>
-			{/* <Image
+			{/* <Foo /> */}
+			<Image
 				ref={imgRef}
-				// url={`/public/img/poster.jpeg`}
-				url={poster}
+				url={`/poster.jpeg`}
 				transparent
 				side={THREE.DoubleSide}
 				// onPointerOver={pointerOver}
 				// onPointerOut={pointerOut}
 				{...props}
+				alt="poster"
+				position={[0, 0, 0.0001]}
 			>
-				<bentPlaneGeometry args={[0.1, 1, 1, 20, 20]} />
-			</Image> */}
+				<roundedPlaneGeometry args={[width, height, 0.22]} />
+
+				{/* <bentPlaneGeometry args={[0.1, 1, 1, 20, 20]} /> */}
+			</Image>
 			<Text
 				font="/fonts/NimbusSanL-Bol.woff"
 				fontSize={0.2}
 				{...props}
-				// anchorY="center"
-				// anchorX="center"
 				textAlign="center"
 				lineHeight={0.6}
-				// position={[-0.375, 0.715, 0.01]}
 				position={[0, 0, 0]}
 				material-toneMapped={false}
-				color={'#000'}
+				color={'#fff'}
 			>
 				{name}
 			</Text>
@@ -98,14 +97,14 @@ function Frame({ id, name, author, bg, width = 1, height = GOLDENRATIO, children
 			</Text>
 			<Text
 				font="/fonts/NimbusSanL-Bol.woff"
-				fontSize={0.04}
+				fontSize={0.05}
 				// anchorY="bottom-baseline"
 				// anchorX="right"
 				textAlign="center"
 				// position={[0.0, -0.677, 0.01]}
-				position={[0, -0.67, 0]}
+				position={[0, -0.46, 0]}
 				material-toneMapped={false}
-				color={'#000'}
+				color={'#fff'}
 			>
 				{/* {author} */}
 				{releaseText}
