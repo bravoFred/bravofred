@@ -39,7 +39,6 @@ export default function Mouse() {
 		if (!mobile) {
 			if (aboutMeActive) {
 				camera.position.x = MathUtils.lerp(camera.position.x, pointer.x * 0.5, 0.1);
-				// camera.position.y = MathUtils.lerp(camera.position.y, pointer.y * 0.25, 0.1);
 			}
 			if (portalsActive) {
 			}

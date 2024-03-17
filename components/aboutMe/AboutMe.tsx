@@ -29,17 +29,16 @@ export default function AboutMe(props) {
 	const r1 = scroll.range(0 / 4, 1 / 4);
 	const r2 = scroll.range(1 / 4, 1 / 4);
 	const r3 = scroll.visible(4 / 5, 1 / 5);
-	const { width, height } = useThree((state) => state.viewport);
 	const icon3Ref = useRef<THREE.Group>();
 	const icon1Ref = useRef<THREE.Group>();
 	const icon2Ref = useRef<THREE.Group>();
 
 	const baseSpeed = 0.1;
-	const baseScale = 1;
-	const baseActiveScale = 1.15;
+	const baseScale = mobile ? 0.66 : 1;
+	const baseActiveScale = mobile ? 0.75 : 1.15;
 	const [icon1, setIcon1] = useState({
 		ref: useRef<THREE.Group>(),
-		active: mobile ? new THREE.Vector3(-0.33, 0.5, 0) : new THREE.Vector3(-0.33, 0.5, 0),
+		active: mobile ? new THREE.Vector3(-0.33, 0.85, 0) : new THREE.Vector3(-0.33, 0.75, 0),
 		hidden: new THREE.Vector3(0, 0, 20),
 		scaleHovered: new THREE.Vector3(baseActiveScale, baseActiveScale, baseActiveScale),
 		hiddenScale: new THREE.Vector3(baseScale, baseScale, baseScale),
@@ -48,7 +47,7 @@ export default function AboutMe(props) {
 	});
 	const [icon2, setIcon2] = useState({
 		ref: useRef<THREE.Group>(),
-		active: mobile ? new THREE.Vector3(0.5, 0.05, 0) : new THREE.Vector3(0.33, 0.075, 0),
+		active: mobile ? new THREE.Vector3(0.33, 0.15, 0) : new THREE.Vector3(0.45, 0.1, 0),
 		hidden: new THREE.Vector3(0, 0, 25),
 		scaleHovered: new THREE.Vector3(baseActiveScale, baseActiveScale, baseActiveScale),
 		hiddenScale: new THREE.Vector3(baseScale, baseScale, baseScale),
@@ -57,7 +56,7 @@ export default function AboutMe(props) {
 	});
 	const [icon3, setIcon3] = useState({
 		ref: useRef<THREE.Group>(),
-		active: mobile ? new THREE.Vector3(-0.33, -0.45, 0) : new THREE.Vector3(-0.33, -0.45, 0),
+		active: mobile ? new THREE.Vector3(-0.33, -0.15, 0) : new THREE.Vector3(-0.33, -0.55, 0),
 		hidden: new THREE.Vector3(0, 0, 30),
 		scaleHovered: new THREE.Vector3(baseActiveScale, baseActiveScale, baseActiveScale),
 		hiddenScale: new THREE.Vector3(baseScale, baseScale, baseScale),
@@ -66,24 +65,18 @@ export default function AboutMe(props) {
 	});
 	const [text, setText] = useState({
 		ref: useRef<THREE.Group>(),
-		active: mobile ? new THREE.Vector3(-0.33, 1, 0) : new THREE.Vector3(-0.66, 0.95, 0.2),
-		hidden: new THREE.Vector3(0, 0, 15),
+		active: mobile ? new THREE.Vector3(0, 1, 0) : new THREE.Vector3(-0.75, 1, 0.2),
+		hidden: new THREE.Vector3(0, 0, 30),
 		activeScale: new THREE.Vector3(baseActiveScale, baseActiveScale, baseActiveScale),
 		hiddenScale: new THREE.Vector3(0, 0, 0),
-		enterSpeed: baseSpeed * 2.5,
+		enterSpeed: baseSpeed * 1.5,
 		exitSpeed: baseSpeed / 4,
 	});
 	const scaleUpFactor = 0.25;
-	const scaleDownFactor = 1;
+	const scaleDownFactor = 0.25;
 	const scaleUpSpeed = 0.1;
-	// const scaleDownSpeed = 0.025;
 	const scaleDownSpeed = 0.1;
-	// const scaleDownSpeed = 0.01;
 	useFrame(({ gl, scene, camera, clock, pointer }) => {
-		const r1 = scroll.range(0 / 10, 1 / 10); // this is first one tenth of the page
-		const r2 = scroll.range(0 / 10, 2 / 10); // this is the second one tenth of the page
-		const r3 = scroll.range(0 / 10, 3 / 10);
-
 		if (aboutMeActive) {
 			icon1Hovered.current
 				? EaseGroupScale(icon1Ref, icon1.scaleHovered, scaleUpFactor, scaleUpSpeed)
@@ -152,42 +145,69 @@ export default function AboutMe(props) {
 			document.body.style.cursor = 'auto';
 		}
 	};
-	// const [textMsg, setTextMsg] = useState(`
-	// Lorem ipsum is placeholder text
-	// ${'\n'}
-	// commonly used in industries
-	// ${'\n'}
-	// for previewing layouts and mockups.`);
-	// Learn more about me and my film making.
-	const [textMsg, setTextMsg] = useState(`
-	Hi! My name is Frederic.
-	${'\n'}
-	I'm a filmmaker and visual storyteller.
-	${'\n'}
-	Welcome to my creative universe.
+	const [textMsg, setTextMsg] = useState(`Welcome to my creative world!
+${'\n'}
+I am a director currently based in Atlanta, GA.
+${'\n'}
+My films aim to explore the core of complex human experiences
+${'\n'}
+through the use of vehicles such as
+${'\n'}
+dark comedy, introspection, and social commentary.
+${'\n'}
+Whether you have a work inquiry or just want to say hello,
+${'\n'}
+please feel free to reach out.
+${'\n'}
+I strongly believe in the power of community and collaboration.
+${'\n'}
+I hope you have a good day.
+${'\n'}
+*virtual hug*
 	`);
-	// I invite you to explore my cinematic portfolio ahead.
-	// From gripping narratives to visually stunning documentaries, each project is a testament to my dedication to the craft of filmmaking.
-	// As a filmmaker driven by passion and vision, [Filmmaker's Name] invites you on a cinematic journey through their diverse portfolio. From gripping narratives to visually stunning documentaries, each project is a testament to their dedication to the craft of filmmaking. Explore, indulge, and immerse yourself in the artistry that defines [Filmmaker's Name]'s unique perspective on the world through the lens..
-
-	// where storytelling transcends boundaries and captivates hearts. Step into a realm where imagination takes flight and emotions are woven into every frame.
+	const [mobileText, setMobileText] = useState(`Welcome to my creative world!
+${'\n'}
+I am a director currently based in Atlanta, GA.
+${'\n'}
+My films aim to explore the core
+${'\n'}
+of complex human experiences
+${'\n'}
+through the use of vehicles such as
+${'\n'}
+dark comedy, introspection, and social commentary.
+${'\n'}
+Whether you have a work inquiry
+${'\n'}
+or just want to say hello,
+${'\n'}
+please feel free to reach out.
+${'\n'}
+I strongly believe in the power of
+${'\n'}
+community and collaboration.
+${'\n'}
+I hope you have a good day.
+${'\n'}
+*virtual hug*
+	`);
 	return (
 		<group position={[0, 0, 0]} ref={ref}>
 			<Text
 				ref={text.ref}
 				font="/fonts/NimbusSanL-Bol.woff"
-				fontSize={mobile ? 0.045 : 0.06}
+				fontSize={mobile ? 0.04 : 0.05}
 				color={'#000000'}
 				{...props}
-				textAlign="right"
+				textAlign={mobile ? 'left' : 'right'}
 				// letterSpacing={-0.05}
 				// anchorY="center"
 				// anchorX="center"
-				lineHeight={0.5}
+				lineHeight={mobile ? 0.45 : 0.5}
 				position={[0, 0, 0]}
 				material-toneMapped={false}
 			>
-				{textMsg}
+				{mobile ? mobileText : textMsg}
 			</Text>
 			<Float
 				speed={speed} // Animation speed, defaults to 1

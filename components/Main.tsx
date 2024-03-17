@@ -61,7 +61,7 @@ export default function Main() {
 						near: 0.1,
 						far: 45,
 						// zoom: 1,
-						position: new THREE.Vector3(-10, 0, 0),
+						position: new THREE.Vector3(mobile ? 0 : -10, 0, 0),
 					}}
 				>
 					<color args={[theme === 'light' ? '#fff' : '#000']} attach="background" />

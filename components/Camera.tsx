@@ -36,7 +36,7 @@ export default function Camera() {
 			focus: new THREE.Vector3(0, 1, 0),
 		},
 		portals: {
-			pos: new THREE.Vector3(0, 0.5, 5),
+			pos: new THREE.Vector3(0, 0.1, 5),
 			focus: new THREE.Vector3(0, 1, 0),
 		},
 	});
