@@ -43,8 +43,8 @@ export function InputContextProvider(props) {
 	const [isHome, setIsHome] = useState(true);
 	function goToHome() {
 		activeObject.current = null;
-
 		disablePortals();
+		disableHovers();
 		router.push('/');
 		if (portalsActive) gotoAboutMe();
 		if (portal1active || portal2active || portal3active) gotoPortals();
@@ -52,33 +52,29 @@ export function InputContextProvider(props) {
 	function gotoAboutMe() {
 		router.push('/');
 		disablePortals();
+		disableHovers();
 		setAboutMeActive(true);
 		setPortalsActive(false);
 		activeObject.current = null;
 	}
+	function disableHovers() {
+		icon1Hovered.current = false;
+		icon2Hovered.current = false;
+		icon3Hovered.current = false;
+	}
 	function gotoPortals() {
 		disablePortals();
+		disableHovers();
 		router.push('/');
 		setAboutMeActive(false);
 		setPortalsActive(true);
 		activeObject.current = null;
 	}
 	function disablePortals() {
+		disableHovers();
 		setPortal1active(false);
 		setPortal2active(false);
 		setPortal3active(false);
-	}
-	function goToPortal1() {
-		disablePortals();
-		setPortal1active(true);
-	}
-	function goToPortal2() {
-		disablePortals();
-		setPortal2active(true);
-	}
-	function goToPortal3() {
-		disablePortals();
-		setPortal3active(true);
 	}
 
 	// listen for left and right arrow keys

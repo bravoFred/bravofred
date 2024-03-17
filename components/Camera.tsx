@@ -45,12 +45,16 @@ export default function Camera() {
 	const speed = mobile ? 0.05 : 0.02;
 	const zoomInSpeed = mobile ? 0.05 : 0.1;
 	const zoomOutSpeed = mobile ? 0.1 : 0.05;
-	const defaultZoomMobile = 0.9;
-	const defaultZoomDesktop = 1.5;
-	const zoomDesktop = 3;
-	const zoomMobile = 1.5;
+	const defaultZoom = mobile ? 0.9 : 1.5;
+	// const defaultZoomDesktop = 1.5;
+	const zoomLevel = mobile ? 1.5 : 3;
+	// const zoomMobile = 1.5;
 	useFrame((state) => {
 		const camera = state.camera as THREE.PerspectiveCamera;
+		console.log(camera.zoom);
+		// console.log(activeObject.current);
+		console.log(icon1Hovered.current, icon2Hovered.current, icon3Hovered.current);
+
 		camera.lookAt(focus.current.x, focus.current.y, focus.current.z);
 		if (aboutMeActive) {
 			animate.EaseVec(camera.position, camVecs.current.aboutMe.pos, 0.5, speed);
@@ -58,31 +62,20 @@ export default function Camera() {
 				const { point } = activeObject.current;
 				if (point) {
 					animate.EaseVec(focus.current, point, 1, speed);
-					camera.zoom = MathUtils.lerp(
-						camera.zoom,
-						mobile ? zoomMobile : zoomDesktop,
-						zoomInSpeed / 2
-					);
+					camera.zoom = MathUtils.lerp(camera.zoom, zoomLevel, zoomInSpeed / 2);
 				}
 			} else {
+				activeObject.current = null;
 				animate.EaseVec(focus.current, camVecs.current.aboutMe.focus, 0.5, speed);
-				camera.zoom = MathUtils.lerp(
-					camera.zoom,
-					mobile ? defaultZoomMobile : defaultZoomDesktop,
-					zoomOutSpeed / 3
-				);
+				camera.zoom = MathUtils.lerp(camera.zoom, defaultZoom, zoomOutSpeed / 3);
 			}
 		}
 		if (portalsActive) {
 			animate.EaseVec(camera.position, camVecs.current.portals.pos, 0.5, speed);
 			animate.EaseVec(focus.current, camVecs.current.portals.focus, 0.5, speed);
-			camera.zoom = MathUtils.lerp(
-				camera.zoom,
-				mobile ? defaultZoomMobile : defaultZoomDesktop,
-				zoomOutSpeed
-			);
+			// camera.zoom = MathUtils.lerp(camera.zoom, zoomLevel, zoomInSpeed / 2);
+			camera.zoom = defaultZoom;
 		}
-
 		camera.updateProjectionMatrix();
 		ToggleCamFov(camera, mobile);
 		preventCamPosOutsideBounds(state);
