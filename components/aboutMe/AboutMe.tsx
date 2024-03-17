@@ -162,6 +162,7 @@ export default function AboutMe(props) {
 	Hi! My name is Frederic.
 	${'\n'}
 	I'm a filmmaker and visual storyteller.
+	🫂
 	${'\n'}
 	Welcome to my creative universe.
 	`);

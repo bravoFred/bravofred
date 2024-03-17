@@ -61,8 +61,8 @@ export default function Camera() {
 			if (activeObject.current) {
 				const { point } = activeObject.current;
 				if (point) {
-					animate.EaseVec(focus.current, point, 1, speed);
-					camera.zoom = MathUtils.lerp(camera.zoom, zoomLevel, zoomInSpeed / 2);
+					// animate.EaseVec(focus.current, point, 1, speed);
+					// camera.zoom = MathUtils.lerp(camera.zoom, zoomLevel, zoomInSpeed / 2);
 				}
 			} else {
 				activeObject.current = null;
