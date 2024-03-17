@@ -26,7 +26,6 @@ function ToggleCamFov(camera: { fov: number }, mobile: boolean) {
 	mobile ? (camera.fov = 30) : (camera.fov = 45);
 }
 export default function Camera() {
-	// const { gl, camera } = useThree();
 	const { mobile } = useContext(UserContextProvider);
 	const { activeObject, portalsActive, aboutMeActive } = useContext(InputContextProvider);
 	const camVecs = useRef({
@@ -41,11 +40,6 @@ export default function Camera() {
 	});
 	const focus = useRef<THREE.Vector3>(new THREE.Vector3(0, 1, 0));
 	const scroll = useScroll();
-	function lerpVecs(vec1: THREE.Vector3, vec2: THREE.Vector3, speed: number) {
-		vec1.x = MathUtils.lerp(vec1.x, vec2.x, speed);
-		vec1.y = MathUtils.lerp(vec1.y, vec2.y, speed);
-		vec1.z = MathUtils.lerp(vec1.z, vec2.z, speed);
-	}
 	const speed = mobile ? 0.05 : 0.02;
 	const zoomInSpeed = mobile ? 0.05 : 0.1;
 	const zoomOutSpeed = mobile ? 0.1 : 0.05;
@@ -53,20 +47,16 @@ export default function Camera() {
 	const defaultZoomDesktop = 1.5;
 	const zoomDesktop = 3;
 	const zoomMobile = 1.5;
-	const camRef = useRef<THREE.PerspectiveCamera>();
 	useFrame((state) => {
 		const camera = state.camera as THREE.PerspectiveCamera;
 		camera.lookAt(focus.current.x, focus.current.y, focus.current.z);
-		// lerpVecs(focus.current, camVecs.current.aboutMe.focus, speed);
-
 		if (aboutMeActive) {
-			lerpVecs(camera.position, camVecs.current.aboutMe.pos, speed);
-			lerpVecs(focus.current, camVecs.current.aboutMe.focus, speed);
-			// animate.EaseAll(camera.position, camVecs.current.aboutMe.pos, 0.4, 1);
+			animate.LerpVec(camera.position, camVecs.current.aboutMe.pos, speed);
+			animate.LerpVec(focus.current, camVecs.current.aboutMe.focus, speed);
 			if (activeObject.current !== null) {
 				const { point } = activeObject.current;
 				if (point) {
-					lerpVecs(focus.current, point, speed);
+					animate.LerpVec(focus.current, point, speed);
 					camera.zoom = MathUtils.lerp(
 						camera.zoom,
 						mobile ? zoomMobile : zoomDesktop,
@@ -74,7 +64,7 @@ export default function Camera() {
 					);
 				}
 			} else {
-				lerpVecs(focus.current, camVecs.current.aboutMe.focus, speed);
+				animate.LerpVec(focus.current, camVecs.current.aboutMe.focus, speed);
 				camera.zoom = MathUtils.lerp(
 					camera.zoom,
 					mobile ? defaultZoomMobile : defaultZoomDesktop,
@@ -83,8 +73,8 @@ export default function Camera() {
 			}
 		}
 		if (portalsActive) {
-			lerpVecs(camera.position, camVecs.current.portals.pos, speed);
-			lerpVecs(focus.current, camVecs.current.portals.focus, speed);
+			animate.LerpVec(camera.position, camVecs.current.portals.pos, speed);
+			animate.LerpVec(focus.current, camVecs.current.portals.focus, speed);
 			camera.zoom = MathUtils.lerp(
 				camera.zoom,
 				mobile ? defaultZoomMobile : defaultZoomDesktop,
