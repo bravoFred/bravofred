@@ -33,11 +33,12 @@ $speed: 1s;
 	padding: 0;
 	z-index: 10;
 	height: 60px;
+	cursor: default;
 	// transition: all 1s ease-in-out;
 	transition: all $speed cubic-bezier(0.075, 0.82, 0.165, 1);
 
 	&:hover {
-		cursor: pointer;
+		// cursor: pointer;
 		// background-color: red;
 		// box-shadow: 0 1rem 8px rgba(0, 0, 0, 0.5);
 	}
@@ -49,6 +50,7 @@ $speed: 1s;
 	transition: all $speed cubic-bezier(0.075, 0.82, 0.165, 1);
 	font-size: 1.25rem;
 	// font-weight: 100;
+	cursor: pointer;
 	margin-left: 1.5rem;
 	left: 1rem;
 	animation: fadeIn 1s ease-in-out;
@@ -61,9 +63,9 @@ $speed: 1s;
 	align-items: flex-start;
 	position: absolute;
 	height: auto;
-	width: 100%;
+	width: auto;
 	top: 3rem;
-	// border: 1px solid #03e9f4;
+	border: 1px solid #03e9f4;
 	left: 0;
 	padding: 0;
 	margin: 0;
