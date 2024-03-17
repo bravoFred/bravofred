@@ -17,7 +17,6 @@ export default function Status() {
 		}, 1000);
 		return () => clearInterval(interval);
 	}, []);
-
 	return (
 		<div className={styles.status}>
 			<p className={styles.status_text}>Atlanta, Georgia</p>

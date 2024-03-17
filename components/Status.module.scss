@@ -30,12 +30,8 @@ $speed: 1s;
 	transition: all $speed cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 .status_text {
-	// width: 66%;
-	// font-weight: 300 !important;
-	// font-size: 12px;
-	// letter-spacing: 0.1rem;
+	font-size: 12px;
 	text-align: center;
-	// line-height: 1.25rem;
 	color: #000;
 	margin: 0 0.5rem;
 }
