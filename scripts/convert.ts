@@ -23,7 +23,8 @@ let totalCompressedGLBSize = 0;
 (async function convert() {
 	const srcGlbFolder = `./public/models/src`;
 	const srcGlbFiles = getSourceGLBFiles(srcGlbFolder);
-	const resolutions = [512, 1024, 2048, 4096];
+	// const resolutions = [512, 1024, 2048, 4096];
+	const resolutions = [4096];
 	srcGlbFiles.forEach((file) => {
 		const srcGlbName = `${file.split('.')[0]}`;
 		const srcGlbExtension = file.split('.')[1];
