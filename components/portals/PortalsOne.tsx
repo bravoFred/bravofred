@@ -66,7 +66,7 @@ function Frame({ id, name, author, bg, width = 1, height = GOLDENRATIO, children
 				// onPointerOut={pointerOut}
 				{...props}
 				alt="poster"
-				position={[0, 0, 0.0001]}
+				position={[0, 0, 0.001]}
 			>
 				<roundedPlaneGeometry args={[width, height, 0.22]} />
 
