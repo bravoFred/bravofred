@@ -23,10 +23,12 @@ export default function Raycaster() {
 				// console.log(activeObject.current);
 			} else {
 				activeObject.current = null;
+				// setObjects([]);
 			}
 		}
 		if (portalsActive) {
 			activeObject.current = null;
+			setObjects([]);
 		}
 	});
 	return (

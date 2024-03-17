@@ -51,9 +51,9 @@ export default function Camera() {
 	// const zoomMobile = 1.5;
 	useFrame((state) => {
 		const camera = state.camera as THREE.PerspectiveCamera;
-		console.log(camera.zoom);
+		// console.log(camera.zoom);
 		// console.log(activeObject.current);
-		console.log(icon1Hovered.current, icon2Hovered.current, icon3Hovered.current);
+		// console.log(icon1Hovered.current, icon2Hovered.current, icon3Hovered.current);
 
 		camera.lookAt(focus.current.x, focus.current.y, focus.current.z);
 		if (aboutMeActive) {
