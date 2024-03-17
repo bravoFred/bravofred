@@ -55,6 +55,7 @@ function Frame({ id, name, author, bg, width = 1, height = GOLDENRATIO, children
 		'https://i.pinimg.com/originals/53/9a/79/539a79873138a294e02fd9a59288226a.jpg'
 	);
 	const imgRef = useRef();
+	const [releaseText, setReleaseText] = useState('Summer 2024');
 	return (
 		<group {...props} position={[0, 1, 0]}>
 			{/* <Image
@@ -73,31 +74,41 @@ function Frame({ id, name, author, bg, width = 1, height = GOLDENRATIO, children
 				font="/fonts/NimbusSanL-Bol.woff"
 				fontSize={0.2}
 				{...props}
-				anchorY="top"
-				anchorX="left"
-				lineHeight={0.8}
-				position={[-0.375, 0.715, 0.01]}
+				// anchorY="center"
+				// anchorX="center"
+				textAlign="center"
+				lineHeight={0.6}
+				// position={[-0.375, 0.715, 0.01]}
+				position={[0, 0, 0]}
 				material-toneMapped={false}
+				color={'#000'}
 			>
 				{name}
 			</Text>
 			<Text
 				font="/fonts/NimbusSanL-Bol.woff"
 				fontSize={0.1}
-				anchorX="right"
-				position={[0.4, -0.659, 0.01]}
+				// anchorX="right"
+				position={[0, 0, 0]}
 				material-toneMapped={false}
+				color={'#000'}
 			>
-				{id}
+				{/* {id} */}
+				{/* {releaseText} */}
 			</Text>
 			<Text
 				font="/fonts/NimbusSanL-Bol.woff"
 				fontSize={0.04}
-				anchorX="right"
-				position={[0.0, -0.677, 0.01]}
+				// anchorY="bottom-baseline"
+				// anchorX="right"
+				textAlign="center"
+				// position={[0.0, -0.677, 0.01]}
+				position={[0, -0.67, 0]}
 				material-toneMapped={false}
+				color={'#000'}
 			>
-				{author}
+				{/* {author} */}
+				{releaseText}
 			</Text>
 			<mesh
 				name={id}
@@ -189,6 +200,9 @@ export default function PortalsOne() {
 		}
 	};
 	const doubleClickHandler = (e) => {};
+
+	const [portal1Name, setPortal1Name] = useState(`COMING
+	${'\n'}SOON`);
 	return (
 		<group ref={portalsRef} position={[0, 0, -100]}>
 			{/* <group
@@ -203,7 +217,7 @@ export default function PortalsOne() {
 				</Frame
 			</group> */}
 			<group ref={p2.ref} rotation={[0, 0, 0]} onClick={(e) => clickHandler(e)}>
-				<Frame id="01" name="Film 1" author="Frederic Cartier" bg="#fff">
+				<Frame id="01" name={portal1Name} author="Frederic Cartier" bg="#fff">
 					<Warehouse
 						position={[5, -1, -5]}
 						rotation={[

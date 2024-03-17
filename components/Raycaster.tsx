@@ -8,14 +8,15 @@ import * as THREE from 'three';
 import InputContext from '@/store/inputContext';
 export default function Raycaster() {
 	const [objects, setObjects] = useState([]);
-	const { activeObject } = useContext(InputContext);
+	const { activeObject, portal1active, portal2active, portal3active } = useContext(InputContext);
 	useFrame((state) => {
 		if (objects.length > 0) {
 			activeObject.current = objects[0];
-			console.log(activeObject.current.uv);
+			// console.log(activeObject.current);
 		} else {
 			activeObject.current = null;
 		}
+		// console.log(portal1active, portal2active, portal3active);
 	});
 	return (
 		<>
