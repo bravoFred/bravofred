@@ -66,7 +66,7 @@ export default function AboutMe(props) {
 	});
 	const [text, setText] = useState({
 		ref: useRef<THREE.Group>(),
-		active: mobile ? new THREE.Vector3(-0.33, 1, 0) : new THREE.Vector3(-0.5, 1, 0),
+		active: mobile ? new THREE.Vector3(-0.33, 1, 0) : new THREE.Vector3(-0.5, 1, 0.1),
 		hidden: new THREE.Vector3(0, 0, 15),
 		activeScale: new THREE.Vector3(baseActiveScale, baseActiveScale, baseActiveScale),
 		hiddenScale: new THREE.Vector3(0, 0, 0),
