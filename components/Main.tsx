@@ -28,6 +28,7 @@ import Mouse from './Mouse';
 import dynamic from 'next/dynamic';
 import Tip from './Tip';
 import Status from './Status';
+import Email from './Email';
 const SmallRoom = dynamic(
 	() => import('../models/4096/PortalInteriorJoined').then((mod) => mod.Model),
 	{
@@ -43,6 +44,7 @@ export default function Main() {
 			<Nav />
 			<Tip />
 			<Status />
+			<Email />
 			<ScrollNavButtons />
 			<Suspense fallback={null}>
 				<Canvas

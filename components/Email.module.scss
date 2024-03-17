@@ -1,0 +1,31 @@
+.email {
+	position: fixed;
+	z-index: 10;
+	bottom: 0.75rem;
+	left: 0.75rem;
+	padding: 0.5rem;
+	margin: 0;
+	// height: auto;
+	// width: auto;
+	// border: 1px solid #03e9f4;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-radius: 50%;
+	transition: all 0.25s ease-in-out;
+	&:hover {
+		cursor: pointer;
+		box-shadow: -8px 1rem 8px rgba(0, 0, 0, 0.33);
+	}
+	&:active {
+		transform: scale(0.9);
+		box-shadow: -8px 1rem 8px rgba(0, 0, 0, 0.66);
+	}
+}
+$size: 2rem;
+.email_icon {
+	height: $size;
+	// padding: 0;
+	margin: 0;
+	width: $size;
+}
