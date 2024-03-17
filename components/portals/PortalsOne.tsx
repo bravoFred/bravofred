@@ -136,7 +136,7 @@ function Frame({ id, name, author, bg, width = 1, height = GOLDENRATIO, children
 			</Text>
 			<mesh
 				name={id}
-				onDoubleClick={(e) => (e.stopPropagation(), setLocation('/item/' + e.object.name))}
+				// onDoubleClick={(e) => (e.stopPropagation(), setLocation('/item/' + e.object.name))}
 				onPointerOver={(e) => hover(true)}
 				onPointerOut={() => hover(false)}
 			>
@@ -206,22 +206,21 @@ export default function PortalsOne() {
 		}
 	});
 	const clickHandler = (e) => {
-		// console.log(e);
-		if (e.object.name === '01') {
-			setPortal1active(true);
-			setPortal2active(false);
-			setPortal3active(false);
-		}
-		if (e.object.name === '02') {
-			setPortal1active(false);
-			setPortal2active(true);
-			setPortal3active(false);
-		}
-		if (e.object.name === '03') {
-			setPortal1active(false);
-			setPortal2active(false);
-			setPortal3active(true);
-		}
+		// if (e.object.name === '01') {
+		// 	setPortal1active(true);
+		// 	setPortal2active(false);
+		// 	setPortal3active(false);
+		// }
+		// if (e.object.name === '02') {
+		// 	setPortal1active(false);
+		// 	setPortal2active(true);
+		// 	setPortal3active(false);
+		// }
+		// if (e.object.name === '03') {
+		// 	setPortal1active(false);
+		// 	setPortal2active(false);
+		// 	setPortal3active(true);
+		// }
 	};
 	const doubleClickHandler = (e) => {};
 
