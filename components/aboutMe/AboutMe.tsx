@@ -7,7 +7,7 @@ import dynamic from 'next/dynamic';
 import { useState, useContext } from 'react';
 import { easing, geometry } from 'maath';
 import { MathUtils } from 'three';
-import { LerpGroupPos, LerpGroupScale } from '../AnimationFunctions';
+import { LerpGroupPos, LerpGroupScale } from '../Animate';
 import UserContextProvider from '../../store/userContext';
 import InputContextProvider from '../../store/inputContext';
 

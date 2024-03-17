@@ -11,7 +11,7 @@ import UserContextProvider from '../../store/userContext';
 import InputContextProvider from '../../store/inputContext';
 import { MathUtils } from 'three';
 import dynamic from 'next/dynamic';
-import { LerpGroupPos } from '../../components/AnimationFunctions';
+import { LerpGroupPos } from '../Animate';
 const GOLDENRATIO = 1.61803398875;
 import poster from '../../public/img/poster.jpeg';
 const SmallRoom = dynamic(

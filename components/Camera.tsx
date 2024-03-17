@@ -6,7 +6,7 @@ import { useRef, useContext } from 'react';
 import { useScroll } from '@react-three/drei';
 import UserContextProvider from '../store/userContext';
 import InputContextProvider from '../store/inputContext';
-import * as animate from '@/components/AnimationFunctions';
+import * as animate from '@/components/Animate';
 
 function preventCamPosOutsideBounds(state: {
 	camera: { position: { x: number; z: number; y: number } };
