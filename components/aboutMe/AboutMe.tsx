@@ -1,5 +1,5 @@
 import { Text3D, Float } from '@react-three/drei';
-import { useScroll, DeviceOrientationControls, Text } from '@react-three/drei';
+import { useScroll, DeviceOrientationControls, Text, Image } from '@react-three/drei';
 import { useRef } from 'react';
 import { useFrame, extend, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
@@ -32,6 +32,7 @@ export default function AboutMe(props) {
 	const icon3Ref = useRef<THREE.Group>();
 	const icon1Ref = useRef<THREE.Group>();
 	const icon2Ref = useRef<THREE.Group>();
+	const imgRef = useRef();
 
 	const baseSpeed = 0.1;
 	const scaleBase = mobile ? 0.5 : 0.66;
@@ -51,7 +52,15 @@ export default function AboutMe(props) {
 		enterSpeed: baseSpeed * 1.5,
 		exitSpeed: baseSpeed / 4,
 	});
-
+	const [huggingPic, setHuggingPic] = useState({
+		ref: useRef<THREE.Group>(),
+		active: mobile ? new THREE.Vector3(-0.4, 0.58, 0) : new THREE.Vector3(-1.25, 0.48, 0.2),
+		hidden: new THREE.Vector3(0, 0, 30),
+		activeScale: new THREE.Vector3(scaleActive, scaleActive, scaleActive),
+		hiddenScale: new THREE.Vector3(0, 0, 0),
+		enterSpeed: baseSpeed * 1.25,
+		exitSpeed: baseSpeed / 4,
+	});
 	const [icon1, setIcon1] = useState({
 		ref: useRef<THREE.Group>(),
 		active: mobile ? new THREE.Vector3(iconX, 1.1, 0) : new THREE.Vector3(iconX, 0.85, 0),
@@ -72,7 +81,7 @@ export default function AboutMe(props) {
 	});
 	const [icon3, setIcon3] = useState({
 		ref: useRef<THREE.Group>(),
-		active: mobile ? new THREE.Vector3(iconX, -0.1, 0) : new THREE.Vector3(iconX, 0.05, 0),
+		active: mobile ? new THREE.Vector3(iconX, -0.15, 0) : new THREE.Vector3(iconX, 0.05, 0),
 		hidden: new THREE.Vector3(0, 0, 30),
 		scaleHovered: new THREE.Vector3(scaleActive, scaleActive, scaleActive),
 		hiddenScale: new THREE.Vector3(scaleBase, scaleBase, scaleBase),
@@ -95,12 +104,14 @@ export default function AboutMe(props) {
 			LerpGroupPos(icon2Ref, icon2.active, icon2.enterSpeed);
 			LerpGroupPos(icon3Ref, icon3.active, icon3.enterSpeed);
 			LerpGroupPos(text.ref, text.active, text.enterSpeed);
+			LerpGroupPos(huggingPic.ref, huggingPic.active, huggingPic.enterSpeed);
 		}
 		if (portalsActive) {
 			LerpGroupPos(icon1Ref, icon1.hidden, icon1.exitSpeed);
 			LerpGroupPos(icon2Ref, icon2.hidden, icon2.exitSpeed);
 			LerpGroupPos(icon3Ref, icon3.hidden, icon3.exitSpeed);
 			LerpGroupPos(text.ref, text.hidden, text.exitSpeed);
+			LerpGroupPos(huggingPic.ref, huggingPic.hidden, huggingPic.exitSpeed);
 		}
 	});
 	const floatIntensity = 0.5;
@@ -214,6 +225,26 @@ ${'\n'}
 			>
 				{mobile ? mobileText : textMsg}
 			</Text>
+			<Image
+				// ref={imgRef}
+				ref={huggingPic.ref}
+				url={`/hugging.png`}
+				transparent
+				side={THREE.DoubleSide}
+				opacity={1}
+				clickable={false}
+				// onPointerOver={pointerOver}
+				// onPointerOut={pointerOut}
+				scale={mobile ? [0.07, 0.07, 0.07] : [0.1, 0.1, 0.1]}
+				{...props}
+				alt="poster"
+				position={[-1, 1, 0]}
+			>
+				<planeGeometry args={[1.5, 1.5]} />
+				{/* <roundedPlaneGeometry args={[width, height, 0.22]} /> */}
+
+				{/* <bentPlaneGeometry args={[0.1, 1, 1, 20, 20]} /> */}
+			</Image>
 			<Float
 				speed={speed} // Animation speed, defaults to 1
 				rotationIntensity={rotationIntensity} // XYZ rotation intensity, defaults to 1
