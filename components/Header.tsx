@@ -53,7 +53,7 @@ export default function Header({ title = titleDefault }) {
 			/>
 			<meta name="theme-color" content="#000" />
 			{/* <link rel="shortcut icon" href="/icons/favicon.png" /> */}
-			<link rel="shortcut icon" href="/favicon.ico" />
+			<link rel="shortcut icon" href="/faviconCustom.ico" />
 			{/* <link rel="shortcut icon" href="/icons/favicon.png" /> */}
 
 			{/* 
