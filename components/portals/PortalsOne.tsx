@@ -13,7 +13,6 @@ import { MathUtils } from 'three';
 import dynamic from 'next/dynamic';
 import { LerpGroupPos } from '../Animate';
 const GOLDENRATIO = 1.61803398875;
-import poster from '../../public/img/poster.jpeg';
 
 const Warehouse = dynamic(
 	() => import('../../models/4096/WarehouseJoined').then((mod) => mod.Model),
@@ -80,7 +79,7 @@ function Frame({ id, name, author, bg, width = 1, height = GOLDENRATIO, children
 			{/* <Foo /> */}
 			<Image
 				ref={imgRef}
-				url={`/poster.jpeg`}
+				url={`/poster1440.webp`}
 				transparent
 				side={THREE.DoubleSide}
 				opacity={1}
