@@ -45,7 +45,26 @@ function Frame({ id, name, author, bg, width = 1, height = GOLDENRATIO, children
 	const [hovered, hover] = useState(false);
 	useCursor(hovered);
 	useFrame(
-		(state, dt) => easing.damp(portal.current, 'blend', params?.id === id ? 1 : 0, 0.2, dt)
+		(state, dt) => {
+			if (hovered) {
+				imgRef.current.material.opacity = MathUtils.lerp(
+					imgRef.current.material.opacity,
+					0,
+					0.25
+				);
+				text1Ref.current.scale.setScalar(MathUtils.lerp(text1Ref.current.scale.x, 0, 0.55));
+				text2Ref.current.scale.setScalar(MathUtils.lerp(text2Ref.current.scale.x, 0, 0.25));
+			} else {
+				imgRef.current.material.opacity = MathUtils.lerp(
+					imgRef.current.material.opacity,
+					1,
+					0.25
+				);
+				text1Ref.current.scale.setScalar(MathUtils.lerp(text1Ref.current.scale.x, 1, 0.25));
+				text2Ref.current.scale.setScalar(MathUtils.lerp(text2Ref.current.scale.x, 1, 0.25));
+			}
+			easing.damp(portal.current, 'blend', params?.id === id ? 1 : 0, 0.2, dt);
+		}
 		//
 	);
 	const [text, setText] = useState(`FREDERIC${'\n'}CARTIER`);
@@ -53,6 +72,8 @@ function Frame({ id, name, author, bg, width = 1, height = GOLDENRATIO, children
 		'https://i.pinimg.com/originals/53/9a/79/539a79873138a294e02fd9a59288226a.jpg'
 	);
 	const imgRef = useRef();
+	const text1Ref = useRef();
+	const text2Ref = useRef();
 	const [releaseText, setReleaseText] = useState('Summer 2024');
 	return (
 		<group {...props} position={[0, 1, 0]}>
@@ -62,6 +83,8 @@ function Frame({ id, name, author, bg, width = 1, height = GOLDENRATIO, children
 				url={`/poster.jpeg`}
 				transparent
 				side={THREE.DoubleSide}
+				opacity={0.5}
+				clickable={false}
 				// onPointerOver={pointerOver}
 				// onPointerOut={pointerOut}
 				{...props}
@@ -73,12 +96,13 @@ function Frame({ id, name, author, bg, width = 1, height = GOLDENRATIO, children
 				{/* <bentPlaneGeometry args={[0.1, 1, 1, 20, 20]} /> */}
 			</Image>
 			<Text
+				ref={text1Ref}
 				font="/fonts/NimbusSanL-Bol.woff"
 				fontSize={0.2}
 				{...props}
 				textAlign="center"
 				lineHeight={0.6}
-				position={[0, 0, 0]}
+				position={[0, 0, -0.001]}
 				material-toneMapped={false}
 				color={'#fff'}
 			>
@@ -96,6 +120,7 @@ function Frame({ id, name, author, bg, width = 1, height = GOLDENRATIO, children
 				{/* {releaseText} */}
 			</Text>
 			<Text
+				ref={text2Ref}
 				font="/fonts/NimbusSanL-Bol.woff"
 				fontSize={0.05}
 				// anchorY="bottom-baseline"
