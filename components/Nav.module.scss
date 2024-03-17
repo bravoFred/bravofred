@@ -81,6 +81,7 @@ $speed: 1s;
 	transition: all $speed cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 .nav_link:nth-child(1) {
+	margin-top: 0.6rem;
 	animation: fadeIn 1.5s ease-in-out;
 }
 .nav_link:nth-child(2) {
