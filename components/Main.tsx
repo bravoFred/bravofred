@@ -27,6 +27,7 @@ import UserContextProvider from '../store/userContext';
 import Mouse from './Mouse';
 import dynamic from 'next/dynamic';
 import Tip from './Tip';
+import Status from './Status';
 const SmallRoom = dynamic(
 	() => import('../models/4096/PortalInteriorJoined').then((mod) => mod.Model),
 	{
@@ -41,6 +42,7 @@ export default function Main() {
 		<>
 			<Nav />
 			<Tip />
+			<Status />
 			<ScrollNavButtons />
 			<Suspense fallback={null}>
 				<Canvas
