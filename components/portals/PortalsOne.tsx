@@ -83,7 +83,7 @@ function Frame({ id, name, author, bg, width = 1, height = GOLDENRATIO, children
 				url={`/poster.jpeg`}
 				transparent
 				side={THREE.DoubleSide}
-				opacity={0.5}
+				opacity={1}
 				clickable={false}
 				// onPointerOver={pointerOver}
 				// onPointerOut={pointerOut}
