@@ -7,6 +7,7 @@ import { useScroll } from '@react-three/drei';
 import UserContextProvider from '../store/userContext';
 import InputContextProvider from '../store/inputContext';
 import * as animate from '@/components/Animate';
+import { easing, geometry } from 'maath';
 
 function preventCamPosOutsideBounds(state: {
 	camera: { position: { x: number; z: number; y: number } };
@@ -52,11 +53,13 @@ export default function Camera() {
 		camera.lookAt(focus.current.x, focus.current.y, focus.current.z);
 		if (aboutMeActive) {
 			animate.LerpVec(camera.position, camVecs.current.aboutMe.pos, speed);
-			animate.LerpVec(focus.current, camVecs.current.aboutMe.focus, speed);
+			// animate.LerpVec(focus.current, camVecs.current.aboutMe.focus, speed);
+			// console.log(easing);
 			if (activeObject.current !== null) {
 				const { point } = activeObject.current;
 				if (point) {
-					animate.LerpVec(focus.current, point, speed);
+					// animate.LerpVec(focus.current, point, speed);
+					animate.EaseVec(focus.current, point, 0.5, speed);
 					camera.zoom = MathUtils.lerp(
 						camera.zoom,
 						mobile ? zoomMobile : zoomDesktop,
@@ -70,6 +73,7 @@ export default function Camera() {
 					mobile ? defaultZoomMobile : defaultZoomDesktop,
 					zoomOutSpeed
 				);
+				// animate
 			}
 		}
 		if (portalsActive) {
