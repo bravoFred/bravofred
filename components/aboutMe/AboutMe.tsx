@@ -38,7 +38,7 @@ export default function AboutMe(props) {
 	const baseActiveScale = mobile ? 0.75 : 1.15;
 	const [icon1, setIcon1] = useState({
 		ref: useRef<THREE.Group>(),
-		active: mobile ? new THREE.Vector3(-0.33, 0.85, 0) : new THREE.Vector3(-0.33, 0.75, 0),
+		active: mobile ? new THREE.Vector3(-0.33, 0.9, 0) : new THREE.Vector3(-0.33, 0.75, 0),
 		hidden: new THREE.Vector3(0, 0, 20),
 		scaleHovered: new THREE.Vector3(baseActiveScale, baseActiveScale, baseActiveScale),
 		hiddenScale: new THREE.Vector3(baseScale, baseScale, baseScale),
