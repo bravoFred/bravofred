@@ -47,21 +47,21 @@ function Frame({ id, name, author, bg, width = 1, height = GOLDENRATIO, children
 	useFrame(
 		(state, dt) => {
 			if (hovered) {
-				imgRef.current.material.opacity = MathUtils.lerp(
-					imgRef.current.material.opacity,
-					0,
-					0.25
-				);
-				text1Ref.current.scale.setScalar(MathUtils.lerp(text1Ref.current.scale.x, 0, 0.55));
-				text2Ref.current.scale.setScalar(MathUtils.lerp(text2Ref.current.scale.x, 0, 0.25));
+				// imgRef.current.material.opacity = MathUtils.lerp(
+				// 	imgRef.current.material.opacity,
+				// 	0,
+				// 	0.25
+				// );
+				// text1Ref.current.scale.setScalar(MathUtils.lerp(text1Ref.current.scale.x, 0, 0.55));
+				// text2Ref.current.scale.setScalar(MathUtils.lerp(text2Ref.current.scale.x, 0, 0.25));
 			} else {
-				imgRef.current.material.opacity = MathUtils.lerp(
-					imgRef.current.material.opacity,
-					1,
-					0.25
-				);
-				text1Ref.current.scale.setScalar(MathUtils.lerp(text1Ref.current.scale.x, 1, 0.25));
-				text2Ref.current.scale.setScalar(MathUtils.lerp(text2Ref.current.scale.x, 1, 0.25));
+				// imgRef.current.material.opacity = MathUtils.lerp(
+				// 	imgRef.current.material.opacity,
+				// 	1,
+				// 	0.25
+				// );
+				// text1Ref.current.scale.setScalar(MathUtils.lerp(text1Ref.current.scale.x, 1, 0.25));
+				// text2Ref.current.scale.setScalar(MathUtils.lerp(text2Ref.current.scale.x, 1, 0.25));
 			}
 			easing.damp(portal.current, 'blend', params?.id === id ? 1 : 0, 0.2, dt);
 		}
@@ -242,14 +242,14 @@ export default function PortalsOne() {
 			</group> */}
 			<group ref={p2.ref} rotation={[0, 0, 0]} onClick={(e) => clickHandler(e)}>
 				<Frame id="01" name={portal1Name} author="Frederic Cartier" bg="#fff">
-					<Warehouse
+					{/* <Warehouse
 						position={[5, -1, -5]}
 						rotation={[
 							MathUtils.degToRad(0),
 							MathUtils.degToRad(-45),
 							MathUtils.degToRad(0),
 						]}
-					/>
+					/> */}
 					<ambientLight intensity={3.5} />
 				</Frame>
 			</group>
