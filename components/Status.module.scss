@@ -37,5 +37,25 @@ $speed: 1s;
 	text-align: center;
 	// line-height: 1.25rem;
 	color: #000;
-	margin: 0 1rem;
+	margin: 0 0.5rem;
+}
+@media (max-width: 768px) {
+	.status {
+		width: 100vw;
+		padding: 0;
+		// height: auto;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-end;
+		right: 1.5rem;
+		top: 0.25rem;
+	}
+	.status_text {
+		font-size: 12px;
+		font-weight: 100;
+		// margin: 0;
+
+		margin-top: 0.25rem;
+		// margin-right: 1rem;
+	}
 }
