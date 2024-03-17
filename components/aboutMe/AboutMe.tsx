@@ -21,7 +21,7 @@ const IconYT = dynamic(() => import('@/models/4096/IconYT').then((mod) => mod.Mo
 	ssr: false,
 });
 export default function AboutMe(props) {
-	const { mobile } = useContext(UserContextProvider);
+	const { mobile, dev } = useContext(UserContextProvider);
 	const { aboutMeActive, portalsActive, scrolling, icon1Hovered, icon2Hovered, icon3Hovered } =
 		useContext(InputContextProvider);
 	const ref = useRef<THREE.Group>();
@@ -34,8 +34,8 @@ export default function AboutMe(props) {
 	const icon2Ref = useRef<THREE.Group>();
 
 	const baseSpeed = 0.1;
-	const baseScale = mobile ? 0.66 : 0.66;
-	const baseActiveScale = mobile ? 0.75 : 0.9;
+	const scaleBase = mobile ? 0.66 : 0.66;
+	const scaleActive = mobile ? 0.75 : 0.8;
 	const scaleUpFactor = 0.25;
 	const scaleDownFactor = 0.25;
 	const scaleUpSpeed = 0.1;
@@ -44,28 +44,28 @@ export default function AboutMe(props) {
 		ref: useRef<THREE.Group>(),
 		active: mobile ? new THREE.Vector3(0, 1, 0) : new THREE.Vector3(-0.5, 1, 0.2),
 		hidden: new THREE.Vector3(0, 0, 30),
-		activeScale: new THREE.Vector3(baseActiveScale, baseActiveScale, baseActiveScale),
+		activeScale: new THREE.Vector3(scaleActive, scaleActive, scaleActive),
 		hiddenScale: new THREE.Vector3(0, 0, 0),
 		enterSpeed: baseSpeed * 1.5,
 		exitSpeed: baseSpeed / 4,
 	});
-	const iconX = mobile ? 0.65 : 0.65;
+	const iconX = mobile ? 0.65 : 0.7;
 	const iconY = mobile ? 0.8 : 0.8;
 	const [icon1, setIcon1] = useState({
 		ref: useRef<THREE.Group>(),
 		active: mobile ? new THREE.Vector3(-0.33, 0.9, 0) : new THREE.Vector3(iconX, 0.8, 0),
 		hidden: new THREE.Vector3(0, 0, 20),
-		scaleHovered: new THREE.Vector3(baseActiveScale, baseActiveScale, baseActiveScale),
-		hiddenScale: new THREE.Vector3(baseScale, baseScale, baseScale),
+		scaleHovered: new THREE.Vector3(scaleActive, scaleActive, scaleActive),
+		hiddenScale: new THREE.Vector3(scaleBase, scaleBase, scaleBase),
 		enterSpeed: baseSpeed * 2,
 		exitSpeed: baseSpeed / 4,
 	});
 	const [icon2, setIcon2] = useState({
 		ref: useRef<THREE.Group>(),
-		active: mobile ? new THREE.Vector3(0.33, 0.15, 0) : new THREE.Vector3(1, 0.4, 0),
+		active: mobile ? new THREE.Vector3(0.33, 0.15, 0) : new THREE.Vector3(iconX + 0.4, 0.4, 0),
 		hidden: new THREE.Vector3(0, 0, 25),
-		scaleHovered: new THREE.Vector3(baseActiveScale, baseActiveScale, baseActiveScale),
-		hiddenScale: new THREE.Vector3(baseScale, baseScale, baseScale),
+		scaleHovered: new THREE.Vector3(scaleActive, scaleActive, scaleActive),
+		hiddenScale: new THREE.Vector3(scaleBase, scaleBase, scaleBase),
 		enterSpeed: baseSpeed * 1.5,
 		exitSpeed: baseSpeed / 4,
 	});
@@ -73,8 +73,8 @@ export default function AboutMe(props) {
 		ref: useRef<THREE.Group>(),
 		active: mobile ? new THREE.Vector3(-0.33, -0.15, 0) : new THREE.Vector3(iconX, 0, 0),
 		hidden: new THREE.Vector3(0, 0, 30),
-		scaleHovered: new THREE.Vector3(baseActiveScale, baseActiveScale, baseActiveScale),
-		hiddenScale: new THREE.Vector3(baseScale, baseScale, baseScale),
+		scaleHovered: new THREE.Vector3(scaleActive, scaleActive, scaleActive),
+		hiddenScale: new THREE.Vector3(scaleBase, scaleBase, scaleBase),
 		enterSpeed: baseSpeed,
 		exitSpeed: baseSpeed / 4,
 	});
@@ -102,9 +102,9 @@ export default function AboutMe(props) {
 			LerpGroupPos(text.ref, text.hidden, text.exitSpeed);
 		}
 	});
-	const floatIntensity = 1;
-	const rotationIntensity = 1;
-	const speed = 1.5;
+	const floatIntensity = 0.5;
+	const rotationIntensity = 0.5;
+	const speed = dev ? 1.5 : 1.5;
 
 	const urls = {
 		instagram: 'https://www.instagram.com/bravoFred_/',
