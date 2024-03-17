@@ -264,7 +264,7 @@ export default function PortalsOne() {
 				</Frame>
 			</group> */}
 
-			{portalRigActive && <Rig />}
+			{/* {portalRigActive && <Rig />} */}
 		</group>
 	);
 }
