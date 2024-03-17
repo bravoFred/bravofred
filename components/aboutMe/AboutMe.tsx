@@ -53,7 +53,7 @@ export default function AboutMe(props) {
 	const iconY = mobile ? 0.8 : 0.8;
 	const [icon1, setIcon1] = useState({
 		ref: useRef<THREE.Group>(),
-		active: mobile ? new THREE.Vector3(-0.33, 0.9, 0) : new THREE.Vector3(iconX, 0.8, 0),
+		active: mobile ? new THREE.Vector3(-0.33, 0.9, 0) : new THREE.Vector3(iconX, 0.85, 0),
 		hidden: new THREE.Vector3(0, 0, 20),
 		scaleHovered: new THREE.Vector3(scaleActive, scaleActive, scaleActive),
 		hiddenScale: new THREE.Vector3(scaleBase, scaleBase, scaleBase),
@@ -62,7 +62,7 @@ export default function AboutMe(props) {
 	});
 	const [icon2, setIcon2] = useState({
 		ref: useRef<THREE.Group>(),
-		active: mobile ? new THREE.Vector3(0.33, 0.15, 0) : new THREE.Vector3(iconX + 0.4, 0.4, 0),
+		active: mobile ? new THREE.Vector3(0.33, 0.15, 0) : new THREE.Vector3(iconX + 0.4, 0.45, 0),
 		hidden: new THREE.Vector3(0, 0, 25),
 		scaleHovered: new THREE.Vector3(scaleActive, scaleActive, scaleActive),
 		hiddenScale: new THREE.Vector3(scaleBase, scaleBase, scaleBase),
@@ -71,7 +71,7 @@ export default function AboutMe(props) {
 	});
 	const [icon3, setIcon3] = useState({
 		ref: useRef<THREE.Group>(),
-		active: mobile ? new THREE.Vector3(-0.33, -0.15, 0) : new THREE.Vector3(iconX, 0, 0),
+		active: mobile ? new THREE.Vector3(-0.33, -0.15, 0) : new THREE.Vector3(iconX, 0.05, 0),
 		hidden: new THREE.Vector3(0, 0, 30),
 		scaleHovered: new THREE.Vector3(scaleActive, scaleActive, scaleActive),
 		hiddenScale: new THREE.Vector3(scaleBase, scaleBase, scaleBase),
