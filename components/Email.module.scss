@@ -24,17 +24,8 @@
 	justify-content: center;
 	align-items: center;
 	border-radius: 50%;
-	transition: all 0.25s ease-in-out;
+	transition: all 0.1s ease-in-out;
 	animation: fadeIn 3s ease-in-out;
-
-	&:hover {
-		cursor: pointer;
-		box-shadow: -8px 1rem 8px rgba(0, 0, 0, 0.33);
-	}
-	&:active {
-		transform: scale(0.9);
-		box-shadow: -8px 1rem 8px rgba(0, 0, 0, 0.66);
-	}
 }
 $size: 2rem;
 .email_icon {
@@ -43,6 +34,18 @@ $size: 2rem;
 	margin: 0;
 	width: $size;
 	opacity: 0.75;
+}
+@media (min-width: 768px) {
+	.email {
+		&:hover {
+			cursor: pointer;
+			box-shadow: -8px 1rem 8px rgba(0, 0, 0, 0.33);
+		}
+		&:active {
+			transform: scale(0.9);
+			box-shadow: -8px 1rem 8px rgba(0, 0, 0, 0.66);
+		}
+	}
 }
 @media (max-width: 768px) {
 	.email {
