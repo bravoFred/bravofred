@@ -157,8 +157,9 @@ export default function AboutMe(props) {
 	// commonly used in industries
 	// ${'\n'}
 	// for previewing layouts and mockups.`);
+	// Learn more about me and my film making.
 	const [textMsg, setTextMsg] = useState(`
-	Hi! I'm Frederic.
+	Hi! My name is Frederic.
 	${'\n'}
 	I'm a filmmaker and visual storyteller.
 	${'\n'}
