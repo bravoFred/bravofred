@@ -19,7 +19,7 @@ export default function Status() {
 	}, []);
 	return (
 		<div className={styles.status}>
-			<p className={styles.status_text}>Atlanta, Georgia</p>
+			<p className={styles.status_text}>Atlanta, GA</p>
 			<p className={styles.status_text}>{userTime}</p>
 		</div>
 	);
