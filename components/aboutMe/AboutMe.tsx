@@ -120,10 +120,10 @@ export default function AboutMe(props) {
 				? EaseGroupScale(icon3Ref, icon3.scaleHovered, scaleUpFactor, scaleUpSpeed)
 				: EaseGroupScale(icon3Ref, icon3.hiddenScale, scaleDownFactor, scaleDownSpeed);
 			LerpGroupPos(text.ref, text.active, text.enterSpeed);
+			LerpGroupPos(huggingPic.ref, huggingPic.active, huggingPic.enterSpeed);
 			LerpGroupPos(icon1Ref, icon1.active, icon1.enterSpeed);
 			LerpGroupPos(icon2Ref, icon2.active, icon2.enterSpeed);
 			LerpGroupPos(icon3Ref, icon3.active, icon3.enterSpeed);
-			LerpGroupPos(huggingPic.ref, huggingPic.active, huggingPic.enterSpeed);
 		}
 		if (portalsActive) {
 			LerpGroupPos(icon1Ref, icon1.hidden, icon1.exitSpeed);
