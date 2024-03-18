@@ -1,6 +1,6 @@
 import { Text3D, Float } from '@react-three/drei';
 import { useScroll, DeviceOrientationControls, Text, Image } from '@react-three/drei';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useFrame, extend, useThree } from '@react-three/fiber';
 import * as THREE from 'three';
 import dynamic from 'next/dynamic';
@@ -24,6 +24,25 @@ export default function AboutMe(props) {
 	const { mobile, dev } = useContext(UserContextProvider);
 	const { aboutMeActive, portalsActive, scrolling, icon1Hovered, icon2Hovered, icon3Hovered } =
 		useContext(InputContextProvider);
+	// const [textPlay, setTextPlay] = useState(true);
+	// const [icon1Play, setIcon1Play] = useState(false);
+	// const [icon2Play, setIcon2Play] = useState(false);
+	// const [icon3Play, setIcon3Play] = useState(false);
+	// useEffect(() => {
+	// 	const delay = 500;
+	// 	setTimeout(() => {
+	// 		setTextPlay(true);
+	// 	}, delay);
+	// 	setTimeout(() => {
+	// 		setIcon1Play(true);
+	// 	}, delay * 2);
+	// 	setTimeout(() => {
+	// 		setIcon2Play(true);
+	// 	}, delay * 3);
+	// 	setTimeout(() => {
+	// 		setIcon3Play(true);
+	// 	}, delay * 4);
+	// }, []);
 	const ref = useRef<THREE.Group>();
 	const scroll = useScroll();
 	const r1 = scroll.range(0 / 4, 1 / 4);
@@ -100,10 +119,10 @@ export default function AboutMe(props) {
 			icon3Hovered.current
 				? EaseGroupScale(icon3Ref, icon3.scaleHovered, scaleUpFactor, scaleUpSpeed)
 				: EaseGroupScale(icon3Ref, icon3.hiddenScale, scaleDownFactor, scaleDownSpeed);
+			LerpGroupPos(text.ref, text.active, text.enterSpeed);
 			LerpGroupPos(icon1Ref, icon1.active, icon1.enterSpeed);
 			LerpGroupPos(icon2Ref, icon2.active, icon2.enterSpeed);
 			LerpGroupPos(icon3Ref, icon3.active, icon3.enterSpeed);
-			LerpGroupPos(text.ref, text.active, text.enterSpeed);
 			LerpGroupPos(huggingPic.ref, huggingPic.active, huggingPic.enterSpeed);
 		}
 		if (portalsActive) {
@@ -219,7 +238,8 @@ ${'\n'}
 				// anchorY="center"
 				// anchorX="center"
 				lineHeight={mobile ? 0.45 : 0.5}
-				position={[0, 0, 0]}
+				// position={[0, 0, 0]}
+				position={[0, 0, -100]}
 				material-toneMapped={false}
 				rotation={[0.05, 0, 0]}
 			>
@@ -238,7 +258,8 @@ ${'\n'}
 				scale={mobile ? [0.07, 0.07, 0.07] : [0.1, 0.1, 0.1]}
 				{...props}
 				alt="poster"
-				position={[-1, 1, 0]}
+				// position={[-1, 1, 0]}
+				position={[0, 0, -100]}
 			>
 				<planeGeometry args={[1.5, 1.5]} />
 				{/* <roundedPlaneGeometry args={[width, height, 0.22]} /> */}

@@ -38,7 +38,12 @@ const SmallRoom = dynamic(
 import * as THREE from 'three';
 export default function Main() {
 	const { theme, setTheme, frameloop, mobile } = useContext(UserContextProvider);
-
+	const [play, setPlay] = useState(true);
+	useEffect(() => {
+		setTimeout(() => {
+			setPlay(true);
+		}, 100);
+	}, []);
 	return (
 		<>
 			<Nav />
@@ -64,14 +69,15 @@ export default function Main() {
 						fov: mobile ? 45 : 70, // fov from codesandbox
 						near: 0.1,
 						far: 45,
-						// zoom: 1,
-						position: new THREE.Vector3(mobile ? 0 : -10, 0, 0),
+						zoom: 1,
+						position: new THREE.Vector3(mobile ? 0 : 0, 0, 5),
 					}}
 				>
 					<color args={[theme === 'light' ? '#fff' : '#000']} attach="background" />
 					<fog attach="fog" args={[theme === 'light' ? '#fff' : '#000', 0, 15]} />
 					<ScrollControls pages={2}>
 						<GridGround theme={theme} />
+						{/* {play && <AboutMe />} */}
 						<AboutMe />
 						<PortalsMain />
 						<ScrollController />
