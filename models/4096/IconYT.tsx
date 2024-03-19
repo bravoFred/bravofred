@@ -22,9 +22,10 @@ type GLTFResult = GLTF & {
 };
 
 type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>;
-
+const glbURL =
+	'https://raw.githubusercontent.com/thomasmatlock/public/main/models/iconYT-transformed.glb';
 export function Model(props: JSX.IntrinsicElements['group']) {
-	const { nodes, materials } = useGLTF('/../../models/4096/iconYT-transformed.glb') as GLTFResult;
+	const { nodes, materials } = useGLTF(glbURL) as GLTFResult;
 	return (
 		<group {...props} dispose={null}>
 			<group name="youtube" position={[0.003, 0.91, 0.26]} userData={{ name: 'youtube' }}>
@@ -47,4 +48,4 @@ export function Model(props: JSX.IntrinsicElements['group']) {
 	);
 }
 
-useGLTF.preload('/../../models/4096/iconYT-transformed.glb');
+useGLTF.preload(glbURL);
