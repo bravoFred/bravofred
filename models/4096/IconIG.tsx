@@ -22,9 +22,18 @@ type GLTFResult = GLTF & {
 };
 
 type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>;
+// no cors
 
+const glbURL =
+	'https://raw.githubusercontent.com/thomasmatlock/public/main/models/iconIG-transformed.glb';
+
+import dynamic from 'next/dynamic';
+// import from url
+// import { useGLTF } from '@react-three/drei';
+// import { GLTF } from 'three-stdlib';
 export function Model(props: JSX.IntrinsicElements['group']) {
-	const { nodes, materials } = useGLTF('/../../models/4096/iconIG-transformed.glb') as GLTFResult;
+	// const { nodes, materials } = useGLTF('/../../models/4096/iconIG-transformed.glb') as GLTFResult;
+	const { nodes, materials } = useGLTF(glbURL) as GLTFResult;
 	return (
 		<group {...props} dispose={null}>
 			<group name="ig" userData={{ name: 'ig' }}>
@@ -47,4 +56,4 @@ export function Model(props: JSX.IntrinsicElements['group']) {
 	);
 }
 
-useGLTF.preload('/../../models/4096/iconIG-transformed.glb');
+useGLTF.preload(glbURL);
