@@ -51,7 +51,7 @@ export default function Main() {
 			<Tip />
 			<Status />
 			<Email />
-			<Credits />
+			{/* <Credits /> */}
 			<ScrollNavButtons />
 			<Suspense fallback={null}>
 				<Canvas
