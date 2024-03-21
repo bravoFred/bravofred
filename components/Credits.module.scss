@@ -59,23 +59,26 @@ $speed: 1s;
 	font-weight: 600 !important;
 	margin-left: -0.25rem;
 }
+.credit_item {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	// border: 1px solid red;
+}
 @media (max-width: 768px) {
-	.status {
-		width: 100vw;
-		padding: 0;
-		// height: auto;
-		flex-direction: column;
-		justify-content: center;
-		align-items: flex-end;
-		right: 1.25rem;
-		top: 0.4rem;
+	.credit,
+	.credit_text,
+	.credit_text_bold {
+		line-height: 0.75rem;
 	}
-	.status_text {
-		font-size: 12px;
-		font-weight: 300 !important;
-		// margin: 0;
+	.credit_text,
+	.credit_text_bold {
+		font-size: 6px;
+	}
 
-		margin-top: 0.25rem;
-		// margin-right: 1rem;
+	.credit:nth-child(2) {
+		flex-direction: column;
+		margin-bottom: 0.5rem;
 	}
 }
