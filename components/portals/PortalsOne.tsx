@@ -70,7 +70,7 @@ function Frame({ id, name, author, bg, width = 1, height = GOLDENRATIO, children
 	const text1Ref = useRef();
 	const text2Ref = useRef();
 	const [releaseText, setReleaseText] = useState('Summer 2024');
-	const imgURL = `https://raw.githubusercontent.com/thomasmatlock/public/main/images/poster1440.jpeg`;
+	const imgURL = `https://raw.githubusercontent.com/thomasmatlock/public-fred/main/images/poster1440.jpeg`;
 	return (
 		<group {...props} position={[0, 1, 0]}>
 			{/* <Foo /> */}
