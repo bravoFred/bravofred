@@ -1,6 +1,6 @@
 import Head from 'next/head';
 const previewImg =
-	'https://raw.githubusercontent.com/thomasmatlock/public/main/images/previewThumbnail.png';
+	'https://raw.githubusercontent.com/thomasmatlock/public-fred/main/images/previewThumbnail.png';
 const titleDefault = 'Frederic Cartier | Filmmaker';
 const url = 'https://www.frederic-cartier.com';
 const description = 'Film-maker living in Atlanta.';
@@ -70,7 +70,7 @@ export default function Header({ title = titleDefault }) {
 			{/* RESTORE BELOW */}
 			<meta
 				name="twitter:image"
-				content="https://raw.githubusercontent.com/thomasmatlock/public/main/images/previewThumbnail.png"
+				content="https://raw.githubusercontent.com/thomasmatlock/public-fred/main/images/previewThumbnail.png"
 			/>
 		</Head>
 	);
