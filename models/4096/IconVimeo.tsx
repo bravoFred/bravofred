@@ -23,7 +23,7 @@ type GLTFResult = GLTF & {
 
 type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicElements['mesh']>>;
 const glbURL =
-	'https://raw.githubusercontent.com/thomasmatlock/public-fred/main/models/iconVimeo-transformed.glb';
+	'https://raw.githubusercontent.com/bravoFred/public-fred/main/models/iconVimeo-transformed.glb';
 export function Model(props: JSX.IntrinsicElements['group']) {
 	const { nodes, materials } = useGLTF(glbURL) as GLTFResult;
 

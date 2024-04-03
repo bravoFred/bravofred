@@ -14,13 +14,6 @@ import dynamic from 'next/dynamic';
 import { LerpGroupPos } from '../Animate';
 const GOLDENRATIO = 1.61803398875;
 
-const Warehouse = dynamic(
-	() => import('../../models/4096/WarehouseJoined').then((mod) => mod.Model),
-	{
-		ssr: false,
-	}
-);
-
 // ref.current.material.radius = 1;
 // ref.current.material.zoom = 1;
 // ref.current.material.grayscale = 0.5;

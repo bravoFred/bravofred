@@ -25,7 +25,7 @@ type ContextType = Record<string, React.ForwardRefExoticComponent<JSX.IntrinsicE
 // no cors
 
 const glbURL =
-	'https://raw.githubusercontent.com/thomasmatlock/public-fred/main/models/iconIG-transformed.glb';
+	'https://raw.githubusercontent.com/bravoFred/public-fred/main/models/iconIG-transformed.glb';
 
 import dynamic from 'next/dynamic';
 // import from url

@@ -30,21 +30,9 @@ import Tip from './Tip';
 import Status from './Status';
 import Credits from './Credits';
 import Email from './Email';
-const SmallRoom = dynamic(
-	() => import('../models/4096/PortalInteriorJoined').then((mod) => mod.Model),
-	{
-		ssr: false,
-	}
-);
 import * as THREE from 'three';
 export default function Main() {
 	const { theme, setTheme, frameloop, mobile } = useContext(UserContextProvider);
-	const [play, setPlay] = useState(true);
-	useEffect(() => {
-		setTimeout(() => {
-			setPlay(true);
-		}, 100);
-	}, []);
 	return (
 		<>
 			<Nav />
